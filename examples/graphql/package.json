@@ -11,7 +11,7 @@
     "typecheck": "tsc",
     "wrangler": "wrangler pages dev ./public",
     "wrangler:publish": "remix build && wrangler pages publish ./public",
-    "wrangler:tail": "wrangler pages deployment tail --project-name remix-drupal"
+    "wrangler:tail": "wrangler pages deployment tail --project-name drupal-remix"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^1.16.0",

@@ -1,4 +1,4 @@
-# Remix <> Drupal integration
+# Drupal <> Remix integration
 
 ## Why Drupal + Remix together?
 Using Drupal as a headless CMS with Remix is a great way to get an enterprise-quality CMS, paired with a great modern development experience and all the benefits of the Edge Computing, like performance, scalability, and security.
