@@ -1,22 +1,11 @@
 import FormData from "form-data";
 import type { Config, OAuthPayload } from "./types";
 
-const parseOAuthPayload = async (response: any, headerKey?: string) => {
-  const json = await response.json();
-  const { access_token, token_type } = json as OAuthPayload;
-
-  const headerKeyName = headerKey ? headerKey : "Authorization";
-  return {
-    [headerKeyName]: `${token_type} ${access_token}`,
-  };
-};
-
-export const clientCredentialsHeaders = async (
+export const clientCredentialsHeader = async (
   authUri: string,
   clientId: string,
   clientSecret: string,
   fetcher: Config["fetcher"],
-  headerKey?: string
 ) => {
   const formData = new FormData();
   formData.append("grant_type", "client_credentials");
@@ -32,20 +21,19 @@ export const clientCredentialsHeaders = async (
   });
 
   if (response.ok) {
-    return await parseOAuthPayload(response, headerKey);
+    return await response.json() as OAuthPayload;
   }
 
-  return false;
+  return null;
 };
 
-export const passwordHeaders = async (
+export const passwordHeader = async (
   authUri: string,
   username: string,
   password: string,
   clientId: string,
   clientSecret: string,
   fetcher: Config["fetcher"],
-  headerKey?: string
 ) => {
   const formData = new FormData();
   formData.append("grant_type", "password");
@@ -63,8 +51,8 @@ export const passwordHeaders = async (
   });
 
   if (response.ok) {
-    return await parseOAuthPayload(response, headerKey);
+    return await response.json() as OAuthPayload;
   }
 
-  return false;
+  return null;
 };

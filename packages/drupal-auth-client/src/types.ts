@@ -1,8 +1,4 @@
-type OptionsShared = {
-  headerKey?: string;
-};
-
-type ClientOptions = OptionsShared & {
+type ClientOptions = {
   clientId: string;
   clientSecret: string;
 };
@@ -20,15 +16,7 @@ type PasswordOAuth = {
   } & ClientOptions;
 };
 
-type TokenAuth = {
-  token_type: "token";
-  options: {
-    type?: string;
-    value: string;
-  } & OptionsShared;
-};
-
-export type Auth = ClientCredentialsOAuth | PasswordOAuth | TokenAuth;
+export type Auth = ClientCredentialsOAuth | PasswordOAuth;
 
 export type Options<TConfig extends Auth["token_type"]> = Extract<
   Auth,
@@ -43,4 +31,5 @@ export type Config = {
 export interface OAuthPayload {
   access_token: string;
   token_type: string;
+  expires_in: string;
 }

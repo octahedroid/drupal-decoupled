@@ -1,59 +1,51 @@
-import { GraphQLClient } from "graphql-request";
 import fetch from "cross-fetch";
 
-import { clientCredentialsHeaders, passwordHeaders } from "./authHandlers";
+import { clientCredentialsHeader, passwordHeader } from "./authHandlers";
 import type { Auth, Config, Options } from "./types";
 
-const calculateAuthHeaders = async <TAuth extends Auth["token_type"]>(
+const calculateAuthHeader = async <TAuth extends Auth["token_type"]>(
   uri: string,
   type: TAuth,
   options: Options<TAuth>,
   fetcher: Config["fetcher"]
 ) => {
   if (type === "client_credentials") {
-    const { clientId, clientSecret, headerKey } =
+    const { clientId, clientSecret} =
       options as Options<"client_credentials">;
-    const headers = await clientCredentialsHeaders(
+    const header = await clientCredentialsHeader(
       uri,
       clientId,
       clientSecret,
       fetcher,
-      headerKey
     );
 
-    if (headers) {
-      return headers;
+    if (header) {
+      return header;
     }
   }
+
   if (type === "password") {
-    const { username, password, clientId, headerKey, clientSecret } =
+    const { username, password, clientId, clientSecret } =
       options as Options<"password">;
-    const headers = await passwordHeaders(
+    const header = await passwordHeader(
       uri,
       username,
       password,
       clientId,
       clientSecret,
       fetcher,
-      headerKey
     );
 
-    if (headers) {
-      return headers;
+    if (header) {
+      return header;
     }
   }
-  if (type === "token") {
-    const { type: tokenType, value, headerKey } = options as Options<"token">;
-    const headerKeyName = headerKey ? headerKey : "Authorization";
 
-    return {
-      [headerKeyName]: tokenType ? `${tokenType} ${value}` : value,
-    };
-  }
+  return null;
 };
 
 /**
- * Generate a drupal client with the given auth and config
+ * Return headers based on the given auth and config
  * @param uri The uri of the drupal site
  * @param auth The auth strategy to use
  * @param options {Config} The auth options
@@ -61,7 +53,7 @@ const calculateAuthHeaders = async <TAuth extends Auth["token_type"]>(
  *
  * The type for the options is decided by the auth type
  * @example
- * const client = drupalClient(
+ * const client = drupalAuthClient(
  *  "https://drupal.site",
  * "client_credentials",
  *  {
@@ -75,7 +67,7 @@ const calculateAuthHeaders = async <TAuth extends Auth["token_type"]>(
  * "password" you would need to provide the username and password as well.
  *
  * @example
- * const client = drupalClient(
+ * const client = drupalAuthClient(
  *  "https://drupal.site",
  *  "password",
  *  {
@@ -88,7 +80,7 @@ const calculateAuthHeaders = async <TAuth extends Auth["token_type"]>(
  *
  *
  **/
-const drupalGraphqlClient = async <TAuth extends Auth["token_type"]>(
+const drupalAuthClient = async <TAuth extends Auth["token_type"]>(
   uri: string,
   type: TAuth,
   options: Options<TAuth>,
@@ -99,23 +91,20 @@ const drupalGraphqlClient = async <TAuth extends Auth["token_type"]>(
   const { fetcher, authURI } = config;
 
   const url = new URL(uri);
-  const formattedAuthURI = `${authURI ? authURI : url.origin}/oauth/token`;
-  const headers = await calculateAuthHeaders(
+  const formattedAuthURI = authURI ? authURI : `${url.origin}/oauth/token`;
+
+  const header = await calculateAuthHeader(
     formattedAuthURI,
     type,
     options,
     fetcher
-  );
-  if (!headers) {
-    throw new Error("Unable to fetch auth headers");
+  )
+
+  if (!header) {
+    throw new Error("Unable to fetch auth header");
   }
 
-  const client = new GraphQLClient(uri, {
-    fetch: fetcher,
-    headers,
-  });
-
-  return client;
+  return header;
 };
 
-export default drupalGraphqlClient;
+export default drupalAuthClient;
