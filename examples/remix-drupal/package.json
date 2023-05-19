@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev:remix": "remix watch",
+    "dev:wrangler": "cross-env NODE_ENV=development npm run wrangler",
+    "dev": "npm-run-all build --parallel \"dev:*\"",
+    "start": "cross-env NODE_ENV=production npm run wrangler",
+    "sync:genql": "npx ts-node scripts/sync-genql.ts",
+    "typecheck": "tsc",
+    "wrangler": "wrangler pages dev ./public",
+    "wrangler:publish": "remix build && wrangler pages publish ./public",
+    "wrangler:tail": "wrangler pages deployment tail --project-name remix-drupal"
+  },
+  "dependencies": {
+    "@remix-run/cloudflare": "^1.16.0",
+    "@remix-run/cloudflare-pages": "^1.16.0",
+    "@remix-run/css-bundle": "^1.16.0",
+    "@remix-run/react": "^1.16.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "classnames": "^2.3.2",
+    "cross-env": "^7.0.3",
+    "isbot": "^3.6.5",
+    "date-fns": "^2.29.3",
+    "drupal-auth-client": "^0.2.0",
+    "drupal-remix": "^0.1.1",
+    "react": "18.2.0",
+    "react-code-blocks": "^0.0.9-0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.12.0",
+    "tailwindcss-animate": "^1.0.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.19.0",
+    "@genql/cli": "^5.0.1",
+    "@remix-run/dev": "^1.16.0",
+    "@remix-run/eslint-config": "^1.16.0",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^8.38.0",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.4",
+    "wrangler": "^2.15.1"
+  },
+  "engines": {
+    "node": ">=16.13"
+  }
+}

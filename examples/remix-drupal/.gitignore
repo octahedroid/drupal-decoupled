@@ -1,0 +1,26 @@
+# node
+node_modules
+
+# framework 
+/.cache
+/functions/\[\[path\]\].js
+/functions/\[\[path\]\].js.map
+.dev.vars
+/build
+/dist
+/public/build
+/.mf
+app/styles/app.css
+
+.env
+.env.development
+
+# genreted files
+/app/@types/gen/
+
+# cloudflare
+wrangler.toml
+
+# yalc
+.yalc
+yalc.lock
