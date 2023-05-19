@@ -7,7 +7,7 @@ It only takes a few steps to use Remix with Drupal as a Headless CMS (also known
 
 ### Components
 
-- [Drupal site](drupal/www)
-- [GraphQL Compose module](https://www.drupal.org/project/graphql_compose)
-- [Remix module](https://www.drupal.org/project/remix)
-- [Cloudlare Images module](https://www.drupal.org/project/cloudflare_images)
+- [Drupal](drupal/graphql)
+- [Modules](drupal/modules)
+- [Examples](examples)
+- [Packages](packages)
