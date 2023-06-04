@@ -3,8 +3,9 @@ interface ParagraphHeroCtaProps {
   title: string;
   text: string;
   links: {
-    link: string;
+    url: string;
     title: string;
+    internal: boolean;
   }[];
 }
 
@@ -26,8 +27,9 @@ export default function ParagraphHeroCta({ intro, title, text, links }: Paragrap
             return (
               <div key={index} className="ml-3 inline-flex">
                 <a
-                  href={link.link}
-                  className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-200"
+                  target={link.internal ? "_self" : "_blank"}
+                  href={link.url}
+                  className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-200" rel="noreferrer"
                 >
                   {link.title}
                 </a>
