@@ -3621,10 +3621,10 @@ drupal-auth-client@^0.2.0:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
-drupal-remix@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.1.1.tgz#3f36bc726a02276671c3b7eb68c145dbd73ae8b9"
-  integrity sha512-hVLCBUcwBGRqSbgeqFeT43u7sASshLuPNfMICr7U5tgOv1GIgMlbqFFEoUZSdMspm1hHbqWFuUkzKgHGvv+Zog==
+drupal-remix@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.2.0.tgz#f2ba228df8ef934157ffcd9dc38e8b5eb518f12c"
+  integrity sha512-KOaRRqN4FPGQ1QY8jc6HuFwR0jaSFV0fn51fZc4KQnVNPkqjn2eS00kkcwo70VNWJCBh1vjKbvwSJBNrdIUacQ==
 
 duplexify@^3.5.0, duplexify@^3.6.0:
   version "3.7.1"
