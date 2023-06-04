@@ -29,9 +29,34 @@ NodeTypeComponents.set("NodePage", NodePageComponent);
 export const meta: V2_MetaFunction = ({
   data,
 }: {
-  data: { node: { metatag: MetaTagUnion[] } };
+  data: { node: { metatag: any } };
 }) => {
-  return metaTags(data.node.metatag) as any;
+  return metaTags({
+    tags: data.node.metatag,
+    metaTagOverrides: {
+      MetaTagLink: {
+        canonical: {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagProperty: {
+        "og:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagValue: {
+        "twitter:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+    },
+  }) as any;
 };
 
 export const loader = async ({ params, context }: LoaderArgs) => {
