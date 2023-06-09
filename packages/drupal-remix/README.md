@@ -116,9 +116,11 @@ export const loader = async ({ params, context }: LoaderArgs) => {
 };
 ```
 
-> Note: This example is using the GenQL CLI, make you install it and generate types and client from the GraphQL API your Drupal site is exposing.
+> Note: This example is using the GenQL CLI, make sure you install it to generate types and client from the GraphQL API your Drupal site is exposing.
 
 ## Usage: Inline Preview
+
+In order to implement you will need to edit your `app/root.tsx` file
 
 ### Importing library
 
@@ -144,11 +146,22 @@ export const loader = async ({ context }: LoaderArgs) => {
 ### Client Side Code
 
 ```typescript
+export default function App() {
   const { environment } = useLoaderData<typeof loader>();
   const navigation = useNavigation();
+
   if (environment === "preview" && navigation.state === "loading") {
     syncDrupalPreviewRoutes(navigation.location.pathname);
   }
+
+  return (
+    <html lang="en">
+      ...
+    </html>
+  );
+
+}
+
 ```
 
 ## Supporting organizations
