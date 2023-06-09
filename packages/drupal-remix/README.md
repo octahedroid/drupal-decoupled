@@ -28,7 +28,12 @@ export const meta: V2_MetaFunction = ({
 };
 ```
 
-### Overriding values
+### Overriding values (optional)
+
+You can override specific values in the meta tags by providing a metaTagOverrides object to the metaTags function. This object consists of three keys: MetaTagLink, MetaTagProperty, and MetaTagValue. Each key corresponds to a specific kind of meta tag.
+
+MetaTagLink Overrides
+To override the `<link>` tag with the canonical attribute, use the MetaTagLink key. For example:
 
 ```typescript
 export const meta: V2_MetaFunction = ({
@@ -46,6 +51,27 @@ export const meta: V2_MetaFunction = ({
           replacement: "drupal-site.pages.dev",
         },
       },
+    },
+  });
+};
+```
+
+In this example, the canonical attribute of the `<link>` tag will be overridden. The kind property determines the type of override to perform. The available options are:
+
+"replace": Replaces a specific pattern within the value with the provided replacement.
+"override": Fully replaces the value with the provided replacement.
+MetaTagProperty Overrides
+To override a `<meta>` tag with the property attribute, use the MetaTagProperty key. For example:
+
+```typescript
+export const meta: V2_MetaFunction = ({
+  data,
+}: {
+  data: { node: { metatag } };
+}) => {
+  return metaTags({
+    tags: data.node.metatag,
+    metaTagOverrides: {
       MetaTagProperty: {
         "og:url": {
           kind: "replace",
@@ -53,6 +79,25 @@ export const meta: V2_MetaFunction = ({
           replacement: "drupal-site.pages.dev",
         },
       },
+    },
+  });
+};
+```
+
+In this example, the `<meta>` tag with the property attribute set to "og:url" will be overridden. The kind property determines the type of override to perform.
+
+MetaTagValue Overrides
+To override a `<meta>` tag with the name attribute, use the MetaTagValue key. For example:
+
+```typescript
+export const meta: V2_MetaFunction = ({
+  data,
+}: {
+  data: { node: { metatag } };
+}) => {
+  return metaTags({
+    tags: data.node.metatag,
+    metaTagOverrides: {
       MetaTagValue: {
         "twitter:url": {
           kind: "replace",
@@ -64,6 +109,10 @@ export const meta: V2_MetaFunction = ({
   });
 };
 ```
+
+In this example, the `<meta>` tag with the name attribute set to "twitter:url" will be overridden. The kind property determines the type of override to perform.
+
+The available kind options for MetaTagProperty and MetaTagValue are the same as mentioned earlier: "replace" and "override".
 
 ## Fetching data form Drupal using GraphQL
 
