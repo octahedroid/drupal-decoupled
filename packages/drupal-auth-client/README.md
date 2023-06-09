@@ -6,12 +6,14 @@ Make sure your Drupal site is using the [simple_oauth](https://www.drupal.org/pr
 
 ## Usage
 
-### import library
+### Importing library
+
 ```javascript
 import drupalAuthClient from "drupal-auth-client"
 ```
 
-### Using `client_credentials` 
+### Using `client_credentials`
+
 ```javascript
 
 const client = drupalAuthClient(
@@ -24,7 +26,8 @@ const client = drupalAuthClient(
 )
 ```
 
-### Using `password` 
+### Using `password`
+
 ```javascript
 
 const client = drupalAuthClient(

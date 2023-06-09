@@ -4,7 +4,7 @@ A list of utilities to help you integrate your Drupal site with Remix.
 
 ## Prerequisites
 
-Make sure your Drupal site is using the [Metatags](https://www.drupal.org/project/metatag [GraphQL Compose](https://www.drupal.org/project/graphql_compose) and [Remix](https://www.drupal.org/project/remix) modules.
+Make sure your Drupal site is using the [Metatag](https://www.drupal.org/project/metatag) [GraphQL Compose](https://www.drupal.org/project/graphql_compose) and [Remix](https://www.drupal.org/project/remix) modules.
 
 ## Usage: SEO
 
@@ -139,7 +139,7 @@ export const loader = async ({ context }: LoaderArgs) => {
 };
 ```
 
-> NOTE: This example is using Cloudflare and tajking advantage of Environemt settings to define environment that is why we are using the context object
+> NOTE: This example is using Cloudflare and taking advantage of Environemt Settings to define "environment" key/value, that is why we are using the context object to obtain the value and pass it from Server to Client.
 
 ### Client Side Code
 
