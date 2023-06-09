@@ -7,7 +7,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useTransition,
+  useNavigation,
   useLoaderData,
 } from "@remix-run/react";
 import Container from "./components/Container";
@@ -31,10 +31,9 @@ export const loader: LoaderFunction = async ({ context }) => {
 
 export default function App() {
   const { environment } = useLoaderData() as { environment: string };
-  // @TODO: Catch router change on remix router config file.
-  const transition = useTransition();
-  if (environment === "staging" && transition.state === "loading") {
-    syncDrupalPreviewRoutes(transition.location.pathname);
+  const navigation = useNavigation();
+  if (environment === "preview" && navigation.state === "loading") {
+    syncDrupalPreviewRoutes(navigation.location.pathname);
   }
 
   return (

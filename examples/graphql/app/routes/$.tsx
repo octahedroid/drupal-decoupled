@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import { Fragment } from "react";
 
-import type { MetaTagUnion, NodePage } from "~/@types/gen/schema";
+import type { NodePage } from "~/@types/gen/schema";
 
 import getToken from "~/drupal/auth.server";
 import { getClient } from "~/drupal/client.server";
