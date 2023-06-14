@@ -17,3 +17,8 @@ Easily publish and serve your images using Cloudflare platform.
 
 [cloudflare_images](https://www.drupal.org/project/cloudflare_images)
 
+## Composable
+
+Provide provide delightful editorial experiences for content editors within Drupal regardless of your FE implementation.
+
+[composable](https://www.drupal.org/project/composable)
