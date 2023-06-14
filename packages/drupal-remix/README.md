@@ -4,7 +4,7 @@ A list of utilities to help you integrate your Drupal site with Remix.
 
 ## Prerequisites
 
-Make sure your Drupal site is using the [Metatag](https://www.drupal.org/project/metatag) [GraphQL Compose](https://www.drupal.org/project/graphql_compose) and [Remix](https://www.drupal.org/project/remix) modules.
+Make sure your Drupal site is using the [Metatag](https://www.drupal.org/project/metatag), [GraphQL Compose](https://www.drupal.org/project/graphql_compose) and [Remix](https://www.drupal.org/project/remix) modules.
 
 ## Usage: SEO
 
