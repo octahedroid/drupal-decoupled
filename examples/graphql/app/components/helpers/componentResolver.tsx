@@ -35,7 +35,7 @@ const resolve = (component: any) => {
     );
   }
 
-  if (component.__typename.includes(`ParagraphText`)) {
+  if (component.__typename === 'ParagraphText') {
     return (
         <ParagraphText
           title={component.title}
@@ -44,7 +44,7 @@ const resolve = (component: any) => {
     );
   }
 
-  if (component.__typename.includes(`ParagraphImage`)) {
+  if (component.__typename === 'ParagraphImage') {
     return (
         <ParagraphImage
           image={component.image}
@@ -52,7 +52,7 @@ const resolve = (component: any) => {
     );
   }
 
-  if (component.__typename.includes(`ParagraphCodeBlock`)) {
+  if (component.__typename === 'ParagraphCodeBlock') {
     return (
         <ParagraphCodeBlock
             title={component.title}

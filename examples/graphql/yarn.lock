@@ -3621,8 +3621,10 @@ drupal-auth-client@^0.2.0:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
-"drupal-composable@file:.yalc/drupal-composable":
+drupal-composable@^0.1.0:
   version "0.1.0"
+  resolved "https://registry.yarnpkg.com/drupal-composable/-/drupal-composable-0.1.0.tgz#747c75356f5550c540e8fd3f7270a6f53cfb03a0"
+  integrity sha512-G/JfxyxUoPF8bFwm8lRQjr2nNwjOmF6eOxR7rBnKz2NRoF9YFVtBVmOZ+8LNZM8lSnxrnXILPhrvs9ue4RAVdw==
 
 drupal-remix@^0.2.0:
   version "0.2.0"
