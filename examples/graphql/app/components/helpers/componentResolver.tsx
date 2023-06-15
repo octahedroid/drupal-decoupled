@@ -1,34 +1,54 @@
+import { Fragment } from "react";
 import ParagraphHeroCta from "../paragraph/ParagraphHeroCta";
 import ParagraphText from "../paragraph/ParagraphText";
 import ParagraphImage from "../paragraph/ParagraphImage";
 import ParagraphCodeBlock from "../paragraph/ParagraphCodeBlock";
 
+import type { ComposableComponentProps} from "drupal-composable";
+import { openComposableComponent } from "drupal-composable"
+interface ComposableComponentContainerProps extends ComposableComponentProps {
+  children?: React.ReactNode;
+}
+
+const ComposableComponentContainer = ({ action, storage, uuid, children }: ComposableComponentContainerProps) => (
+  <section
+    data-composable-component={`${storage}-${uuid}`}
+    onClick={() => openComposableComponent({
+      action,
+      storage,
+      uuid,
+    })}
+  >
+    {children}
+  </section>
+)
+
 const resolve = (component: any) => {
-  if (component.__typename.includes(`ParagraphHeroCta`)) {
+  if (component.__typename === 'ParagraphHeroCta') {
     return (
-      <ParagraphHeroCta
-        intro={component.intro}
-        title={component.title}
-        text={component.text}
-        links={component.cta}
-      />
+        <ParagraphHeroCta
+          intro={component.intro}
+          title={component.title}
+          text={component.text}
+          links={component.cta}
+        />
     );
   }
 
   if (component.__typename.includes(`ParagraphText`)) {
     return (
-      <ParagraphText
-        title={component.title}
-        text={component.textRich.processed}
-      />
+        <ParagraphText
+          title={component.title}
+          text={component.textRich.processed}
+        />
     );
   }
 
   if (component.__typename.includes(`ParagraphImage`)) {
     return (
-      <ParagraphImage
-        image={component.image}
-      />
+        <ParagraphImage
+          image={component.image}
+        />
     );
   }
 
@@ -46,11 +66,26 @@ const resolve = (component: any) => {
   return <></>;
 };
 
-export const componentResolver = (data = [] as any) => {
+export const componentResolver = (data = [] as any, environment: string) => {
   const components: any = [];
 
   data.forEach((component: any) => {
-    components.push(resolve(component));
+    const reactComponent = resolve(component);
+    if (environment === 'preview') {
+      components.push(
+        <ComposableComponentContainer
+          action='edit'
+          storage='paragraph'
+          uuid={component.id}
+        >
+          {reactComponent}
+        </ComposableComponentContainer>
+      );
+
+      return;
+    }
+
+    components.push(reactComponent);
   });
 
   return components;

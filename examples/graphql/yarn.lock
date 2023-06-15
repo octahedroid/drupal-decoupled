@@ -3621,6 +3621,9 @@ drupal-auth-client@^0.2.0:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
+"drupal-composable@file:.yalc/drupal-composable":
+  version "0.1.0"
+
 drupal-remix@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.2.0.tgz#f2ba228df8ef934157ffcd9dc38e8b5eb518f12c"
