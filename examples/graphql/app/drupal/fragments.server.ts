@@ -50,6 +50,7 @@ export const ParagraphTextFragment: ParagraphTextGenqlSelection = {
 }
 
 export const ParagraphCodeBlockFragment: ParagraphCodeBlockGenqlSelection = {
+  id: true,
   titleOptional: true,
   code: true,
   language: true,
@@ -57,12 +58,14 @@ export const ParagraphCodeBlockFragment: ParagraphCodeBlockGenqlSelection = {
 }
 
 export const ParagraphHeroTextFragment: ParagraphHeroTextGenqlSelection = {
+  id: true,
   intro: true,
   text: true,
   title: true,
 }
 
 export const ParagraphImageFragment: ParagraphImageGenqlSelection = {
+  id: true,
   image: {
     on_MediaImage: {
       mediaImage: { ...ImageFragment },

@@ -15,9 +15,11 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { syncDrupalPreviewRoutes } from "drupal-remix";
 import stylesheet from "~/tailwind.css";
+import stylesheetPreview from "~/preview.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: stylesheetPreview },
 ];
 
 export const loader: LoaderFunction = async ({ context }) => {

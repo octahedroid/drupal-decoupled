@@ -154,11 +154,11 @@ export const loader = async ({ params, context }: LoaderArgs) => {
     return redirect("/404");
   }
 
-  return json({ node: route.entity }, { status: 200 });
+  return json({ node: route.entity, environment: context.ENVIRONMENT, }, { status: 200 });
 };
 
 export default function Index() {
-  const { node } = useLoaderData() as { node: NodePage };
+  const { node, environment } = useLoaderData() as { node: NodePage, environment: string };
   const Component = NodeTypeComponents.get(node.__typename);
 
   if (!node || !Component) {
@@ -167,7 +167,7 @@ export default function Index() {
 
   return (
     <Fragment>
-      <Component node={node} />
+      <Component node={node} environment={environment} />
     </Fragment>
   );
 }

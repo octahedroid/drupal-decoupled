@@ -3,8 +3,8 @@ import type { NodeArticle } from '~/@types/gen/schema';
 import Cover from "~/components/Cover";
 import { componentResolver } from "~/components/helpers/componentResolver";
 
-export default function NodeArticleComponent({ node }: { node: NodeArticle }) {
-  const components = componentResolver(node.components) as [];
+export default function NodeArticleComponent({ node, environment }: { node: NodeArticle, environment: string }) {
+  const components = componentResolver(node.components, environment) as [];
 
   return (
     <>

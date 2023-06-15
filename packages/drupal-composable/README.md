@@ -52,6 +52,16 @@ const ComposableComponentContainer = ({ action, storage, uuid, children }: Compo
   </ComposableComponentContainer>
 ```
 
+### Addign styles to component container
+```css
+[data-composable-component]:hover {
+  border-color: purple; border-style: dashed;
+  border-width: thin;
+  overflow: hidden;
+  cursor: pointer;
+}
+```
+
 ## Supporting organizations
 
 Development sponsored by [Octahedroid](https://octahedroid.com/)
