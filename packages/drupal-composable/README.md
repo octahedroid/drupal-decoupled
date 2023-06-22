@@ -28,6 +28,7 @@ interface ComposableComponentContainerProps extends ComposableComponentProps {
 
 const ComposableComponentContainer = ({ action, storage, uuid, children }: ComposableComponentContainerProps) => (
   <section
+    id={`${storage}-${uuid}`}
     data-composable-component={`${storage}-${uuid}`}
     onClick={() => openComposableComponent({
       action,
