@@ -154,7 +154,7 @@ export const loader = async ({ params, context }: LoaderArgs) => {
     return redirect("/404");
   }
 
-  return json({ node: route.entity, environment: context.ENVIRONMENT, }, { status: 200 });
+  return json({ node: route.entity, environment: context.ENVIRONMENT }, { status: 200 });
 };
 
 export default function Index() {
