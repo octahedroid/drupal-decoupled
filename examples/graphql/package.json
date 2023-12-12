@@ -10,8 +10,9 @@
     "sync:genql": "npx ts-node scripts/sync-genql.ts",
     "typecheck": "tsc",
     "wrangler": "wrangler pages dev ./public",
-    "wrangler:publish": "remix build && wrangler pages publish ./public",
-    "wrangler:tail": "wrangler pages deployment tail --project-name drupal-remix"
+    "wrangler:deploy": "remix build && wrangler pages deploy --project-name drupal-remix ./public",
+    "wrangler:tail:production": "wrangler pages deployment tail --project-name drupal-remix",
+    "wrangler:tail:preview": "wrangler pages deployment tail --project-name drupal-remix --environment preview"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^1.16.0",
@@ -21,29 +22,29 @@
     "@tailwindcss/typography": "^0.5.9",
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "drupal-auth-client": "^0.2.0",
     "drupal-composable": "^0.1.0",
     "drupal-remix": "^0.2.0",
-    "isbot": "^3.6.5",
-    "react": "18.2.0",
-    "react-code-blocks": "^0.0.9-0",
+    "isbot": "^3.7.1",
+    "react": "^18.2.0",
+    "react-code-blocks": "^0.1.5",
     "react-dom": "^18.2.0",
-    "tailwind-merge": "^1.12.0",
-    "tailwindcss-animate": "^1.0.5"
+    "tailwind-merge": "^2.1.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.19.0",
-    "@genql/cli": "^5.0.1",
+    "@cloudflare/workers-types": "4.20231121.0",
+    "@genql/cli": "^6.2.1",
     "@remix-run/dev": "^1.16.0",
     "@remix-run/eslint-config": "^1.16.0",
-    "@types/react": "^18.0.35",
-    "@types/react-dom": "^18.0.11",
-    "eslint": "^8.38.0",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "eslint": "^8.55.0",
     "npm-run-all": "^4.1.5",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.4",
-    "wrangler": "^2.15.1"
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.20.0"
   },
   "engines": {
     "node": ">=16.13"
