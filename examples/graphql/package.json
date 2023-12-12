@@ -15,10 +15,10 @@
     "wrangler:tail:preview": "wrangler pages deployment tail --project-name drupal-remix --environment preview"
   },
   "dependencies": {
-    "@remix-run/cloudflare": "^1.16.0",
-    "@remix-run/cloudflare-pages": "^1.16.0",
-    "@remix-run/css-bundle": "^1.16.0",
-    "@remix-run/react": "^1.16.0",
+    "@remix-run/cloudflare": "^2.3.1",
+    "@remix-run/cloudflare-pages": "^2.3.1",
+    "@remix-run/css-bundle": "^2.3.1",
+    "@remix-run/react": "^2.3.1",
     "@tailwindcss/typography": "^0.5.9",
     "classnames": "^2.3.2",
     "cross-env": "^7.0.3",
@@ -36,8 +36,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "4.20231121.0",
     "@genql/cli": "^6.2.1",
-    "@remix-run/dev": "^1.16.0",
-    "@remix-run/eslint-config": "^1.16.0",
+    "@remix-run/dev": "^2.3.1",
+    "@remix-run/eslint-config": "^2.3.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "eslint": "^8.55.0",

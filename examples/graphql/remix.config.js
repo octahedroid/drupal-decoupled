@@ -1,23 +1,30 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  tailwind: true,
   devServerBroadcastDelay: 1000,
   ignoredRouteFiles: ["**/.*"],
-  server: "./server.ts",
+  server: "./server.js",
   serverBuildPath: "functions/[[path]].js",
-  serverConditions: ["worker"],
+  serverConditions: ["workerd", "worker", "browser"],
   serverDependenciesToBundle: "all",
   serverMainFields: ["browser", "module", "main"],
   serverMinify: true,
-  serverModuleFormat: "esm",
   serverPlatform: "neutral",
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
-  future: {
-    v2_errorBoundary: true,
-    v2_meta: true,
-    v2_normalizeFormMethod: true,
-    v2_routeConvention: true,
+  tailwind: true,
+  browserNodeBuiltinsPolyfill: {
+    modules: {
+      events: true,
+      string_decoder: true,
+      buffer: true,
+    }
+  },
+  serverNodeBuiltinsPolyfill: {
+    modules: {
+      events: 'empty',
+      stream: 'empty',
+      util: true,
+    }
   },
 };

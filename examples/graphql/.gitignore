@@ -5,13 +5,12 @@ node_modules
 /.cache
 /functions/\[\[path\]\].js
 /functions/\[\[path\]\].js.map
-.dev.vars
-/build
-/dist
+/functions/metafile.*
+/functions/version.txt
 /public/build
-/.mf
-app/styles/app.css
+.wrangler/
 
+.dev.vars
 .env
 .env.development
 
