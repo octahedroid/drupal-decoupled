@@ -1,10 +1,7 @@
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 import { json, redirect } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-
 import { Fragment } from "react";
-
-import type { NodePage } from "~/@types/gen/schema";
 
 import getToken from "~/drupal/auth.server";
 import { getClient } from "~/drupal/client.server";
@@ -26,13 +23,13 @@ const NodeTypeComponents = new Map();
 NodeTypeComponents.set("NodeArticle", NodeArticleComponent);
 NodeTypeComponents.set("NodePage", NodePageComponent);
 
-export const meta: V2_MetaFunction = ({
-  data,
-}: {
-  data: { node: { metatag: any } };
-}) => {
+export const meta: MetaFunction = ({ data }) => {
+  const { node } = data as any;
+  // const tags = metaTags(node.metatag) as any;
+  // return tags;
+
   return metaTags({
-    tags: data.node.metatag,
+    tags: data.node.metatag as any,
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
@@ -57,9 +54,10 @@ export const meta: V2_MetaFunction = ({
       },
     },
   }) as any;
+
 };
 
-export const loader = async ({ params, context }: LoaderArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const path = params["*"] as string;
   const token = await getToken(context);
   const drupalClient = getClient(token, context);
@@ -151,18 +149,18 @@ export const loader = async ({ params, context }: LoaderArgs) => {
   });
 
   if (!route || route.__typename !== "RouteInternal") {
-    return redirect("/404");
+    return redirect("/404", { status: 404 });
   }
 
   return json({ node: route.entity, environment: context.ENVIRONMENT }, { status: 200 });
 };
 
 export default function Index() {
-  const { node, environment } = useLoaderData() as { node: NodePage, environment: string };
+  const { node, environment } = useLoaderData<typeof loader>();
   const Component = NodeTypeComponents.get(node.__typename);
 
   if (!node || !Component) {
-    return <h1>Not Found</h1>;
+    return <h1>Page Not Found</h1>;
   }
 
   return (

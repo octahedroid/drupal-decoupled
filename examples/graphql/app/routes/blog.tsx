@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/cloudflare";
+import type { LoaderFunctionArgs, LoaderFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 
@@ -8,7 +8,7 @@ import { MediaImageFragment } from "~/drupal/fragments.server";
 
 import NodeArticleTeaser from "~/components/node/NodeArticleTeaser";
 
-export const loader: LoaderFunction = async ({ context }) => {
+export const loader: LoaderFunction = async ({ context }: LoaderFunctionArgs) => {
   const token = await getToken(context);
   const drupalClient = getClient(token, context);
 
@@ -44,7 +44,7 @@ export const loader: LoaderFunction = async ({ context }) => {
 };
 
 export default function Index() {
-  const { nodes } = useLoaderData();
+  const { nodes } = useLoaderData<typeof loader>();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
