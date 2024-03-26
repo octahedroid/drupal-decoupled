@@ -49,7 +49,7 @@ export const componentResolver = ({data = [], environment = 'preview'}: Componen
   const components: Array<JSX.Element> = [];
   
   paragraphUnionFragment.forEach((paragraph) => {
-    const type = paragraph.__typename as string;
+    const type = paragraph.__typename;
 
     if (!type) {
       return <></>;
