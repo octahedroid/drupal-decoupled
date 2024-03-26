@@ -1,15 +1,25 @@
 import { Fragment } from "react";
-import type { NodePage } from '~/@types/gen/schema';
+import { FragmentOf, readFragment } from "gql.tada";
+import { NodePageFragment } from "~/graphql/fragments/node";
 import Title from "~/components/field/Title";
 import { componentResolver } from "~/components/helpers/componentResolver";
 
-export default function NodePageComponent({ node, environment }: { node: NodePage, environment: string }) {
-  const components = componentResolver(node.components || [], environment) as [];
+type NodePageComponentProps = {
+  node: FragmentOf<typeof NodePageFragment>;
+  environment: string;
+}
+
+export default function NodePageComponent({ node, environment } : NodePageComponentProps) {
+  const nodePage = readFragment(NodePageFragment, node);
+  const components = componentResolver({
+    data: nodePage.components,
+    environment,
+  });
 
   return (
     <>
-      { node.showTitle && <Title>{node.title}</Title>}
-      {components.map((component: any, index: number) => {
+      {nodePage.showTitle && <Title>{nodePage.title}</Title>}
+      {components.map((component, index: number) => {
         return <Fragment key={index}>{component}</Fragment>;
       })}
     </>

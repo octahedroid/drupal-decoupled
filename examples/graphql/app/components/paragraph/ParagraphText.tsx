@@ -1,9 +1,15 @@
+import { FragmentOf, readFragment } from "gql.tada";
+import { TextFragment } from "~/graphql/fragments/misc";
+import { ParagraphTextFragment } from "~/graphql/fragments/paragraph";
+
 interface ParagraphTextProps {
-  title: string;
-  text: string;
+  paragraph: FragmentOf<typeof ParagraphTextFragment>
 }
 
-export default function ParagraphText({ title, text }: ParagraphTextProps) {
+export default function ParagraphText({ paragraph } : ParagraphTextProps) {
+  const { title, textRich } = readFragment(ParagraphTextFragment, paragraph);
+  const textFragment = readFragment(TextFragment, textRich)
+  
   return (
     <div className="py-16 bg-white">
       <h1>
@@ -12,7 +18,7 @@ export default function ParagraphText({ title, text }: ParagraphTextProps) {
         </span>
       </h1>
       <div className="mt-6 text-2xl prose max-w-6xl text-gray-500 mx-auto">
-        <div dangerouslySetInnerHTML={{ __html: text }} />
+        <div dangerouslySetInnerHTML={{ __html: textFragment.value ? textFragment.value : '' }} />
       </div>
     </div>
   );

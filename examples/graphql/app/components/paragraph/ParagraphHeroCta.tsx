@@ -1,15 +1,15 @@
+import { FragmentOf, readFragment } from "gql.tada";
+import { LinkFragment } from "~/graphql/fragments/misc";
+import { ParagraphHeroCtaFragment } from "~/graphql/fragments/paragraph";
+
 interface ParagraphHeroCtaProps {
-  intro: string;
-  title: string;
-  text: string;
-  links: {
-    url: string;
-    title: string;
-    internal: boolean;
-  }[];
+  paragraph: FragmentOf<typeof ParagraphHeroCtaFragment>
 }
 
-export default function ParagraphHeroCta({ intro, title, text, links }: ParagraphHeroCtaProps) {
+export default function ParagraphHeroCta({ paragraph }: ParagraphHeroCtaProps) {
+  const { cta, text, title, intro } = readFragment(ParagraphHeroCtaFragment, paragraph)
+  const linkFragments = readFragment(LinkFragment, cta)  
+
   return (
     <div className="bg-indigo-100">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
@@ -23,15 +23,16 @@ export default function ParagraphHeroCta({ intro, title, text, links }: Paragrap
           <p className="max-w-xl mt-5 mx-auto text-xl text-gray-700">{text}</p>
         </div>
         <div className="mt-8 flex justify-center">
-          {links.map((link, index) => {
+          {linkFragments.map((link, index) => {
+            const { url, title, internal } = link
             return (
               <div key={index} className="ml-3 inline-flex">
                 <a
-                  target={link.internal ? "_self" : "_blank"}
-                  href={link.url}
+                  target={internal ? "_self" : "_blank"}
+                  href={url ? url : '#'}
                   className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-200" rel="noreferrer"
                 >
-                  {link.title}
+                  {title}
                 </a>
               </div>
             );

@@ -1,60 +1,44 @@
-import type { LoaderFunction, LinksFunction } from "@remix-run/cloudflare";
-import { json } from "@remix-run/cloudflare";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useNavigation,
-  useLoaderData,
 } from "@remix-run/react";
+
 import Container from "./components/Container";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { syncDrupalPreviewRoutes } from "drupal-remix";
-import stylesheet from "~/tailwind.css";
-import stylesheetPreview from "~/preview.css";
 
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-  { rel: "stylesheet", href: stylesheetPreview },
-];
+import './tailwind.css'
+import './preview.css'
 
-export const loader: LoaderFunction = async ({ context }) => {
-  return json(
-    {
-      environment: context.ENVIRONMENT,
-    },
-    { status: 200 }
-  );
-};
-
-export default function App() {
-  const { environment } = useLoaderData() as { environment: string };
-  const navigation = useNavigation();
-  if (environment === "preview" && navigation.state === "loading") {
-    syncDrupalPreviewRoutes(navigation.location.pathname);
-  }
-
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <Container>
-          <Header />
-          <Outlet />
-          <Footer />
-        </Container>
-
+        {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <Container>
+        <Header />
+        <Outlet />
+        <Footer />
+      </Container>
+    </>
   );
 }

@@ -1,20 +1,27 @@
 import { Link } from '@remix-run/react'
-import type { MediaImage} from '~/@types/gen/schema';
+import { FragmentOf, readFragment } from 'gql.tada';
+import { ImageFragment, MediaImageFragment } from "~/graphql/fragments/media";
 
 interface CoverImageProps {
   title: string;
   path: string;
-  image: MediaImage | undefined;
+  image: FragmentOf<typeof MediaImageFragment>;
   width: number;
   height: number;
   styleName: string;
 }
 
-export default function CoverImage({ title, path, image, width, height, styleName }: CoverImageProps) {
-  // const imageStyle = image?.mediaImage?.styles?.find((style) => style?.style === styleName) as ImageStyle;
+export default function CoverImage({ title, path, image, width, height }: CoverImageProps) {
+  const mediaImageFragment = readFragment(MediaImageFragment, image);
+  if (!mediaImageFragment) {
+    return null;
+  }
+
+  const imageFragment = readFragment(ImageFragment, mediaImageFragment.mediaImage);
+
   const Image = (
       <img
-        src={image?.mediaImage.url}
+        src={imageFragment.url}
         alt={`Teaser for ${title}`}
         width={width}
         height={height}
