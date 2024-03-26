@@ -68,8 +68,8 @@ export const ParagraphCodeBlockFragment = graphql(`
 
 export const ParagraphUnionFragment = graphql(`
   fragment ParagraphUnionFragment on ParagraphUnion {
-    __typename
     ... on ParagraphInterface {
+      __typename
       id
     }
     ...ParagraphCodeBlockFragment

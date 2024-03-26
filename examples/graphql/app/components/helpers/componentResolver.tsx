@@ -8,6 +8,8 @@ import {
   ParagraphHeroCtaFragment,
   ParagraphImageFragment,
   ParagraphTextFragment,
+  ParagraphHeroTextFragment,
+  ParagraphStaticComponentFragment,
   ParagraphUnionFragment,
 } from "~/graphql/fragments/paragraph"
 
@@ -33,18 +35,19 @@ const ComposableComponentContainer = ({ action, storage, uuid, children }: Compo
   </section>
 )
 
-interface ComponentResolverProps {
-  data: FragmentOf<typeof ParagraphUnionFragment>[] | null;
-  environment: string;
-}
-
 type ComponentType = Array<JSX.Element>
-
 type ParagraphFragmentType =
   FragmentOf<typeof ParagraphHeroCtaFragment> |
   FragmentOf<typeof ParagraphTextFragment> |
   FragmentOf<typeof ParagraphImageFragment> |
-  FragmentOf<typeof ParagraphCodeBlockFragment>;
+  FragmentOf<typeof ParagraphCodeBlockFragment> |
+  FragmentOf<typeof ParagraphHeroTextFragment> |
+  FragmentOf<typeof ParagraphStaticComponentFragment>;
+
+interface ComponentResolverProps {
+  data: FragmentOf<typeof ParagraphUnionFragment>[] | null;
+  environment: string;
+}
 
 const calculateComponent = function (type: string, paragraph: ParagraphFragmentType): JSX.Element {
   if (type === 'ParagraphHeroCta') {
@@ -60,7 +63,7 @@ const calculateComponent = function (type: string, paragraph: ParagraphFragmentT
     return <ParagraphCodeBlock paragraph={paragraph as FragmentOf<typeof ParagraphCodeBlockFragment>} />;
   }
 
-  return <></>;
+  return <><pre>{JSON.stringify(paragraph, null, 2)}</pre></>;
 }
 
 export const componentResolver = ({data = [], environment = 'preview'}: ComponentResolverProps): ComponentType => {
@@ -78,7 +81,7 @@ export const componentResolver = ({data = [], environment = 'preview'}: Componen
       return <></>;
     }
 
-    const ParagraphComponent = calculateComponent(type, paragraph as ParagraphFragmentType);
+    const ParagraphComponent = calculateComponent(type, paragraph);
 
     if (environment === 'preview') {
       components.push(
