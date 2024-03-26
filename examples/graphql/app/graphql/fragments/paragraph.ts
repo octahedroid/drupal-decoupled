@@ -27,16 +27,6 @@ export const ParagraphCodeBlockFragment = graphql(`
  `,[LinkFragment]
  )
 
- export const ParagraphHeroTextFragment = graphql(`
-  fragment ParagraphHeroTextFragment on ParagraphHeroText {
-    __typename
-    id
-    intro
-    title
-    text
-  }
- `)
-
  export const ParagraphTextFragment = graphql(`
   fragment ParagraphTextFragment on ParagraphText {
     __typename
@@ -58,6 +48,16 @@ export const ParagraphCodeBlockFragment = graphql(`
   }
  `, [MediaImageFragment])
  
+ export const ParagraphHeroTextFragment = graphql(`
+  fragment ParagraphHeroTextFragment on ParagraphHeroText {
+    __typename
+    id
+    intro
+    title
+    text
+  }
+ `)
+
  export const ParagraphStaticComponentFragment = graphql(`
   fragment ParagraphStaticComponentFragment on ParagraphStaticComponent {
     __typename
@@ -74,16 +74,16 @@ export const ParagraphUnionFragment = graphql(`
     }
     ...ParagraphCodeBlockFragment
     ...ParagraphHeroCtaFragment
-    ...ParagraphHeroTextFragment
     ...ParagraphTextFragment
     ...ParagraphImageFragment
+    ...ParagraphHeroTextFragment
     ...ParagraphStaticComponentFragment
   }
 `, [
   ParagraphCodeBlockFragment,
   ParagraphHeroCtaFragment,
-  ParagraphHeroTextFragment,
   ParagraphTextFragment,
   ParagraphImageFragment,
+  ParagraphHeroTextFragment,
   ParagraphStaticComponentFragment
 ])

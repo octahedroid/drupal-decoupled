@@ -3,12 +3,7 @@ import { graphql } from "~/graphql/gql.tada";
 import { MediaImageFragment } from "~/graphql/fragments/media";
 import { UserFragment } from "~/graphql/fragments/user";
 import { MetatagFragment } from "./metatag";
-import { 
-  ParagraphCodeBlockFragment,
-  ParagraphHeroCtaFragment,
-  ParagraphHeroTextFragment,
-  ParagraphImageFragment,
-  ParagraphTextFragment,
+import {
   ParagraphUnionFragment,
 } from "./paragraph";
 
@@ -60,9 +55,4 @@ export const NodeArticleFragment = graphql(`
   UserFragment,
   MetatagFragment,
   ParagraphUnionFragment,
-  ParagraphCodeBlockFragment,
-  ParagraphHeroCtaFragment,
-  ParagraphHeroTextFragment,
-  ParagraphTextFragment,
-  ParagraphImageFragment,
 ])

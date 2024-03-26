@@ -40,6 +40,29 @@ interface ComponentResolverProps {
 
 type ComponentType = Array<JSX.Element>
 
+type ParagraphFragmentType =
+  FragmentOf<typeof ParagraphHeroCtaFragment> |
+  FragmentOf<typeof ParagraphTextFragment> |
+  FragmentOf<typeof ParagraphImageFragment> |
+  FragmentOf<typeof ParagraphCodeBlockFragment>;
+
+const calculateComponent = function (type: string, paragraph: ParagraphFragmentType): JSX.Element {
+  if (type === 'ParagraphHeroCta') {
+    return <ParagraphHeroCta paragraph={paragraph as FragmentOf<typeof ParagraphHeroCtaFragment>} />;
+  }
+  if (type === 'ParagraphText') {
+    return <ParagraphText paragraph={paragraph as FragmentOf<typeof ParagraphTextFragment>} />;
+  }
+  if (type === 'ParagraphImage') {
+    return <ParagraphImage paragraph={paragraph as FragmentOf<typeof ParagraphImageFragment>} />;
+  }
+  if (type === 'ParagraphCodeBlock') {
+    return <ParagraphCodeBlock paragraph={paragraph as FragmentOf<typeof ParagraphCodeBlockFragment>} />;
+  }
+
+  return <></>;
+}
+
 export const componentResolver = ({data = [], environment = 'preview'}: ComponentResolverProps): ComponentType => {
   if (!data) {
     return []
@@ -55,24 +78,7 @@ export const componentResolver = ({data = [], environment = 'preview'}: Componen
       return <></>;
     }
 
-    const calculateComponent = function (type: string): JSX.Element {
-      if (type === 'ParagraphHeroCta') {
-        return <ParagraphHeroCta paragraph={paragraph as FragmentOf<typeof ParagraphHeroCtaFragment>} />;
-      }
-      if (type === 'ParagraphText') {
-        return <ParagraphText paragraph={paragraph as FragmentOf<typeof ParagraphTextFragment>} />;
-      }
-      if (type === 'ParagraphImage') {
-        return <ParagraphImage paragraph={paragraph as FragmentOf<typeof ParagraphImageFragment>} />;
-      }
-      if (type === 'ParagraphCodeBlock') {
-        return <ParagraphCodeBlock paragraph={paragraph as FragmentOf<typeof ParagraphCodeBlockFragment>} />;
-      }
-
-      return <></>;
-    }
-
-    const ParagraphComponent = calculateComponent(type);
+    const ParagraphComponent = calculateComponent(type, paragraph as ParagraphFragmentType);
 
     if (environment === 'preview') {
       components.push(
