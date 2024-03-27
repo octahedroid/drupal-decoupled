@@ -107,4 +107,9 @@ const drupalAuthClient = async <TAuth extends Auth["token_type"]>(
   return header;
 };
 
+export { drupalAuthClient };
+
+/**
+ * @deprecated
+ */
 export default drupalAuthClient;
