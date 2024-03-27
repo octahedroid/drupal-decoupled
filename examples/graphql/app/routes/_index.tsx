@@ -1,21 +1,41 @@
 import { LoaderFunctionArgs, json, redirect, type MetaFunction } from "@remix-run/cloudflare";
-import { NodePageFragment } from "~/graphql/fragments/node";
-
-import { getClient } from "~/graphql/client.server";
 import { useLoaderData } from "@remix-run/react";
+import { FragmentOf } from "gql.tada";
+
+import { NodePageFragment } from "~/graphql/fragments/node";
+import { getClient } from "~/graphql/client.server";
 import NodePageComponent from "~/components/node/NodePage";
 import { Fragment } from "react/jsx-runtime";
 import { graphql } from "~/graphql/gql.tada";
-import { FragmentOf } from "gql.tada";
+import { metaTags } from "drupal-remix";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    {
-      name: "description",
-      content: "Welcome to Remix! Using Vite and Cloudflare!",
+export const meta: MetaFunction = ({ data }) => {
+  return metaTags({
+    tags: data.node.metatag,
+    metaTagOverrides: {
+      MetaTagLink: {
+        canonical: {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagProperty: {
+        "og:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagValue: {
+        "twitter:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
     },
-  ];
+  })
 };
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {

@@ -9,14 +9,35 @@ import NodePageComponent from "~/components/node/NodePage";
 import { Fragment } from "react/jsx-runtime";
 import { FragmentOf } from "gql.tada";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    {
-      name: "description",
-      content: "Welcome to Remix! Using Vite and Cloudflare!",
+import { metaTags } from "drupal-remix";
+
+export const meta: MetaFunction = ({ data }) => {
+  return metaTags({
+    tags: data.node.metatag,
+    metaTagOverrides: {
+      MetaTagLink: {
+        canonical: {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagProperty: {
+        "og:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagValue: {
+        "twitter:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
     },
-  ];
+  })
 };
 
 const NodeTypeComponents = new Map();
