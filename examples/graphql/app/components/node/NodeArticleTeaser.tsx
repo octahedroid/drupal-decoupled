@@ -1,17 +1,24 @@
 import { Link } from '@remix-run/react'
-import type { NodeArticle } from '~/@types/gen/schema';
+import { FragmentOf, readFragment } from "gql.tada";
+import { NodeArticleFragment } from "~/graphql/fragments/node";
+import { UserFragment } from '~/graphql/fragments/user';
 import Avatar from "~/components/Avatar";
-// import Date from "~/components/Date";
 import CoverImage from "~/components/CoverImage";
+import { MediaImageFragment } from '~/graphql/fragments/media';
 
-export default function NodeArticleTeaser({
-  title,
-  image,
-  // created,
-  body,
-  author,
-  path,
-}: NodeArticle) {
+export default function NodeArticleTeaser(
+    nodeArticle: FragmentOf<typeof NodeArticleFragment>
+  ) {
+  const { title, path, image, author, summary } = readFragment(NodeArticleFragment, nodeArticle);
+  const authorFragment = readFragment(UserFragment, author)
+  if (!authorFragment) {
+    return null;
+  }
+
+  const picture = readFragment(MediaImageFragment, authorFragment.picture);
+  if (!picture) {
+    return null;
+  }
 
   return (
     <div>
@@ -24,12 +31,12 @@ export default function NodeArticleTeaser({
         </Link>
       </h3>
       <div className="text-lg mb-4">
-        <Avatar name={author.name} picture={author?.picture} />
+        <Avatar name={authorFragment.name} picture={picture.mediaImage} />
       </div>
       <div className="text-lg mb-4">
         {/* <Date dateString={created} /> */}
       </div>
-      <p className="text-lg leading-relaxed mb-4">{body?.summary}</p>
+      <p className="text-lg leading-relaxed mb-4">{summary}</p>
     </div>
   );
 }

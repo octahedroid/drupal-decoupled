@@ -1,16 +1,27 @@
-import { Fragment } from "react";
-import ParagraphHeroCta from "../paragraph/ParagraphHeroCta";
-import ParagraphText from "../paragraph/ParagraphText";
-import ParagraphImage from "../paragraph/ParagraphImage";
-import ParagraphCodeBlock from "../paragraph/ParagraphCodeBlock";
+import ParagraphHeroCta from "~/components/paragraph/ParagraphHeroCta";
+import ParagraphText from "~/components/paragraph/ParagraphText";
+import ParagraphImage from "~/components/paragraph/ParagraphImage";
+import ParagraphCodeBlock from "~/components/paragraph/ParagraphCodeBlock";
 
-import type { ComposableComponentProps} from "drupal-composable";
+import {
+  ParagraphCodeBlockFragment,
+  ParagraphHeroCtaFragment,
+  ParagraphImageFragment,
+  ParagraphTextFragment,
+  ParagraphHeroTextFragment,
+  ParagraphStaticComponentFragment,
+  ParagraphUnionFragment,
+} from "~/graphql/fragments/paragraph"
+
+import type { ComposableComponentProps} from "drupal-composable"
 import { openComposableComponent } from "drupal-composable"
+import { FragmentOf, readFragment } from "gql.tada";
 interface ComposableComponentContainerProps extends ComposableComponentProps {
   children?: React.ReactNode;
 }
 
 const ComposableComponentContainer = ({ action, storage, uuid, children }: ComposableComponentContainerProps) => (
+  // eslint-disable-next-line
   <section
     id={`${storage}-${uuid}`}
     data-composable-component={`${storage}-${uuid}`}
@@ -24,69 +35,69 @@ const ComposableComponentContainer = ({ action, storage, uuid, children }: Compo
   </section>
 )
 
-const resolve = (component: any) => {
-  if (component.__typename === 'ParagraphHeroCta') {
-    return (
-        <ParagraphHeroCta
-          intro={component.intro}
-          title={component.title}
-          text={component.text}
-          links={component.cta}
-        />
-    );
+type ComponentType = Array<JSX.Element>
+type ParagraphFragmentType =
+  FragmentOf<typeof ParagraphHeroCtaFragment> |
+  FragmentOf<typeof ParagraphTextFragment> |
+  FragmentOf<typeof ParagraphImageFragment> |
+  FragmentOf<typeof ParagraphCodeBlockFragment> |
+  FragmentOf<typeof ParagraphHeroTextFragment> |
+  FragmentOf<typeof ParagraphStaticComponentFragment>;
+
+interface ComponentResolverProps {
+  data: FragmentOf<typeof ParagraphUnionFragment>[] | null;
+  environment: string;
+}
+
+const calculateComponent = function (type: string, paragraph: ParagraphFragmentType): JSX.Element {
+  if (type === 'ParagraphHeroCta') {
+    return <ParagraphHeroCta paragraph={paragraph as FragmentOf<typeof ParagraphHeroCtaFragment>} />;
+  }
+  if (type === 'ParagraphText') {
+    return <ParagraphText paragraph={paragraph as FragmentOf<typeof ParagraphTextFragment>} />;
+  }
+  if (type === 'ParagraphImage') {
+    return <ParagraphImage paragraph={paragraph as FragmentOf<typeof ParagraphImageFragment>} />;
+  }
+  if (type === 'ParagraphCodeBlock') {
+    return <ParagraphCodeBlock paragraph={paragraph as FragmentOf<typeof ParagraphCodeBlockFragment>} />;
   }
 
-  if (component.__typename === 'ParagraphText') {
-    return (
-        <ParagraphText
-          title={component.title}
-          text={component.textRich.processed}
-        />
-    );
+  return <><pre>{JSON.stringify(paragraph, null, 2)}</pre></>;
+}
+
+export const componentResolver = ({data = [], environment = 'preview'}: ComponentResolverProps): ComponentType => {
+  if (!data) {
+    return []
   }
 
-  if (component.__typename === 'ParagraphImage') {
-    return (
-        <ParagraphImage
-          image={component.image}
-        />
-    );
-  }
+  const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data); 
+  const components: Array<JSX.Element> = [];
+  
+  paragraphUnionFragment.forEach((paragraph) => {
+    const type = paragraph.__typename;
 
-  if (component.__typename === 'ParagraphCodeBlock') {
-    return (
-        <ParagraphCodeBlock
-            title={component.title}
-            code={component.code}
-            language={component.language}
-            showLineNumbers={component.showLineNumbers}
-        />
-    )
-  }
+    if (!type) {
+      return <></>;
+    }
 
-  return <></>;
-};
+    const ParagraphComponent = calculateComponent(type, paragraph);
 
-export const componentResolver = (data = [] as any, environment: string) => {
-  const components: any = [];
-
-  data.forEach((component: any) => {
-    const reactComponent = resolve(component);
     if (environment === 'preview') {
       components.push(
         <ComposableComponentContainer
           action='edit'
           storage='paragraph'
-          uuid={component.id}
+          uuid={paragraph.id}
         >
-          {reactComponent}
+          {ParagraphComponent}
         </ComposableComponentContainer>
       );
 
       return;
     }
 
-    components.push(reactComponent);
+    components.push(ParagraphComponent)
   });
 
   return components;

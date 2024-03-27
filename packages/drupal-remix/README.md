@@ -17,7 +17,7 @@ import { metaTags } from "drupal-remix";
 ### Using the metaTags helper
 
 ```typescript
-export const meta: V2_MetaFunction = ({
+export const meta: MetaFunction = ({
   data,
 }: {
   data: { node: { metatag } };
@@ -36,7 +36,7 @@ MetaTagLink Overrides
 To override the `<link>` tag with the canonical attribute, use the MetaTagLink key. For example:
 
 ```typescript
-export const meta: V2_MetaFunction = ({
+export const meta: MetaFunction = ({
   data,
 }: {
   data: { node: { metatag } };
@@ -64,7 +64,7 @@ MetaTagProperty Overrides
 To override a `<meta>` tag with the property attribute, use the MetaTagProperty key. For example:
 
 ```typescript
-export const meta: V2_MetaFunction = ({
+export const meta: MetaFunction = ({
   data,
 }: {
   data: { node: { metatag } };
@@ -90,7 +90,7 @@ MetaTagValue Overrides
 To override a `<meta>` tag with the name attribute, use the MetaTagValue key. For example:
 
 ```typescript
-export const meta: V2_MetaFunction = ({
+export const meta: MetaFunction = ({
   data,
 }: {
   data: { node: { metatag } };
@@ -117,7 +117,7 @@ The available kind options for MetaTagProperty and MetaTagValue are the same as 
 ## Fetching data form Drupal using GraphQL
 
 ```typescript
-export const loader = async ({ params, context }: LoaderArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const drupalClient = getClient(token, context);
   const { route } = await drupalClient.query({
     route: {
@@ -180,7 +180,7 @@ import { syncDrupalPreviewRoutes } from "drupal-remix";
 ### Server Side Code
 
 ```typescript
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context }: LoaderFunctionArgs ) => {
   return json(
     {
       environment: context.ENVIRONMENT,

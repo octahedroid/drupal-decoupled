@@ -1,15 +1,27 @@
-import type { MediaImage } from '~/@types/gen/schema';
+import { FragmentOf, readFragment } from 'gql.tada';
+import { ParagraphImageFragment } from '~/graphql/fragments/paragraph';
+import { MediaImageFragment, ImageFragment } from "~/graphql/fragments/media";
 
 interface ParagraphImageProps {
-  image: MediaImage
+  paragraph: FragmentOf<typeof ParagraphImageFragment>
 }
 
-export default function ParagraphImage({ image }: ParagraphImageProps) {
+export default function ParagraphImage({ paragraph }: ParagraphImageProps) {
+  const { image } = readFragment(ParagraphImageFragment, paragraph);
+  if (!image) {
+    return null;
+  }
+  const { mediaImage } = readFragment(MediaImageFragment, image);
+  const imageFragment = readFragment(ImageFragment, mediaImage);
+
+  if (!imageFragment) {
+    return null;
+  }
 
   return (
       <div className="flex items-center justify-center">
         <img
-          src={image?.mediaImage?.url}
+          src={imageFragment.url}
           alt={`Cover`}
         />
       </div>

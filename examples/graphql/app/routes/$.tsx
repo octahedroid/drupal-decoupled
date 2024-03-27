@@ -1,36 +1,17 @@
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
-import { json, redirect } from "@remix-run/cloudflare";
+import { json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 
-import { Fragment } from "react";
-
-import type { NodePage } from "~/@types/gen/schema";
-
-import getToken from "~/drupal/auth.server";
-import { getClient } from "~/drupal/client.server";
-import {
-  MediaImageFragment,
-  MetaTagFragment,
-  ParagraphCodeBlockFragment,
-  ParagraphHeroCtaFragment,
-  ParagraphHeroTextFragment,
-  ParagraphImageFragment,
-  ParagraphTextFragment,
-} from "~/drupal/fragments.server";
-
+import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
+import { getClient } from "~/graphql/client.server";
+import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/node/NodeArticle";
 import NodePageComponent from "~/components/node/NodePage";
+import { Fragment } from "react/jsx-runtime";
+import { FragmentOf } from "gql.tada";
+
 import { metaTags } from "drupal-remix";
 
-const NodeTypeComponents = new Map();
-NodeTypeComponents.set("NodeArticle", NodeArticleComponent);
-NodeTypeComponents.set("NodePage", NodePageComponent);
-
-export const meta: V2_MetaFunction = ({
-  data,
-}: {
-  data: { node: { metatag: any } };
-}) => {
+export const meta: MetaFunction = ({ data }) => {
   return metaTags({
     tags: data.node.metatag,
     metaTagOverrides: {
@@ -56,118 +37,64 @@ export const meta: V2_MetaFunction = ({
         },
       },
     },
-  }) as any;
+  })
 };
 
-export const loader = async ({ params, context }: LoaderArgs) => {
-  const path = params["*"] as string;
-  const token = await getToken(context);
-  const drupalClient = getClient(token, context);
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
+  const path = params["*"] ?? "/404";
+  const { DRUPAL_GRAPHQL_URI, ENVIRONMENT } = context.cloudflare.env
+  const client = getClient({url: DRUPAL_GRAPHQL_URI, token: 'none'});
+  
+  const nodeRouteQuery = graphql(`
+    query route ($path: String!){
+      route(path: $path) {
+        __typename 
+        ... on RouteInternal {
+          entity {
+            __typename
+            ... on NodePage {
+              id
+              title
+            }
+            ...NodePageFragment
+            ...NodeArticleFragment
+          }
+        }
+      }
+    }
+  `, [
+    NodePageFragment,
+    NodeArticleFragment
+  ])
 
-  const { route } = await drupalClient.query({
-    route: {
-      __args: {
-        path: path,
-      },
-      __typename: true,
-      on_RouteInternal: {
-        entity: {
-          __typename: true,
-          on_NodeArticle: {
-            id: true,
-            title: true,
-            path: true,
-            image: {
-              on_MediaImage: {
-                ...MediaImageFragment,
-              },
-            },
-            summary: true,
-            author: {
-              name: true,
-              picture: {
-                on_MediaImage: {
-                  ...MediaImageFragment,
-                },
-              },
-            },
-            components: {
-              __typename: true,
-              on_ParagraphCodeBlock: {
-                ...ParagraphCodeBlockFragment,
-              },
-              on_ParagraphHeroCta: {
-                ...ParagraphHeroCtaFragment,
-              },
-              on_ParagraphHeroText: {
-                ...ParagraphHeroTextFragment,
-              },
-              on_ParagraphText: {
-                ...ParagraphTextFragment,
-              },
-              on_ParagraphImage: {
-                ...ParagraphImageFragment,
-              },
-            },
-            metatag: {
-              ...MetaTagFragment,
-              __typename: true,
-            },
-          },
-          on_NodePage: {
-            id: true,
-            title: true,
-            path: true,
-            showTitle: true,
-            image: {
-              on_MediaImage: {
-                ...MediaImageFragment,
-              },
-            },
-            summary: true,
-            components: {
-              __typename: true,
-              on_ParagraphHeroCta: {
-                ...ParagraphHeroCtaFragment,
-              },
-              on_ParagraphHeroText: {
-                ...ParagraphHeroTextFragment,
-              },
-              on_ParagraphText: {
-                ...ParagraphTextFragment,
-              },
-              on_ParagraphImage: {
-                ...ParagraphImageFragment,
-              },
-            },
-            metatag: {
-              ...MetaTagFragment,
-              __typename: true,
-            },
-          },
-        },
-      },
-    },
-  });
+  const { data, error } = await client.query(
+    nodeRouteQuery, 
+    {
+      path,
+    }
+  );
 
-  if (!route || route.__typename !== "RouteInternal") {
+  if (error) {
+    throw error;
+  }
+
+  if (!data || !data?.route || data?.route.__typename !== "RouteInternal" || !data.route.entity) {
     return redirect("/404");
   }
 
-  return json({ node: route.entity, environment: context.ENVIRONMENT }, { status: 200 });
-};
+  return json({
+    node: data.route.entity,
+    environment: ENVIRONMENT,
+  })
+}
 
 export default function Index() {
-  const { node, environment } = useLoaderData() as { node: NodePage, environment: string };
-  const Component = NodeTypeComponents.get(node.__typename);
-
-  if (!node || !Component) {
-    return <h1>Not Found</h1>;
-  }
+  const { node, environment } = useLoaderData<typeof loader>();
 
   return (
     <Fragment>
-      <Component node={node} environment={environment} />
+      { node.__typename == "NodePage" && node && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
+      { node.__typename == "NodeArticle" && node && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
     </Fragment>
   );
 }
