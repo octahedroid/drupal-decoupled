@@ -40,8 +40,14 @@ export const meta: MetaFunction = ({ data }) => {
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   const path = "/home";
-  const { DRUPAL_GRAPHQL_URI, ENVIRONMENT } = context.cloudflare.env
-  const client = getClient({url: DRUPAL_GRAPHQL_URI, token: 'none'});
+  const client = await getClient({
+    url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
+    auth: {
+      uri: context.cloudflare.env.DRUPAL_AUTH_URI,
+      clientId: context.cloudflare.env.DRUPAL_CLIENT_ID,
+      clientSecret: context.cloudflare.env.DRUPAL_CLIENT_SECRET,
+    },
+  });
   
   const query = graphql(`
     query route ($path: String!){
@@ -75,7 +81,7 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
 
   return json({
     node: data.route.entity as FragmentOf<typeof NodePageFragment>,
-    environment: ENVIRONMENT,
+    environment: context.cloudflare.env.ENVIRONMENT,
   })
 }
 

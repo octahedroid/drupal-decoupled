@@ -10,6 +10,9 @@ import { type AppLoadContext } from "@remix-run/cloudflare";
 interface Env {
   DRUPAL_GRAPHQL_URI: string;
   ENVIRONMENT: string;
+  DRUPAL_AUTH_URI: string;
+  DRUPAL_CLIENT_ID: string;
+  DRUPAL_CLIENT_SECRET: string;
 }
 
 type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;

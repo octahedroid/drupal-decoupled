@@ -1,13 +1,19 @@
 import { Client, fetchExchange } from '@urql/core';
-
+import { getToken } from './auth.server';
 interface ClientArgs {
   url: string
-  token: string
+  auth: {
+    uri: string
+    clientId: string
+    clientSecret: string
+  }
 }
 
-export const getClient = ({url = '', token = ''}: ClientArgs) => {
+export const getClient = async ({url, auth}: ClientArgs) => {
+  const { uri, clientId, clientSecret } = auth;
+  const token = await getToken({ uri, clientId, clientSecret });
+
   return new Client({
-    //  "https://dev-drupal-graphql.pantheonsite.io/graphql"
     url,
     fetchOptions: {
       headers: {

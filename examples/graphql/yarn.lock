@@ -2465,10 +2465,10 @@ dotenv@^16.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
   integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
 
-drupal-auth-client@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.2.1.tgz#726ac54a3650756e64c89a67f219d04902542928"
-  integrity sha512-NiDtejvobb0iIsNYop2ShWXH8tUOpSZjouFUFD58E09dDpooKSV6AIlOameXE8gGBGPx62aMcJzxdXJJuK/ZIQ==
+drupal-auth-client@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.3.0.tgz#d3baec1127e021c8497a71c14ae03ba0671c95e2"
+  integrity sha512-c6+WJ1wJfk6p2TNOz7rSzf+q62LEQJdGguo9H2ZV4g5THGrzXVrK7LNnSoO4vAgsFyOR1HEJsdytF7VJmdGeoA==
   dependencies:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
