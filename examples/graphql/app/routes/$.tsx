@@ -61,20 +61,18 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   }
 
   return json({
-    type: data.route.entity.__typename,
-    page: data.route.entity.__typename === "NodePage" ? data?.route?.entity as FragmentOf<typeof NodePageFragment> : null,
-    article: data.route.entity.__typename === "NodeArticle" ? data?.route?.entity as FragmentOf<typeof NodeArticleFragment> : null,
+    node: data.route.entity,
     environment: 'production'
   })
 }
 
 export default function Index() {
-  const { type, page, article, environment } = useLoaderData<typeof loader>();
+  const { node, environment } = useLoaderData<typeof loader>();
 
   return (
     <Fragment>
-      { type == "NodePage" && page && <NodePageComponent node={page} environment={environment} />}
-      { type == "NodeArticle" && article && <NodeArticleComponent node={article} environment={environment} />}
+      { node.__typename == "NodePage" && node && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
+      { node.__typename == "NodeArticle" && node && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
     </Fragment>
   );
 }
