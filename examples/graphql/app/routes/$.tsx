@@ -40,9 +40,6 @@ export const meta: MetaFunction = ({ data }) => {
   })
 };
 
-const NodeTypeComponents = new Map();
-NodeTypeComponents.set("NodeArticle", NodeArticleComponent);
-NodeTypeComponents.set("NodePage", NodePageComponent);
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const path = params["*"] ?? "/404";
   const { DRUPAL_GRAPHQL_URI, ENVIRONMENT } = context.cloudflare.env
