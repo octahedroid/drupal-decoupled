@@ -9,7 +9,7 @@ Make sure your Drupal site is using the [simple_oauth](https://www.drupal.org/pr
 ### Importing library
 
 ```javascript
-import drupalAuthClient from "drupal-auth-client"
+import { drupalAuthClient } from "drupal-auth-client"
 ```
 
 ### Using `client_credentials`
