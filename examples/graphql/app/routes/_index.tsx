@@ -1,4 +1,4 @@
-import { json, redirect, type MetaFunction } from "@remix-run/cloudflare";
+import { LoaderFunctionArgs, json, redirect, type MetaFunction } from "@remix-run/cloudflare";
 import { NodePageFragment } from "~/graphql/fragments/node";
 
 import { getClient } from "~/graphql/client.server";
@@ -18,7 +18,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async () => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   const path = "/home";
   const client = getClient();
   
@@ -54,7 +54,7 @@ export const loader = async () => {
 
   return json({
     node: data.route.entity as FragmentOf<typeof NodePageFragment>,
-    environment: 'production'
+    environment: context.ENVIRONMENT,
   })
 }
 

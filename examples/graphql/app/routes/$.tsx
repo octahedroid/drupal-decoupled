@@ -19,11 +19,10 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-type NodeType = typeof NodeArticleComponent | typeof NodePageComponent;
 const NodeTypeComponents = new Map();
 NodeTypeComponents.set("NodeArticle", NodeArticleComponent);
 NodeTypeComponents.set("NodePage", NodePageComponent);
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const path = params["*"] ?? "/404";
   const client = getClient();
   
@@ -57,12 +56,12 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   }
 
   if (!data || !data?.route || data?.route.__typename !== "RouteInternal" || !data.route.entity) {
-       return redirect("/404");
+    return redirect("/404");
   }
 
   return json({
     node: data.route.entity,
-    environment: 'production'
+    environment: context.ENVIRONMENT,
   })
 }
 
