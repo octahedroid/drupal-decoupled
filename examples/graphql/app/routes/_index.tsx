@@ -20,7 +20,8 @@ export const meta: MetaFunction = () => {
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   const path = "/home";
-  const client = getClient();
+  const { DRUPAL_GRAPHQL_URI, ENVIRONMENT } = context.cloudflare.env
+  const client = getClient({url: DRUPAL_GRAPHQL_URI, token: 'none'});
   
   const query = graphql(`
     query route ($path: String!){
@@ -54,7 +55,7 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
 
   return json({
     node: data.route.entity as FragmentOf<typeof NodePageFragment>,
-    environment: context.ENVIRONMENT,
+    environment: ENVIRONMENT,
   })
 }
 

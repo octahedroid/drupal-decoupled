@@ -1,11 +1,17 @@
 import { Client, fetchExchange } from '@urql/core';
 
-export const getClient = () => {
+interface ClientArgs {
+  url: string
+  token: string
+}
+
+export const getClient = ({url = '', token = ''}: ClientArgs) => {
   return new Client({
-    url: "https://dev-drupal-graphql.pantheonsite.io/graphql",
+    //  "https://dev-drupal-graphql.pantheonsite.io/graphql"
+    url,
     fetchOptions: {
       headers: {
-        Authorization: `zlawHG_38Vh2z0FzqZZ5n68VStVhvPlgDvvSXd8IG7c`,
+        Authorization: token,
       },
     },
     exchanges: [fetchExchange],

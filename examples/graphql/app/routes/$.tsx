@@ -24,7 +24,8 @@ NodeTypeComponents.set("NodeArticle", NodeArticleComponent);
 NodeTypeComponents.set("NodePage", NodePageComponent);
 export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   const path = params["*"] ?? "/404";
-  const client = getClient();
+  const { DRUPAL_GRAPHQL_URI, ENVIRONMENT } = context.cloudflare.env
+  const client = getClient({url: DRUPAL_GRAPHQL_URI, token: 'none'});
   
   const nodeRouteQuery = graphql(`
     query route ($path: String!){
@@ -33,7 +34,11 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
         ... on RouteInternal {
           entity {
             __typename
-            ...NodePageFragment        
+            ... on NodePage {
+              id
+              title
+            }
+            ...NodePageFragment
             ...NodeArticleFragment
           }
         }
@@ -61,7 +66,7 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
 
   return json({
     node: data.route.entity,
-    environment: context.ENVIRONMENT,
+    environment: ENVIRONMENT,
   })
 }
 

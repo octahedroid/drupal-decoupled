@@ -7,14 +7,16 @@ import { type AppLoadContext } from "@remix-run/cloudflare";
 // Need this empty interface so that typechecking passes
 // even if no `wrangler.toml` exists.
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Env {}
+interface Env {
+  DRUPAL_GRAPHQL_URI: string;
+  ENVIRONMENT: string;
+}
 
 type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;
 
 declare module "@remix-run/cloudflare" {
   interface AppLoadContext {
     cloudflare: Cloudflare;
-    ENVIRONMENT: string;
   }
 }
 
@@ -29,6 +31,5 @@ export const getLoadContext: GetLoadContext = ({
 }) => {
   return {
     ...context,
-    ENVIRONMENT: "development",
   };
 };

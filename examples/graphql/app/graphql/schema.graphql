@@ -7,6 +7,33 @@ type Query {
   """Schema information."""
   info: SchemaInformation!
 
+  """Load a MediaImage entity by id"""
+  mediaImage(
+    """The id of the MediaImage to load."""
+    id: ID!
+
+    """Optionally set the response language. Eg en, ja, fr."""
+    langcode: String
+  ): MediaImage
+
+  """Load a NodeArticle entity by id"""
+  nodeArticle(
+    """The id of the NodeArticle to load."""
+    id: ID!
+
+    """Optionally set the response language. Eg en, ja, fr."""
+    langcode: String
+  ): NodeArticle
+
+  """Load a NodePage entity by id"""
+  nodePage(
+    """The id of the NodePage to load."""
+    id: ID!
+
+    """Optionally set the response language. Eg en, ja, fr."""
+    langcode: String
+  ): NodePage
+
   """Load a ParagraphCodeBlock entity by id"""
   paragraphCodeBlock(
     """The id of the ParagraphCodeBlock to load."""
@@ -61,24 +88,6 @@ type Query {
     langcode: String
   ): ParagraphText
 
-  """Load a NodeArticle entity by id"""
-  nodeArticle(
-    """The id of the NodeArticle to load."""
-    id: ID!
-
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
-  ): NodeArticle
-
-  """Load a NodePage entity by id"""
-  nodePage(
-    """The id of the NodePage to load."""
-    id: ID!
-
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
-  ): NodePage
-
   """Load a TermTags entity by id"""
   termTags(
     """The id of the TermTags to load."""
@@ -87,15 +96,6 @@ type Query {
     """Optionally set the response language. Eg en, ja, fr."""
     langcode: String
   ): TermTags
-
-  """Load a MediaImage entity by id"""
-  mediaImage(
-    """The id of the MediaImage to load."""
-    id: ID!
-
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
-  ): MediaImage
 
   """Load a Menu by name."""
   menu(
@@ -122,6 +122,78 @@ type Query {
   Get information about the currently authenticated user. NULL if not logged in.
   """
   viewer: User
+
+  """List of all MediaImage on the platform."""
+  mediaImages(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+
+    """Filter the results by language. Eg en, ja, fr."""
+    langcode: String
+  ): MediaImageConnection!
+
+  """List of all NodeArticle on the platform."""
+  nodeArticles(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+
+    """Filter the results by language. Eg en, ja, fr."""
+    langcode: String
+  ): NodeArticleConnection!
+
+  """List of all NodePage on the platform."""
+  nodePages(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+
+    """Filter the results by language. Eg en, ja, fr."""
+    langcode: String
+  ): NodePageConnection!
 
   """List of all ParagraphCodeBlock on the platform."""
   paragraphCodeBlocks(
@@ -267,54 +339,6 @@ type Query {
     langcode: String
   ): ParagraphTextConnection!
 
-  """List of all NodeArticle on the platform."""
-  nodeArticles(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
-  ): NodeArticleConnection!
-
-  """List of all NodePage on the platform."""
-  nodePages(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
-  ): NodePageConnection!
-
   """List of all TermTags on the platform."""
   termTagsItems(
     """Returns the elements that come after the specified cursor."""
@@ -338,30 +362,6 @@ type Query {
     """Filter the results by language. Eg en, ja, fr."""
     langcode: String
   ): TermTagsConnection!
-
-  """List of all MediaImage on the platform."""
-  mediaImages(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
-  ): MediaImageConnection!
 
   """List of all User on the platform."""
   users(
@@ -414,165 +414,6 @@ type SchemaInformation {
   """The schema version."""
   version: String
 }
-
-"""Entity type paragraph."""
-type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """Code"""
-  code: String!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-
-  """Language"""
-  language: String!
-
-  """Show Line Numbers"""
-  showLineNumbers: Boolean
-
-  """Title"""
-  titleOptional: String
-}
-
-"""Entity type paragraph."""
-interface ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-}
-
-"""A DateTime object."""
-type DateTime {
-  """
-  Type represents date and time as number of milliseconds from start of the UNIX epoch.
-  """
-  timestamp: Timestamp!
-
-  """A field whose value exists in the standard IANA Time Zone Database."""
-  timezone: TimeZone!
-
-  """A string that will have a value of format ±hh:mm"""
-  offset: UtcOffset!
-
-  """RFC 3339 compliant time string."""
-  time: Time!
-}
-
-"""
-Type represents date and time as number of milliseconds from start of the UNIX epoch.
-"""
-scalar Timestamp
-
-"""A field whose value exists in the standard IANA Time Zone Database."""
-scalar TimeZone
-
-"""A string that will have a value of format ±hh:mm"""
-scalar UtcOffset
-
-"""RFC 3339 compliant time string."""
-scalar Time
-
-"""A language definition provided by the CMS."""
-type Language {
-  """The language code."""
-  id: ID
-
-  """The language name."""
-  name: String
-
-  """The language direction."""
-  direction: String
-}
-
-"""This entity is accessible over an Edge connection."""
-interface EdgeNode {
-  id: ID!
-}
-
-"""Entity type paragraph."""
-type ParagraphHeroCta implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """CTA"""
-  cta: [Link!]!
-
-  """Intro"""
-  intro: String!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-
-  """Text"""
-  text: String!
-
-  """Title"""
-  title: String!
-}
-
-"""A link."""
-type Link {
-  """The title of the link."""
-  title: String
-
-  """The URL of the link."""
-  url: String
-
-  """Whether the link is internal to this website."""
-  internal: Boolean!
-}
-
-"""Entity type paragraph."""
-type ParagraphHeroText implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """Intro"""
-  intro: String!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-
-  """Text"""
-  text: String!
-
-  """Title"""
-  title: String!
-}
-
-"""Entity type paragraph."""
-type ParagraphImage implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """Image"""
-  image: MediaUnion
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-}
-
-"""Entity type media."""
-union MediaUnion = MediaImage
 
 """Use local images for reusable media."""
 type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
@@ -629,6 +470,49 @@ interface MediaInterface {
 
   """Published"""
   status: Boolean!
+}
+
+"""A DateTime object."""
+type DateTime {
+  """
+  Type represents date and time as number of milliseconds from start of the UNIX epoch.
+  """
+  timestamp: Timestamp!
+
+  """A field whose value exists in the standard IANA Time Zone Database."""
+  timezone: TimeZone!
+
+  """A string that will have a value of format ±hh:mm"""
+  offset: UtcOffset!
+
+  """RFC 3339 compliant time string."""
+  time: Time!
+}
+
+"""
+Type represents date and time as number of milliseconds from start of the UNIX epoch.
+"""
+scalar Timestamp
+
+"""A field whose value exists in the standard IANA Time Zone Database."""
+scalar TimeZone
+
+"""A string that will have a value of format ±hh:mm"""
+scalar UtcOffset
+
+"""RFC 3339 compliant time string."""
+scalar Time
+
+"""A language definition provided by the CMS."""
+type Language {
+  """The language code."""
+  id: ID
+
+  """The language name."""
+  name: String
+
+  """The language direction."""
+  direction: String
 }
 
 """A meta tag element."""
@@ -700,6 +584,11 @@ interface MetaTagInterface {
   metatag: [MetaTagUnion!]!
 }
 
+"""This entity is accessible over an Edge connection."""
+interface EdgeNode {
+  id: ID!
+}
+
 """A image object to represent an managed file."""
 type Image {
   """The URL of the image."""
@@ -741,60 +630,6 @@ type ImageStyleDerivative {
   height: Int!
 }
 
-"""Entity type paragraph."""
-type ParagraphStaticComponent implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """Component"""
-  component: String
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-}
-
-"""Entity type paragraph."""
-type ParagraphText implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-
-  """Text Rich"""
-  textRich: Text!
-
-  """Title"""
-  title: String!
-}
-
-"""A processed text format defined by the CMS."""
-type Text {
-  """The raw text value."""
-  value: String
-
-  """The processed text value."""
-  processed: Html
-
-  """The text format used to process the text value."""
-  format: String
-}
-
-"""
-An HTML string
-
-Content of this type is deemed safe by the server for raw output given the
-origin and the context of its usage. The HTML can still contain scripts or style
-tags where the creating user had permission to input these.
-"""
-scalar Html
-
 """
 Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.
 """
@@ -811,7 +646,7 @@ type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
   """Components"""
   components: [ParagraphUnion!]
 
-  """The time that the node was created."""
+  """The date and time that the content was created."""
   created: DateTime!
 
   """Image"""
@@ -858,7 +693,7 @@ interface NodeInterface {
   """The time that the node was last edited."""
   changed: DateTime!
 
-  """The time that the node was created."""
+  """The date and time that the content was created."""
   created: DateTime!
 
   """Language"""
@@ -963,8 +798,173 @@ enum UserStatus {
   BLOCKED
 }
 
+"""Entity type media."""
+union MediaUnion = MediaImage
+
 """Entity type paragraph."""
 union ParagraphUnion = ParagraphCodeBlock | ParagraphHeroCta | ParagraphHeroText | ParagraphImage | ParagraphStaticComponent | ParagraphText
+
+"""Entity type paragraph."""
+type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """Code"""
+  code: String!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Language"""
+  language: String!
+
+  """Show Line Numbers"""
+  showLineNumbers: Boolean
+
+  """Title"""
+  titleOptional: String
+}
+
+"""Entity type paragraph."""
+interface ParagraphInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+}
+
+"""Entity type paragraph."""
+type ParagraphHeroCta implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """CTA"""
+  cta: [Link!]!
+
+  """Intro"""
+  intro: String!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Text"""
+  text: String!
+
+  """Title"""
+  title: String!
+}
+
+"""A link."""
+type Link {
+  """The title of the link."""
+  title: String
+
+  """The URL of the link."""
+  url: String
+
+  """Whether the link is internal to this website."""
+  internal: Boolean!
+}
+
+"""Entity type paragraph."""
+type ParagraphHeroText implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Intro"""
+  intro: String!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Text"""
+  text: String!
+
+  """Title"""
+  title: String!
+}
+
+"""Entity type paragraph."""
+type ParagraphImage implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Image"""
+  image: MediaUnion
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+}
+
+"""Entity type paragraph."""
+type ParagraphStaticComponent implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """Component"""
+  component: String
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+}
+
+"""Entity type paragraph."""
+type ParagraphText implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Text Rich"""
+  textRich: Text!
+
+  """Title"""
+  title: String!
+}
+
+"""A processed text format defined by the CMS."""
+type Text {
+  """The raw text value."""
+  value: String
+
+  """The processed text value."""
+  processed: Html
+
+  """The text format used to process the text value."""
+  format: String
+}
+
+"""
+An HTML string
+
+Content of this type is deemed safe by the server for raw output given the
+origin and the context of its usage. The HTML can still contain scripts or style
+tags where the creating user had permission to input these.
+"""
+scalar Html
 
 """Entity type taxonomy_term."""
 union TermUnion = TermTags
@@ -1051,7 +1051,7 @@ type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
   """Components"""
   components: [ParagraphUnion!]
 
-  """The time that the node was created."""
+  """The date and time that the content was created."""
   created: DateTime!
 
   """Image"""
@@ -1227,10 +1227,10 @@ enum ConnectionSortKeys {
   PROMOTED
 }
 
-"""A paginated set of results for ParagraphCodeBlock."""
-type ParagraphCodeBlockConnection implements Connection {
-  edges: [ParagraphCodeBlockEdge!]!
-  nodes: [ParagraphCodeBlock!]!
+"""A paginated set of results for MediaImage."""
+type MediaImageConnection implements Connection {
+  edges: [MediaImageEdge!]!
+  nodes: [MediaImage!]!
   pageInfo: ConnectionPageInfo!
 }
 
@@ -1270,6 +1270,45 @@ type ConnectionPageInfo {
 
   """The cursor for the last element in this page."""
   endCursor: Cursor
+}
+
+"""Edge for MediaImage."""
+type MediaImageEdge implements Edge {
+  cursor: Cursor!
+  node: MediaImage!
+}
+
+"""A paginated set of results for NodeArticle."""
+type NodeArticleConnection implements Connection {
+  edges: [NodeArticleEdge!]!
+  nodes: [NodeArticle!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for NodeArticle."""
+type NodeArticleEdge implements Edge {
+  cursor: Cursor!
+  node: NodeArticle!
+}
+
+"""A paginated set of results for NodePage."""
+type NodePageConnection implements Connection {
+  edges: [NodePageEdge!]!
+  nodes: [NodePage!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for NodePage."""
+type NodePageEdge implements Edge {
+  cursor: Cursor!
+  node: NodePage!
+}
+
+"""A paginated set of results for ParagraphCodeBlock."""
+type ParagraphCodeBlockConnection implements Connection {
+  edges: [ParagraphCodeBlockEdge!]!
+  nodes: [ParagraphCodeBlock!]!
+  pageInfo: ConnectionPageInfo!
 }
 
 """Edge for ParagraphCodeBlock."""
@@ -1343,32 +1382,6 @@ type ParagraphTextEdge implements Edge {
   node: ParagraphText!
 }
 
-"""A paginated set of results for NodeArticle."""
-type NodeArticleConnection implements Connection {
-  edges: [NodeArticleEdge!]!
-  nodes: [NodeArticle!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for NodeArticle."""
-type NodeArticleEdge implements Edge {
-  cursor: Cursor!
-  node: NodeArticle!
-}
-
-"""A paginated set of results for NodePage."""
-type NodePageConnection implements Connection {
-  edges: [NodePageEdge!]!
-  nodes: [NodePage!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for NodePage."""
-type NodePageEdge implements Edge {
-  cursor: Cursor!
-  node: NodePage!
-}
-
 """A paginated set of results for TermTags."""
 type TermTagsConnection implements Connection {
   edges: [TermTagsEdge!]!
@@ -1380,19 +1393,6 @@ type TermTagsConnection implements Connection {
 type TermTagsEdge implements Edge {
   cursor: Cursor!
   node: TermTags!
-}
-
-"""A paginated set of results for MediaImage."""
-type MediaImageConnection implements Connection {
-  edges: [MediaImageEdge!]!
-  nodes: [MediaImage!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for MediaImage."""
-type MediaImageEdge implements Edge {
-  cursor: Cursor!
-  node: MediaImage!
 }
 
 """A paginated set of results for User."""
