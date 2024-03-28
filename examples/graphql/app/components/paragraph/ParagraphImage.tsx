@@ -14,10 +14,6 @@ export default function ParagraphImage({ paragraph }: ParagraphImageProps) {
   const { mediaImage } = readFragment(MediaImageFragment, image);
   const imageFragment = readFragment(ImageFragment, mediaImage);
 
-  if (!imageFragment) {
-    return null;
-  }
-
   return (
       <div className="flex items-center justify-center">
         <img
