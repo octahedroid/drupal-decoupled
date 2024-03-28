@@ -1,15 +1,14 @@
 import { json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
+import { Fragment } from "react/jsx-runtime";
+import { FragmentOf } from "gql.tada";
+import { metaTags } from "drupal-remix";
 
 import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
 import { getClient } from "~/graphql/client.server";
 import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/node/NodeArticle";
 import NodePageComponent from "~/components/node/NodePage";
-import { Fragment } from "react/jsx-runtime";
-import { FragmentOf } from "gql.tada";
-
-import { metaTags } from "drupal-remix";
 
 export const meta: MetaFunction = ({ data }) => {
   return metaTags({
