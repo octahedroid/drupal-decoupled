@@ -1,7 +1,7 @@
-import { json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
+import { MetaDescriptor, json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { Fragment } from "react/jsx-runtime";
-import { FragmentOf } from "gql.tada";
+import { FragmentOf, readFragment } from "gql.tada";
 import { metaTags } from "drupal-remix";
 
 import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
@@ -10,9 +10,27 @@ import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/node/NodeArticle";
 import NodePageComponent from "~/components/node/NodePage";
 
-export const meta: MetaFunction = ({ data }) => {
+export const meta: MetaFunction<typeof loader> = ({
+  data,
+}) => {
+  if (!data) {
+    return [];
+  }
+  const { type, node } = data;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let tags: Array<any> = [];
+  if (type === "NodePage" ) {
+    const { metatag } = readFragment(NodePageFragment, node as FragmentOf<typeof NodePageFragment>)
+    tags = metatag;
+  }
+
+  if (type === "NodeArticle" ) {
+    const { metatag } = readFragment(NodeArticleFragment, node as FragmentOf<typeof NodeArticleFragment>)
+    tags = metatag;
+  }
+
   return metaTags({
-    tags: data.node.metatag,
+    tags,
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
@@ -36,9 +54,8 @@ export const meta: MetaFunction = ({ data }) => {
         },
       },
     },
-  })
+  }) as Array<MetaDescriptor> || [];
 };
-
 
 interface CalculatePathArgs {
   path?: string;
@@ -105,18 +122,19 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
   }
 
   return json({
-    node: data.route.entity,
+    type: data.route.entity.__typename,
+    node: data.route.entity as FragmentOf<typeof NodePageFragment> | FragmentOf<typeof NodeArticleFragment>,
     environment: context.cloudflare.env.ENVIRONMENT,
   })
 }
 
 export default function Index() {
-  const { node, environment } = useLoaderData<typeof loader>();
+  const { type, node, environment } = useLoaderData<typeof loader>();
 
   return (
     <Fragment>
-      { node.__typename == "NodePage" && node && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
-      { node.__typename == "NodeArticle" && node && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
+      { type === "NodePage" && node && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
+      { type === "NodeArticle" && node && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
     </Fragment>
   );
 }
