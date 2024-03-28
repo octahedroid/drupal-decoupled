@@ -39,8 +39,25 @@ export const meta: MetaFunction = ({ data }) => {
   })
 };
 
-export const loader = async ({ params, context }: LoaderFunctionArgs) => {
-  const path = params["*"] ?? "/404";
+
+interface CalculatePathArgs {
+  path?: string;
+  url: string;
+}
+
+const calculatePath = ({path = '/home', url}: CalculatePathArgs) : string=> {
+  if (path.startsWith("node/preview")) {
+    const { searchParams } = new URL(url);
+    if (searchParams.has("token")) {
+      return `${path}?token=${searchParams.get("token")}`;
+    }
+  }
+
+  return path;
+}
+
+export const loader = async ({ params, context, request }: LoaderFunctionArgs) => {
+  const path = calculatePath({path: params["*"], url: request.url});
   const client = await getClient({
     url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
     auth: {
