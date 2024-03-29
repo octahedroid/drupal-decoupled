@@ -15,8 +15,8 @@ export default function Header() {
     },
     {
       id: 3,
-      url: "/about-us",
-      title: "about us",
+      url: "/contact",
+      title: "contact",
     },
   ]
 
