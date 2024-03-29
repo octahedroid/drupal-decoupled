@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { FragmentOf, readFragment } from "gql.tada";
 import { NodeArticleFragment } from "~/graphql/fragments/node";
 import Cover from "~/components/Cover";
-import { componentResolver } from "~/components/helpers/componentResolver";
+import { resolve } from "~/components/helpers/ComponentResolver";
 
 type NodeArticleComponentProps = {
   node: FragmentOf<typeof NodeArticleFragment>;
@@ -11,7 +11,7 @@ type NodeArticleComponentProps = {
 
 export default function NodeArticleComponent({ node, environment }: NodeArticleComponentProps) {
   const nodeArticle = readFragment(NodeArticleFragment, node);
-  const components = componentResolver({
+  const components = resolve({
     data: nodeArticle.components,
     environment,
   });
