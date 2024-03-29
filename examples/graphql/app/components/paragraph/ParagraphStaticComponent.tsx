@@ -12,11 +12,11 @@ export default function ParagraphStaticComponent({ paragraph } : ParagraphStatic
   }
   
   return (
-    <>
+    <p className="border-y border-neutral-500 p-4 break-words">
       <h2>Render ParagraphStaticComponent</h2>
       <pre>
         {JSON.stringify({ id, component, componentMap }, null, 2)}
       </pre>
-    </>
+    </p>
   );
 }

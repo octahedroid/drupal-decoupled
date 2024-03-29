@@ -14,10 +14,10 @@ export default function BlogTeaser(
     <>
       {
         results.map((result, index) => {
-          const node = readFragment(NodeArticleTeaserFragment, result);
+          // @todo fix use of NodeArticleTeaserFragment
+          const node = readFragment(NodeArticleTeaserFragment, result) as unknown as FragmentOf<typeof NodeArticleFragment>
           return (
-            // @todo fix use of NodeArticleTeaserFragment
-            <NodeArticleTeaser key={index} node={node as unknown as FragmentOf<typeof NodeArticleFragment>}  />
+            <NodeArticleTeaser key={index} node={node}  />
           );
         })
       }

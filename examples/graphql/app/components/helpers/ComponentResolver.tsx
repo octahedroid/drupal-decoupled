@@ -1,3 +1,5 @@
+import { FragmentOf, readFragment } from "gql.tada";
+
 import ParagraphHeroCta from "~/components/paragraph/ParagraphHeroCta";
 import ParagraphText from "~/components/paragraph/ParagraphText";
 import ParagraphImage from "~/components/paragraph/ParagraphImage";
@@ -16,27 +18,7 @@ import {
   ParagraphViewReferenceFragment,
 } from "~/graphql/fragments/paragraph"
 
-import type { ComposableComponentProps} from "drupal-composable"
-import { openComposableComponent } from "drupal-composable"
-import { FragmentOf, readFragment } from "gql.tada";
-interface ComposableComponentContainerProps extends ComposableComponentProps {
-  children?: React.ReactNode;
-}
-
-const ComposableComponentContainer = ({ action, storage, uuid, children }: ComposableComponentContainerProps) => (
-  // eslint-disable-next-line
-  <section
-    id={`${storage}-${uuid}`}
-    data-composable-component={`${storage}-${uuid}`}
-    onClick={() => openComposableComponent({
-      action,
-      storage,
-      uuid,
-    })}
-  >
-    {children}
-  </section>
-)
+import { ComposableComponentContainer } from "~/components/helpers/Composable";
 
 type ComponentType = Array<JSX.Element>
 type ParagraphFragmentType =
@@ -48,7 +30,7 @@ type ParagraphFragmentType =
   FragmentOf<typeof ParagraphStaticComponentFragment> |
   FragmentOf<typeof ParagraphViewReferenceFragment>;
 
-interface ComponentResolverProps {
+interface ResolveProps {
   data: FragmentOf<typeof ParagraphUnionFragment>[] | null;
   environment: string;
 }
@@ -76,7 +58,7 @@ const calculateComponent = function (type: string, paragraph: ParagraphFragmentT
   return <p className="border-y border-neutral-500 p-4 break-words"><pre>{JSON.stringify(paragraph, null, 2)}</pre></p>;
 }
 
-export const componentResolver = ({data = [], environment = 'preview'}: ComponentResolverProps): ComponentType => {
+export const resolve = ({data = [], environment = 'preview'}: ResolveProps): ComponentType => {
   if (!data) {
     return []
   }
@@ -112,5 +94,3 @@ export const componentResolver = ({data = [], environment = 'preview'}: Componen
 
   return components;
 };
-
-export default componentResolver;
