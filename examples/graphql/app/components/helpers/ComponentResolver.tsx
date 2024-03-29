@@ -18,7 +18,7 @@ import {
   ParagraphViewReferenceFragment,
 } from "~/graphql/fragments/paragraph"
 
-import { ComposableComponentContainer } from "~/components/helpers/Composable";
+import ComposableComponentContainer from "~/components/helpers/ComposableComponentContainer";
 
 type ComponentType = Array<JSX.Element>
 type ParagraphFragmentType =
