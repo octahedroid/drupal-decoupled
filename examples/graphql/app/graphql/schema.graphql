@@ -88,6 +88,15 @@ type Query {
     langcode: String
   ): ParagraphText
 
+  """Load a ParagraphViewReference entity by id"""
+  paragraphViewReference(
+    """The id of the ParagraphViewReference to load."""
+    id: ID!
+
+    """Optionally set the response language. Eg en, ja, fr."""
+    langcode: String
+  ): ParagraphViewReference
+
   """Load a TermTags entity by id"""
   termTags(
     """The id of the TermTags to load."""
@@ -339,6 +348,30 @@ type Query {
     langcode: String
   ): ParagraphTextConnection!
 
+  """List of all ParagraphViewReference on the platform."""
+  paragraphViewReferences(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+
+    """Filter the results by language. Eg en, ja, fr."""
+    langcode: String
+  ): ParagraphViewReferenceConnection!
+
   """List of all TermTags on the platform."""
   termTagsItems(
     """Returns the elements that come after the specified cursor."""
@@ -386,6 +419,21 @@ type Query {
     """Filter the results by language. Eg en, ja, fr."""
     langcode: String
   ): UserConnection!
+
+  """Load a content preview."""
+  preview(
+    """The content UUID."""
+    id: ID!
+
+    """A preview access token."""
+    token: String
+
+    """
+    Optionally set the response language. Eg en, ja, fr. Setting this langcode
+    will change the current language of the entire response.
+    """
+    langcode: String
+  ): NodeUnion
 
   """Load a Route by path."""
   route(
@@ -535,11 +583,25 @@ interface MetaTag {
 
 """A meta link element's attributes."""
 type MetaTagLinkAttributes {
-  """The rel attribute of the link."""
+  """Specifies the location of the linked document."""
+  href: String
+
+  """Specifies the location of the linked document."""
+  hreflang: String
+
+  """
+  Specifies the relationship between the current document and the linked document.
+  """
   rel: String
 
-  """The href attribute of the link."""
-  href: String
+  """Specifies on what device the linked document will be displayed."""
+  media: String
+
+  """Specifies the size of the linked resource. Only for rel="icon"."""
+  sizes: String
+
+  """Specifies the media type of the linked document."""
+  type: String
 }
 
 """A meta content element."""
@@ -802,7 +864,7 @@ enum UserStatus {
 union MediaUnion = MediaImage
 
 """Entity type paragraph."""
-union ParagraphUnion = ParagraphCodeBlock | ParagraphHeroCta | ParagraphHeroText | ParagraphImage | ParagraphStaticComponent | ParagraphText
+union ParagraphUnion = ParagraphCodeBlock | ParagraphHeroCta | ParagraphHeroText | ParagraphImage | ParagraphStaticComponent | ParagraphText | ParagraphViewReference
 
 """Entity type paragraph."""
 type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
@@ -966,6 +1028,185 @@ tags where the creating user had permission to input these.
 """
 scalar Html
 
+"""Entity type paragraph."""
+type ParagraphViewReference implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """
+  This is a viewfield query proxy. Page size and contextual filters are applied
+  within the CMS. See the actual view base query for more documentation on
+  filters and options available. Reference
+  """
+  reference(
+    """If enabled: The page number to display."""
+    page: Int
+
+    """If enabled: The number of items skipped from beginning of this view."""
+    offset: Int
+
+    """
+    If enabled: The filters to apply to this view. Filters may not apply unless exposed.
+    """
+    filter: [KeyValueInput]
+
+    """If enabled: Sort the view by this key."""
+    sortKey: String
+
+    """If enabled: Sort the view direction."""
+    sortDir: SortDirection
+  ): ViewResultUnion!
+
+  """Text"""
+  text: String
+
+  """Title"""
+  title: String
+}
+
+"""Generic untyped input for key-value pairs."""
+input KeyValueInput {
+  key: String!
+  value: String
+}
+
+"""Sort direction."""
+enum SortDirection {
+  """Ascending"""
+  ASC
+
+  """Descending"""
+  DESC
+}
+
+"""All available view result types."""
+union ViewResultUnion = ViewBlogTeaserResult
+
+"""Result for view blog display blog_teaser."""
+type ViewBlogTeaserResult implements View {
+  """The ID of the view."""
+  id: ID!
+
+  """The machine name of the view."""
+  view: String!
+
+  """The machine name of the display."""
+  display: String!
+
+  """The language code of the view."""
+  langcode: String
+
+  """The human friendly label of the view."""
+  label: String
+
+  """The description of the view."""
+  description: String
+
+  """Information about the page in the view."""
+  pageInfo: ViewPageInfo!
+
+  """The results of the view."""
+  results: [NodeUnion!]!
+}
+
+"""Views represent collections of curated data from the site."""
+interface View {
+  """The ID of the view."""
+  id: ID!
+
+  """The machine name of the view."""
+  view: String!
+
+  """The machine name of the display."""
+  display: String!
+
+  """The language code of the view."""
+  langcode: String
+
+  """The human friendly label of the view."""
+  label: String
+
+  """The description of the view."""
+  description: String
+
+  """Information about the page in the view."""
+  pageInfo: ViewPageInfo!
+}
+
+"""Information about the page in a view."""
+type ViewPageInfo {
+  """Any result offset being used."""
+  offset: Int!
+
+  """The current page being returned."""
+  page: Int!
+
+  """How many results per page."""
+  pageSize: Int!
+
+  """How many results total."""
+  total: Int!
+}
+
+"""Entity type node."""
+union NodeUnion = NodeArticle | NodePage
+
+"""
+Use <em>basic pages</em> for your static content, such as an 'About us' page.
+"""
+type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The author of this content."""
+  author: User
+
+  """The time that the node was last edited."""
+  changed: DateTime!
+
+  """Components"""
+  components: [ParagraphUnion!]
+
+  """The date and time that the content was created."""
+  created: DateTime!
+
+  """Image"""
+  image: MediaUnion!
+
+  """Language"""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """URL alias"""
+  path: String!
+
+  """Promoted to front page"""
+  promote: Boolean!
+
+  """Show Title"""
+  showTitle: Boolean
+
+  """Published"""
+  status: Boolean!
+
+  """Sticky at top of lists"""
+  sticky: Boolean!
+
+  """Summary"""
+  summary: String!
+
+  """Title"""
+  title: String!
+}
+
 """Entity type taxonomy_term."""
 union TermUnion = TermTags
 
@@ -1033,56 +1274,6 @@ interface TermInterface {
 
   """The weight of this term in relation to other terms."""
   weight: Int!
-}
-
-"""
-Use <em>basic pages</em> for your static content, such as an 'About us' page.
-"""
-type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The author of this content."""
-  author: User
-
-  """The time that the node was last edited."""
-  changed: DateTime!
-
-  """Components"""
-  components: [ParagraphUnion!]
-
-  """The date and time that the content was created."""
-  created: DateTime!
-
-  """Image"""
-  image: MediaUnion!
-
-  """Language"""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """URL alias"""
-  path: String!
-
-  """Promoted to front page"""
-  promote: Boolean!
-
-  """Show Title"""
-  showTitle: Boolean
-
-  """Published"""
-  status: Boolean!
-
-  """Sticky at top of lists"""
-  sticky: Boolean!
-
-  """Summary"""
-  summary: String!
-
-  """Title"""
-  title: String!
 }
 
 """List of menus available to load."""
@@ -1382,6 +1573,19 @@ type ParagraphTextEdge implements Edge {
   node: ParagraphText!
 }
 
+"""A paginated set of results for ParagraphViewReference."""
+type ParagraphViewReferenceConnection implements Connection {
+  edges: [ParagraphViewReferenceEdge!]!
+  nodes: [ParagraphViewReference!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for ParagraphViewReference."""
+type ParagraphViewReferenceEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphViewReference!
+}
+
 """A paginated set of results for TermTags."""
 type TermTagsConnection implements Connection {
   edges: [TermTagsEdge!]!
@@ -1407,75 +1611,6 @@ type UserEdge implements Edge {
   cursor: Cursor!
   node: User!
 }
-
-"""Result for view blog display blog_teaser."""
-type ViewBlogTeaserResult implements View {
-  """The ID of the view."""
-  id: ID!
-
-  """The machine name of the view."""
-  view: String!
-
-  """The machine name of the display."""
-  display: String!
-
-  """The language code of the view."""
-  langcode: String
-
-  """The human friendly label of the view."""
-  label: String
-
-  """The description of the view."""
-  description: String
-
-  """Information about the page in the view."""
-  pageInfo: ViewPageInfo!
-
-  """The results of the view."""
-  results: [NodeUnion!]!
-}
-
-"""Views represent collections of curated data from the site."""
-interface View {
-  """The ID of the view."""
-  id: ID!
-
-  """The machine name of the view."""
-  view: String!
-
-  """The machine name of the display."""
-  display: String!
-
-  """The language code of the view."""
-  langcode: String
-
-  """The human friendly label of the view."""
-  label: String
-
-  """The description of the view."""
-  description: String
-
-  """Information about the page in the view."""
-  pageInfo: ViewPageInfo!
-}
-
-"""Information about the page in a view."""
-type ViewPageInfo {
-  """Any result offset being used."""
-  offset: Int!
-
-  """The current page being returned."""
-  page: Int!
-
-  """How many results per page."""
-  pageSize: Int!
-
-  """How many results total."""
-  total: Int!
-}
-
-"""Entity type node."""
-union NodeUnion = NodeArticle | NodePage
 
 """A GraphQL mutation is a request that changes data on the server."""
 type Mutation {
@@ -1518,26 +1653,11 @@ interface ImageStyleInterface {
 """Entity type image_style."""
 union ImageStyleUnion = ImageStyle
 
-"""Generic untyped input for key-value pairs."""
-input KeyValueInput {
-  key: String!
-  value: String
-}
-
 """Entity type menu."""
 union MenuUnion = Menu
 
 """A field whose value conforms to the standard E.164"""
 scalar PhoneNumber
-
-"""Sort direction."""
-enum SortDirection {
-  """Ascending"""
-  ASC
-
-  """Descending"""
-  DESC
-}
 
 """A processed text format with summary defined by the CMS."""
 type TextSummary {
@@ -1581,6 +1701,3 @@ type ViewReference {
   """
   query: String
 }
-
-"""All available view result types."""
-union ViewResultUnion = ViewBlogTeaserResult

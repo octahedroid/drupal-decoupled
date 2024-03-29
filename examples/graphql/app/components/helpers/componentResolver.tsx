@@ -2,6 +2,8 @@ import ParagraphHeroCta from "~/components/paragraph/ParagraphHeroCta";
 import ParagraphText from "~/components/paragraph/ParagraphText";
 import ParagraphImage from "~/components/paragraph/ParagraphImage";
 import ParagraphCodeBlock from "~/components/paragraph/ParagraphCodeBlock";
+import ParagraphStaticComponent from "~/components/paragraph/ParagraphStaticComponent";
+import ParagraphViewReference from "~/components/paragraph/ParagraphViewReference";
 
 import {
   ParagraphCodeBlockFragment,
@@ -11,6 +13,7 @@ import {
   ParagraphHeroTextFragment,
   ParagraphStaticComponentFragment,
   ParagraphUnionFragment,
+  ParagraphViewReferenceFragment,
 } from "~/graphql/fragments/paragraph"
 
 import type { ComposableComponentProps} from "drupal-composable"
@@ -42,7 +45,8 @@ type ParagraphFragmentType =
   FragmentOf<typeof ParagraphImageFragment> |
   FragmentOf<typeof ParagraphCodeBlockFragment> |
   FragmentOf<typeof ParagraphHeroTextFragment> |
-  FragmentOf<typeof ParagraphStaticComponentFragment>;
+  FragmentOf<typeof ParagraphStaticComponentFragment> |
+  FragmentOf<typeof ParagraphViewReferenceFragment>;
 
 interface ComponentResolverProps {
   data: FragmentOf<typeof ParagraphUnionFragment>[] | null;
@@ -62,8 +66,14 @@ const calculateComponent = function (type: string, paragraph: ParagraphFragmentT
   if (type === 'ParagraphCodeBlock') {
     return <ParagraphCodeBlock paragraph={paragraph as FragmentOf<typeof ParagraphCodeBlockFragment>} />;
   }
+  if (type === 'ParagraphStaticComponent') {
+    return <ParagraphStaticComponent paragraph={paragraph as FragmentOf<typeof ParagraphStaticComponentFragment>} />;
+  }
+  if (type === 'ParagraphViewReference') {
+    return <ParagraphViewReference paragraph={paragraph as FragmentOf<typeof ParagraphViewReferenceFragment>} />;
+  }
 
-  return <><pre>{JSON.stringify(paragraph, null, 2)}</pre></>;
+  return <p className="border-y border-neutral-500 p-4 break-words"><pre>{JSON.stringify(paragraph, null, 2)}</pre></p>;
 }
 
 export const componentResolver = ({data = [], environment = 'preview'}: ComponentResolverProps): ComponentType => {

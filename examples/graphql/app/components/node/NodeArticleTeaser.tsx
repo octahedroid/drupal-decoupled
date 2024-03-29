@@ -6,10 +6,12 @@ import Avatar from "~/components/Avatar";
 import CoverImage from "~/components/CoverImage";
 import { MediaImageFragment } from '~/graphql/fragments/media';
 
-export default function NodeArticleTeaser(
-    nodeArticle: FragmentOf<typeof NodeArticleFragment>
-  ) {
-  const { title, path, image, author, summary } = readFragment(NodeArticleFragment, nodeArticle);
+interface NodeArticleTeaserProps {
+  node: FragmentOf<typeof NodeArticleFragment>
+}
+
+export default function NodeArticleTeaser({node}:NodeArticleTeaserProps)  {
+  const { title, path, image, author, summary } = readFragment(NodeArticleFragment, node);
   const authorFragment = readFragment(UserFragment, author)
   if (!authorFragment) {
     return null;

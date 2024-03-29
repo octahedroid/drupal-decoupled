@@ -1,6 +1,8 @@
 import { graphql } from "~/graphql/gql.tada";
 import { LinkFragment, TextFragment } from "./misc";
 import { MediaImageFragment } from "./media";
+import { UserFragment } from "./user";
+import { NodeArticleTeaserFragment  } from "./node";
 
 export const ParagraphCodeBlockFragment = graphql(`
   fragment ParagraphCodeBlockFragment on ParagraphCodeBlock {
@@ -66,6 +68,43 @@ export const ParagraphCodeBlockFragment = graphql(`
   }
 `)
 
+export const ParagraphViewReferenceFragment = graphql(`
+fragment ParagraphViewReference on ParagraphViewReference {
+  __typename
+  id
+  reference {
+    __typename
+    ... on ViewBlogTeaserResult {
+      id
+      view
+      display 
+      results {
+        # @todo fix use of NodeArticleTeaserFragment
+        # ...NodeArticleTeaserFragment
+        ... on NodeArticle {
+          __typename
+          id
+          title
+          summary
+          path
+          image {
+            ...MediaImageFragment
+          }
+          author {
+            ...UserFragment
+          }
+        }
+      }
+    }
+  }
+}
+`, [
+  MediaImageFragment,
+  UserFragment,
+  // @todo fix use of NodeArticleTeaserFragment
+  // NodeArticleTeaserFragment
+])
+
 export const ParagraphUnionFragment = graphql(`
   fragment ParagraphUnionFragment on ParagraphUnion {
     ... on ParagraphInterface {
@@ -78,6 +117,7 @@ export const ParagraphUnionFragment = graphql(`
     ...ParagraphImageFragment
     ...ParagraphHeroTextFragment
     ...ParagraphStaticComponentFragment
+    ...ParagraphViewReference
   }
 `, [
   ParagraphCodeBlockFragment,
@@ -85,5 +125,6 @@ export const ParagraphUnionFragment = graphql(`
   ParagraphTextFragment,
   ParagraphImageFragment,
   ParagraphHeroTextFragment,
-  ParagraphStaticComponentFragment
+  ParagraphStaticComponentFragment,
+  ParagraphViewReferenceFragment
 ])
