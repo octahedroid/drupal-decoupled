@@ -1,45 +1,58 @@
+// Keep in sync with the types in Remix MetaTags
+type MetaDescriptor = {
+  charSet: "utf-8";
+} | {
+  title: string;
+} | {
+  name: string;
+  content: string;
+} | {
+  property: string;
+  content: string;
+} | {
+  httpEquiv: string;
+  content: string;
+} | {
+  [name: string]: string;
+  tagName: "meta" | "link";
+} | {
+  [name: string]: unknown;
+}
+
 type MetaTagUnion = (MetaTagLink | MetaTagValue | MetaTagProperty) & {
   __isUnion?: true;
 };
 
 interface MetaTagLink {
-  tag: string;
   attributes: MetaTagLinkAttributes;
   __typename: "MetaTagLink";
 }
 
-type MetaTag = (MetaTagLink | MetaTagValue | MetaTagProperty) & {
-  __isUnion?: true;
-};
+export type MetaTag = (MetaTagLink | MetaTagValue | MetaTagProperty) 
 
 interface MetaTagLinkAttributes {
-  rel?: string;
-  href?: string;
-  __typename: "MetaTagLinkAttributes";
+  rel?: string | null;
+  href?: string | null;
 }
 
 interface MetaTagValue {
-  tag: string;
   attributes: MetaTagValueAttributes;
   __typename: "MetaTagValue";
 }
 
 interface MetaTagValueAttributes {
-  name?: string;
-  content?: string;
-  __typename: "MetaTagValueAttributes";
+  name?: string | null;
+  content?: string | null;
 }
 
 interface MetaTagProperty {
-  tag: string;
   attributes: MetaTagPropertyAttributes;
   __typename: "MetaTagProperty";
 }
 
 interface MetaTagPropertyAttributes {
-  property?: string;
-  content?: string;
-  __typename: "MetaTagPropertyAttributes";
+  property?: string | null;
+  content?: string | null;
 }
 
 type OverrideKind = "replace" | "override";
@@ -69,7 +82,7 @@ export const metaTags = ({
   tags: MetaTag[];
   defaultTags?: Array<{ [key: string]: string | undefined }>;
   metaTagOverrides?: MetaTagOverrides;
-}) => {
+}): Array<MetaDescriptor> => {
   const title = tags.find(
     (tag: MetaTagUnion) =>
       tag.__typename === "MetaTagValue" && tag.attributes.name === "title"
@@ -152,5 +165,5 @@ export const metaTags = ({
     ...defaultTags,
     title ? { title: title.attributes.content } : {},
     ...meta,
-  ];
+  ] as Array<MetaDescriptor>;
 };
