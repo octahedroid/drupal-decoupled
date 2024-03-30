@@ -1,14 +1,16 @@
-import { MetaDescriptor, json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
+import { json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { Fragment } from "react/jsx-runtime";
-import { FragmentOf, readFragment } from "gql.tada";
+import { FragmentOf } from "gql.tada";
 import { metaTags } from "drupal-remix";
 
 import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
-import { getClient } from "~/graphql/client.server";
 import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/node/NodeArticle";
 import NodePageComponent from "~/components/node/NodePage";
+import { getClient } from "~/utils/client.server";
+import { calculatePath } from "~/utils/routes";
+import { calculateMetaTags } from "~/utils/metatags";
 
 export const meta: MetaFunction<typeof loader> = ({
   data,
@@ -17,20 +19,9 @@ export const meta: MetaFunction<typeof loader> = ({
     return [];
   }
   const { type, node } = data;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let tags: Array<any> = [];
-  if (type === "NodePage" ) {
-    const { metatag } = readFragment(NodePageFragment, node as FragmentOf<typeof NodePageFragment>)
-    tags = metatag;
-  }
-
-  if (type === "NodeArticle" ) {
-    const { metatag } = readFragment(NodeArticleFragment, node as FragmentOf<typeof NodeArticleFragment>)
-    tags = metatag;
-  }
 
   return metaTags({
-    tags,
+    tags: calculateMetaTags(type, node),
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
@@ -54,24 +45,8 @@ export const meta: MetaFunction<typeof loader> = ({
         },
       },
     },
-  }) as Array<MetaDescriptor> || [];
+  });
 };
-
-interface CalculatePathArgs {
-  path?: string;
-  url: string;
-}
-
-const calculatePath = ({path = '/home', url}: CalculatePathArgs) : string=> {
-  if (path.startsWith("node/preview")) {
-    const { searchParams } = new URL(url);
-    if (searchParams.has("token")) {
-      return `${path}?token=${searchParams.get("token")}`;
-    }
-  }
-
-  return path;
-}
 
 export const loader = async ({ params, context, request }: LoaderFunctionArgs) => {
   const path = calculatePath({path: params["*"], url: request.url});
@@ -131,10 +106,14 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
 export default function Index() {
   const { type, node, environment } = useLoaderData<typeof loader>();
 
+  if (!type || !node) {
+    return null;
+  }
+
   return (
     <Fragment>
-      { type === "NodePage" && node && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
-      { type === "NodeArticle" && node && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
+      { type === "NodePage" && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
+      { type === "NodeArticle" && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
     </Fragment>
   );
 }

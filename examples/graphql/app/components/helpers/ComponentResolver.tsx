@@ -55,7 +55,7 @@ const calculateComponent = function (type: string, paragraph: ParagraphFragmentT
     return <ParagraphViewReference paragraph={paragraph as FragmentOf<typeof ParagraphViewReferenceFragment>} />;
   }
 
-  return <p className="border-y border-neutral-500 p-4 break-words"><pre>{JSON.stringify(paragraph, null, 2)}</pre></p>;
+  return <pre>{JSON.stringify(paragraph, null, 2)}</pre>;
 }
 
 export const resolve = ({data = [], environment = 'preview'}: ResolveProps): ComponentType => {

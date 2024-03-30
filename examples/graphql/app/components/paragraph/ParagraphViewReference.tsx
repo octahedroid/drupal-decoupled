@@ -19,7 +19,7 @@ export default function ParagraphViewReference({ paragraph } : ParagraphViewRefe
   }
   
   return (
-    <p className="border-y border-neutral-500 p-4 break-words">
+    <p>
       <h2>ParagraphViewReference</h2>
       <pre>
         {JSON.stringify({ view, display, results }, null, 2)}

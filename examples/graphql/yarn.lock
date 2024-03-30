@@ -2465,23 +2465,23 @@ dotenv@^16.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
   integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
 
-drupal-auth-client@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.3.0.tgz#d3baec1127e021c8497a71c14ae03ba0671c95e2"
-  integrity sha512-c6+WJ1wJfk6p2TNOz7rSzf+q62LEQJdGguo9H2ZV4g5THGrzXVrK7LNnSoO4vAgsFyOR1HEJsdytF7VJmdGeoA==
+drupal-auth-client@^0.3:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.3.1.tgz#b45897275e361ddf1c9d0a424c889213eaa7b69b"
+  integrity sha512-Lu1cVnA3oDyRQ+n6rk/t4mkG7RjlVGU9/5qKqOL8IL2alyX4fVmiI8G9lxiuF/VJxU6LocbI0zEcDostzwPihQ==
   dependencies:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
-drupal-composable@^0.1.0:
+drupal-composable@^0.1:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/drupal-composable/-/drupal-composable-0.1.0.tgz#747c75356f5550c540e8fd3f7270a6f53cfb03a0"
   integrity sha512-G/JfxyxUoPF8bFwm8lRQjr2nNwjOmF6eOxR7rBnKz2NRoF9YFVtBVmOZ+8LNZM8lSnxrnXILPhrvs9ue4RAVdw==
 
-drupal-remix@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.2.2.tgz#089fa2585eb0cc2ed1d73744e57e6cc6b4f8c169"
-  integrity sha512-ZrilS21xWgViifws8djiYc3vG6vWqIoOH4a/eHyuMxQ6o+ZyYos91uCovHzci/+WCpkBX3NDpy9NMz5HSMxMpA==
+drupal-remix@^0.3:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.3.1.tgz#25f92ba6cf5c21ed82ce1a8862fac8c8b7f49366"
+  integrity sha512-7oPdeZNXb5OwXMpLgMqmgIG2UWFmWtwk3B5a5g/9aTaA57di7qX8gwqpEabFa3rA6AQHcdJF40Ub6JqpOMF0DQ==
 
 duplexify@^3.5.0, duplexify@^3.6.0:
   version "3.7.1"

@@ -2,7 +2,8 @@ import { graphql } from "~/graphql/gql.tada";
 import { LinkFragment, TextFragment } from "./misc";
 import { MediaImageFragment } from "./media";
 import { UserFragment } from "./user";
-import { NodeArticleTeaserFragment  } from "./node";
+// @todo fix use of NodeArticleTeaserFragment
+// import { NodeArticleTeaserFragment  } from "./node";
 
 export const ParagraphCodeBlockFragment = graphql(`
   fragment ParagraphCodeBlockFragment on ParagraphCodeBlock {
