@@ -1,5 +1,6 @@
 import { Client, fetchExchange } from '@urql/core';
 import { getToken } from './auth.server';
+
 interface ClientArgs {
   url: string
   auth: {

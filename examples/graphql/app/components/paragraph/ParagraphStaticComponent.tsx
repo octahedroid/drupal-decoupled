@@ -7,13 +7,14 @@ interface ParagraphStaticComponentProps {
 
 export default function ParagraphStaticComponent({ paragraph } : ParagraphStaticComponentProps) {
   const { id, component } = readFragment(ParagraphStaticComponentFragment, paragraph);
+  // @todo: Implement Contact component
   const componentMap = {
     'contact': 'Contact',
   }
   
   return (
-    <p className="border-y border-neutral-500 p-4 break-words">
-      <h2>Render ParagraphStaticComponent</h2>
+    <p>
+      <h2>ParagraphStaticComponent</h2>
       <pre>
         {JSON.stringify({ id, component, componentMap }, null, 2)}
       </pre>
