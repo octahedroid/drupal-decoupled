@@ -11,3 +11,14 @@ It only takes a few steps to use Remix with Drupal as a Headless CMS (also known
 - [Modules](drupal/modules)
 - [Examples](examples)
 - [Packages](packages)
+
+## Get Started
+
+### Create the Remix project
+Create a remix project using the GraphQL example:
+
+```
+npx create-remix@latest --template octahedroid/drupal-remix/examples/graphql
+```
+
+### Replicate the Drupal site
