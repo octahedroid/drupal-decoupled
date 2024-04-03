@@ -58,8 +58,9 @@ export const meta: MetaFunction = ({
 
 In this example, the canonical attribute of the `<link>` tag will be overridden. The kind property determines the type of override to perform. The available options are:
 
-"replace": Replaces a specific pattern within the value with the provided replacement.
-"override": Fully replaces the value with the provided replacement.
+- "replace": Replaces a specific pattern within the value with the provided replacement.
+- "override": Fully replaces the value with the provided replacement.
+
 MetaTagProperty Overrides
 To override a `<meta>` tag with the property attribute, use the MetaTagProperty key. For example:
 
@@ -117,101 +118,130 @@ The available kind options for MetaTagProperty and MetaTagValue are the same as 
 ## Fetching data form Drupal using GraphQL
 
 ```typescript
-export const loader = async ({ params, context }: LoaderFunctionArgs) => {
-  const drupalClient = getClient(token, context);
-  const { route } = await drupalClient.query({
-    route: {
-      __args: {
-        path: path,
-      },
-      __typename: true,
-      on_RouteInternal: {
-        entity: {
-          __typename: true,
-          on_NodePage: {
-            title: true,
-            metatag: {
-              __typename: true,
-              on_MetaTagLink: {
-                attributes: {
-                  rel: true,
-                  href: true,
-                },
-              },
-              on_MetaTagValue: {
-                attributes: {
-                  name: true,
-                  content: true,
-                },
-              },
-              on_MetaTagProperty: {
-                attributes: {
-                  property: true,
-                  content: true,
-                },
-              },
-            },
-          },
-        },
-      },
+export const loader = async ({ params, context, request }: LoaderFunctionArgs) => {
+  const path = calculatePath({path: params["*"], url: request.url});
+  const client = await getClient({
+    url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
+    auth: {
+      uri: context.cloudflare.env.DRUPAL_AUTH_URI,
+      clientId: context.cloudflare.env.DRUPAL_CLIENT_ID,
+      clientSecret: context.cloudflare.env.DRUPAL_CLIENT_SECRET,
     },
   });
+  
+  const nodeRouteQuery = graphql(`
+    query route ($path: String!){
+      route(path: $path) {
+        __typename
+        ... on RouteInternal {
+          entity {
+            __typename
+            ... on NodePage {
+             title
+             metatag {
+              __typename
+              ... on MetaTagLink {
+                attributes {
+                  rel
+                  href
+                }
+              }
+              ... on MetaTagValue {
+                attributes {
+                  name
+                  content
+                }
+              }
+              ... on MetaTagProperty {
+                attributes {
+                  property
+                  content
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }`)
 
-  if (!route || route.__typename !== "RouteInternal") {
+  const { data, error } = await client.query(
+    nodeRouteQuery,
+    {
+      path,
+    }
+  );
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data || !data?.route || data?.route.__typename !== "RouteInternal" || !data.route.entity) {
     return redirect("/404");
   }
 
-  return json({ node: route.entity }, { status: 200 });
-};
+  return json({
+    type: data.route.entity.__typename,
+    node: data.route.entity,
+    environment: context.cloudflare.env.ENVIRONMENT,
+  })
+}
 ```
 
-> Note: This example is using the GenQL CLI, make sure you install it to generate types and client from the GraphQL API your Drupal site is exposing.
+### Route Syncronization and comunication between FE and BE via the Iframe
 
-## Usage: Inline Preview
-
-In order to implement you will need to edit your `app/root.tsx` file
-
-### Importing library
+Import the `syncDrupalPreviewRoutes` helper at `app/root.tsx`
 
 ```typescript
 import { syncDrupalPreviewRoutes } from "drupal-remix";
 ```
 
-### Server Side Code
+Make sure your loader returns the current `environment` value
 
 ```typescript
 export const loader = async ({ context }: LoaderFunctionArgs ) => {
+  // Provide a variable to define the environment
+  const environment = context.cloudflare.env.ENVIRONMENT
   return json(
     {
-      environment: context.ENVIRONMENT,
+      environment,
     },
     { status: 200 }
   );
 };
 ```
 
-> NOTE: This example is using Cloudflare and taking advantage of Environemt Settings to define "environment" key/value, that is why we are using the context object to obtain the value and pass it from Server to Client.
+> NOTE: This example is using Cloudflare and taking advantage of Environemt Settings to define "environment" key/value, that is why we are using the `context.cloudflare.env.ENVIRONMENT` object to obtain the value and pass it from Server to Client.
 
-### Client Side Code
+Upate your `App` function
 
 ```typescript
 export default function App() {
+  // read environment from loader
   const { environment } = useLoaderData<typeof loader>();
+  // use the useNavigation hook from @remix-run/react
   const navigation = useNavigation();
 
+  // check if environment is preview and navigation.state is loading
+  // to call syncDrupalPreviewRoutes
   if (environment === "preview" && navigation.state === "loading") {
     syncDrupalPreviewRoutes(navigation.location.pathname);
   }
 
   return (
-    <html lang="en">
-      ...
-    </html>
+    <>
+      <Outlet />
+    </>
   );
-
 }
-
 ```
+
+For a fully functional example visit any of those repositories:
+- GraphQL:
+  - [Remix](https://github.com/octahedroid/drupal-remix/tree/main/examples/graphql)
+  - [Drupal]()
+
+- JSON:API (TBD)
 
 ## Supporting organizations
 
