@@ -6,7 +6,7 @@ A list of utilities to help you integrate your Drupal site with Remix.
 
 Make sure your Drupal site is using the [Metatag](https://www.drupal.org/project/metatag), [GraphQL Compose](https://www.drupal.org/project/graphql_compose) and [Remix](https://www.drupal.org/project/remix) modules.
 
-## Usage: SEO
+## Usage of Metatags helper
 
 ### Importing library
 
@@ -187,6 +187,8 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
   })
 }
 ```
+
+> NOTE: This example is using Cloudflare and taking advantage of Environemt Settings to define "environment" key/value, that is why we are using the `context.cloudflare.env.ENVIRONMENT` object to obtain the value and pass it from Server to Client.
 
 ### Route Syncronization and comunication between FE and BE via the Iframe
 
