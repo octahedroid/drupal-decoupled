@@ -7,7 +7,7 @@ This repository will provide you with the building blocks to achive this in a si
 
 ### Components
 
-- [Drupal sites](drupal/graphql)
+- [Drupal sites](drupal/)
 - [Drupal Modules](drupal/modules)
 - [Examples](examples)
 - [Npm Packages](packages)
@@ -25,7 +25,5 @@ git clone git@github.com:octahedroid/drupal-graphql-example.git
 ### Create a Remix project using the GraphQL demo front-end site:
 
 ```
-npx create-remix@latest --template octahedroid/drupal-drupal-decoupled/examples/remix-graphql
+npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-graphql
 ```
-
-
