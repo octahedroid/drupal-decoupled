@@ -7,23 +7,27 @@ This repository will provide you with the building blocks to achive this in a si
 
 ### Components
 
-- [Drupal sites](drupal/)
-- [Drupal Modules](drupal/modules)
-- [Examples](examples)
-- [Npm Packages](packages)
+- [Drupal sites](drupal/sites)
+- [Drupal modules](drupal/modules)
+- [Decoupled project examples](examples)
+- [Npm packages](packages)
 
 It only takes a few steps to use Drupal paired with a Decoupl.
 
-## Get Started Drupal + GraphQL + Remix
+## Get Started
 
-### Replicate the Drupal + GraphQL demo site
+### Drupal demo site
 
 ```
 git clone git@github.com:octahedroid/drupal-graphql-example.git
 ```
 
-### Create a Remix project using the GraphQL demo front-end site:
+> Follow instructions reading README.md file on cloned project
+
+### Remix demo project
 
 ```
 npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-graphql
 ```
+
+> Follow instructions reading README.md file on cloned project
