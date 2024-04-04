@@ -1,5 +1,16 @@
-# Welcome to Remix + Vite!
+# Drupal Decoupled Integrations: Remix demo project
 
+## Get Started
+
+Copy `.dev.vars.example`
+
+```
+cp .dev.vars.example .dev.vars
+```
+
+Update values read copied file for instructions
+
+## Remix docs
 📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
 
 ## Typegen
