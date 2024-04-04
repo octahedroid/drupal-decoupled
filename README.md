@@ -1,24 +1,31 @@
-# Drupal <> Remix integration
+# Drupal Decoupled Integrations
 
-## Why Drupal + Remix together?
-Using Drupal as a headless CMS with Remix is a great way to get an enterprise-quality CMS, paired with a great modern development experience and all the benefits of the Edge Computing, like performance, scalability, and security.
+## Why Decoupled Drupal
+Using Drupal as a headless CMS with a Deoupled front-end implementation is a great way to get an enterprise-quality CMS, paired with a great modern development experience using Remix, Next.js, Astro and/or others.
 
-It only takes a few steps to use Remix with Drupal as a Headless CMS (also known as decoupled Drupal).
+This repository will provide you with the building blocks to achive this in a simplified way.
 
 ### Components
 
-- [Drupal](drupal/graphql)
-- [Modules](drupal/modules)
+- [Drupal sites](drupal/graphql)
+- [Drupal Modules](drupal/modules)
 - [Examples](examples)
-- [Packages](packages)
+- [Npm Packages](packages)
 
-## Get Started
+It only takes a few steps to use Drupal paired with a Decoupl.
 
-### Create the Remix project
-Create a remix project using the GraphQL example:
+## Get Started Drupal + GraphQL + Remix
+
+### Replicate the Drupal + GraphQL demo site
 
 ```
-npx create-remix@latest --template octahedroid/drupal-remix/examples/graphql
+git clone git@github.com:octahedroid/drupal-graphql-example.git
 ```
 
-### Replicate the Drupal site
+### Create a Remix project using the GraphQL demo front-end site:
+
+```
+npx create-remix@latest --template octahedroid/drupal-drupal-decoupled/examples/remix-graphql
+```
+
+
