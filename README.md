@@ -22,12 +22,12 @@ It only takes a few steps to use Drupal paired with a Decoupl.
 git clone git@github.com:octahedroid/drupal-graphql-example.git
 ```
 
-> Follow instructions reading README.md file on cloned project
+> Follow instructions reading [README.md](https://github.com/octahedroid/drupal-graphql-example) file on cloned project
 
 ### Remix demo project
 
 ```
 npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-graphql
 ```
+> Follow instructions reading [README.md](examples/remix-graphql) file on cloned project
 
-> Follow instructions reading README.md file on cloned project

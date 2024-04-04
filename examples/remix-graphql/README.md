@@ -2,9 +2,14 @@
 
 ## Get Started
 
-Copy `.dev.vars.example`
-
+### Clone Remix demo project
+```bash
+npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-graphql
 ```
+
+### Copy `.dev.vars.example`
+
+```bash
 cp .dev.vars.example .dev.vars
 ```
 
