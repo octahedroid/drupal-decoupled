@@ -12,7 +12,7 @@ This repository will provide you with the building blocks to achive this in a si
 - [Decoupled project examples](examples)
 - [Npm packages](packages)
 
-It only takes a few steps to use Drupal paired with a Decoupl.
+It only takes a few steps to use Drupal paired with a Decoupled front-ens framework.
 
 ## Get Started
 
