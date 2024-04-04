@@ -1,0 +1,22 @@
+# use your site url and comment adding # to the orther
+# ddev
+DRUPAL_AUTH_URI=http://drupal-graphql-example.ddev.site
+# lando
+# DRUPAL_AUTH_URI=http://drupal-graphql-example.lndo.site
+
+# visit admin/config/services/consumer/add on your Drupal site 
+# to generate/re-generate and use those values 
+DRUPAL_CLIENT_ID=
+DRUPAL_CLIENT_SECRET=
+
+# use your site url and comment adding # to the orther
+# ddev
+DRUPAL_GRAPHQL_URI=http://drupal-graphql-example.ddev.site/graphql
+# lando
+# DRUPAL_GRAPHQL_URI=http://drupal-graphql-example.lndo.site/graphql
+
+# use preview or production
+ENVIRONMENT=preview
+
+# use your node version
+NODE_VERSION=v20.10.0
