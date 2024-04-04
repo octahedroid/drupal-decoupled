@@ -1,4 +1,4 @@
-# Drupal <> Remix integration: NPM Packages
+# Drupal Decoupled Integrations: NPM Packages
 
 ## Drupal Remix
 
