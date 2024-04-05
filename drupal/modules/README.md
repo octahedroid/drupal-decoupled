@@ -1,4 +1,4 @@
-# Drupal <> Remix integration: Drupal Modules
+# Drupal Decoupled Integrations: Drupal Modules
 
 ## Remix
 
@@ -7,6 +7,7 @@ Use Drupal as CMS first API paired with a great modern development experience us
 [remix](https://www.drupal.org/project/remix)
 
 ## GraphQL Compose
+
 A Drupal GraphQL Schema Generator.
 
 [graphql_compose](https://www.drupal.org/project/graphql_compose)
