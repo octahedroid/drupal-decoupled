@@ -16,4 +16,4 @@ Easily interact with a Drupal website using different authentication methods.
 
 Provide delightful editorial experiences for content editors within Drupal regardless of your FE implementation.
 
-[drupal-composable](https://www.npmjs.com/package/drupal-composable)
+[drupal-visual-editor](https://www.npmjs.com/package/drupal-visual-editor)

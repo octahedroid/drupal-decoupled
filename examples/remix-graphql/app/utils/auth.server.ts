@@ -13,7 +13,7 @@ export const getToken = async ({uri, clientId, clientSecret}: TokenArgs) => {
     {
       clientId,
       clientSecret,
-    },
+    }
   );
 
   return `${client.token_type} ${client.access_token}`;

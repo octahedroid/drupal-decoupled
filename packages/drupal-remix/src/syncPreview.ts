@@ -2,7 +2,7 @@ export const syncDrupalPreviewRoutes = (path: string) => {
   if (window && window.top !== window.self) {
     window.parent.postMessage(
       {
-        type: "REMIX_DRUPAL_ROUTE_SYNC",
+        type: "DECOUPLED_PREVIEW_IFRAME_ROUTE_SYNC",
         path,
       },
       "*"

@@ -1,6 +1,6 @@
 {
   "name": "drupal-auth-client",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Drupal Auth Client",
   "keywords": [
     "auth",
@@ -22,7 +22,7 @@
   },
   "author": "Octahedroid <opensource@octahedroid.com>",
   "repository": {
-    "url": "https://github.com/octahedroid/drupal-remix/tree/main/packages/drupal-auth-client"
+    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-auth-client"
   },
   "license": "MIT",
   "devDependencies": {
