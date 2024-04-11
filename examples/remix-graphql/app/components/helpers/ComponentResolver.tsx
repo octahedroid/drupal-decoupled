@@ -18,7 +18,7 @@ import {
   ParagraphViewReferenceFragment,
 } from "~/graphql/fragments/paragraph"
 
-import ComposableComponentContainer from "~/components/helpers/ComposableComponentContainer";
+import VisualEditorComponentContainer from "~/components/helpers/VisualEditorComponentContainer";
 
 type ComponentType = Array<JSX.Element>
 type ParagraphFragmentType =
@@ -63,6 +63,7 @@ export const resolve = ({data = [], environment = 'preview'}: ResolveProps): Com
     return []
   }
 
+
   const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data); 
   const components: Array<JSX.Element> = [];
   
@@ -77,13 +78,13 @@ export const resolve = ({data = [], environment = 'preview'}: ResolveProps): Com
 
     if (environment === 'preview') {
       components.push(
-        <ComposableComponentContainer
+        <VisualEditorComponentContainer
           action='edit'
           storage='paragraph'
           uuid={paragraph.id}
         >
           {ParagraphComponent}
-        </ComposableComponentContainer>
+        </VisualEditorComponentContainer>
       );
 
       return;

@@ -1,4 +1,1 @@
-
-import { openComposableComponent, ComposableComponentProps } from "./helpers";
-
-export { openComposableComponent, ComposableComponentProps };
+// nothing here yet

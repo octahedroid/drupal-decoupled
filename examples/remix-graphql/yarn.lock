@@ -2473,15 +2473,15 @@ drupal-auth-client@^0.3:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
-drupal-composable@^0.1:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/drupal-composable/-/drupal-composable-0.1.0.tgz#747c75356f5550c540e8fd3f7270a6f53cfb03a0"
-  integrity sha512-G/JfxyxUoPF8bFwm8lRQjr2nNwjOmF6eOxR7rBnKz2NRoF9YFVtBVmOZ+8LNZM8lSnxrnXILPhrvs9ue4RAVdw==
-
 drupal-remix@^0.3:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.3.1.tgz#25f92ba6cf5c21ed82ce1a8862fac8c8b7f49366"
   integrity sha512-7oPdeZNXb5OwXMpLgMqmgIG2UWFmWtwk3B5a5g/9aTaA57di7qX8gwqpEabFa3rA6AQHcdJF40Ub6JqpOMF0DQ==
+
+drupal-visual-editor@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/drupal-visual-editor/-/drupal-visual-editor-0.1.0.tgz#670caee27076391296eaa2c0bb484b27e0a1ffb1"
+  integrity sha512-ynjaCNN391n5wLtWkx1k6meqnVOv1EXRk0hNuFCU9kruzkJfx+XQ945sAYGLZH+EXU8Pg6UfrkrlNoV7MBs1Rw==
 
 duplexify@^3.5.0, duplexify@^3.6.0:
   version "3.7.1"

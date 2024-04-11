@@ -8,7 +8,7 @@ interface ParagraphHeroCtaProps {
 
 export default function ParagraphHeroCta({ paragraph }: ParagraphHeroCtaProps) {
   const { cta, text, title, intro } = readFragment(ParagraphHeroCtaFragment, paragraph)
-  const linkFragments = readFragment(LinkFragment, cta)  
+  const linkFragments = readFragment(LinkFragment, cta)
 
   return (
     <div className="bg-indigo-100">

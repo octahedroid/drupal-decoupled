@@ -1,14 +1,18 @@
 {
-  "name": "drupal-composable",
-  "version": "0.2.0",
-  "description": "The modern Drupal way to create content.",
+  "name": "drupal-visual-editor",
+  "version": "0.1.0",
+  "description": "Provide delightful editorial experiences for content editors using Drupal regardless of your FE implementation.",
   "type": "module",
   "keywords": [
     "drupal",
     "dxp",
     "composable",
     "decoupled",
-    "headless"
+    "headless",
+    "visual-editor",
+    "visual",
+    "editor",
+    "studio"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +31,7 @@
   },
   "author": "Octahedroid <opensource@octahedroid.com>",
   "repository": {
-    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-composable"
+    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-visual-editor"
   },
   "license": "MIT",
   "devDependencies": {
