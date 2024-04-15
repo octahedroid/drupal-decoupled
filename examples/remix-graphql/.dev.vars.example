@@ -4,8 +4,8 @@ DRUPAL_AUTH_URI=http://drupal-graphql-example.ddev.site
 # lando
 # DRUPAL_AUTH_URI=http://drupal-graphql-example.lndo.site
 
-# visit admin/config/services/consumer/add on your Drupal site 
-# to generate/re-generate and use those values 
+# visit admin/config/services/consumer for CLIENT_ID
+# for this demo use the one with the scope Previewer
 DRUPAL_CLIENT_ID=
 DRUPAL_CLIENT_SECRET=
 

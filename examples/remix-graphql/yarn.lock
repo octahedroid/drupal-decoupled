@@ -2473,10 +2473,10 @@ drupal-auth-client@^0.3:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
-drupal-remix@^0.3:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.3.1.tgz#25f92ba6cf5c21ed82ce1a8862fac8c8b7f49366"
-  integrity sha512-7oPdeZNXb5OwXMpLgMqmgIG2UWFmWtwk3B5a5g/9aTaA57di7qX8gwqpEabFa3rA6AQHcdJF40Ub6JqpOMF0DQ==
+drupal-remix@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.3.3.tgz#28872838874d0bd9280cdf0a914f40d66bf72759"
+  integrity sha512-qx7XX9J0uaqNgcDiVFfb4azTzLGil7B+iyqzO/WsSknVXEarCvtNOTTpBSd9ji+XCijzi8fBg5xLxkMSAC3UOw==
 
 drupal-visual-editor@^0.1.0:
   version "0.1.0"
