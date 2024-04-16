@@ -31,3 +31,6 @@ npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-g
 ```
 > Follow instructions reading [README.md](examples/remix-graphql) file on cloned project
 
+## Supporting organizations
+
+Development sponsored by [Octahedroid](https://octahedroid.com/)
