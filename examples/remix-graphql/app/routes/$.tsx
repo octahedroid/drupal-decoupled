@@ -5,12 +5,15 @@ import { FragmentOf } from "gql.tada";
 import { metaTags } from "drupal-remix";
 
 import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
+import { TermTagsFragment } from "~/graphql/fragments/terms";
 import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/node/NodeArticle";
 import NodePageComponent from "~/components/node/NodePage";
 import { getClient } from "~/utils/client.server";
 import { calculatePath } from "~/utils/routes";
 import { calculateMetaTags } from "~/utils/metatags";
+import { EntityFragmentType } from "~/utils/types";
+import TermTagsComponent from "~/components/taxonomy/TermTags";
 
 export const meta: MetaFunction<typeof loader> = ({
   data,
@@ -18,10 +21,10 @@ export const meta: MetaFunction<typeof loader> = ({
   if (!data) {
     return [];
   }
-  const { type, node } = data;
+  const { type, entity } = data;
 
   return metaTags({
-    tags: calculateMetaTags(type, node),
+    tags: calculateMetaTags(type, entity),
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
@@ -66,19 +69,17 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
         ... on RouteInternal {
           entity {
             __typename
-            ... on NodePage {
-              id
-              title
-            }
             ...NodePageFragment
             ...NodeArticleFragment
+            ...TermTagsFragment
           }
         }
       }
     }
   `, [
     NodePageFragment,
-    NodeArticleFragment
+    NodeArticleFragment,
+    TermTagsFragment
   ])
 
   const { data, error } = await client.query(
@@ -98,22 +99,23 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
 
   return json({
     type: data.route.entity.__typename,
-    node: data.route.entity as FragmentOf<typeof NodePageFragment> | FragmentOf<typeof NodeArticleFragment>,
+    entity: data.route.entity as EntityFragmentType,
     environment: context.cloudflare.env.ENVIRONMENT,
   })
 }
 
 export default function Index() {
-  const { type, node, environment } = useLoaderData<typeof loader>();
+  const { type, entity, environment } = useLoaderData<typeof loader>();
 
-  if (!type || !node) {
+  if (!type || !entity) {
     return null;
   }
 
   return (
     <Fragment>
-      { type === "NodePage" && <NodePageComponent node={node as FragmentOf<typeof NodePageFragment>} environment={environment} />}
-      { type === "NodeArticle" && <NodeArticleComponent node={node as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
+      { type === "TermTags" && <TermTagsComponent term={entity as FragmentOf<typeof TermTagsFragment>} />}
+      { type === "NodePage" && <NodePageComponent node={entity as FragmentOf<typeof NodePageFragment>} environment={environment} />}
+      { type === "NodeArticle" && <NodeArticleComponent node={entity as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
     </Fragment>
   );
 }
