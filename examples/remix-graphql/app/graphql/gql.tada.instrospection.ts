@@ -136,6 +136,35 @@ const introspection = {
             ]
           },
           {
+            "name": "termTags",
+            "type": {
+              "kind": "OBJECT",
+              "name": "TermTags",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "langcode",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
             "name": "paragraphCodeBlock",
             "type": {
               "kind": "OBJECT",
@@ -314,35 +343,6 @@ const introspection = {
             "type": {
               "kind": "OBJECT",
               "name": "ParagraphViewReference",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "langcode",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "termTags",
-            "type": {
-              "kind": "OBJECT",
-              "name": "TermTags",
               "ofType": null
             },
             "args": [
@@ -579,6 +579,75 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "NodePageConnection",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "langcode",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "termTagsItems",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TermTagsConnection",
                 "ofType": null
               }
             },
@@ -1062,75 +1131,6 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ParagraphViewReferenceConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "langcode",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "termTagsItems",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "TermTagsConnection",
                 "ofType": null
               }
             },
@@ -4934,11 +4934,19 @@ const introspection = {
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "MediaImage"
+          },
+          {
+            "kind": "OBJECT",
             "name": "NodeArticle"
           },
           {
             "kind": "OBJECT",
             "name": "NodePage"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "TermTags"
           }
         ]
       },
@@ -5192,6 +5200,10 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
+            "name": "TermTagsConnection"
+          },
+          {
+            "kind": "OBJECT",
             "name": "ParagraphCodeBlockConnection"
           },
           {
@@ -5217,10 +5229,6 @@ const introspection = {
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReferenceConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "TermTagsConnection"
           },
           {
             "kind": "OBJECT",
@@ -5273,6 +5281,10 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
+            "name": "TermTagsEdge"
+          },
+          {
+            "kind": "OBJECT",
             "name": "ParagraphCodeBlockEdge"
           },
           {
@@ -5298,10 +5310,6 @@ const introspection = {
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReferenceEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "TermTagsEdge"
           },
           {
             "kind": "OBJECT",
@@ -5573,6 +5581,102 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "NodePage",
+                "ofType": null
+              }
+            },
+            "args": []
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TermTagsConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "TermTagsEdge",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "TermTags",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo",
+                "ofType": null
+              }
+            },
+            "args": []
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TermTagsEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TermTags",
                 "ofType": null
               }
             },
@@ -6245,102 +6349,6 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ParagraphViewReference",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "TermTagsConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "TermTagsEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "TermTags",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "TermTagsEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "TermTags",
                 "ofType": null
               }
             },

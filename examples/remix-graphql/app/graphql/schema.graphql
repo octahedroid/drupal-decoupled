@@ -34,6 +34,15 @@ type Query {
     langcode: String
   ): NodePage
 
+  """Load a TermTags entity by id"""
+  termTags(
+    """The id of the TermTags to load."""
+    id: ID!
+
+    """Optionally set the response language. Eg en, ja, fr."""
+    langcode: String
+  ): TermTags
+
   """Load a ParagraphCodeBlock entity by id"""
   paragraphCodeBlock(
     """The id of the ParagraphCodeBlock to load."""
@@ -96,15 +105,6 @@ type Query {
     """Optionally set the response language. Eg en, ja, fr."""
     langcode: String
   ): ParagraphViewReference
-
-  """Load a TermTags entity by id"""
-  termTags(
-    """The id of the TermTags to load."""
-    id: ID!
-
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
-  ): TermTags
 
   """Load a Menu by name."""
   menu(
@@ -203,6 +203,30 @@ type Query {
     """Filter the results by language. Eg en, ja, fr."""
     langcode: String
   ): NodePageConnection!
+
+  """List of all TermTags on the platform."""
+  termTagsItems(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+
+    """Filter the results by language. Eg en, ja, fr."""
+    langcode: String
+  ): TermTagsConnection!
 
   """List of all ParagraphCodeBlock on the platform."""
   paragraphCodeBlocks(
@@ -371,30 +395,6 @@ type Query {
     """Filter the results by language. Eg en, ja, fr."""
     langcode: String
   ): ParagraphViewReferenceConnection!
-
-  """List of all TermTags on the platform."""
-  termTagsItems(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
-  ): TermTagsConnection!
 
   """List of all User on the platform."""
   users(
@@ -1371,7 +1371,7 @@ interface Route {
 }
 
 """A list of possible entities that can be returned by URL."""
-union RouteEntityUnion = NodeArticle | NodePage
+union RouteEntityUnion = MediaImage | NodeArticle | NodePage | TermTags
 
 """Route outside of this website."""
 type RouteExternal implements Route {
@@ -1495,6 +1495,19 @@ type NodePageEdge implements Edge {
   node: NodePage!
 }
 
+"""A paginated set of results for TermTags."""
+type TermTagsConnection implements Connection {
+  edges: [TermTagsEdge!]!
+  nodes: [TermTags!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for TermTags."""
+type TermTagsEdge implements Edge {
+  cursor: Cursor!
+  node: TermTags!
+}
+
 """A paginated set of results for ParagraphCodeBlock."""
 type ParagraphCodeBlockConnection implements Connection {
   edges: [ParagraphCodeBlockEdge!]!
@@ -1584,19 +1597,6 @@ type ParagraphViewReferenceConnection implements Connection {
 type ParagraphViewReferenceEdge implements Edge {
   cursor: Cursor!
   node: ParagraphViewReference!
-}
-
-"""A paginated set of results for TermTags."""
-type TermTagsConnection implements Connection {
-  edges: [TermTagsEdge!]!
-  nodes: [TermTags!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for TermTags."""
-type TermTagsEdge implements Edge {
-  cursor: Cursor!
-  node: TermTags!
 }
 
 """A paginated set of results for User."""
