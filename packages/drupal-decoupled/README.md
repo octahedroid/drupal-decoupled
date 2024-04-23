@@ -1,6 +1,6 @@
 # Drupal-Decoupled
 
-A list of utilities for a Decoupled integrations
+A list of utilities for a Decoupled integrations.
 
 ### Route Syncronization and comunication between FE and BE via the Iframe
 

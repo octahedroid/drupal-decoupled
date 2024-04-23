@@ -12,6 +12,12 @@ Simplify Drupal integration with Remix using "drupal-remix" utilities.
 
 [drupal-remix](https://www.npmjs.com/package/drupal-remix)
 
+## Drupal Decoupled
+
+A list of utilities for a Decoupled integrations.
+
+[drupal-decoupled](https://www.npmjs.com/package/drupal-decoupled)
+
 ## Drupal Visual Editor
 
 Provide delightful editorial experiences for content editors within Drupal regardless of your FE implementation.
