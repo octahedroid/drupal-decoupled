@@ -2578,17 +2578,17 @@ drupal-auth-client@^0.3:
     cross-fetch "^3.1.5"
     form-data "^4.0.0"
 
-drupal-decoupled@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/drupal-decoupled/-/drupal-decoupled-0.1.0.tgz#be0243878fdaa05fffe6eb2b1802b8d76ee58af3"
-  integrity sha512-/+Voh2AoqTpF4JXj+1XQlRsVEPQWnt+ExXNk0laowYk+RhMdU+lFoCouOUp09iyeLD36zEShm3btMfNqQJPWJw==
+drupal-decoupled@^0.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/drupal-decoupled/-/drupal-decoupled-0.1.1.tgz#4278b9ea5739c39f5e2fae32c2d058173a6dbf40"
+  integrity sha512-dVOfwuXvixWYOaEOhNCI6L84Ac332UVGZbBKPGUUSPMliScSjKtVEkAe3ConvrPuMdbDZn1FuId5rp4HUf2wew==
 
 drupal-remix@^0.4:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/drupal-remix/-/drupal-remix-0.4.0.tgz#adc6830f885bbee875c00d41bc1c9642dcc6fadb"
   integrity sha512-GuMv1fzJXNSmEpKx0qs/SG3zWCHHsQOkz4PWaCMs8LIfESRlXwHiRbxvJZe1/VlOsXO4Ky62JdrvwENtksO+0A==
 
-drupal-visual-editor@^0.1.0:
+drupal-visual-editor@^0.1:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/drupal-visual-editor/-/drupal-visual-editor-0.1.0.tgz#670caee27076391296eaa2c0bb484b27e0a1ffb1"
   integrity sha512-ynjaCNN391n5wLtWkx1k6meqnVOv1EXRk0hNuFCU9kruzkJfx+XQ945sAYGLZH+EXU8Pg6UfrkrlNoV7MBs1Rw==

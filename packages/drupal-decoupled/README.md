@@ -7,7 +7,7 @@ A list of utilities for a Decoupled integrations
 Import the `syncDrupalPreviewRoutes` helper at `app/root.tsx`
 
 ```typescript
-import { syncDrupalPreviewRoutes } from "drupal-remix";
+import { syncDrupalPreviewRoutes } from "drupal-decoupled";
 ```
 
 Make sure your loader returns the current `environment` value

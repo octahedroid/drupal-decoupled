@@ -1,6 +1,6 @@
 {
   "name": "drupal-decoupled",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Drupal utils for Decoupled integrations",
   "type": "module",
   "keywords": [
