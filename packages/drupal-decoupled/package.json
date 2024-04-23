@@ -1,16 +1,14 @@
 {
-  "name": "drupal-remix",
-  "version": "0.4.0",
-  "description": "Drupal utils for remix.run",
+  "name": "drupal-decoupled",
+  "version": "0.1.0",
+  "description": "Drupal utils for Decoupled integrations",
   "type": "module",
   "keywords": [
     "graphql",
     "drupal",
-    "metatags",
-    "seo",
+    "decoupled",
     "remix",
-    "remix.run",
-    "remixjs"
+    "next.js"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,7 +27,7 @@
   },
   "author": "Octahedroid <opensource@octahedroid.com>",
   "repository": {
-    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-remix"
+    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-decoupled"
   },
   "license": "MIT",
   "devDependencies": {
