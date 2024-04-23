@@ -8,7 +8,7 @@ import {
   useNavigation,
 } from "@remix-run/react";
 import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
-import { syncDrupalPreviewRoutes } from "drupal-remix";
+import { syncDrupalPreviewRoutes } from "drupal-decoupled";
 
 import Container from "./components/Container";
 import Footer from "./components/Footer";
