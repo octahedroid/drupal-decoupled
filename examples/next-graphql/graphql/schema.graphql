@@ -1,0 +1,2702 @@
+"""
+The schema's entry-point for queries.
+
+This acts as the public, top-level API from which all queries must start.
+"""
+type Query {
+  """
+  Schema information.
+  """
+  info: SchemaInformation!
+
+  """
+  Load a MediaImage entity by id
+  """
+  mediaImage(
+    """
+    The id of the MediaImage to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): MediaImage
+
+  """
+  Load a NodeArticle entity by id
+  """
+  nodeArticle(
+    """
+    The id of the NodeArticle to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): NodeArticle
+
+  """
+  Load a NodePage entity by id
+  """
+  nodePage(
+    """
+    The id of the NodePage to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): NodePage
+
+  """
+  Load a TermTags entity by id
+  """
+  termTags(
+    """
+    The id of the TermTags to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): TermTags
+
+  """
+  Load a ParagraphCodeBlock entity by id
+  """
+  paragraphCodeBlock(
+    """
+    The id of the ParagraphCodeBlock to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphCodeBlock
+
+  """
+  Load a ParagraphHeroCta entity by id
+  """
+  paragraphHeroCta(
+    """
+    The id of the ParagraphHeroCta to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphHeroCta
+
+  """
+  Load a ParagraphHeroText entity by id
+  """
+  paragraphHeroText(
+    """
+    The id of the ParagraphHeroText to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphHeroText
+
+  """
+  Load a ParagraphImage entity by id
+  """
+  paragraphImage(
+    """
+    The id of the ParagraphImage to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphImage
+
+  """
+  Load a ParagraphStaticComponent entity by id
+  """
+  paragraphStaticComponent(
+    """
+    The id of the ParagraphStaticComponent to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphStaticComponent
+
+  """
+  Load a ParagraphText entity by id
+  """
+  paragraphText(
+    """
+    The id of the ParagraphText to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphText
+
+  """
+  Load a ParagraphViewReference entity by id
+  """
+  paragraphViewReference(
+    """
+    The id of the ParagraphViewReference to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphViewReference
+
+  """
+  Load a Menu by name.
+  """
+  menu(
+    """
+    Internal menu name. Eg MAIN
+    """
+    name: MenuAvailable!
+
+    """
+    Optionally set the response language. Eg en, ja, fr. Setting this langcode
+    will change the current language of the entire response.
+    """
+    langcode: String
+  ): Menu
+
+  """
+  Load a User entity by id
+  """
+  user(
+    """
+    The id of the User to load.
+    """
+    id: ID!
+
+    """
+    Optionally set the response language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): User
+
+  """
+  Get information about the currently authenticated user. NULL if not logged in.
+  """
+  viewer: User
+
+  """
+  List of all MediaImage on the platform.
+  """
+  mediaImages(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): MediaImageConnection!
+
+  """
+  List of all NodeArticle on the platform.
+  """
+  nodeArticles(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): NodeArticleConnection!
+
+  """
+  List of all NodePage on the platform.
+  """
+  nodePages(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): NodePageConnection!
+
+  """
+  List of all TermTags on the platform.
+  """
+  termTagsItems(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): TermTagsConnection!
+
+  """
+  List of all ParagraphCodeBlock on the platform.
+  """
+  paragraphCodeBlocks(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphCodeBlockConnection!
+
+  """
+  List of all ParagraphHeroCta on the platform.
+  """
+  paragraphHeroCtas(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphHeroCtaConnection!
+
+  """
+  List of all ParagraphHeroText on the platform.
+  """
+  paragraphHeroTexts(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphHeroTextConnection!
+
+  """
+  List of all ParagraphImage on the platform.
+  """
+  paragraphImages(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphImageConnection!
+
+  """
+  List of all ParagraphStaticComponent on the platform.
+  """
+  paragraphStaticComponents(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphStaticComponentConnection!
+
+  """
+  List of all ParagraphText on the platform.
+  """
+  paragraphTexts(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphTextConnection!
+
+  """
+  List of all ParagraphViewReference on the platform.
+  """
+  paragraphViewReferences(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): ParagraphViewReferenceConnection!
+
+  """
+  List of all User on the platform.
+  """
+  users(
+    """
+    Returns the elements that come after the specified cursor.
+    """
+    after: Cursor
+
+    """
+    Returns the elements that come before the specified cursor.
+    """
+    before: Cursor
+
+    """
+    Returns up to the first n elements from the list.
+    """
+    first: Int
+
+    """
+    Returns up to the last n elements from the list.
+    """
+    last: Int
+
+    """
+    Reverse the order of the underlying list.
+    """
+    reverse: Boolean = false
+
+    """
+    Sort the underlying list by the given key.
+    """
+    sortKey: ConnectionSortKeys
+
+    """
+    Filter the results by language. Eg en, ja, fr.
+    """
+    langcode: String
+  ): UserConnection!
+
+  """
+  Load a content preview.
+  """
+  preview(
+    """
+    The content UUID.
+    """
+    id: ID!
+
+    """
+    A preview access token.
+    """
+    token: String
+
+    """
+    Optionally set the response language. Eg en, ja, fr. Setting this langcode
+    will change the current language of the entire response.
+    """
+    langcode: String
+  ): NodeUnion
+
+  """
+  Load a Route by path.
+  """
+  route(
+    """
+    Internal path to load. Eg /about
+    """
+    path: String!
+
+    """
+    Optionally set the response language. Eg en, ja, fr. Setting this langcode
+    will change the current language of the entire response.
+    """
+    langcode: String
+  ): RouteUnion
+
+  """
+  Query for view blog display blog_teaser.
+  """
+  viewBlogTeaser: ViewBlogTeaserResult
+}
+
+"""
+Schema information provided by the system.
+"""
+type SchemaInformation {
+  """
+  The schema description.
+  """
+  description: String
+
+  """
+  The internal path to the front page.
+  """
+  home: String
+
+  """
+  The schema version.
+  """
+  version: String
+}
+
+"""
+Use local images for reusable media.
+"""
+type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time the media item was last edited.
+  """
+  changed: DateTime!
+
+  """
+  The time the media item was created.
+  """
+  created: DateTime!
+
+  """
+  Language
+  """
+  langcode: Language!
+
+  """
+  Image
+  """
+  mediaImage: Image!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  Name
+  """
+  name: String!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Published
+  """
+  status: Boolean!
+}
+
+"""
+Entity type media.
+"""
+interface MediaInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time the media item was last edited.
+  """
+  changed: DateTime!
+
+  """
+  The time the media item was created.
+  """
+  created: DateTime!
+
+  """
+  Language
+  """
+  langcode: Language!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  Name
+  """
+  name: String!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Published
+  """
+  status: Boolean!
+}
+
+"""
+A DateTime object.
+"""
+type DateTime {
+  """
+  Type represents date and time as number of milliseconds from start of the UNIX epoch.
+  """
+  timestamp: Timestamp!
+
+  """
+  A field whose value exists in the standard IANA Time Zone Database.
+  """
+  timezone: TimeZone!
+
+  """
+  A string that will have a value of format ±hh:mm
+  """
+  offset: UtcOffset!
+
+  """
+  RFC 3339 compliant time string.
+  """
+  time: Time!
+}
+
+"""
+Type represents date and time as number of milliseconds from start of the UNIX epoch.
+"""
+scalar Timestamp
+
+"""
+A field whose value exists in the standard IANA Time Zone Database.
+"""
+scalar TimeZone
+
+"""
+A string that will have a value of format ±hh:mm
+"""
+scalar UtcOffset
+
+"""
+RFC 3339 compliant time string.
+"""
+scalar Time
+
+"""
+A language definition provided by the CMS.
+"""
+type Language {
+  """
+  The language code.
+  """
+  id: ID
+
+  """
+  The language name.
+  """
+  name: String
+
+  """
+  The language direction.
+  """
+  direction: String
+}
+
+"""
+A meta tag element.
+"""
+union MetaTagUnion = MetaTagLink | MetaTagValue | MetaTagProperty
+
+"""
+A meta link element.
+"""
+type MetaTagLink implements MetaTag {
+  """
+  The HTML tag for this meta element.
+  """
+  tag: String!
+
+  """
+  The meta tag element attributes.
+  """
+  attributes: MetaTagLinkAttributes!
+}
+
+"""
+A meta tag element.
+"""
+interface MetaTag {
+  """
+  The HTML tag for this meta element.
+  """
+  tag: String!
+}
+
+"""
+A meta link element's attributes.
+"""
+type MetaTagLinkAttributes {
+  """
+  Specifies the location of the linked document.
+  """
+  href: String
+
+  """
+  Specifies the location of the linked document.
+  """
+  hreflang: String
+
+  """
+  Specifies the relationship between the current document and the linked document.
+  """
+  rel: String
+
+  """
+  Specifies on what device the linked document will be displayed.
+  """
+  media: String
+
+  """
+  Specifies the size of the linked resource. Only for rel="icon".
+  """
+  sizes: String
+
+  """
+  Specifies the media type of the linked document.
+  """
+  type: String
+}
+
+"""
+A meta content element.
+"""
+type MetaTagValue implements MetaTag {
+  """
+  The HTML tag for this meta element.
+  """
+  tag: String!
+
+  """
+  The meta tag element attributes.
+  """
+  attributes: MetaTagValueAttributes!
+}
+
+"""
+A meta content element's attributes.
+"""
+type MetaTagValueAttributes {
+  """
+  The name attribute of the meta tag.
+  """
+  name: String
+
+  """
+  The content attribute of the meta tag.
+  """
+  content: String
+}
+
+"""
+A meta property element.
+"""
+type MetaTagProperty implements MetaTag {
+  """
+  The HTML tag for this meta element.
+  """
+  tag: String!
+
+  """
+  The meta tag element attributes.
+  """
+  attributes: MetaTagPropertyAttributes!
+}
+
+"""
+A meta property element's attributes.
+"""
+type MetaTagPropertyAttributes {
+  """
+  The property attribute of the meta tag.
+  """
+  property: String
+
+  """
+  The content attribute of the meta tag.
+  """
+  content: String
+}
+
+"""
+This entity has meta tags enabled.
+"""
+interface MetaTagInterface {
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+}
+
+"""
+This entity is accessible over an Edge connection.
+"""
+interface EdgeNode {
+  id: ID!
+}
+
+"""
+A image object to represent an managed file.
+"""
+type Image {
+  """
+  The URL of the image.
+  """
+  url: String!
+
+  """
+  The width of the image.
+  """
+  width: Int!
+
+  """
+  The height of the image.
+  """
+  height: Int!
+
+  """
+  The alt text of the image.
+  """
+  alt: String
+
+  """
+  The title text of the image.
+  """
+  title: String
+
+  """
+  The size of the image in bytes.
+  """
+  size: Int!
+
+  """
+  The mime type of the image.
+  """
+  mime: String
+
+  """
+  Image variations control different sizes and formats for images.
+  """
+  variations(styles: [ImageStyleAvailable]): [ImageStyleDerivative!]
+}
+
+"""
+List of image styles available to use.
+"""
+enum ImageStyleAvailable {
+  """
+  No image styles have been enabled.
+  """
+  UNDEFINED
+}
+
+"""
+ImageStyle derivatives for an Image.
+"""
+type ImageStyleDerivative {
+  name: String!
+  url: String!
+  width: Int!
+  height: Int!
+}
+
+"""
+Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.
+"""
+type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The author of this content.
+  """
+  author: User
+
+  """
+  The time that the node was last edited.
+  """
+  changed: DateTime!
+
+  """
+  Components
+  """
+  components: [ParagraphUnion!]
+
+  """
+  The date and time that the content was created.
+  """
+  created: DateTime!
+
+  """
+  Image
+  """
+  image: MediaUnion!
+
+  """
+  Language
+  """
+  langcode: Language!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Promoted to front page
+  """
+  promote: Boolean!
+
+  """
+  Published
+  """
+  status: Boolean!
+
+  """
+  Sticky at top of lists
+  """
+  sticky: Boolean!
+
+  """
+  Summary
+  """
+  summary: String!
+
+  """
+  Enter a comma-separated list. For example: Amsterdam, Mexico City, "Cleveland, Ohio"
+  """
+  tags: [TermUnion!]
+
+  """
+  Title
+  """
+  title: String!
+}
+
+"""
+Entity type node.
+"""
+interface NodeInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The author of this content.
+  """
+  author: User
+
+  """
+  The time that the node was last edited.
+  """
+  changed: DateTime!
+
+  """
+  The date and time that the content was created.
+  """
+  created: DateTime!
+
+  """
+  Language
+  """
+  langcode: Language!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Promoted to front page
+  """
+  promote: Boolean!
+
+  """
+  Published
+  """
+  status: Boolean!
+
+  """
+  Sticky at top of lists
+  """
+  sticky: Boolean!
+
+  """
+  Title
+  """
+  title: String!
+}
+
+"""
+Entity type user.
+"""
+type User implements UserInterface & MetaTagInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the user was last edited.
+  """
+  changed: DateTime!
+
+  """
+  The time that the user was created.
+  """
+  created: DateTime!
+
+  """
+  The email of this user.
+  """
+  mail: Email
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  The name of this user.
+  """
+  name: String!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Picture
+  """
+  picture: MediaUnion
+
+  """
+  The roles the user has.
+  """
+  roles: [UserRoles!]
+
+  """
+  Whether the user is active or blocked.
+  """
+  status: UserStatus!
+}
+
+"""
+Entity type user.
+"""
+interface UserInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the user was last edited.
+  """
+  changed: DateTime!
+
+  """
+  The time that the user was created.
+  """
+  created: DateTime!
+
+  """
+  The email of this user.
+  """
+  mail: Email
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  The name of this user.
+  """
+  name: String!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  The roles the user has.
+  """
+  roles: [UserRoles!]
+
+  """
+  Whether the user is active or blocked.
+  """
+  status: UserStatus!
+}
+
+"""
+An email address.
+"""
+scalar Email
+
+"""
+User roles.
+"""
+scalar UserRoles
+
+"""
+Whether the user is active or blocked.
+"""
+enum UserStatus {
+  """
+  An active user is able to login on the platform and view content
+  """
+  ACTIVE
+
+  """
+  A blocked user is unable to access the platform, although their content will still be visible until it's deleted.
+  """
+  BLOCKED
+}
+
+"""
+Entity type media.
+"""
+union MediaUnion = MediaImage
+
+"""
+Entity type paragraph.
+"""
+union ParagraphUnion =
+    ParagraphCodeBlock
+  | ParagraphHeroCta
+  | ParagraphHeroText
+  | ParagraphImage
+  | ParagraphStaticComponent
+  | ParagraphText
+  | ParagraphViewReference
+
+"""
+Entity type paragraph.
+"""
+type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  Code
+  """
+  code: String!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+
+  """
+  Language
+  """
+  language: String!
+
+  """
+  Show Line Numbers
+  """
+  showLineNumbers: Boolean
+
+  """
+  Title
+  """
+  titleOptional: String
+}
+
+"""
+Entity type paragraph.
+"""
+interface ParagraphInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+}
+
+"""
+Entity type paragraph.
+"""
+type ParagraphHeroCta implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  CTA
+  """
+  cta: [Link!]!
+
+  """
+  Intro
+  """
+  intro: String!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+
+  """
+  Text
+  """
+  text: String!
+
+  """
+  Title
+  """
+  title: String!
+}
+
+"""
+A link.
+"""
+type Link {
+  """
+  The title of the link.
+  """
+  title: String
+
+  """
+  The URL of the link.
+  """
+  url: String
+
+  """
+  Whether the link is internal to this website.
+  """
+  internal: Boolean!
+}
+
+"""
+Entity type paragraph.
+"""
+type ParagraphHeroText implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  Intro
+  """
+  intro: String!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+
+  """
+  Text
+  """
+  text: String!
+
+  """
+  Title
+  """
+  title: String!
+}
+
+"""
+Entity type paragraph.
+"""
+type ParagraphImage implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  Image
+  """
+  image: MediaUnion
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+}
+
+"""
+Entity type paragraph.
+"""
+type ParagraphStaticComponent implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  Component
+  """
+  component: String
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+}
+
+"""
+Entity type paragraph.
+"""
+type ParagraphText implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+
+  """
+  Text Rich
+  """
+  textRich: Text!
+
+  """
+  Title
+  """
+  title: String!
+}
+
+"""
+A processed text format defined by the CMS.
+"""
+type Text {
+  """
+  The raw text value.
+  """
+  value: String
+
+  """
+  The processed text value.
+  """
+  processed: Html
+
+  """
+  The text format used to process the text value.
+  """
+  format: String
+}
+
+"""
+An HTML string
+
+Content of this type is deemed safe by the server for raw output given the
+origin and the context of its usage. The HTML can still contain scripts or style
+tags where the creating user had permission to input these.
+"""
+scalar Html
+
+"""
+Entity type paragraph.
+"""
+type ParagraphViewReference implements ParagraphInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the Paragraph was created.
+  """
+  created: DateTime!
+
+  """
+  The paragraphs entity language code.
+  """
+  langcode: Language!
+
+  """
+  This is a viewfield query proxy. Page size and contextual filters are applied
+  within the CMS. See the actual view base query for more documentation on
+  filters and options available. Reference
+  """
+  reference(
+    """
+    If enabled: The page number to display.
+    """
+    page: Int
+
+    """
+    If enabled: The number of items skipped from beginning of this view.
+    """
+    offset: Int
+
+    """
+    If enabled: The filters to apply to this view. Filters may not apply unless exposed.
+    """
+    filter: [KeyValueInput]
+
+    """
+    If enabled: Sort the view by this key.
+    """
+    sortKey: String
+
+    """
+    If enabled: Sort the view direction.
+    """
+    sortDir: SortDirection
+  ): ViewResultUnion!
+
+  """
+  Text
+  """
+  text: String
+
+  """
+  Title
+  """
+  title: String
+}
+
+"""
+Generic untyped input for key-value pairs.
+"""
+input KeyValueInput {
+  key: String!
+  value: String
+}
+
+"""
+Sort direction.
+"""
+enum SortDirection {
+  """
+  Ascending
+  """
+  ASC
+
+  """
+  Descending
+  """
+  DESC
+}
+
+"""
+All available view result types.
+"""
+union ViewResultUnion = ViewBlogTeaserResult
+
+"""
+Result for view blog display blog_teaser.
+"""
+type ViewBlogTeaserResult implements View {
+  """
+  The ID of the view.
+  """
+  id: ID!
+
+  """
+  The machine name of the view.
+  """
+  view: String!
+
+  """
+  The machine name of the display.
+  """
+  display: String!
+
+  """
+  The language code of the view.
+  """
+  langcode: String
+
+  """
+  The human friendly label of the view.
+  """
+  label: String
+
+  """
+  The description of the view.
+  """
+  description: String
+
+  """
+  Information about the page in the view.
+  """
+  pageInfo: ViewPageInfo!
+
+  """
+  The results of the view.
+  """
+  results: [NodeUnion!]!
+}
+
+"""
+Views represent collections of curated data from the site.
+"""
+interface View {
+  """
+  The ID of the view.
+  """
+  id: ID!
+
+  """
+  The machine name of the view.
+  """
+  view: String!
+
+  """
+  The machine name of the display.
+  """
+  display: String!
+
+  """
+  The language code of the view.
+  """
+  langcode: String
+
+  """
+  The human friendly label of the view.
+  """
+  label: String
+
+  """
+  The description of the view.
+  """
+  description: String
+
+  """
+  Information about the page in the view.
+  """
+  pageInfo: ViewPageInfo!
+}
+
+"""
+Information about the page in a view.
+"""
+type ViewPageInfo {
+  """
+  Any result offset being used.
+  """
+  offset: Int!
+
+  """
+  The current page being returned.
+  """
+  page: Int!
+
+  """
+  How many results per page.
+  """
+  pageSize: Int!
+
+  """
+  How many results total.
+  """
+  total: Int!
+}
+
+"""
+Entity type node.
+"""
+union NodeUnion = NodeArticle | NodePage
+
+"""
+Use <em>basic pages</em> for your static content, such as an 'About us' page.
+"""
+type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The author of this content.
+  """
+  author: User
+
+  """
+  The time that the node was last edited.
+  """
+  changed: DateTime!
+
+  """
+  Components
+  """
+  components: [ParagraphUnion!]
+
+  """
+  The date and time that the content was created.
+  """
+  created: DateTime!
+
+  """
+  Image
+  """
+  image: MediaUnion!
+
+  """
+  Language
+  """
+  langcode: Language!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Promoted to front page
+  """
+  promote: Boolean!
+
+  """
+  Show Title
+  """
+  showTitle: Boolean
+
+  """
+  Published
+  """
+  status: Boolean!
+
+  """
+  Sticky at top of lists
+  """
+  sticky: Boolean!
+
+  """
+  Summary
+  """
+  summary: String!
+
+  """
+  Title
+  """
+  title: String!
+}
+
+"""
+Entity type taxonomy_term.
+"""
+union TermUnion = TermTags
+
+"""
+Use tags to group articles on similar topics into categories.
+"""
+type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the term was last edited.
+  """
+  changed: DateTime!
+
+  """
+  Description
+  """
+  description: Text!
+
+  """
+  The term language code.
+  """
+  langcode: Language!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  Name
+  """
+  name: String!
+
+  """
+  The parents of this term.
+  """
+  parent: TermUnion
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Published
+  """
+  status: Boolean!
+
+  """
+  The weight of this term in relation to other terms.
+  """
+  weight: Int!
+}
+
+"""
+Entity type taxonomy_term.
+"""
+interface TermInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The time that the term was last edited.
+  """
+  changed: DateTime!
+
+  """
+  Description
+  """
+  description: Text!
+
+  """
+  The term language code.
+  """
+  langcode: Language!
+
+  """
+  The computed meta tags for the entity.
+  """
+  metatag: [MetaTagUnion!]!
+
+  """
+  Name
+  """
+  name: String!
+
+  """
+  The parents of this term.
+  """
+  parent: TermUnion
+
+  """
+  URL alias
+  """
+  path: String!
+
+  """
+  Published
+  """
+  status: Boolean!
+
+  """
+  The weight of this term in relation to other terms.
+  """
+  weight: Int!
+}
+
+"""
+List of menus available to load.
+"""
+enum MenuAvailable {
+  """
+  Main navigation
+  """
+  MAIN
+}
+
+"""
+Entity type menu.
+"""
+type Menu implements MenuInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The menu items.
+  """
+  items: [MenuItem!]!
+
+  """
+  The menu name.
+  """
+  name: String!
+}
+
+"""
+Entity type menu.
+"""
+interface MenuInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The menu items.
+  """
+  items: [MenuItem!]!
+
+  """
+  The menu name.
+  """
+  name: String!
+}
+
+"""
+A menu item defined in the CMS.
+"""
+type MenuItem {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+
+  """
+  The title of the menu item.
+  """
+  title: String!
+
+  """
+  The description of the menu item.
+  """
+  description: String
+
+  """
+  The URL of the menu item.
+  """
+  url: String
+
+  """
+  Whether this menu item links to an internal route.
+  """
+  internal: Boolean!
+
+  """
+  Whether this menu item is intended to be expanded.
+  """
+  expanded: Boolean!
+
+  """
+  Attributes of this menu item.
+  """
+  attributes: MenuItemAttributes!
+
+  """
+  Child menu items of this menu item.
+  """
+  children: [MenuItem!]!
+
+  """
+  The route this menu item uses. Route loading can be disabled per menu type.
+  """
+  route: RouteUnion
+}
+
+"""
+Menu item options set within the CMS.
+"""
+type MenuItemAttributes {
+  class: String
+}
+
+"""
+Route types that can exist in the system.
+"""
+union RouteUnion = RouteInternal | RouteExternal | RouteRedirect
+
+"""
+Route within this website.
+"""
+type RouteInternal implements Route {
+  """
+  URL of this route.
+  """
+  url: String!
+
+  """
+  Whether this route is internal or external.
+  """
+  internal: Boolean!
+
+  """
+  Breadcrumb links for this route.
+  """
+  breadcrumbs: [Link!]
+
+  """
+  Content assigned to this route.
+  """
+  entity: RouteEntityUnion
+}
+
+"""
+Routes represent incoming requests that resolve to content.
+"""
+interface Route {
+  """
+  URL of this route.
+  """
+  url: String!
+
+  """
+  Whether this route is internal or external.
+  """
+  internal: Boolean!
+}
+
+"""
+A list of possible entities that can be returned by URL.
+"""
+union RouteEntityUnion = MediaImage | NodeArticle | NodePage | TermTags
+
+"""
+Route outside of this website.
+"""
+type RouteExternal implements Route {
+  """
+  URL of this route.
+  """
+  url: String!
+
+  """
+  Whether this route is internal or external.
+  """
+  internal: Boolean!
+}
+
+"""
+Redirect to another URL with status.
+"""
+type RouteRedirect implements Route {
+  """
+  URL of this route.
+  """
+  url: String!
+
+  """
+  Whether this route is internal or external.
+  """
+  internal: Boolean!
+
+  """
+  Suggested status for redirect. Eg 301.
+  """
+  status: Int!
+
+  """
+  Utility prop. Always true for redirects.
+  """
+  redirect: Boolean!
+}
+
+"""
+A cursor for use in pagination.
+"""
+scalar Cursor
+
+"""
+Choose how your sorts will occur and on which field.
+"""
+enum ConnectionSortKeys {
+  """
+  Sort by creation date
+  """
+  CREATED_AT
+
+  """
+  Sort by updated date
+  """
+  UPDATED_AT
+
+  """
+  Sort by entity title.
+  """
+  TITLE
+
+  """
+  Sort by sticky status.
+  """
+  STICKY
+
+  """
+  Sort by promoted status.
+  """
+  PROMOTED
+}
+
+"""
+A paginated set of results for MediaImage.
+"""
+type MediaImageConnection implements Connection {
+  edges: [MediaImageEdge!]!
+  nodes: [MediaImage!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+A paginated set of results.
+"""
+interface Connection {
+  """
+  The edges of this connection.
+  """
+  edges: [Edge!]!
+
+  """
+  The nodes of the edges of this connection.
+  """
+  nodes: [EdgeNode!]!
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+An edge in a connection.
+Provides the cursor to fetch data based on the position of the associated
+node. Specific edge implementations may provide more information about the
+relationship they represent.
+"""
+interface Edge {
+  cursor: Cursor!
+  node: EdgeNode!
+}
+
+"""
+Information about the page in a connection.
+"""
+type ConnectionPageInfo {
+  """
+  Whether there are more pages in this connection.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Whether there are previous pages in this connection.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  The cursor for the first element in this page.
+  """
+  startCursor: Cursor
+
+  """
+  The cursor for the last element in this page.
+  """
+  endCursor: Cursor
+}
+
+"""
+Edge for MediaImage.
+"""
+type MediaImageEdge implements Edge {
+  cursor: Cursor!
+  node: MediaImage!
+}
+
+"""
+A paginated set of results for NodeArticle.
+"""
+type NodeArticleConnection implements Connection {
+  edges: [NodeArticleEdge!]!
+  nodes: [NodeArticle!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for NodeArticle.
+"""
+type NodeArticleEdge implements Edge {
+  cursor: Cursor!
+  node: NodeArticle!
+}
+
+"""
+A paginated set of results for NodePage.
+"""
+type NodePageConnection implements Connection {
+  edges: [NodePageEdge!]!
+  nodes: [NodePage!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for NodePage.
+"""
+type NodePageEdge implements Edge {
+  cursor: Cursor!
+  node: NodePage!
+}
+
+"""
+A paginated set of results for TermTags.
+"""
+type TermTagsConnection implements Connection {
+  edges: [TermTagsEdge!]!
+  nodes: [TermTags!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for TermTags.
+"""
+type TermTagsEdge implements Edge {
+  cursor: Cursor!
+  node: TermTags!
+}
+
+"""
+A paginated set of results for ParagraphCodeBlock.
+"""
+type ParagraphCodeBlockConnection implements Connection {
+  edges: [ParagraphCodeBlockEdge!]!
+  nodes: [ParagraphCodeBlock!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphCodeBlock.
+"""
+type ParagraphCodeBlockEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphCodeBlock!
+}
+
+"""
+A paginated set of results for ParagraphHeroCta.
+"""
+type ParagraphHeroCtaConnection implements Connection {
+  edges: [ParagraphHeroCtaEdge!]!
+  nodes: [ParagraphHeroCta!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphHeroCta.
+"""
+type ParagraphHeroCtaEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphHeroCta!
+}
+
+"""
+A paginated set of results for ParagraphHeroText.
+"""
+type ParagraphHeroTextConnection implements Connection {
+  edges: [ParagraphHeroTextEdge!]!
+  nodes: [ParagraphHeroText!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphHeroText.
+"""
+type ParagraphHeroTextEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphHeroText!
+}
+
+"""
+A paginated set of results for ParagraphImage.
+"""
+type ParagraphImageConnection implements Connection {
+  edges: [ParagraphImageEdge!]!
+  nodes: [ParagraphImage!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphImage.
+"""
+type ParagraphImageEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphImage!
+}
+
+"""
+A paginated set of results for ParagraphStaticComponent.
+"""
+type ParagraphStaticComponentConnection implements Connection {
+  edges: [ParagraphStaticComponentEdge!]!
+  nodes: [ParagraphStaticComponent!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphStaticComponent.
+"""
+type ParagraphStaticComponentEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphStaticComponent!
+}
+
+"""
+A paginated set of results for ParagraphText.
+"""
+type ParagraphTextConnection implements Connection {
+  edges: [ParagraphTextEdge!]!
+  nodes: [ParagraphText!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphText.
+"""
+type ParagraphTextEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphText!
+}
+
+"""
+A paginated set of results for ParagraphViewReference.
+"""
+type ParagraphViewReferenceConnection implements Connection {
+  edges: [ParagraphViewReferenceEdge!]!
+  nodes: [ParagraphViewReference!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for ParagraphViewReference.
+"""
+type ParagraphViewReferenceEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphViewReference!
+}
+
+"""
+A paginated set of results for User.
+"""
+type UserConnection implements Connection {
+  edges: [UserEdge!]!
+  nodes: [User!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""
+Edge for User.
+"""
+type UserEdge implements Edge {
+  cursor: Cursor!
+  node: User!
+}
+
+"""
+A GraphQL mutation is a request that changes data on the server.
+"""
+type Mutation {
+  """
+  Placeholder field to enable schema mutation extension.
+  """
+  _: Boolean!
+}
+
+"""
+A file object to represent an managed file.
+"""
+type File {
+  """
+  The name of the file.
+  """
+  name: String
+
+  """
+  The URL of the file.
+  """
+  url: String!
+
+  """
+  The size of the file in bytes.
+  """
+  size: Int!
+
+  """
+  The mime type of the file.
+  """
+  mime: String
+
+  """
+  The description of the file.
+  """
+  description: String
+}
+
+"""
+Entity type image_style.
+"""
+type ImageStyle implements ImageStyleInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+  name: String!
+}
+
+"""
+Entity type image_style.
+"""
+interface ImageStyleInterface {
+  """
+  The Universally Unique IDentifier (UUID).
+  """
+  id: ID!
+  name: String!
+}
+
+"""
+Entity type image_style.
+"""
+union ImageStyleUnion = ImageStyle
+
+"""
+Entity type menu.
+"""
+union MenuUnion = Menu
+
+"""
+A field whose value conforms to the standard E.164
+"""
+scalar PhoneNumber
+
+"""
+A processed text format with summary defined by the CMS.
+"""
+type TextSummary {
+  """
+  The raw text value.
+  """
+  value: String
+
+  """
+  The processed text value.
+  """
+  processed: Html
+
+  """
+  The text format used to process the text value.
+  """
+  format: String
+
+  """
+  The processed text summary.
+  """
+  summary: Html
+}
+
+"""
+Unsupported entity or field type in the schema.
+This entity may not have been enabled in the schema yet and is being referenced via entity reference.
+"""
+type UnsupportedType {
+  """
+  Unsupported type, always TRUE.
+  """
+  unsupported: Boolean
+}
+
+"""
+Untyped structured data. Eg JSON, configuration, settings, attributes.
+"""
+scalar UntypedStructuredData
+
+"""
+Entity type user.
+"""
+union UserUnion = User
+
+"""
+A reference to an embedded view
+"""
+type ViewReference {
+  view: String!
+  display: String!
+  contextualFilter: [String!]
+  pageSize: Int
+
+  """
+  The name of the query used to fetch the data, if the view is a GraphQL display.
+  """
+  query: String
+}

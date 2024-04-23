@@ -1,0 +1,6 @@
+[data-visual-editor-component]:hover {
+  border-color: purple; border-style: dashed;
+  border-width: thin;
+  overflow: hidden;
+  cursor: pointer;
+}
