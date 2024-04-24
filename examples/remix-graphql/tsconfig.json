@@ -27,7 +27,6 @@
       "~/components/*": ["./app/components/*"],
       "~/graphql/*": ["./app/graphql/*"],
     },
-    // gql.tada
     "plugins": [
       {
         "name": "@0no-co/graphqlsp",
@@ -38,7 +37,6 @@
         "shouldCheckForColocatedFragments": false,
       },
     ],
-    // Vite takes care of building everything, not tsc.
     "noEmit": true
   }
 }

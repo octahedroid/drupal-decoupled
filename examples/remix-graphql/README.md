@@ -15,50 +15,69 @@ cp .dev.vars.example .dev.vars
 
 Update values read copied file for instructions
 
-## Remix docs
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+### Development
 
-## Typegen
+Run the dev server:
 
-Generate types for your Cloudflare bindings in `wrangler.toml`:
-
-```sh
-npm run typegen
+```bash
+yarn dev
 ```
 
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+### Sync GraphQL Chnages
 
-## Development
+Run the gql:sync script
 
-Run the Vite dev server:
-
-```sh
-npm run dev
+```bash
+yarn gql:sync
 ```
 
-To run Wrangler:
+<details>
+  <summary>Remix docs</summary>
 
-```sh
-npm run build
-npm run start
-```
+  📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
 
-## Deployment
+  ## Typegen
 
-> [!WARNING]  
-> Cloudflare does _not_ use `wrangler.toml` to configure deployment bindings.
-> You **MUST** [configure deployment bindings manually in the Cloudflare dashboard][bindings].
+  Generate types for your Cloudflare bindings in `wrangler.toml`:
 
-First, build your app for production:
+  ```sh
+  npm run typegen
+  ```
 
-```sh
-npm run build
-```
+  You will need to rerun typegen whenever you make changes to `wrangler.toml`.
 
-Then, deploy your app to Cloudflare Pages:
+  ## Development
 
-```sh
-npm run deploy
-```
+  Run the Vite dev server:
 
-[bindings]: https://developers.cloudflare.com/pages/functions/bindings/
+  ```sh
+  npm run dev
+  ```
+
+  To run Wrangler:
+
+  ```sh
+  npm run build
+  npm run start
+  ```
+
+  ## Deployment
+
+  > [!WARNING]
+  > Cloudflare does _not_ use `wrangler.toml` to configure deployment bindings.
+  > You **MUST** [configure deployment bindings manually in the Cloudflare dashboard][bindings].
+
+  First, build your app for production:
+
+  ```sh
+  npm run build
+  ```
+
+  Then, deploy your app to Cloudflare Pages:
+
+  ```sh
+  npm run deploy
+  ```
+
+  [bindings]: https://developers.cloudflare.com/pages/functions/bindings/
+</details>
