@@ -17,7 +17,7 @@ import { generateSchema, generateOutput, generateTurbo } from '@gql.tada/cli-uti
     }
   );
 
-  console.log("\n🚀  Generating GraphQL Schema");
+  console.log("\n🚀 Generating GraphQL Schema");
   await generateSchema({
     input: process.env.DRUPAL_GRAPHQL_URI!,
     output: undefined,
@@ -27,14 +27,14 @@ import { generateSchema, generateOutput, generateTurbo } from '@gql.tada/cli-uti
     tsconfig: undefined,
   });
 
-  console.log("\n🚀  Generating Types");
+  console.log("\n🚀 Generating Types");
   await generateOutput({
     output: undefined,
     disablePreprocessing: false,
     tsconfig: undefined,
   });
 
-  console.log("\n🚀  Generating Cache")
+  console.log("\n🚀 Generating Cache")
   await generateTurbo({
     output: undefined,
     failOnWarn: false,
