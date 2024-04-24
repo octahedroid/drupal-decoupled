@@ -1210,7 +1210,7 @@ type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
 """Entity type taxonomy_term."""
 union TermUnion = TermTags
 
-"""Use tags to group articles on similar topics into categories."""
+"""Entity type taxonomy_term."""
 type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
