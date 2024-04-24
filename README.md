@@ -16,7 +16,7 @@ It only takes a few steps to use Drupal paired with a Decoupled front-end framew
 
 ## Get Started
 
-### Drupal demo site
+### Drupal GraphQL demo site
 
 ```
 git clone git@github.com:octahedroid/drupal-graphql-example.git
@@ -30,6 +30,13 @@ git clone git@github.com:octahedroid/drupal-graphql-example.git
 npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-graphql
 ```
 > Follow instructions reading [README.md](examples/remix-graphql) file on cloned project
+
+### Next.js demo project
+
+```
+npx create-next-app --example octahedroid/drupal-decoupled/examples/next-graphql
+```
+> Follow instructions reading [README.md](examples/next-graphql) file on cloned project
 
 ## Supporting organizations
 
