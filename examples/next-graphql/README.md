@@ -27,13 +27,22 @@ cp .env.example .env
 
 Update values read copied file for instructions
 
-## Next.js docs
-📖 See the [Next.js docs](https://nextjs.org/docs) for details on supported features.
-
-## Development
+### Development
 
 Run the dev server:
 
-```sh
-npm run dev
+```bash
+yarn dev
 ```
+
+### Sync GraphQL Chnages
+
+Run the gql:sync script
+
+```bash
+yarn gql:sync
+```
+
+## Next.js docs
+📖 See the [Next.js docs](https://nextjs.org/docs) for details on supported features.
+
