@@ -16,7 +16,7 @@ This is a starter project for a Next.js app that connects to a Drupal using Grap
 
 ### Clone Next.js demo project
 ```bash
-npx create-next-app --example octahedroid/drupal-decoupled/examples/next-graphql
+npx create-next-app@latest --example "https://github.com/octahedroid/drupal-decoupled/tree/main/examples/next-graphql"
 ```
 
 ### Copy `.env.example`
