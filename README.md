@@ -34,7 +34,7 @@ npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-g
 ### Next.js demo project
 
 ```
-npx create-next-app --example octahedroid/drupal-decoupled/examples/next-graphql
+npx create-next-app@latest --example "https://github.com/octahedroid/drupal-decoupled/tree/main/examples/next-graphql"
 ```
 > Follow instructions reading [README.md](examples/next-graphql) file on cloned project
 

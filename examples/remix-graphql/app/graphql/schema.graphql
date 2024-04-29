@@ -461,6 +461,42 @@ type SchemaInformation {
 
   """The schema version."""
   version: String
+
+  """List of fragments available."""
+  fragments(
+    """The entity type to filter fragments for."""
+    entity: String
+
+    """The bundle type to filter fragments for."""
+    bundle: String
+
+    """Include dependencies in the result."""
+    withDependencies: Boolean
+  ): [SchemaFragment!]!
+}
+
+"""A fragment representing a type within the schema."""
+type SchemaFragment {
+  """The scheme type of the fragment."""
+  type: String!
+
+  """The name of the fragment."""
+  name: String!
+
+  """The base graphql type."""
+  class: String!
+
+  """The fragment content."""
+  content: String
+
+  """The entity type of the fragment."""
+  entity: String
+
+  """The bundle type of the fragment."""
+  bundle: String
+
+  """The list of fragments this fragment depends on."""
+  dependencies: [String]
 }
 
 """Use local images for reusable media."""
