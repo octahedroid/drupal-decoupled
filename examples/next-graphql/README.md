@@ -35,7 +35,7 @@ Run the dev server:
 yarn dev
 ```
 
-### Sync GraphQL Chnages
+### Sync GraphQL Changes
 
 Run the gql:sync script
 
