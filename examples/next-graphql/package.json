@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@urql/core": "^5.0.1",
-    "drupal-auth-client": "^0.3.2",
+    "drupal-auth-client": "^0.4",
     "drupal-decoupled": "^0.1.1",
     "drupal-visual-editor": "^0.1.0",
     "gql.tada": "^1.5.7",
