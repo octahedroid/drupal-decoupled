@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["ES2019"],
+    "lib": ["ESNext"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -9,7 +9,7 @@
     "sourceMap": true,
     "declaration": true,
     "strict": true,
-    "target": "es5",
+    "target": "ESNext",
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],

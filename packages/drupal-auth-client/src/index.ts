@@ -1,5 +1,3 @@
-import fetch from "cross-fetch";
-
 import { clientCredentialsHeader, passwordHeader } from "./authHandlers";
 import type { Auth, Config, Options } from "./types";
 
