@@ -1,4 +1,3 @@
-import FormData from "form-data";
 import type { Config, OAuthPayload } from "./types";
 
 export const clientCredentialsHeader = async (
