@@ -19,7 +19,7 @@
     "@remix-run/cloudflare-pages": "^2.8.1",
     "@remix-run/react": "^2.8.1",
     "@urql/core": "^4.2.3",
-    "drupal-auth-client": "^0.3",
+    "drupal-auth-client": "^0.4",
     "drupal-decoupled": "^0.1",
     "drupal-remix": "^0.4",
     "drupal-visual-editor": "^0.1",
