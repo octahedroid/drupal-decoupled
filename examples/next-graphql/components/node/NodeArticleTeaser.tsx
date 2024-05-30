@@ -20,9 +20,6 @@ export default function NodeArticleTeaser({ node }: NodeArticleTeaserProps) {
   }
 
   const picture = readFragment(MediaImageFragment, authorFragment.picture);
-  if (!picture) {
-    return null;
-  }
 
   return (
     <div>
@@ -42,7 +39,7 @@ export default function NodeArticleTeaser({ node }: NodeArticleTeaserProps) {
         </a>
       </h3>
       <div className="text-lg mb-4">
-        <Avatar name={authorFragment.name} picture={picture.mediaImage} />
+        {picture && <Avatar name={authorFragment.name} picture={picture.mediaImage} />}
       </div>
       <div className="text-lg mb-4">{/* <Date dateString={created} /> */}</div>
       <p className="text-lg leading-relaxed mb-4">{summary}</p>
