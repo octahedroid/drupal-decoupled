@@ -30,7 +30,7 @@ export default function NodeArticleTeaser({node}:NodeArticleTeaserProps)  {
         </Link>
       </h3>
       <div className="text-lg mb-4">
-      { picture &&  <Avatar name={authorFragment.name} picture={picture.mediaImage} /> }
+        { picture &&  <Avatar name={authorFragment.name} picture={picture.mediaImage} /> }
       </div>
       <div className="text-lg mb-4">
         {/* <Date dateString={created} /> */}
