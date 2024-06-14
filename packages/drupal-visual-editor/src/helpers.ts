@@ -23,3 +23,19 @@ export const openVisualEditorComponent = ({action, storage, uuid}: VisualEditorC
     "*"
   );
 };
+
+interface SyncDrupalComponentOrderProps {
+  items: { original: Array<string>; updated: Array<string>; };
+  active: { id: string; index: number; };
+  over: { id: string; index: number; };
+}
+
+export const syncDrupalComponentOrder = (changes:SyncDrupalComponentOrderProps) => {
+  window.parent.postMessage(
+    {
+      type: `VISUAL_EDITOR_COMPONENT_ORDER`,
+      changes,
+    },
+    "*"
+  );
+}

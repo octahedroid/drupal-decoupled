@@ -1,6 +1,6 @@
 {
   "name": "drupal-visual-editor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Provide delightful editorial experiences for content editors using Drupal regardless of your FE implementation.",
   "type": "module",
   "keywords": [
@@ -12,7 +12,8 @@
     "visual-editor",
     "visual",
     "editor",
-    "studio"
+    "studio",
+    "builder"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +32,7 @@
   },
   "author": "Octahedroid <opensource@octahedroid.com>",
   "repository": {
-    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-visual-editor"
+    "url": "git+https://github.com/octahedroid/drupal-decoupled.git#main"
   },
   "license": "MIT",
   "devDependencies": {
