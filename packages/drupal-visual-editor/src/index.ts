@@ -1,1 +1,5 @@
-export { openVisualEditorComponent, VisualEditorComponentProps } from "./helpers";
+export {
+  openVisualEditorComponent,
+  VisualEditorComponentProps,
+  syncDrupalComponentOrder
+} from "./helpers";
