@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_intro
+    - paragraphs.paragraphs_type.hero_text
+id: paragraph.hero_text.field_intro
+field_name: field_intro
+entity_type: paragraph
+bundle: hero_text
+label: Intro
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

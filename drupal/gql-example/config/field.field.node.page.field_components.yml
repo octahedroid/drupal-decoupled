@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.page
+    - paragraphs.paragraphs_type.hero_cta
+    - paragraphs.paragraphs_type.hero_text
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.static_component
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.view_reference
+  module:
+    - entity_reference_revisions
+id: node.page.field_components
+field_name: field_components
+entity_type: node
+bundle: page
+label: Components
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      hero_cta: hero_cta
+      hero_text: hero_text
+      image: image
+      static_component: static_component
+      view_reference: view_reference
+    negate: 0
+    target_bundles_drag_drop:
+      code_block:
+        weight: -9
+        enabled: false
+      hero_cta:
+        weight: -12
+        enabled: true
+      hero_text:
+        weight: -11
+        enabled: true
+      image:
+        weight: -10
+        enabled: true
+      static_component:
+        weight: 11
+        enabled: true
+      text:
+        weight: -13
+        enabled: true
+      view_reference:
+        weight: 14
+        enabled: true
+field_type: entity_reference_revisions

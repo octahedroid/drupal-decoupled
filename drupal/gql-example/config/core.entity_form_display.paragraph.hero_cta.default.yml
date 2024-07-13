@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_cta.field_cta
+    - field.field.paragraph.hero_cta.field_intro
+    - field.field.paragraph.hero_cta.field_text
+    - field.field.paragraph.hero_cta.field_title
+    - paragraphs.paragraphs_type.hero_cta
+  module:
+    - field_group
+    - link
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_basic
+        - group_cta
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        required_fields: true
+        direction: horizontal
+        width_breakpoint: 640
+        open: false
+        effect: none
+    group_basic:
+      children:
+        - field_intro
+        - field_title
+        - field_text
+      label: Basic
+      region: content
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+        open: false
+        weight: 0
+    group_cta:
+      children:
+        - field_cta
+      label: CTA
+      region: content
+      parent_name: group_tabs
+      weight: 21
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+        open: false
+        weight: 0
+id: paragraph.hero_cta.default
+targetEntityType: paragraph
+bundle: hero_cta
+mode: default
+content:
+  field_cta:
+    type: link_default
+    weight: 0
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_intro:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_text:
+    type: string_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

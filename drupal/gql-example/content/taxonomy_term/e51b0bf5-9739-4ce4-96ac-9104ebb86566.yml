@@ -1,0 +1,67 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: e51b0bf5-9739-4ce4-96ac-9104ebb86566
+  bundle: tags
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: GraphQL
+  description:
+    -
+      value: '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo velit, gravida nec vehicula a, viverra sit amet elit. Etiam sodales tristique ligula eget dignissim. Proin ut cursus sapien. Suspendisse suscipit eleifend ex non pulvinar. Pellentesque dolor dui, fringilla a massa sit amet, dictum consectetur libero. Integer felis lectus, lacinia non finibus eget, dignissim quis mauris. Aliquam hendrerit, urna a mattis sagittis, ex nulla dapibus tellus, vel aliquam nibh purus et augue. Nulla facilisi. Nullam at dignissim ipsum. Praesent mattis ligula sit amet sodales posuere. Suspendisse ultrices posuere est nec rhoncus. Cras sollicitudin nunc felis, non fringilla felis blandit et. Praesent commodo, diam ac tincidunt feugiat, velit lorem tempus sem, ut volutpat felis turpis eget felis.</span></p>'
+      format: 'basic_html'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'GraphQL | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        name: description
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo velit, gravida nec vehicula a, viverra sit amet elit. Etiam sodales tristique ligula eget dignissim. Proin ut cursus sapien. Suspendisse suscipit eleifend ex non pulvinar. Pellentesque dolor dui, fringilla a massa sit amet, dictum consectetur libero. Integer felis lectus, lacinia non finibus eget, dignissim quis mauris. Aliquam hendrerit, urna a mattis sagittis, ex nulla dapibus tellus, vel aliquam nibh purus et augue. Nulla facilisi. Nullam at dignissim ipsum. Praesent mattis ligula sit amet sodales posuere. Suspendisse ultrices posuere est nec rhoncus. Cras sollicitudin nunc felis, non fringilla felis blandit et. Praesent commodo, diam ac tincidunt feugiat, velit lorem tempus sem, ut volutpat felis turpis eget felis.'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/taxonomy/term/1'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: '| Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1

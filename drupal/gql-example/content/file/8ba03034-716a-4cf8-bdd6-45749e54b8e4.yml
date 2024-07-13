@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8ba03034-716a-4cf8-bdd6-45749e54b8e4
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: image-window.png
+  uri:
+    -
+      value: 'public://2024-04/image-window.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 132299
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1720484707

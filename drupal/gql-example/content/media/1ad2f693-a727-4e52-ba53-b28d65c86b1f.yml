@@ -1,0 +1,67 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 1ad2f693-a727-4e52-ba53-b28d65c86b1f
+  bundle: image
+  default_langcode: en
+  depends:
+    68be780d-785e-46fa-b672-0699c851e101: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: 404.jpeg
+  created:
+    -
+      value: 1712346667
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/home'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: '| Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 68be780d-785e-46fa-b672-0699c851e101
+      alt: 'not found'
+      title: ''
+      width: 2019
+      height: 1068

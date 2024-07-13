@@ -1,0 +1,237 @@
+entity_config:
+  media:
+    image:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
+  menu:
+    main:
+      enabled: true
+      menu_route_enabled: true
+  node:
+    article:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
+    page:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
+  paragraph:
+    code_block:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    hero_cta:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    hero_text:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    image:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    static_component:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    text:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+    view_reference:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+  taxonomy_term:
+    tags:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+      routes_enabled: true
+  user:
+    user:
+      enabled: true
+      query_load_enabled: true
+      edges_enabled: true
+field_config:
+  media:
+    image:
+      field_media_image:
+        enabled: true
+  node:
+    article:
+      field_components:
+        enabled: true
+      field_image:
+        enabled: true
+      field_summary:
+        enabled: true
+      field_tags:
+        enabled: true
+    page:
+      field_components:
+        enabled: true
+      field_image:
+        enabled: true
+      field_show_title:
+        enabled: true
+      field_summary:
+        enabled: true
+  paragraph:
+    code_block:
+      field_code:
+        enabled: true
+      field_language:
+        enabled: true
+      field_show_line_numbers:
+        enabled: true
+      field_title:
+        enabled: true
+        name_sdl: titleOptional
+    hero_cta:
+      field_cta:
+        enabled: true
+      field_intro:
+        enabled: true
+      field_text:
+        enabled: true
+      field_title:
+        enabled: true
+    hero_text:
+      field_intro:
+        enabled: true
+      field_text:
+        enabled: true
+      field_title:
+        enabled: true
+    image:
+      field_image:
+        enabled: true
+    static_component:
+      field_component:
+        enabled: true
+    text:
+      field_text_rich:
+        enabled: true
+      field_title:
+        enabled: true
+    view_reference:
+      field_reference:
+        enabled: true
+        viewfield_query: true
+      field_text:
+        enabled: true
+      field_title:
+        enabled: true
+  user:
+    user:
+      field_picture:
+        enabled: true
+settings:
+  expose_entity_ids: false
+  schema_description: Decoupled
+  schema_version: '1'
+  simple_unions: true
+  site_name: false
+  site_slogan: false
+  site_front: false
+  custom: {  }
+  fragments_enabled: false
+node:
+  article:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+    routes_enabled: true
+  page:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+    routes_enabled: true
+media:
+  audio:
+    enabled: false
+    query_load_enabled: false
+    edges_enabled: false
+    routes_enabled: false
+  document:
+    enabled: false
+    query_load_enabled: false
+    edges_enabled: false
+    routes_enabled: false
+  image:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+    routes_enabled: false
+  remote_video:
+    enabled: false
+    query_load_enabled: false
+    edges_enabled: false
+    routes_enabled: false
+  video:
+    enabled: false
+    query_load_enabled: false
+    edges_enabled: false
+    routes_enabled: false
+paragraph:
+  code_block:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+  hero_cta:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+  hero_text:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+  image:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+  static_component:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+  text:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+taxonomy_term: {  }
+image_style:
+  large:
+    enabled: true
+  media_library:
+    enabled: true
+  medium:
+    enabled: true
+  thumbnail:
+    enabled: true
+  wide:
+    enabled: true
+menu:
+  admin:
+    enabled: false
+  footer:
+    enabled: false
+  main:
+    enabled: false
+  tools:
+    enabled: false
+  account:
+    enabled: false
+user:
+  user:
+    enabled: true
+    query_load_enabled: true
+    edges_enabled: true
+    routes_enabled: false

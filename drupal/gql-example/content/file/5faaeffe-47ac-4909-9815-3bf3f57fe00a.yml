@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 5faaeffe-47ac-4909-9815-3bf3f57fe00a
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: octahedroid-preview-drupal.png
+  uri:
+    -
+      value: 'public://2024-05/octahedroid-preview-drupal.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 180573
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1720484707

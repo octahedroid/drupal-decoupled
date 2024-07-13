@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 83db3dc3-8088-45c2-a203-680f17f4c136
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: octahedroid-preview-home.png
+  uri:
+    -
+      value: 'public://2024-05/octahedroid-preview-home.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 97037
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1720484707

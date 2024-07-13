@@ -1,0 +1,67 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 9c3bba9f-d5d3-4173-91f2-7918edc3c871
+  bundle: image
+  default_langcode: en
+  depends:
+    83db3dc3-8088-45c2-a203-680f17f4c136: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  name:
+    -
+      value: octahedroid-preview-home.png
+  created:
+    -
+      value: 1717116426
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '| Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/home'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: '| Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 83db3dc3-8088-45c2-a203-680f17f4c136
+      alt: octahedroid-preview-home
+      title: ''
+      width: 1190
+      height: 712

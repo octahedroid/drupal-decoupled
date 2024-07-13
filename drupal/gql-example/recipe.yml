@@ -1,0 +1,206 @@
+name: 'Drupal Decoupled'
+description: 'Drupal installation ready to make decoupled sites using GraphQL'
+type: 'Site'
+recipes:
+  # Core recipes with basic functionality
+  # Adding tags vocabulary and taxonomy field to article
+  - core/recipes/tags_taxonomy
+  # Adding media image type
+  - core/recipes/image_media_type
+  # Adding format editors
+  - core/recipes/basic_html_format_editor
+  - core/recipes/full_html_format_editor
+  - core/recipes/restricted_html_format
+  # Adding user roles
+  - core/recipes/administrator_role
+  - core/recipes/content_editor_role
+  # Adding core recommended maintenance modules
+  - core/recipes/core_recommended_maintenance
+
+install:
+  # Core 
+  - block_content
+  - ckeditor5
+  - config
+  - help
+  - contextual
+  - datetime
+  - editor
+  - field_ui
+  - file
+  - history
+  - image
+  - link
+  - media
+  - media_library
+  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - path
+  - taxonomy
+  - views
+  - views_ui
+  # Contrib
+  - admin_toolbar
+  - admin_toolbar_tools
+  - admin_toolbar_search
+  - dynamic_entity_reference
+  - field_group
+  - gin
+  - gin_login
+  - gin_toolbar
+  - coffee
+  - metatag
+  - metatag_open_graph
+  - metatag_twitter_cards
+  - override_node_options
+  - pathauto
+  - paragraphs
+  - redirect
+  - subpathauto
+  - view_unpublished
+  - viewfield
+  - simple_oauth
+  # Decoupled contrib
+  - decoupled_preview_iframe
+  - visual_editor
+  - visual_editor_paragraphs
+  - graphql_compose
+  - graphql_compose_edges
+  - graphql_compose_image_style
+  - graphql_compose_menus
+  - graphql_compose_routes
+  - graphql_compose_users
+  - graphql_compose_views
+  - graphql_compose_metatags
+  - graphql_compose_preview
+
+config:
+  import:
+    block_content:
+      # View to list custom blocks.
+      - views.view.block_content
+    shortcut: '*'
+    # file: '*'
+    field_ui: '*'
+    menu_ui: '*'
+    node:
+      - views.view.content
+      - views.view.content_recent
+    datetime: '*'
+    views: '*'
+    views_ui: '*'
+    user:
+      # View to list users.
+      - views.view.user_admin_people
+    #contrib
+    admin_toolbar: '*'
+    admin_toolbar_tools: '*'
+    admin_toolbar_search: '*'
+    field_group: '*'
+    gin: 
+      - gin.settings
+      - block.block.gin_breadcrumbs
+      - block.block.gin_content
+      - block.block.gin_help
+      - block.block.gin_local_actions
+      - block.block.gin_messages
+      - block.block.gin_page_title
+      - block.block.gin_primary_local_tasks
+    gin_toolbar: '*'
+    gin_login: '*'
+    coffee: '*'
+    metatag: '*'
+    override_node_options: '*'
+    pathauto: '*'
+    paragraphs: '*'
+    redirect: '*'
+    subpathauto: '*'
+    viewfield: '*'
+    simple_oauth: '*'
+    # Decoupled contrib
+    graphql_compose: '*'
+ 
+  actions:
+    # Set and unset Gin blocks.
+    block.block.gin_admin:
+      simple_config_update:
+        status: false
+    block.block.gin_branding:
+      simple_config_update:
+        status: false
+    block.block.gin_local_actions:
+      simple_config_update:
+        region: content
+        weight: -10
+    block.block.gin_local_tasks:
+      simple_config_update:
+        status: false
+    block.block.gin_page_title:
+      simple_config_update:
+        region: header
+        weight: -10
+    block.block.gin_primary_local_tasks:
+      simple_config_update:
+        region: header
+        weight: -5
+        settings.secondary: true
+    block.block.gin_tools:
+      simple_config_update:
+        status: false
+    # Update the admin theme to Gin in Theme settings.
+    node.settings:
+      simple_config_update:
+        use_admin_theme: true  
+    system.theme:
+      simple_config_update:
+        admin: 'gin'
+        default: 'gin'
+    # Set metatag defaults.
+    metatag.metatag_defaults.global:
+      simple_config_update:
+        tags.canonical_url: '[current-page:url]'
+        tags.title: '[current-page:title] | [site:name]'
+        tags.twitter_cards_creator_id: '@OctahedroidHQ'
+        tags.twitter_cards_site: '@OctahedroidHQ'
+        tags.twitter_cards_title: '[current-page:title] | [site:name]'
+        tags.twitter_cards_type: summary
+    metatag.metatag_defaults.node:
+      simple_config_update:
+        tags.abstract: '[node:summary]'
+        tags.canonical_url: '[node:url]'
+        tags.description: '[node:summary]'
+        tags.image_src: '[node:field_image:entity:field_media_image:entity:url]'
+        tags.og_description: '[node:summary]'
+        tags.og_image: '[node:field_image:entity:field_media_image:entity:url]'
+        tags.og_image_url: '[node:field_image:entity:field_media_image:entity:url]'
+        tags.og_site_name: '[site:name]'
+        tags.og_title: '[node:title] | [site:name]'
+        tags.og_type: website
+        tags.og_url: '[node:url]'
+        tags.title: '[node:title] | [site:name]'
+        tags.twitter_cards_creator: '@OctahedroidHQ'
+        tags.twitter_cards_description: '[node:summary]'
+        tags.twitter_cards_image: '[node:field_image:entity:field_media_image:entity:url]'
+        tags.twitter_cards_site: '@OctahedroidHQ'
+        tags.twitter_cards_title: '[node:title]'
+        tags.twitter_cards_type: summary_large_image
+     # Set permissions for content editor role.
+    user.role.content_editor:
+      ensure_exists:
+        id: content_editor
+      grantPermissions:
+        - 'use text format basic_html'
+        - 'use text format full_html'
+    simple_oauth.settings:
+      simple_config_update:
+        access_token_expiration: 2592000
+        authorization_code_expiration: 2592000
+        refresh_token_expiration: 2592000
+        token_cron_batch_size: 0
+        public_key: ../public.key
+        private_key: ../private.key
+        remember_clients: true
+        use_implicit: false
+        disable_openid_connect: false

@@ -1,0 +1,240 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 2c00e270-b434-4087-aeea-08a039988618
+  bundle: page
+  default_langcode: en
+  depends:
+    6bcf66f7-6ea1-4489-ae34-60b80fe0fbde: media
+    9c3bba9f-d5d3-4173-91f2-7918edc3c871: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: Home
+  created:
+    -
+      value: 1712213307
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Home | Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/home'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-home.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: 'Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: website
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'http://drupal-graphql-example.ddev.site/home'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Home | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-home.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:url'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-home.png'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: Home
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-home.png'
+  path:
+    -
+      alias: /home
+      langcode: en
+      pathauto: 0
+  field_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 92f138fa-6ed0-47de-9fcb-6e3f28b38f9d
+          bundle: hero_cta
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712213368
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_cta:
+            -
+              uri: 'https://www.drupal.org/'
+              title: Drupal
+              options: {  }
+          field_intro:
+            -
+              value: 'Drupal as Composable CMS'
+          field_text:
+            -
+              value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed venenatis felis, a cursus ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
+          field_title:
+            -
+              value: 'The future of Drupal is Composable'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fcf883e5-8ee6-4061-836e-c3514f756748
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712598084
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text_rich:
+            -
+              value: '<p>Using <strong>Drupal</strong> as a Headless CMS with a Decoupled front-end implementation is a great way to get an enterprise-quality CMS, paired with a great modern development experience using Remix, Next.js, Astro and others.&nbsp;</p>'
+              format: full_html
+          field_title:
+            -
+              value: 'Why Decoupled Drupal'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 160328a9-beb6-4456-994d-153ee916817f
+          bundle: image
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712598211
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_image:
+            -
+              entity: 6bcf66f7-6ea1-4489-ae34-60b80fe0fbde
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cd88b411-9d9d-459d-acab-6d2ec5f73e2b
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712598731
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text_rich:
+            -
+              value: '<p>It only takes a few steps to use Drupal paired with a Decoupled front-end framework, follow these instructions below to get that running on your local machine.</p><p>&nbsp;</p><p>To setup follow instructions in this respository <a href="https://github.com/octahedroid/drupal-decoupled">https://github.com/octahedroid/drupal-decoupled</a></p>'
+              format: full_html
+          field_title:
+            -
+              value: 'How to implement Drupal + Remix'
+  field_image:
+    -
+      entity: 9c3bba9f-d5d3-4173-91f2-7918edc3c871
+  field_show_title:
+    -
+      value: false
+  field_summary:
+    -
+      value: 'Using Drupal as a headless CMS with a Decoupled front-end implementation is a great way to get an enterprise-quality CMS, paired with a great modern development experience using Remix, Next.js, Astro and/or others.'

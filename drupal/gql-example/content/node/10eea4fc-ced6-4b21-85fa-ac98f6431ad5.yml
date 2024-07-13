@@ -1,0 +1,176 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 10eea4fc-ced6-4b21-85fa-ac98f6431ad5
+  bundle: page
+  default_langcode: en
+  depends:
+    b46a784c-9a3e-4715-980c-9686f31a6ca9: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: Contact
+  created:
+    -
+      value: 1712346305
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Contact | Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/contact'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-contact.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: 'Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: website
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'http://drupal-graphql-example.ddev.site/contact'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Contact | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-contact.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:url'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-contact.png'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: Contact
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-contact.png'
+  path:
+    -
+      alias: /contact
+      langcode: en
+      pathauto: 0
+  field_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 808461fe-a532-4d75-81e3-1f72092043b4
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712346349
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text_rich:
+            -
+              value: '<p>Feel free to ask question using this form.</p>'
+              format: basic_html
+          field_title:
+            -
+              value: 'Do you have any questions?'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 179a843c-c065-4338-97e1-2853c690bcbe
+          bundle: static_component
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712346489
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_component:
+            -
+              value: contact
+  field_image:
+    -
+      entity: b46a784c-9a3e-4715-980c-9686f31a6ca9
+  field_show_title:
+    -
+      value: true
+  field_summary:
+    -
+      value: lorem...

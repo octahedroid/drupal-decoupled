@@ -1,0 +1,19 @@
+uuid: f0fb5b47-f129-4226-9cf7-286175b7f3ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - graphql
+    - graphql_compose_preview
+    - node
+    - view_unpublished
+id: previewer
+label: Previewer
+weight: -6
+is_admin: null
+permissions:
+  - 'execute graphql_compose_server arbitrary graphql requests'
+  - 'view all revisions'
+  - 'view any unpublished content'
+  - 'view graphql_compose_preview entity'
+  - 'view own unpublished content'

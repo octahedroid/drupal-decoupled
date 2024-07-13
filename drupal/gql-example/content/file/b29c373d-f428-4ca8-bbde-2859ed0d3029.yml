@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b29c373d-f428-4ca8-bbde-2859ed0d3029
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: octahedroid-preview-logoicon.png
+  uri:
+    -
+      value: 'public://2024-05/octahedroid-preview-logoicon.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 172807
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1720484707

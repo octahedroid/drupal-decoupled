@@ -1,0 +1,148 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3a05cc20-080f-487f-8c23-cfc285113e0f
+  bundle: page
+  default_langcode: en
+  depends:
+    1ad2f693-a727-4e52-ba53-b28d65c86b1f: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: '404 - Page not found'
+  created:
+    -
+      value: 1712346657
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: '404 - Page not found | Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/404'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-04/404.jpeg'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: 'Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: website
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'http://drupal-graphql-example.ddev.site/404'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: '404 - Page not found | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-04/404.jpeg'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:url'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-04/404.jpeg'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: '404 - Page not found'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-04/404.jpeg'
+  path:
+    -
+      alias: /404
+      langcode: en
+      pathauto: 0
+  field_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 80cc3e13-8948-4b8d-ac66-976c574d6de3
+          bundle: image
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712346693
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_image:
+            -
+              entity: 1ad2f693-a727-4e52-ba53-b28d65c86b1f
+  field_image:
+    -
+      entity: 1ad2f693-a727-4e52-ba53-b28d65c86b1f
+  field_show_title:
+    -
+      value: true
+  field_summary:
+    -
+      value: 'Page not found'

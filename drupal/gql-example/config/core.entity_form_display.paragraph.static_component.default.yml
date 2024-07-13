@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.static_component.field_component
+    - paragraphs.paragraphs_type.static_component
+id: paragraph.static_component.default
+targetEntityType: paragraph
+bundle: static_component
+mode: default
+content:
+  field_component:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

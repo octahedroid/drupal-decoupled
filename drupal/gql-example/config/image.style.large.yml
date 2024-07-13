@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: large
+label: 'Large (720×540)'
+effects:
+  ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d:
+    uuid: ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d
+    id: image_scale
+    weight: 0
+    data:
+      width: 720
+      height: 540
+      upscale: false

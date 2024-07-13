@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b8f3fa01-ddc7-4a26-98de-6042f765e765
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: octahedroid-preview-graphql-compose.png
+  uri:
+    -
+      value: 'public://2024-05/octahedroid-preview-graphql-compose.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 210863
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1720484707

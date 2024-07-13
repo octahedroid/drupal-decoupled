@@ -1,0 +1,150 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e066d1ea-2c3f-40e3-81d9-d7ce36d0ba6c
+  bundle: article
+  default_langcode: en
+  depends:
+    7acaaa1f-4fd0-4bf2-805c-4340e7b6e1e8: user
+    21f40fa6-36d5-49d9-b548-2c9f3e21720a: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      entity: 7acaaa1f-4fd0-4bf2-805c-4340e7b6e1e8
+  title:
+    -
+      value: 'Decoupled Preview Iframe'
+  created:
+    -
+      value: 1717116841
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Decoupled Preview Iframe | Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/blog/decoupled-preview-iframe'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-drupal.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: 'Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: website
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'http://drupal-graphql-example.ddev.site/blog/decoupled-preview-iframe'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Decoupled Preview Iframe | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-drupal.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:url'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-drupal.png'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Decoupled Preview Iframe'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-drupal.png'
+  path:
+    -
+      alias: /blog/decoupled-preview-iframe
+      langcode: en
+      pathauto: 0
+  field_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: fc7b63f4-ab85-4c4a-ac7b-f4dba198ca31
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1717116863
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text_rich:
+            -
+              value: '<p><span>Preview Drupal content from your decoupled front-end site, embedding an Iframe with the content of your FE application</span></p>'
+              format: full_html
+          field_title:
+            -
+              value: 'Why an Iframe?'
+  field_image:
+    -
+      entity: 21f40fa6-36d5-49d9-b548-2c9f3e21720a
+  field_summary:
+    -
+      value: 'Preview Drupal content from your decoupled front-end site, embedding an Iframe with the content of your FE application'

@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.article
+    - paragraphs.paragraphs_type.code_block
+    - paragraphs.paragraphs_type.hero_cta
+    - paragraphs.paragraphs_type.hero_text
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: node.article.field_components
+field_name: field_components
+entity_type: node
+bundle: article
+label: Components
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      hero_cta: hero_cta
+      hero_text: hero_text
+      text: text
+      image: image
+      code_block: code_block
+    negate: 0
+    target_bundles_drag_drop:
+      blog_teasers:
+        weight: -8
+        enabled: false
+      code_block:
+        weight: -9
+        enabled: true
+      hero_cta:
+        weight: -13
+        enabled: true
+      hero_text:
+        weight: -12
+        enabled: true
+      image:
+        weight: -10
+        enabled: true
+      text:
+        weight: -11
+        enabled: true
+field_type: entity_reference_revisions

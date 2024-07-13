@@ -1,0 +1,52 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_cta.field_cta
+    - field.field.paragraph.hero_cta.field_intro
+    - field.field.paragraph.hero_cta.field_text
+    - field.field.paragraph.hero_cta.field_title
+    - paragraphs.paragraphs_type.hero_cta
+  module:
+    - link
+id: paragraph.hero_cta.default
+targetEntityType: paragraph
+bundle: hero_cta
+mode: default
+content:
+  field_cta:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_intro:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

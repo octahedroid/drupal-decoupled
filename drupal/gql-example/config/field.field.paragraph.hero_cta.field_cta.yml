@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta
+    - paragraphs.paragraphs_type.hero_cta
+  module:
+    - link
+id: paragraph.hero_cta.field_cta
+field_name: field_cta
+entity_type: paragraph
+bundle: hero_cta
+label: CTA
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

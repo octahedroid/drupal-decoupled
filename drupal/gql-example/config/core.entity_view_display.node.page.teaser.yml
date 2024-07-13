@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.page.field_components
+    - field.field.node.page.field_image
+    - field.field.node.page.field_metatag
+    - field.field.node.page.field_show_title
+    - field.field.node.page.field_summary
+    - node.type.page
+  module:
+    - user
+id: node.page.teaser
+targetEntityType: node
+bundle: page
+mode: teaser
+content:
+  links:
+    weight: 101
+    region: content
+hidden:
+  field_components: true
+  field_image: true
+  field_metatag: true
+  field_show_title: true
+  field_summary: true
+  preview_token: true

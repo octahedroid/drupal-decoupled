@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: hero_cta
+label: 'Hero CTA'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

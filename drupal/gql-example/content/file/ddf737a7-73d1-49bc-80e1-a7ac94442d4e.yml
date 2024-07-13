@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ddf737a7-73d1-49bc-80e1-a7ac94442d4e
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: octahedroid-preview-blog.png
+  uri:
+    -
+      value: 'public://2024-05/octahedroid-preview-blog.png'
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 100544
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1720484707

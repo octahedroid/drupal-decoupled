@@ -1,0 +1,49 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.code_block.field_code
+    - field.field.paragraph.code_block.field_language
+    - field.field.paragraph.code_block.field_show_line_numbers
+    - field.field.paragraph.code_block.field_title
+    - paragraphs.paragraphs_type.code_block
+  module:
+    - options
+id: paragraph.code_block.default
+targetEntityType: paragraph
+bundle: code_block
+mode: default
+content:
+  field_code:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_language:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_show_line_numbers:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

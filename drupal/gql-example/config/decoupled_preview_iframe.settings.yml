@@ -1,0 +1,11 @@
+redirect_anonymous: true
+redirect_url: 'http://localhost:8080'
+preview_url: 'http://localhost:8080'
+preview_types:
+  node:
+    article: article
+    page: page
+  taxonomy_term:
+    tags: tags
+route_sync: DECOUPLED_PREVIEW_IFRAME_ROUTE_SYNC
+draft_provider: graphql_compose_preview

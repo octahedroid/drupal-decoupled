@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_rich
+    - paragraphs.paragraphs_type.text
+  module:
+    - text
+id: paragraph.text.field_text_rich
+field_name: field_text_rich
+entity_type: paragraph
+bundle: text
+label: 'Text Rich'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

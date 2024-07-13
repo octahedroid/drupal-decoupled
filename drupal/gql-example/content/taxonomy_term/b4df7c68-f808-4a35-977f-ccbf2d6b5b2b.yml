@@ -1,0 +1,67 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: b4df7c68-f808-4a35-977f-ccbf2d6b5b2b
+  bundle: tags
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Decoupled
+  description:
+    -
+      value: '<p>Praesent felis leo, interdum non facilisis scelerisque, placerat eu augue. Donec tincidunt, magna vitae posuere efficitur, tortor elit volutpat nibh, sit amet auctor erat est vel purus. Fusce nec nisl mattis, egestas diam a, fringilla augue. Aliquam erat volutpat. Sed rutrum convallis sem feugiat dignissim. Sed placerat feugiat sagittis. Praesent volutpat quam libero, a lobortis nisi convallis a.</p><p><br>&nbsp;</p>'
+      format: 'basic_html'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Decoupled | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        name: description
+        content: "Praesent felis leo, interdum non facilisis scelerisque, placerat eu augue. Donec tincidunt, magna vitae posuere efficitur, tortor elit volutpat nibh, sit amet auctor erat est vel purus. Fusce nec nisl mattis, egestas diam a, fringilla augue. Aliquam erat volutpat. Sed rutrum convallis sem feugiat dignissim. Sed placerat feugiat sagittis. Praesent volutpat quam libero, a lobortis nisi convallis a.\_"
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/taxonomy/term/2'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: '| Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1

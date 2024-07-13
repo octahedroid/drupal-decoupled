@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.view_reference.field_reference
+    - field.field.paragraph.view_reference.field_text
+    - field.field.paragraph.view_reference.field_title
+    - paragraphs.paragraphs_type.view_reference
+  module:
+    - viewfield
+id: paragraph.view_reference.default
+targetEntityType: paragraph
+bundle: view_reference
+mode: default
+content:
+  field_reference:
+    type: viewfield_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_text:
+    type: string_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

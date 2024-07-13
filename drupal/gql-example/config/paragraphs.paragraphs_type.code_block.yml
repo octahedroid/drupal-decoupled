@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: code_block
+label: 'Code Block'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

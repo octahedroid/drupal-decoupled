@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: view_reference
+label: 'View Reference'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,180 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 1801fa3d-790b-467b-a935-caf83465ee21
+  bundle: page
+  default_langcode: en
+  depends:
+    a73c3bfb-4b7a-473f-9f45-e381dd4781de: media
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 0
+  title:
+    -
+      value: 'Lorem ipsum'
+  created:
+    -
+      value: 1712947342
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  metatag:
+    -
+      tag: meta
+      attributes:
+        name: title
+        content: 'Lorem ipsum | Drupal GraphQL Demo'
+    -
+      tag: link
+      attributes:
+        rel: canonical
+        href: 'http://drupal-graphql-example.ddev.site/lorem-ipsum'
+    -
+      tag: link
+      attributes:
+        rel: image_src
+        href: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-logoicon.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:site_name'
+        content: 'Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:type'
+        content: website
+    -
+      tag: meta
+      attributes:
+        property: 'og:url'
+        content: 'http://drupal-graphql-example.ddev.site/lorem-ipsum'
+    -
+      tag: meta
+      attributes:
+        property: 'og:title'
+        content: 'Lorem ipsum | Drupal GraphQL Demo'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-logoicon.png'
+    -
+      tag: meta
+      attributes:
+        property: 'og:image:url'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-logoicon.png'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:card'
+        content: summary_large_image
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:site'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:title'
+        content: 'Lorem ipsum'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:creator:id'
+        content: '@OctahedroidHQ'
+    -
+      tag: meta
+      attributes:
+        name: 'twitter:image'
+        content: 'http://drupal-graphql-example.ddev.site/sites/default/files/2024-05/octahedroid-preview-logoicon.png'
+  path:
+    -
+      alias: /lorem-ipsum
+      langcode: en
+      pathauto: 0
+  field_components:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 18fcd210-03de-4a3a-99a4-00572d091881
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712967955
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text_rich:
+            -
+              value: '<p>we wer&nbsp;</p>'
+              format: full_html
+          field_title:
+            -
+              value: 'Why Decoupled Drupal'
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 867830a8-92be-4536-bad0-fb2e5d16b9d5
+          bundle: text
+          default_langcode: en
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1712947385
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text_rich:
+            -
+              value: '<p>567567567567</p>'
+              format: basic_html
+          field_title:
+            -
+              value: 'Why Decoupled Drupal'
+  field_image:
+    -
+      entity: a73c3bfb-4b7a-473f-9f45-e381dd4781de
+  field_show_title:
+    -
+      value: false
+  field_summary:
+    -
+      value: ...

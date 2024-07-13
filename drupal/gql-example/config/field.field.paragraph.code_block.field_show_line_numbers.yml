@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_show_line_numbers
+    - paragraphs.paragraphs_type.code_block
+id: paragraph.code_block.field_show_line_numbers
+field_name: field_show_line_numbers
+entity_type: paragraph
+bundle: code_block
+label: 'Show Line Numbers'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
