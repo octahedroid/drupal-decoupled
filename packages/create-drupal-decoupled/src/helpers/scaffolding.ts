@@ -11,9 +11,7 @@ const SCAFFOLD_FILES_PER_FRONTEND = {
       },
       {
         folderPath: '.',
-        fileName: 'env.example',
-        // This is due the copy plugin from esbuild, it doesn't allow to copy files with a dot at the beginning
-        rename: '.env.example',
+        fileName: '.env.example',
       },
       {
         folderPath: 'app/routes',
@@ -33,7 +31,7 @@ export function scaffoldFrontend(
 ) {
   const frontendFiles = SCAFFOLD_FILES_PER_FRONTEND[frontend].files
 
-  frontendFiles.forEach(({ folderPath, fileName, rename }) => {
+  frontendFiles.forEach(({ folderPath, fileName }) => {
     const templatePath = path.join(
       __dirname,
       'templates',
@@ -44,7 +42,7 @@ export function scaffoldFrontend(
       process.cwd(),
       projectPath,
       folderPath,
-      rename || fileName
+      fileName
     )
 
     fs.mkdirSync(path.dirname(destinationPath), { recursive: true })
