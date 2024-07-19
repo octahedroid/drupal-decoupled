@@ -25,6 +25,7 @@
   "author": "Octahedroid <opensource@octahedroid.com>",
   "license": "MIT",
   "scripts": {
+    "dev": "node --watch-path=./src ./esbuild.mjs",
     "build": "rimraf dist && node ./esbuild.mjs",
     "lint": "eslint src",
     "format": "prettier --write ."

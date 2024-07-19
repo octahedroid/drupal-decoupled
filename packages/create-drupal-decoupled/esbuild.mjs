@@ -2,6 +2,7 @@ import esbuild from 'esbuild'
 import { existsSync, mkdirSync } from 'fs'
 import { join } from 'path'
 import process from 'node:process'
+import { copy } from 'esbuild-plugin-copy'
 
 const dist = join(process.cwd(), 'dist')
 
@@ -17,8 +18,17 @@ esbuild
     sourcemap: false,
     minify: true,
     splitting: false,
-    format: 'esm',
     platform: 'node',
-    target: ['esnext'],
+    target: 'esnext',
+    plugins: [
+      copy({
+        resolveFrom: 'cwd',
+        assets: {
+          from: ['src/templates/**/*.(*)'],
+          to: ['./dist/templates'],
+        },
+        watch: true,
+      }),
+    ],
   })
   .catch(() => process.exit(1))
