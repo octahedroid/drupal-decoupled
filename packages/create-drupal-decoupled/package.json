@@ -1,6 +1,7 @@
 {
   "name": "@octahedroid/create-drupal-decoupled",
   "version": "0.0.0",
+  "packageManager": "yarn@1.22.22",
   "description": "Scaffold the integration with Drupal in a decoupled frontend",
   "keywords": [
     "drupal",
@@ -33,11 +34,12 @@
     "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
+    "@eslint/js": "^8.57.0",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^20.14.11",
     "esbuild": "^0.23.0",
-    "eslint": "^9.7.0",
+    "esbuild-plugin-copy": "^2.1.1",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
