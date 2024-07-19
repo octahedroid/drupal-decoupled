@@ -17,8 +17,7 @@ esbuild
     sourcemap: false,
     minify: true,
     splitting: false,
-    format: 'esm',
     platform: 'node',
-    target: ['esnext'],
+    target: 'esnext',
   })
   .catch(() => process.exit(1))

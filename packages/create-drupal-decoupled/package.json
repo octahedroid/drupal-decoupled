@@ -25,7 +25,8 @@
   "author": "Octahedroid <opensource@octahedroid.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && node ./esbuild.mjs",
+    "dev": "node --watch-path=./src ./esbuild.mjs",
+    "build": "rimraf dist && node ./esbuild.mjs && cp -r src/templates dist",
     "lint": "eslint src",
     "format": "prettier --write ."
   },
@@ -38,7 +39,6 @@
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "^20.14.11",
     "esbuild": "^0.23.0",
-    "esbuild-plugin-copy": "^2.1.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.3.3",
