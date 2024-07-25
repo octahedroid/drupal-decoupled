@@ -1,6 +1,6 @@
 {
   "name": "@octahedroid/create-drupal-decoupled",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "packageManager": "yarn@1.22.22",
   "description": "Scaffold the integration with Drupal in a decoupled frontend",
   "keywords": [
