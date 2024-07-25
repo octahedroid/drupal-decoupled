@@ -5,6 +5,10 @@
     "url": "git+https://github.com/octahedroid/drupal-decoupled.git"
   },
   "private": true,
+  "scripts": {
+    "build": "yarn lerna run build",
+    "release": "yarn build && yarn changeset publish"
+  },
   "engines": {
     "node": ">=20.15.1",
     "yarn": ">=1.22.5"
