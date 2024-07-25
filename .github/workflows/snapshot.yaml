@@ -1,0 +1,70 @@
+name: Publish Snapshot
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [labeled]
+
+jobs:
+  snapshot:
+    if: contains(github.event.pull_request.labels.*.name, 'snapshot')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          registry-url: https://registry.npmjs.org
+
+      - name: Enable Corepack
+        id: enable-corepack
+        run: corepack enable
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - uses: benjlevesque/short-sha@v3.0
+        id: short-sha
+
+      - name: Check for Changesets
+        id: check-changesets
+        run: yarn changeset status --since=origin/main
+
+      - name: Build Packages
+        run: yarn build
+
+      - name: Calculate Preview Version
+        id: snapshot-version
+        run: |
+          yarn changeset version --snapshot preview-${{ steps.short-sha.outputs.sha }}
+          git diff --name-only --diff-filter=u | grep package.json | xargs -n 1 jq '. as $root | {name: ("`"+$root.name+"`"), version: ("`"+$root.version+"`"), registry: ("[NPM](https://www.npmjs.com/package/"+$root.name+"/v/"+$root.version+")")}' | jq -s -c > changesets.json
+          echo "publishedPackages=$(cat changesets.json)" >> $GITHUB_OUTPUT
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish Snapshot Version
+        id: snapshot-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          yarn changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }}
+
+      - uses: buildingcash/json-to-markdown-table-action@v1
+        id: table
+        with:
+          json: ${{ steps.snapshot-version.outputs.publishedPackages }}
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ### 📦️ Snapshot packages
+            ${{ steps.table.outputs.table }}
+          comment_tag: execution
