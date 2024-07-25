@@ -1,0 +1,24 @@
+{
+  "name": "@octahedroid/drupal-decoupled-monorepo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octahedroid/drupal-decoupled.git"
+  },
+  "private": true,
+  "scripts": {
+    "build": "yarn lerna run build",
+    "release": "yarn build && yarn changeset publish"
+  },
+  "engines": {
+    "node": ">=20.15.1",
+    "yarn": ">=1.22.5"
+  },
+  "packageManager": "yarn@1.22.22",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.27.7",
+    "lerna": "^8.1.7"
+  }
+}
