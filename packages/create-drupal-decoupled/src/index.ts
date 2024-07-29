@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
+import packageJson from '../package.json'
 import { isJavascriptProject, scaffoldFrontend } from './helpers/scaffolding'
 import { getFrontendMachineName, SUPPORTED_FRONTENDS } from './constants'
 
@@ -12,7 +13,7 @@ async function main() {
   const program = new Command()
     .name('create-drupal-decoupled') // Temporary name
     .description('Scaffold the integration with Drupal in a decoupled frontend')
-    .version('1.0.0', '-v, --version, -V', 'display the version number')
+    .version(packageJson.version, '-v, --version, -V', 'display the version number')
     .argument(
       '[project-directory]',
       'Project directory to scaffold the integration',
