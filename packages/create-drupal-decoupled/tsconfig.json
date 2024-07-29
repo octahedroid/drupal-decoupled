@@ -15,7 +15,8 @@
     "skipLibCheck": true,
     "strict": true,
     "isolatedModules": false,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "resolveJsonModule": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "src/templates"]
