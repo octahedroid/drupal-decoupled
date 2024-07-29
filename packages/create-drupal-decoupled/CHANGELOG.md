@@ -1,5 +1,12 @@
 # @octahedroid/create-drupal-decoupled
 
+## 0.1.1
+
+### Patch Changes
+
+- e4fc813: Add Remix meta tags integration
+  Update Layout in the scaffolded splat route
+
 ## 0.1.0
 
 ### Minor Changes
