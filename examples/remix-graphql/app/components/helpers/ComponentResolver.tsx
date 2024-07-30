@@ -19,7 +19,6 @@ import {
   ParagraphViewReferenceFragment,
 } from "~/graphql/fragments/paragraph";
 
-type ComponentType = Array<JSX.Element>
 type ParagraphFragmentType =
   FragmentOf<typeof ParagraphHeroFragment> |
   FragmentOf<typeof ParagraphCardGroupFragment> |
@@ -59,7 +58,7 @@ const calculateComponent = function (type: string, paragraph: ParagraphFragmentT
   return <>{JSON.stringify(paragraph, null, 2)}</>;
 }
 
-export const resolve = ({data = []}: ResolveProps): ComponentType => {
+export const resolve = ({data = []}: ResolveProps) => {
   if (!data) {
     return []
   }
