@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+Overriding the Tailwind CSS reset to have some default browser styles,
+feel free to remove or edit it at your convenience 
+**/
+
+@layer base {
+  ul {
+    @apply list-disc;
+  }
+  a {
+    @apply text-blue-600 underline;
+  }
+}

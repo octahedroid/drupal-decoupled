@@ -2,7 +2,19 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { SupportedFrontend } from 'src/constants'
 
-const SCAFFOLD_FILES_PER_FRONTEND = {
+type FilesConfig = {
+  folderPath: string
+  fileName: string
+}
+
+type ScaffoldFilesPerFrontend = Record<
+  SupportedFrontend,
+  {
+    files: FilesConfig[]
+  }
+>
+
+const SCAFFOLD_FILES_PER_FRONTEND: Readonly<ScaffoldFilesPerFrontend> = {
   remix: {
     files: [
       {
@@ -16,6 +28,10 @@ const SCAFFOLD_FILES_PER_FRONTEND = {
       {
         folderPath: 'app/routes',
         fileName: '$.tsx',
+      },
+      {
+        folderPath: 'app',
+        fileName: 'tailwind.css',
       },
     ],
   },
