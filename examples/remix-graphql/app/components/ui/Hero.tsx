@@ -1,4 +1,4 @@
-import { ImageType } from "~/utils/types";
+import { ImageType } from "~/components/ui/types";
 import Image from "~/components/ui/Image";
 
 interface HeroProps {

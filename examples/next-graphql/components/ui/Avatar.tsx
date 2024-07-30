@@ -1,4 +1,4 @@
-import { ImageType } from '@/utils/types';
+import { ImageType } from '@/components/ui/types.server';
 import Image from '@/components/ui/Image';
 
 interface AvatarProps {

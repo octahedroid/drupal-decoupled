@@ -63,20 +63,16 @@ export const resolve = ({data = []}: ResolveProps) => {
     return []
   }
 
-  const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data); 
-  const components: Array<JSX.Element> = [];
-  
-  paragraphUnionFragment.forEach((paragraph) => {
+  const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data);
+
+  return paragraphUnionFragment.map((paragraph) => {
     const type = paragraph.__typename;
 
-    if (!type) {
+    if (!type ||  type === "ParagraphCard") {
       return <></>;
     }
 
-    const ParagraphComponent = calculateComponent(type, paragraph);
-
-    components.push(ParagraphComponent)
+    return calculateComponent(type, paragraph);
   });
-
-  return components;
 };
+
