@@ -13,8 +13,8 @@ export function ComponentRenderer({ components, environment } : ComponentsProps)
       return component.props.paragraph.id;
     });
 
-    const componentMapping: { [key: string]: JSX.Element } = components.reduce((acc, component) => {
-      acc[component.props.paragraph.id] = component as JSX.Element;
+    const componentMapping = components.reduce((acc, component) => {
+      acc[component.props.paragraph.id] = component;
       return acc;
     }, {} as { [key: string]: JSX.Element });
 
