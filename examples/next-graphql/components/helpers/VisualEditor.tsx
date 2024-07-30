@@ -16,7 +16,6 @@ function VisualEditorComponentContainer(
   { action, storage, uuid, children }: VisualEditorComponentContainerProps
 ) {
   return (
-    // eslint-disable-next-line
     <section
       id={`${storage}-${uuid}`}
       data-visual-editor-component={`${storage}-${uuid}`}
