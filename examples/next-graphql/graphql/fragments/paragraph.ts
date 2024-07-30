@@ -1,7 +1,7 @@
 import { graphql } from "@/graphql/gql.tada";
-import { LinkFragment, TextFragment } from "./misc";
-import { MediaImageFragment } from "./media";
-import { UserFragment } from "./user";
+import { TextFragment } from "@/graphql/fragments/misc";
+import { MediaImageFragment } from "@/graphql/fragments/media";
+import { UserFragment } from "@/graphql/fragments/user";
 // @todo fix use of NodeArticleTeaserFragment
 // import { NodeArticleTeaserFragment  } from "./node";
 
@@ -16,20 +16,6 @@ export const ParagraphCodeBlockFragment = graphql(`
   }
 `)
 
- export const ParagraphHeroCtaFragment = graphql(`
-  fragment ParagraphHeroCtaFragment on ParagraphHeroCta {
-    __typename
-    id
-    title
-    text
-    intro
-    cta {
-      ...LinkFragment
-    }
-  }
- `,[LinkFragment]
- )
-
  export const ParagraphTextFragment = graphql(`
   fragment ParagraphTextFragment on ParagraphText {
     __typename
@@ -39,7 +25,9 @@ export const ParagraphCodeBlockFragment = graphql(`
       ...TextFragment
     }
   }
- `, [TextFragment])
+ `, [
+  TextFragment
+])
 
  export const ParagraphImageFragment = graphql(`
   fragment ParagraphImageFragment on ParagraphImage {
@@ -49,17 +37,9 @@ export const ParagraphCodeBlockFragment = graphql(`
       ...MediaImageFragment
     }
   }
- `, [MediaImageFragment])
- 
- export const ParagraphHeroTextFragment = graphql(`
-  fragment ParagraphHeroTextFragment on ParagraphHeroText {
-    __typename
-    id
-    intro
-    title
-    text
-  }
- `)
+ `, [
+  MediaImageFragment
+])
 
  export const ParagraphStaticComponentFragment = graphql(`
   fragment ParagraphStaticComponentFragment on ParagraphStaticComponent {
@@ -106,26 +86,72 @@ fragment ParagraphViewReference on ParagraphViewReference {
   // NodeArticleTeaserFragment
 ])
 
+
+export const ParagraphHeroFragment = graphql(`
+  fragment ParagraphHeroFragment on ParagraphHero {
+    __typename
+    id
+    title
+    text
+    image {
+      ... on MediaImage {
+        ...MediaImageFragment
+      }
+    }
+  }
+`,[
+  MediaImageFragment
+]);
+
+
+export const ParagraphCardFragment = graphql(`
+  fragment ParagraphCardFragment on ParagraphCard {
+    __typename
+    id
+    title
+    text
+    image {
+      ...MediaImageFragment
+    }
+  }
+`, [
+  MediaImageFragment
+]);
+
+export const ParagraphCardGroupFragment = graphql(`
+  fragment ParagraphCardGroupFragment on ParagraphCardGroup {
+    __typename
+    id
+    title
+    items {
+      __typename
+      ...ParagraphCardFragment
+    }
+  }
+`, [
+  ParagraphCardFragment
+]);
+
 export const ParagraphUnionFragment = graphql(`
   fragment ParagraphUnionFragment on ParagraphUnion {
     ... on ParagraphInterface {
       __typename
       id
     }
+    ...ParagraphHeroFragment
+    ...ParagraphCardGroupFragment
     ...ParagraphCodeBlockFragment
-    ...ParagraphHeroCtaFragment
     ...ParagraphTextFragment
     ...ParagraphImageFragment
-    ...ParagraphHeroTextFragment
     ...ParagraphStaticComponentFragment
     ...ParagraphViewReference
   }
 `, [
+  ParagraphHeroFragment,
   ParagraphCodeBlockFragment,
-  ParagraphHeroCtaFragment,
   ParagraphTextFragment,
   ParagraphImageFragment,
-  ParagraphHeroTextFragment,
   ParagraphStaticComponentFragment,
-  ParagraphViewReferenceFragment
+  ParagraphViewReferenceFragment,
+  ParagraphCardGroupFragment,
 ])

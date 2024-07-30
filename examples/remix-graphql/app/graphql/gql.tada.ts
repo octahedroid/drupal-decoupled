@@ -1,4 +1,3 @@
-
 import { initGraphQLTada } from 'gql.tada';
 import { introspection } from '~/graphql/gql.tada.instrospection';
 

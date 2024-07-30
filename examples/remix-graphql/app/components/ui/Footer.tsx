@@ -28,7 +28,7 @@ export default function Footer() {
       <Container>
         <div className="py-28 flex flex-col lg:flex-row items-center">
           <h3 className="text-4xl font-bold">
-            A blog example using:{' '}
+            Drupal Decoupled GraphQL Starter:{' '}
             {technologies.map((tech, index) => (
               <span key={tech.name}>
                 <a

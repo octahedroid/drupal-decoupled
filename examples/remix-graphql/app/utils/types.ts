@@ -1,8 +1,13 @@
-import { FragmentOf } from "gql.tada";
-import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
-import { TermTagsFragment } from "~/graphql/fragments/terms";
+export type ImageType = {
+  url: string;
+  title: string | null;
+  alt: string | null;
+  width: number | string | null;
+  height: number | string | null;
+  className: string | null;
+}
 
-export type EntityFragmentType = 
-  FragmentOf<typeof NodePageFragment> | 
-  FragmentOf<typeof NodeArticleFragment> |
-  FragmentOf<typeof TermTagsFragment>;
+export type UserType = {
+  name: string;
+  picture: ImageType;
+}

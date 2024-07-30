@@ -10,9 +10,9 @@ import {
 import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
 import { syncDrupalPreviewRoutes } from "drupal-decoupled";
 
-import Container from "./components/Container";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Container from "./components/ui/Container";
+import Footer from "./components/ui/Footer";
+import Header from "./components/ui//Header";
 
 import './tailwind.css'
 import './preview.css'
@@ -25,7 +25,6 @@ export const loader = async ({ context }: LoaderFunctionArgs ) => {
     { status: 200 }
   );
 };
-
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

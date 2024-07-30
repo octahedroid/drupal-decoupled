@@ -11,13 +11,14 @@ export default function ParagraphStaticComponent({ paragraph } : ParagraphStatic
   const componentMap = {
     'contact': 'Contact',
   }
-  
+
+  //  @todo: Implement Contact component
   return (
-    <div>
+    <>
       <h2>ParagraphStaticComponent</h2>
       <pre>
         {JSON.stringify({ id, component, componentMap }, null, 2)}
       </pre>
-    </div>
+    </>
   );
 }
