@@ -1,3 +1,8 @@
+import { FragmentOf } from "gql.tada";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { Fragment } from "react";
+
 import NodeArticleComponent from "@/components/node/NodeArticle";
 import NodePageComponent from "@/components/node/NodePage";
 import TermTagsComponent from "@/components/taxonomy/TermTags";
@@ -7,13 +12,9 @@ import {
 } from "@/graphql/fragments/node";
 import { TermTagsFragment } from "@/graphql/fragments/terms";
 import { graphql } from "@/graphql/gql.tada";
+import { EntityFragmentType } from "@/graphql/types";
 import { getClient } from "@/utils/client.server";
 import { calculatePath } from "@/utils/routes";
-import { EntityFragmentType } from "@/utils/types.server";
-import { FragmentOf } from "gql.tada";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { Fragment } from "react";
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {
   const pathFromParams = params.slug?.join("/") || "/home";
