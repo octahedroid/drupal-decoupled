@@ -22,6 +22,10 @@ const SCAFFOLD_FILES_PER_FRONTEND: Readonly<ScaffoldFilesPerFrontend> = {
         fileName: 'drupal-client.server.ts',
       },
       {
+        folderPath: 'app/utils',
+        fileName: 'calculate-path.server.ts'
+      },
+      {
         folderPath: '.',
         fileName: '.env.example',
       },

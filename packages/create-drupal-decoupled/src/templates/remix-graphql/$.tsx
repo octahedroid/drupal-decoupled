@@ -9,6 +9,7 @@ import { gql } from 'urql'
 import { metaTags } from 'drupal-remix'
 
 import { getDrupalClient } from '~/utils/drupal-client.server'
+import { calculatePath } from '~/utils/calculate-path.server'
 
 const GET_DRUPAL_CONTENT_ERROR = 'Error fetching data from Drupal'
 
@@ -22,7 +23,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   })
 }
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   const path = params['*']
   const drupalClient = await getDrupalClient()
   const { data, error } = await drupalClient.query(
@@ -32,6 +33,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
           ... on RouteInternal {
             entity {
               ... on NodeArticle {
+                __typename
                 title
                 path
                 image {
@@ -64,6 +66,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
                 }
               }
               ... on NodePage {
+                __typename
                 title
                 path
                 body {
@@ -94,6 +97,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
             }
           }
           ... on RouteRedirect {
+            __typename
             url
             status
           }
@@ -101,7 +105,10 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
       }
     `,
     {
-      path,
+      path: calculatePath({
+        path,
+        url: request.url,
+      }),
     }
   )
 
