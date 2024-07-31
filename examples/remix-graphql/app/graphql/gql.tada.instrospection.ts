@@ -35,1496 +35,15 @@ const introspection = {
     },
     "types": [
       {
-        "kind": "OBJECT",
-        "name": "Query",
-        "fields": [
-          {
-            "name": "mediaImage",
-            "type": {
-              "kind": "OBJECT",
-              "name": "MediaImage",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "nodeArticle",
-            "type": {
-              "kind": "OBJECT",
-              "name": "NodeArticle",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "nodePage",
-            "type": {
-              "kind": "OBJECT",
-              "name": "NodePage",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "termTags",
-            "type": {
-              "kind": "OBJECT",
-              "name": "TermTags",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphCard",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphCard",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphCardGroup",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphCardGroup",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphCodeBlock",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphCodeBlock",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphHero",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphHero",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphImage",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphImage",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphStaticComponent",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphStaticComponent",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphText",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphText",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphViewReference",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphViewReference",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "menu",
-            "type": {
-              "kind": "OBJECT",
-              "name": "Menu",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "name",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "MenuAvailable",
-                    "ofType": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "name": "user",
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "name": "viewer",
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "info",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "SchemaInformation",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "mediaImages",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MediaImageConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "nodeArticles",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "NodeArticleConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "nodePages",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "NodePageConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "termTagsItems",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "TermTagsConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphCards",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphCardConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphCardGroups",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphCardGroupConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphCodeBlocks",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphCodeBlockConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphHeroes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphHeroConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphImages",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphImageConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphStaticComponents",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphStaticComponentConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphTexts",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphTextConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "paragraphViewReferences",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphViewReferenceConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "users",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "UserConnection",
-                "ofType": null
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "preview",
-            "type": {
-              "kind": "UNION",
-              "name": "NodeUnion",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              {
-                "name": "token",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "langcode",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            ]
-          },
-          {
-            "name": "route",
-            "type": {
-              "kind": "UNION",
-              "name": "RouteUnion",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "path",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "name": "viewBlogTeaser",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ViewBlogTeaserResult",
-              "ofType": null
-            },
-            "args": [
-              {
-                "name": "page",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            ]
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "SCALAR",
-        "name": "ID"
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int"
-      },
-      {
         "kind": "SCALAR",
         "name": "Boolean"
       },
       {
-        "kind": "SCALAR",
-        "name": "String"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MediaImage",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "changed",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "mediaImage",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Image",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "metatag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "path",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "MediaInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTagInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
         "kind": "INTERFACE",
-        "name": "MediaInterface",
+        "name": "Connection",
         "fields": [
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "changed",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "metatag",
+            "name": "edges",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -1532,99 +51,200 @@ const introspection = {
                 "ofType": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "kind": "INTERFACE",
+                    "name": "Edge"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "name",
+            "name": "nodes",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INTERFACE",
+                    "name": "EdgeNode"
+                  }
+                }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "path",
+            "name": "pageInfo",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
               }
             },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "MediaImage"
+            "name": "MediaImageConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "NodeArticleConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "NodePageConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphCardConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphCardGroupConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphCodeBlockConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphHeroConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphImageConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphStaticComponentConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphTextConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphViewReferenceConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "TermTagsConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "UserConnection"
           }
         ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ConnectionPageInfo",
+        "fields": [
+          {
+            "name": "endCursor",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Cursor"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "hasNextPage",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "hasPreviousPage",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "startCursor",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Cursor"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "ENUM",
+        "name": "ConnectionSortKeys",
+        "enumValues": [
+          {
+            "name": "CREATED_AT",
+            "isDeprecated": false
+          },
+          {
+            "name": "UPDATED_AT",
+            "isDeprecated": false
+          },
+          {
+            "name": "TITLE",
+            "isDeprecated": false
+          },
+          {
+            "name": "STICKY",
+            "isDeprecated": false
+          },
+          {
+            "name": "PROMOTED",
+            "isDeprecated": false
+          },
+          {
+            "name": "WEIGHT",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Cursor"
       },
       {
         "kind": "OBJECT",
         "name": "DateTime",
         "fields": [
           {
-            "name": "timestamp",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Timestamp",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "timezone",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "TimeZone",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "offset",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "UtcOffset",
-                "ofType": null
+                "name": "UtcOffset"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "time",
@@ -1632,466 +252,121 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Time",
-                "ofType": null
+                "name": "Time"
               }
             },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Timestamp"
-      },
-      {
-        "kind": "SCALAR",
-        "name": "TimeZone"
-      },
-      {
-        "kind": "SCALAR",
-        "name": "UtcOffset"
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Time"
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Language",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "SCALAR",
-              "name": "ID",
-              "ofType": null
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "name",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "direction",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "UNION",
-        "name": "MetaTagUnion",
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagLink"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagValue"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagProperty"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagScript"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagLink",
-        "fields": [
-          {
-            "name": "tag",
+            "name": "timestamp",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "Timestamp"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "attributes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MetaTagLinkAttributes",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTag"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "MetaTag",
-        "fields": [
-          {
-            "name": "tag",
+            "name": "timezone",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "TimeZone"
               }
             },
-            "args": []
-          }
-        ],
-        "interfaces": [],
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagLink"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagValue"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagProperty"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "MetaTagScript"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagLinkAttributes",
-        "fields": [
-          {
-            "name": "href",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "hreflang",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "rel",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "media",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "sizes",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "type",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagValue",
-        "fields": [
-          {
-            "name": "tag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "attributes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MetaTagValueAttributes",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTag"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagValueAttributes",
-        "fields": [
-          {
-            "name": "name",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "content",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagProperty",
-        "fields": [
-          {
-            "name": "tag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "attributes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MetaTagPropertyAttributes",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTag"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagPropertyAttributes",
-        "fields": [
-          {
-            "name": "property",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "content",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagScript",
-        "fields": [
-          {
-            "name": "tag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "attributes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MetaTagScriptAttributes",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "content",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTag"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MetaTagScriptAttributes",
-        "fields": [
-          {
-            "name": "type",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "src",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "integrity",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
       },
       {
         "kind": "INTERFACE",
-        "name": "MetaTagInterface",
+        "name": "Edge",
         "fields": [
           {
-            "name": "metatag",
+            "name": "cursor",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
-                  }
-                }
+                "kind": "SCALAR",
+                "name": "Cursor"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "EdgeNode"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "MediaImage"
+            "name": "MediaImageEdge"
           },
           {
             "kind": "OBJECT",
-            "name": "NodeArticle"
+            "name": "NodeArticleEdge"
           },
           {
             "kind": "OBJECT",
-            "name": "User"
+            "name": "NodePageEdge"
           },
           {
             "kind": "OBJECT",
-            "name": "NodePage"
+            "name": "ParagraphCardEdge"
           },
           {
             "kind": "OBJECT",
-            "name": "TermTags"
+            "name": "ParagraphCardGroupEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphCodeBlockEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphHeroEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphImageEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphStaticComponentEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphTextEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphViewReferenceEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "TermTagsEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "UserEdge"
           }
         ]
       },
@@ -2105,11 +380,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
@@ -2124,7 +399,7 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "User"
+            "name": "NodePage"
           },
           {
             "kind": "OBJECT",
@@ -2160,71 +435,48 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "NodePage"
+            "name": "TermTags"
           },
           {
             "kind": "OBJECT",
-            "name": "TermTags"
+            "name": "User"
           }
         ]
       },
       {
+        "kind": "SCALAR",
+        "name": "Email"
+      },
+      {
         "kind": "OBJECT",
-        "name": "Image",
+        "name": "File",
         "fields": [
           {
-            "name": "url",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "width",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "height",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "alt",
+            "name": "description",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "title",
+            "name": "mime",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "size",
@@ -2232,20 +484,101 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "name": "Int"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Html"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Image",
+        "fields": [
+          {
+            "name": "alt",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "height",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "mime",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "size",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "variations",
@@ -2255,8 +588,7 @@ const introspection = {
                 "kind": "NON_NULL",
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "ImageStyleDerivative",
-                  "ofType": null
+                  "name": "ImageStyleDerivative"
                 }
               }
             },
@@ -2267,22 +599,71 @@ const introspection = {
                   "kind": "LIST",
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "ImageStyleAvailable",
-                    "ofType": null
+                    "name": "ImageStyleAvailable"
                   }
                 }
               }
-            ]
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "width",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ImageStyle",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "ImageStyleInterface"
+          }
+        ]
       },
       {
         "kind": "ENUM",
         "name": "ImageStyleAvailable",
         "enumValues": [
           {
-            "name": "UNDEFINED"
+            "name": "UNDEFINED",
+            "isDeprecated": false
           }
         ]
       },
@@ -2291,16 +672,28 @@ const introspection = {
         "name": "ImageStyleDerivative",
         "fields": [
           {
+            "name": "height",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "name",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "url",
@@ -2308,11 +701,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "width",
@@ -2320,23 +713,1203 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "name": "Int"
               }
             },
-            "args": []
-          },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "ImageStyleInterface",
+        "fields": [
           {
-            "name": "height",
+            "name": "id",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "ImageStyle"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ImageStyleUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "ImageStyle"
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int"
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "KeyValueInput",
+        "inputFields": [
+          {
+            "name": "key",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Language",
+        "fields": [
+          {
+            "name": "direction",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Link",
+        "fields": [
+          {
+            "name": "internal",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MediaImage",
+        "fields": [
+          {
+            "name": "changed",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "mediaImage",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Image"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "metatag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "path",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "MediaInterface"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "MetaTagInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MediaImageConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MediaImageEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MediaImage"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MediaImageEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MediaImage"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "MediaInterface",
+        "fields": [
+          {
+            "name": "changed",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "metatag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "path",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "MediaImage"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "MediaUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "MediaImage"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Menu",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "items",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MenuItem"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MenuInterface"
+          }
+        ]
+      },
+      {
+        "kind": "ENUM",
+        "name": "MenuAvailable",
+        "enumValues": [
+          {
+            "name": "MAIN",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "MenuInterface",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "items",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MenuItem"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "Menu"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MenuItem",
+        "fields": [
+          {
+            "name": "attributes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MenuItemAttributes"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "children",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "MenuItem"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "expanded",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "internal",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "route",
+            "type": {
+              "kind": "UNION",
+              "name": "RouteUnion"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MenuItemAttributes",
+        "fields": [
+          {
+            "name": "class",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "UNION",
+        "name": "MenuUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "Menu"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "MetaTag",
+        "fields": [
+          {
+            "name": "tag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagLink"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagProperty"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagScript"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagValue"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "MetaTagInterface",
+        "fields": [
+          {
+            "name": "metatag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "MediaImage"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "NodeArticle"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "NodePage"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "TermTags"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "User"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagLink",
+        "fields": [
+          {
+            "name": "attributes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MetaTagLinkAttributes"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "tag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MetaTag"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagLinkAttributes",
+        "fields": [
+          {
+            "name": "href",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "hreflang",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "media",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "rel",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "sizes",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "type",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagProperty",
+        "fields": [
+          {
+            "name": "attributes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MetaTagPropertyAttributes"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "tag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MetaTag"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagPropertyAttributes",
+        "fields": [
+          {
+            "name": "content",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "property",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagScript",
+        "fields": [
+          {
+            "name": "attributes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MetaTagScriptAttributes"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "content",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "tag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MetaTag"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagScriptAttributes",
+        "fields": [
+          {
+            "name": "integrity",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "src",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "type",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "UNION",
+        "name": "MetaTagUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagLink"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagProperty"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagScript"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "MetaTagValue"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagValue",
+        "fields": [
+          {
+            "name": "attributes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MetaTagValueAttributes"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "tag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "MetaTag"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MetaTagValueAttributes",
+        "fields": [
+          {
+            "name": "content",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Mutation",
+        "fields": [
+          {
+            "name": "_",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
@@ -2346,25 +1919,13 @@ const introspection = {
         "name": "NodeArticle",
         "fields": [
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "author",
             "type": {
               "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
+              "name": "User"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "changed",
@@ -2372,11 +1933,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "components",
@@ -2386,12 +1947,12 @@ const introspection = {
                 "kind": "NON_NULL",
                 "ofType": {
                   "kind": "UNION",
-                  "name": "ParagraphUnion",
-                  "ofType": null
+                  "name": "ParagraphUnion"
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "created",
@@ -2399,11 +1960,23 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "image",
@@ -2411,11 +1984,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "UNION",
-                "name": "MediaUnion",
-                "ofType": null
+                "name": "MediaUnion"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "langcode",
@@ -2423,11 +1996,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
+                "name": "Language"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "metatag",
@@ -2439,13 +2012,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "name": "MetaTagUnion"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "path",
@@ -2453,11 +2026,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "promote",
@@ -2465,11 +2038,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "status",
@@ -2477,11 +2050,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "sticky",
@@ -2489,11 +2062,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "summary",
@@ -2501,11 +2074,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "tags",
@@ -2515,12 +2088,12 @@ const introspection = {
                 "kind": "NON_NULL",
                 "ofType": {
                   "kind": "UNION",
-                  "name": "TermUnion",
-                  "ofType": null
+                  "name": "TermUnion"
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "title",
@@ -2528,17 +2101,17 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "NodeInterface"
+            "name": "EdgeNode"
           },
           {
             "kind": "INTERFACE",
@@ -2546,7 +2119,103 @@ const introspection = {
           },
           {
             "kind": "INTERFACE",
-            "name": "EdgeNode"
+            "name": "NodeInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NodeArticleConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NodeArticleEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NodeArticle"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NodeArticleEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "NodeArticle"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
           }
         ]
       },
@@ -2555,25 +2224,13 @@ const introspection = {
         "name": "NodeInterface",
         "fields": [
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "author",
             "type": {
               "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
+              "name": "User"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "changed",
@@ -2581,11 +2238,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "created",
@@ -2593,11 +2250,23 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "langcode",
@@ -2605,11 +2274,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
+                "name": "Language"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "metatag",
@@ -2621,13 +2290,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "name": "MetaTagUnion"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "path",
@@ -2635,11 +2304,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "promote",
@@ -2647,11 +2316,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "status",
@@ -2659,11 +2328,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "sticky",
@@ -2671,11 +2340,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "title",
@@ -2683,11 +2352,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
@@ -2704,19 +2373,16 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "User",
+        "name": "NodePage",
         "fields": [
           {
-            "name": "id",
+            "name": "author",
             "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "User"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "changed",
@@ -2724,11 +2390,26 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "components",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "UNION",
+                  "name": "ParagraphUnion"
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "created",
@@ -2736,20 +2417,47 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "mail",
+            "name": "id",
             "type": {
-              "kind": "SCALAR",
-              "name": "Email",
-              "ofType": null
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "UNION",
+                "name": "MediaUnion"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "metatag",
@@ -2761,25 +2469,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "name": "MetaTagUnion"
                   }
                 }
               }
             },
-            "args": []
-          },
-          {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "path",
@@ -2787,53 +2483,86 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "picture",
+            "name": "promote",
             "type": {
-              "kind": "UNION",
-              "name": "MediaUnion",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "roles",
-            "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "ofType": {
-                "kind": "NON_NULL",
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "UserRoles",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "showTitle",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "ENUM",
-                "name": "UserStatus",
-                "ofType": null
+                "kind": "SCALAR",
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "sticky",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "summary",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "UserInterface"
+            "name": "EdgeNode"
           },
           {
             "kind": "INTERFACE",
@@ -2841,61 +2570,355 @@ const introspection = {
           },
           {
             "kind": "INTERFACE",
-            "name": "EdgeNode"
+            "name": "NodeInterface"
           }
         ]
       },
       {
-        "kind": "INTERFACE",
-        "name": "UserInterface",
+        "kind": "OBJECT",
+        "name": "NodePageConnection",
         "fields": [
           {
-            "name": "id",
+            "name": "edges",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NodePageEdge"
+                  }
+                }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "changed",
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NodePage"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "ConnectionPageInfo"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NodePageEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "NodePage"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "NodeUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "NodeArticle"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "NodePage"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCard",
+        "fields": [
           {
             "name": "created",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "mail",
+            "name": "cta",
             "type": {
-              "kind": "SCALAR",
-              "name": "Email",
-              "ofType": null
+              "kind": "OBJECT",
+              "name": "Link"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "metatag",
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "UNION",
+                "name": "MediaUnion"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "text",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCardConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphCardEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphCard"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCardEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphCard"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCardGroup",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "items",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -2904,101 +2927,1161 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "name": "ParagraphUnion"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "name",
+            "name": "langcode",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "OBJECT",
+                "name": "Language"
               }
             },
-            "args": []
-          },
-          {
-            "name": "path",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "roles",
-            "type": {
-              "kind": "LIST",
-              "ofType": {
-                "kind": "NON_NULL",
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "UserRoles",
-                  "ofType": null
-                }
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "ENUM",
-                "name": "UserStatus",
-                "ofType": null
+                "kind": "SCALAR",
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCardGroupConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphCardGroupEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphCardGroup"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCardGroupEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphCardGroup"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCodeBlock",
+        "fields": [
+          {
+            "name": "code",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "language",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "showLineNumbers",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "titleOptional",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCodeBlockConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphCodeBlockEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphCodeBlock"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphCodeBlockEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphCodeBlock"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphHero",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "UNION",
+              "name": "MediaUnion"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "text",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphHeroConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphHeroEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphHero"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphHeroEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphHero"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphImage",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "UNION",
+              "name": "MediaUnion"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphImageConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphImageEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphImage"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphImageEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphImage"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "ParagraphInterface",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "User"
-          }
-        ]
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Email"
-      },
-      {
-        "kind": "SCALAR",
-        "name": "UserRoles"
-      },
-      {
-        "kind": "ENUM",
-        "name": "UserStatus",
-        "enumValues": [
-          {
-            "name": "ACTIVE"
+            "name": "ParagraphCard"
           },
           {
-            "name": "BLOCKED"
+            "kind": "OBJECT",
+            "name": "ParagraphCardGroup"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphCodeBlock"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphHero"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphImage"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphStaticComponent"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphText"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphViewReference"
           }
         ]
       },
       {
-        "kind": "UNION",
-        "name": "MediaUnion",
-        "possibleTypes": [
+        "kind": "OBJECT",
+        "name": "ParagraphStaticComponent",
+        "fields": [
           {
-            "kind": "OBJECT",
-            "name": "MediaImage"
+            "name": "component",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphStaticComponentConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphStaticComponentEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphStaticComponent"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphStaticComponentEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphStaticComponent"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphText",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "textRich",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Text"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "title",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphTextConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphTextEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphText"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphTextEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphText"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
           }
         ]
       },
@@ -3042,835 +4125,31 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCard",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "cta",
-            "type": {
-              "kind": "OBJECT",
-              "name": "Link",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "image",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "UNION",
-                "name": "MediaUnion",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "text",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "ParagraphInterface",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [],
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCard"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCardGroup"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCodeBlock"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphHero"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphImage"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphStaticComponent"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphText"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphViewReference"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Link",
-        "fields": [
-          {
-            "name": "title",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "url",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "internal",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphCardGroup",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "items",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "UNION",
-                    "name": "ParagraphUnion",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphCodeBlock",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "code",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "language",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "showLineNumbers",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "titleOptional",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphHero",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "image",
-            "type": {
-              "kind": "UNION",
-              "name": "MediaUnion",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "text",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphImage",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "image",
-            "type": {
-              "kind": "UNION",
-              "name": "MediaUnion",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphStaticComponent",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "component",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphText",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "textRich",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Text",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Text",
-        "fields": [
-          {
-            "name": "value",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "processed",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Html",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "format",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Html"
-      },
-      {
-        "kind": "OBJECT",
         "name": "ParagraphViewReference",
         "fields": [
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "created",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "langcode",
@@ -3878,11 +4157,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
+                "name": "Language"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "reference",
@@ -3890,55 +4169,50 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "UNION",
-                "name": "ViewResultUnion",
-                "ofType": null
+                "name": "ViewResultUnion"
               }
             },
             "args": [
-              {
-                "name": "page",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              {
-                "name": "offset",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
               {
                 "name": "filter",
                 "type": {
                   "kind": "LIST",
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "KeyValueInput",
-                    "ofType": null
+                    "name": "KeyValueInput"
                   }
                 }
               },
               {
-                "name": "sortKey",
+                "name": "offset",
                 "type": {
                   "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "page",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
                 }
               },
               {
                 "name": "sortDir",
                 "type": {
                   "kind": "ENUM",
-                  "name": "SortDirection",
-                  "ofType": null
+                  "name": "SortDirection"
+                }
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
                 }
               }
-            ]
+            ],
+            "isDeprecated": false
           },
           {
             "name": "status",
@@ -3946,170 +4220,48 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "text",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "title",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
           {
             "kind": "INTERFACE",
             "name": "ParagraphInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "KeyValueInput",
-        "inputFields": [
-          {
-            "name": "key",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            }
-          },
-          {
-            "name": "value",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            }
-          }
-        ]
-      },
-      {
-        "kind": "ENUM",
-        "name": "SortDirection",
-        "enumValues": [
-          {
-            "name": "ASC"
-          },
-          {
-            "name": "DESC"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "ViewResultUnion",
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "ViewBlogTeaserResult"
           }
         ]
       },
       {
         "kind": "OBJECT",
-        "name": "ViewBlogTeaserResult",
+        "name": "ParagraphViewReferenceConnection",
         "fields": [
           {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "view",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "display",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "label",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "description",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ViewPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "results",
+            "name": "edges",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -4117,89 +4269,32 @@ const introspection = {
                 "ofType": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "UNION",
-                    "name": "NodeUnion",
-                    "ofType": null
+                    "kind": "OBJECT",
+                    "name": "ParagraphViewReferenceEdge"
                   }
                 }
               }
             },
-            "args": []
-          }
-        ],
-        "interfaces": [
+            "args": [],
+            "isDeprecated": false
+          },
           {
-            "kind": "INTERFACE",
-            "name": "View"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "View",
-        "fields": [
-          {
-            "name": "id",
+            "name": "nodes",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphViewReference"
+                  }
+                }
               }
             },
-            "args": []
-          },
-          {
-            "name": "view",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "display",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "label",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "description",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "pageInfo",
@@ -4207,956 +4302,1290 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ViewPageInfo",
-                "ofType": null
+                "name": "ConnectionPageInfo"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
-        "interfaces": [],
-        "possibleTypes": [
+        "interfaces": [
           {
-            "kind": "OBJECT",
-            "name": "ViewBlogTeaserResult"
+            "kind": "INTERFACE",
+            "name": "Connection"
           }
         ]
       },
       {
         "kind": "OBJECT",
-        "name": "ViewPageInfo",
+        "name": "ParagraphViewReferenceEdge",
         "fields": [
           {
-            "name": "offset",
+            "name": "cursor",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "name": "Cursor"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "page",
+            "name": "node",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "OBJECT",
+                "name": "ParagraphViewReference"
               }
             },
-            "args": []
-          },
-          {
-            "name": "pageSize",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "total",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
-        "interfaces": []
-      },
-      {
-        "kind": "UNION",
-        "name": "NodeUnion",
-        "possibleTypes": [
+        "interfaces": [
           {
-            "kind": "OBJECT",
-            "name": "NodeArticle"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "NodePage"
+            "kind": "INTERFACE",
+            "name": "Edge"
           }
         ]
       },
       {
+        "kind": "SCALAR",
+        "name": "PhoneNumber"
+      },
+      {
         "kind": "OBJECT",
-        "name": "NodePage",
+        "name": "Query",
         "fields": [
           {
-            "name": "id",
+            "name": "info",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
+                "kind": "OBJECT",
+                "name": "SchemaInformation"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "author",
+            "name": "mediaImage",
             "type": {
               "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
+              "name": "MediaImage"
             },
-            "args": []
-          },
-          {
-            "name": "changed",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "components",
-            "type": {
-              "kind": "LIST",
-              "ofType": {
-                "kind": "NON_NULL",
-                "ofType": {
-                  "kind": "UNION",
-                  "name": "ParagraphUnion",
-                  "ofType": null
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "image",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "UNION",
-                "name": "MediaUnion",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "metatag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
+            "args": [
+              {
+                "name": "id",
+                "type": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "mediaImages",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MediaImageConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "menu",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Menu"
+            },
+            "args": [
+              {
+                "name": "name",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "MenuAvailable"
                   }
                 }
               }
-            },
-            "args": []
+            ],
+            "isDeprecated": false
           },
           {
-            "name": "path",
+            "name": "nodeArticle",
             "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "NodeArticle"
             },
-            "args": []
-          },
-          {
-            "name": "promote",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "showTitle",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "sticky",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "summary",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "NodeInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTagInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "TermUnion",
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "TermTags"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "TermTags",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "changed",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "description",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Text",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "metatag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
+            "args": [
+              {
+                "name": "id",
+                "type": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "kind": "SCALAR",
+                    "name": "ID"
                   }
                 }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
               }
-            },
-            "args": []
+            ],
+            "isDeprecated": false
           },
           {
-            "name": "name",
+            "name": "nodeArticles",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "OBJECT",
+                "name": "NodeArticleConnection"
               }
             },
-            "args": []
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
           },
           {
-            "name": "parent",
+            "name": "nodePage",
+            "type": {
+              "kind": "OBJECT",
+              "name": "NodePage"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodePages",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "NodePageConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCard",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphCard"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCardGroup",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphCardGroup"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCardGroups",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphCardGroupConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCards",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphCardConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCodeBlock",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphCodeBlock"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCodeBlocks",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphCodeBlockConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphHero",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphHero"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphHeroes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphHeroConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphImage",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphImage"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphImages",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphImageConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphStaticComponent",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphStaticComponent"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphStaticComponents",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphStaticComponentConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphText",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphText"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphTexts",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphTextConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphViewReference",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphViewReference"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphViewReferences",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphViewReferenceConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "preview",
             "type": {
               "kind": "UNION",
-              "name": "TermUnion",
-              "ofType": null
+              "name": "NodeUnion"
             },
-            "args": []
-          },
-          {
-            "name": "path",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "TermInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "MetaTagInterface"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "TermInterface",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "changed",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "description",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Text",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "metatag",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
+            "args": [
+              {
+                "name": "id",
+                "type": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "UNION",
-                    "name": "MetaTagUnion",
-                    "ofType": null
+                    "kind": "SCALAR",
+                    "name": "ID"
                   }
                 }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "parent",
-            "type": {
-              "kind": "UNION",
-              "name": "TermUnion",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "path",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [],
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "TermTags"
-          }
-        ]
-      },
-      {
-        "kind": "ENUM",
-        "name": "MenuAvailable",
-        "enumValues": [
-          {
-            "name": "MAIN"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Menu",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "items",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MenuItem",
-                    "ofType": null
-                  }
+              },
+              {
+                "name": "langcode",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "token",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
                 }
               }
-            },
-            "args": []
-          },
-          {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "MenuInterface"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "MenuInterface",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "items",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MenuItem",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [],
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "Menu"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MenuItem",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "description",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "url",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "internal",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "expanded",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "attributes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MenuItemAttributes",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "children",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MenuItem",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
+            ],
+            "isDeprecated": false
           },
           {
             "name": "route",
             "type": {
               "kind": "UNION",
-              "name": "RouteUnion",
-              "ofType": null
+              "name": "RouteUnion"
             },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MenuItemAttributes",
-        "fields": [
-          {
-            "name": "class",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "UNION",
-        "name": "RouteUnion",
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "RouteInternal"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "RouteExternal"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "RouteRedirect"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "RouteInternal",
-        "fields": [
-          {
-            "name": "url",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "internal",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "breadcrumbs",
-            "type": {
-              "kind": "LIST",
-              "ofType": {
-                "kind": "NON_NULL",
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Link",
-                  "ofType": null
+            "args": [
+              {
+                "name": "path",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
                 }
               }
-            },
-            "args": []
+            ],
+            "isDeprecated": false
           },
           {
-            "name": "entity",
+            "name": "termTags",
             "type": {
-              "kind": "UNION",
-              "name": "RouteEntityUnion",
-              "ofType": null
+              "kind": "OBJECT",
+              "name": "TermTags"
             },
-            "args": []
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "termTagsItems",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TermTagsConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "user",
+            "type": {
+              "kind": "OBJECT",
+              "name": "User"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "users",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "UserConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "viewBlogTeaser",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ViewBlogTeaserResult"
+            },
+            "args": [
+              {
+                "name": "page",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                },
+                "defaultValue": "0"
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "viewer",
+            "type": {
+              "kind": "OBJECT",
+              "name": "User"
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Route"
-          }
-        ]
+        "interfaces": []
       },
       {
         "kind": "INTERFACE",
         "name": "Route",
         "fields": [
           {
-            "name": "url",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "internal",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "RouteInternal"
+            "name": "RouteExternal"
           },
           {
             "kind": "OBJECT",
-            "name": "RouteExternal"
+            "name": "RouteInternal"
           },
           {
             "kind": "OBJECT",
@@ -5191,16 +5620,64 @@ const introspection = {
         "name": "RouteExternal",
         "fields": [
           {
+            "name": "internal",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "url",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Route"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RouteInternal",
+        "fields": [
+          {
+            "name": "breadcrumbs",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Link"
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "entity",
+            "type": {
+              "kind": "UNION",
+              "name": "RouteEntityUnion"
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "internal",
@@ -5208,11 +5685,23 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -5227,40 +5716,16 @@ const introspection = {
         "name": "RouteRedirect",
         "fields": [
           {
-            "name": "url",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "internal",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "redirect",
@@ -5268,17 +5733,59 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "url",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
           {
             "kind": "INTERFACE",
             "name": "Route"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "RouteUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "RouteExternal"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "RouteInternal"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "RouteRedirect"
           }
         ]
       },
@@ -5290,396 +5797,114 @@ const introspection = {
             "name": "description",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "version",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Cursor"
       },
       {
         "kind": "ENUM",
-        "name": "ConnectionSortKeys",
+        "name": "SortDirection",
         "enumValues": [
           {
-            "name": "CREATED_AT"
+            "name": "ASC",
+            "isDeprecated": false
           },
           {
-            "name": "UPDATED_AT"
-          },
-          {
-            "name": "TITLE"
-          },
-          {
-            "name": "STICKY"
-          },
-          {
-            "name": "PROMOTED"
-          },
-          {
-            "name": "WEIGHT"
+            "name": "DESC",
+            "isDeprecated": false
           }
         ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String"
       },
       {
         "kind": "OBJECT",
-        "name": "MediaImageConnection",
+        "name": "Subscription",
         "fields": [
           {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MediaImageEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "MediaImage",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "Connection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "INTERFACE",
-                    "name": "Edge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "INTERFACE",
-                    "name": "EdgeNode",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [],
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "MediaImageConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "NodeArticleConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "NodePageConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "TermTagsConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCardConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCardGroupConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCodeBlockConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphHeroConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphImageConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphStaticComponentConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphTextConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphViewReferenceConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "UserConnection"
-          }
-        ]
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "Edge",
-        "fields": [
-          {
-            "name": "cursor",
+            "name": "_",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "INTERFACE",
-                "name": "EdgeNode",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [],
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "MediaImageEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "NodeArticleEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "NodePageEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "TermTagsEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCardEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCardGroupEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphCodeBlockEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphHeroEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphImageEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphStaticComponentEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphTextEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphViewReferenceEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "UserEdge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ConnectionPageInfo",
-        "fields": [
-          {
-            "name": "hasNextPage",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "hasPreviousPage",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "startCursor",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Cursor",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "endCursor",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Cursor",
-              "ofType": null
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
       },
       {
-        "kind": "OBJECT",
-        "name": "MediaImageEdge",
+        "kind": "INTERFACE",
+        "name": "TermInterface",
         "fields": [
           {
-            "name": "cursor",
+            "name": "changed",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Text"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "node",
+            "name": "langcode",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "MediaImage",
-                "ofType": null
+                "name": "Language"
               }
             },
-            "args": []
-          }
-        ],
-        "interfaces": [
+            "args": [],
+            "isDeprecated": false
+          },
           {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NodeArticleConnection",
-        "fields": [
-          {
-            "name": "edges",
+            "name": "metatag",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -5687,182 +5912,221 @@ const introspection = {
                 "ofType": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "NodeArticleEdge",
-                    "ofType": null
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "NodeArticle",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NodeArticleEdge",
-        "fields": [
-          {
-            "name": "cursor",
+            "name": "name",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "node",
+            "name": "parent",
             "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "NodeArticle",
-                "ofType": null
-              }
+              "kind": "UNION",
+              "name": "TermUnion"
             },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NodePageConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "NodePageEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "NodePage",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NodePageEdge",
-        "fields": [
-          {
-            "name": "cursor",
+            "name": "path",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "node",
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "weight",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "TermTags"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TermTags",
+        "fields": [
+          {
+            "name": "changed",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "NodePage",
-                "ofType": null
+                "name": "DateTime"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Text"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "metatag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "parent",
+            "type": {
+              "kind": "UNION",
+              "name": "TermUnion"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "path",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "weight",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Edge"
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "MetaTagInterface"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "TermInterface"
           }
         ]
       },
@@ -5880,13 +6144,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "TermTagsEdge",
-                    "ofType": null
+                    "name": "TermTagsEdge"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "nodes",
@@ -5898,13 +6162,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "TermTags",
-                    "ofType": null
+                    "name": "TermTags"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "pageInfo",
@@ -5912,11 +6176,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
+                "name": "ConnectionPageInfo"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -5936,11 +6200,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "Cursor"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "node",
@@ -5948,11 +6212,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "TermTags",
-                "ofType": null
+                "name": "TermTags"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -5963,107 +6227,175 @@ const introspection = {
         ]
       },
       {
-        "kind": "OBJECT",
-        "name": "ParagraphCardConnection",
-        "fields": [
+        "kind": "UNION",
+        "name": "TermUnion",
+        "possibleTypes": [
           {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphCardEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphCard",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
+            "kind": "OBJECT",
+            "name": "TermTags"
           }
         ]
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCardEdge",
+        "name": "Text",
         "fields": [
           {
-            "name": "cursor",
+            "name": "format",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "processed",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Html"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TextSummary",
+        "fields": [
+          {
+            "name": "format",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "processed",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Html"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "summary",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Html"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Time"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "TimeZone"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Timestamp"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UnsupportedType",
+        "fields": [
+          {
+            "name": "unsupported",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "SCALAR",
+        "name": "UntypedStructuredData"
+      },
+      {
+        "kind": "OBJECT",
+        "name": "User",
+        "fields": [
+          {
+            "name": "changed",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "node",
+            "name": "mail",
             "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphCard",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Email"
             },
-            "args": []
-          }
-        ],
-        "interfaces": [
+            "args": [],
+            "isDeprecated": false
+          },
           {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphCardGroupConnection",
-        "fields": [
-          {
-            "name": "edges",
+            "name": "metatag",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -6071,662 +6403,88 @@ const introspection = {
                 "ofType": {
                   "kind": "NON_NULL",
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphCardGroupEdge",
-                    "ofType": null
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphCardGroup",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphCardGroupEdge",
-        "fields": [
-          {
-            "name": "cursor",
+            "name": "name",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphCardGroup",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphCodeBlockConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphCodeBlockEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphCodeBlock",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphCodeBlockEdge",
-        "fields": [
-          {
-            "name": "cursor",
+            "name": "path",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "node",
+            "name": "picture",
             "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphCodeBlock",
-                "ofType": null
-              }
+              "kind": "UNION",
+              "name": "MediaUnion"
             },
-            "args": []
-          }
-        ],
-        "interfaces": [
+            "args": [],
+            "isDeprecated": false
+          },
           {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphHeroConnection",
-        "fields": [
-          {
-            "name": "edges",
+            "name": "roles",
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "ofType": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphHeroEdge",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "UserRoles"
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "nodes",
+            "name": "status",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphHero",
-                    "ofType": null
-                  }
-                }
+                "kind": "ENUM",
+                "name": "UserStatus"
               }
             },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphHeroEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              }
-            },
-            "args": []
+            "name": "EdgeNode"
           },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphHero",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphImageConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphImageEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
+            "name": "MetaTagInterface"
           },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphImage",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphImageEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphImage",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphStaticComponentConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphStaticComponentEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphStaticComponent",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphStaticComponentEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphStaticComponent",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphTextConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphTextEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphText",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphTextEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphText",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphViewReferenceConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphViewReferenceEdge",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphViewReference",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphViewReferenceEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphViewReference",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
+            "name": "UserInterface"
           }
         ]
       },
@@ -6744,13 +6502,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "UserEdge",
-                    "ofType": null
+                    "name": "UserEdge"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "nodes",
@@ -6762,13 +6520,13 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "User",
-                    "ofType": null
+                    "name": "User"
                   }
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "pageInfo",
@@ -6776,11 +6534,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ConnectionPageInfo",
-                "ofType": null
+                "name": "ConnectionPageInfo"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -6800,11 +6558,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
+                "name": "Cursor"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "node",
@@ -6812,11 +6570,11 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
+                "name": "User"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -6827,152 +6585,71 @@ const introspection = {
         ]
       },
       {
-        "kind": "OBJECT",
-        "name": "Mutation",
-        "fields": [
-          {
-            "name": "_",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Subscription",
-        "fields": [
-          {
-            "name": "_",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "File",
-        "fields": [
-          {
-            "name": "name",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "url",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "size",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "mime",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "description",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ImageStyle",
-        "fields": [
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "name",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "ImageStyleInterface"
-          }
-        ]
-      },
-      {
         "kind": "INTERFACE",
-        "name": "ImageStyleInterface",
+        "name": "UserInterface",
         "fields": [
+          {
+            "name": "changed",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
           {
             "name": "id",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "mail",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Email"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "metatag",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "MetaTagUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "name",
@@ -6980,107 +6657,77 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "path",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "roles",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "UserRoles"
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "ENUM",
+                "name": "UserStatus"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": [],
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "ImageStyle"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "ImageStyleUnion",
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "ImageStyle"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "MenuUnion",
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "Menu"
+            "name": "User"
           }
         ]
       },
       {
         "kind": "SCALAR",
-        "name": "PhoneNumber"
+        "name": "UserRoles"
       },
       {
-        "kind": "OBJECT",
-        "name": "TextSummary",
-        "fields": [
+        "kind": "ENUM",
+        "name": "UserStatus",
+        "enumValues": [
           {
-            "name": "value",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
+            "name": "ACTIVE",
+            "isDeprecated": false
           },
           {
-            "name": "processed",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Html",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "format",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "args": []
-          },
-          {
-            "name": "summary",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Html",
-              "ofType": null
-            },
-            "args": []
+            "name": "BLOCKED",
+            "isDeprecated": false
           }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "OBJECT",
-        "name": "UnsupportedType",
-        "fields": [
-          {
-            "name": "unsupported",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "args": []
-          }
-        ],
-        "interfaces": []
-      },
-      {
-        "kind": "SCALAR",
-        "name": "UntypedStructuredData"
+        ]
       },
       {
         "kind": "UNION",
@@ -7093,74 +6740,247 @@ const introspection = {
         ]
       },
       {
-        "kind": "OBJECT",
-        "name": "ViewFilter",
+        "kind": "SCALAR",
+        "name": "UtcOffset"
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "View",
         "fields": [
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "display",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
           {
             "name": "id",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
-          },
-          {
-            "name": "plugin",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "type",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "label",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ViewPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "view",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [],
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "ViewBlogTeaserResult"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ViewBlogTeaserResult",
+        "fields": [
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "display",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "label",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ViewPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "results",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "NodeUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "view",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "View"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ViewFilter",
+        "fields": [
+          {
+            "name": "attributes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "UntypedStructuredData"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "description",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "required",
+            "name": "id",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "ID"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "label",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "multiple",
@@ -7168,41 +6988,120 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "name": "Boolean"
               }
             },
-            "args": []
-          },
-          {
-            "name": "value",
-            "type": {
-              "kind": "SCALAR",
-              "name": "UntypedStructuredData",
-              "ofType": null
-            },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "options",
             "type": {
               "kind": "SCALAR",
-              "name": "UntypedStructuredData",
-              "ofType": null
+              "name": "UntypedStructuredData"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
-            "name": "attributes",
+            "name": "plugin",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "UntypedStructuredData",
-                "ofType": null
+                "name": "String"
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "required",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "type",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "value",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UntypedStructuredData"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ViewPageInfo",
+        "fields": [
+          {
+            "name": "offset",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "page",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageSize",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "total",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
@@ -7212,30 +7111,6 @@ const introspection = {
         "name": "ViewReference",
         "fields": [
           {
-            "name": "view",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "display",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "args": []
-          },
-          {
             "name": "contextualFilter",
             "type": {
               "kind": "LIST",
@@ -7243,33 +7118,67 @@ const introspection = {
                 "kind": "NON_NULL",
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
+                  "name": "String"
                 }
               }
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "display",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "pageSize",
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "name": "Int"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
           },
           {
             "name": "query",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "name": "String"
             },
-            "args": []
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "view",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
           }
         ],
         "interfaces": []
+      },
+      {
+        "kind": "UNION",
+        "name": "ViewResultUnion",
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "ViewBlogTeaserResult"
+          }
+        ]
       }
     ],
     "directives": []
