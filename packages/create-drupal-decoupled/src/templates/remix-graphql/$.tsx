@@ -32,6 +32,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
           ... on RouteInternal {
             entity {
               ... on NodeArticle {
+                __typename
                 title
                 path
                 image {
@@ -64,6 +65,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
                 }
               }
               ... on NodePage {
+                __typename
                 title
                 path
                 body {
@@ -94,6 +96,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
             }
           }
           ... on RouteRedirect {
+            __typename
             url
             status
           }
