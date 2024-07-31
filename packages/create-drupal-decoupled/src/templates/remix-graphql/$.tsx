@@ -63,6 +63,34 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
                   }
                 }
               }
+              ... on NodePage {
+                title
+                path
+                body {
+                  value
+                }
+                metatag {
+                  __typename
+                  ... on MetaTagLink {
+                    attributes {
+                      rel
+                      href
+                    }
+                  }
+                  ... on MetaTagValue {
+                    attributes {
+                      name
+                      content
+                    }
+                  }
+                  ... on MetaTagProperty {
+                    attributes {
+                      property
+                      content
+                    }
+                  }
+                }
+              }
             }
           }
           ... on RouteRedirect {
