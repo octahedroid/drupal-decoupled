@@ -10,7 +10,7 @@ import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/drupal/node/NodeArticle";
 import NodePageComponent from "~/components/drupal/node/NodePage";
 import TermTagsComponent from "~/components/drupal/taxonomy/TermTags";
-import { getClient } from "~/utils/client.server";
+import { getClient } from "~/utils/drupal/client.server";
 import { calculatePath } from "~/utils/drupal/routes";
 import { calculateMetaTags } from "~/utils/drupal/metatags";
 

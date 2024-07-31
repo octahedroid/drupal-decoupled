@@ -13,7 +13,7 @@ import {
 import { TermTagsFragment } from "@/graphql/drupal/fragments/terms";
 import { graphql } from "@/graphql/gql.tada";
 import { EntityFragmentType } from "@/graphql/drupal/types";
-import { getClient } from "@/utils/client.server";
+import { getClient } from "@/utils/drupal/client";
 import { calculatePath } from "@/utils/drupal/routes";
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {

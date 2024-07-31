@@ -1,5 +1,5 @@
 import { Client, fetchExchange } from '@urql/core';
-import { getToken } from './auth.server';
+import { getToken } from './auth';
 
 interface ClientArgs {
   url: string
