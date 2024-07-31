@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { ParagraphCardGroupFragment, ParagraphCardFragment } from "~/graphql/fragments/paragraph";
+import { ParagraphCardGroupFragment, ParagraphCardFragment } from "~/graphql/drupal/fragments/paragraph";
+import { extractImageFromMedia } from "~/graphql/drupal/helpers";
 import CardGroup, { Cards } from "~/components/ui/CardGroup";
-import { extractImageFromMedia } from "~/graphql/helpers";
 
 interface ParagraphHeroProps {
   paragraph: FragmentOf<typeof ParagraphCardGroupFragment>

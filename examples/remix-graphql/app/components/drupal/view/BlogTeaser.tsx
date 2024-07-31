@@ -1,5 +1,5 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { NodeArticleFragment, NodeArticleTeaserFragment } from "~/graphql/fragments/node";
+import { NodeArticleFragment, NodeArticleTeaserFragment } from "~/graphql/drupal/fragments/node";
 import NodeArticleTeaser from "~/components/drupal/node/NodeArticleTeaser";
 
 interface BlogTeaserProps {

@@ -1,9 +1,9 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { NodeArticleFragment } from "@/graphql/fragments/node";
-import { UserFragment } from "@/graphql/fragments/user";
+import { NodeArticleFragment } from "@/graphql/drupal/fragments/node";
+import { UserFragment } from "@/graphql/drupal/fragments/user";
 import Avatar from "@/components/ui/Avatar";
 import CoverImage from "@/components/ui/CoverImage";
-import { extractImageFromMedia } from "@/graphql/helpers";
+import { extractImageFromMedia } from "@/graphql/drupal/helpers";
 
 interface NodeArticleTeaserProps {
   node: FragmentOf<typeof NodeArticleFragment>;

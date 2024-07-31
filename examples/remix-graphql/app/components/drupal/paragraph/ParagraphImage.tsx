@@ -1,6 +1,6 @@
 import { FragmentOf, readFragment } from 'gql.tada';
-import { ParagraphImageFragment } from '~/graphql/fragments/paragraph';
-import { extractImageFromMedia } from '~/graphql/helpers';
+import { ParagraphImageFragment } from '~/graphql/drupal/fragments/paragraph';
+import { extractImageFromMedia } from '~/graphql/drupal/helpers';
 import Image from "~/components/ui/Image";
 
 interface ParagraphImageProps {

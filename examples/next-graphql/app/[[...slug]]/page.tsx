@@ -9,12 +9,12 @@ import TermTagsComponent from "@/components/drupal/taxonomy/TermTags";
 import {
   NodeArticleFragment,
   NodePageFragment,
-} from "@/graphql/fragments/node";
-import { TermTagsFragment } from "@/graphql/fragments/terms";
+} from "@/graphql/drupal/fragments/node";
+import { TermTagsFragment } from "@/graphql/drupal/fragments/terms";
 import { graphql } from "@/graphql/gql.tada";
-import { EntityFragmentType } from "@/graphql/types";
+import { EntityFragmentType } from "@/graphql/drupal/types";
 import { getClient } from "@/utils/client.server";
-import { calculatePath } from "@/utils/routes";
+import { calculatePath } from "@/utils/drupal/routes";
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {
   const pathFromParams = params.slug?.join("/") || "/home";

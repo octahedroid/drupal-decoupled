@@ -1,8 +1,8 @@
 import { Link } from '@remix-run/react'
 import { FragmentOf, readFragment } from "gql.tada";
-import { NodeArticleFragment } from "~/graphql/fragments/node";
-import { UserFragment } from '~/graphql/fragments/user';
-import { extractImageFromMedia } from '~/graphql/helpers';
+import { NodeArticleFragment } from "~/graphql/drupal/fragments/node";
+import { UserFragment } from '~/graphql/drupal/fragments/user';
+import { extractImageFromMedia } from '~/graphql/drupal/helpers';
 import Avatar from "~/components/ui/Avatar";
 import CoverImage from "~/components/ui/CoverImage";
 

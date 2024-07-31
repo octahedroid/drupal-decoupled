@@ -1,6 +1,6 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { TextFragment } from "~/graphql/fragments/misc";
-import { ParagraphTextFragment } from "~/graphql/fragments/paragraph";
+import { TextFragment } from "~/graphql/drupal/fragments/misc";
+import { ParagraphTextFragment } from "~/graphql/drupal/fragments/paragraph";
 import RichText from "~/components/ui/RichText";
 import Heading from "~/components/ui/Heading";
 

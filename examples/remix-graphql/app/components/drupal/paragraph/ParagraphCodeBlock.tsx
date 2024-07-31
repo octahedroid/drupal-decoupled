@@ -1,5 +1,5 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { ParagraphCodeBlockFragment } from "~/graphql/fragments/paragraph";
+import { ParagraphCodeBlockFragment } from "~/graphql/drupal/fragments/paragraph";
 import CodeBlock from "~/components/ui/CodeBlock";
  
 interface ParagraphCodeBlockProps {

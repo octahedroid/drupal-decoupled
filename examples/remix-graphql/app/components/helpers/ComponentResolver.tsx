@@ -18,7 +18,7 @@ import {
   ParagraphStaticComponentFragment,
   ParagraphUnionFragment,
   ParagraphViewReferenceFragment,
-} from "~/graphql/fragments/paragraph";
+} from "~/graphql/drupal/fragments/paragraph";
 
 type ParagraphFragmentType =
   FragmentOf<typeof ParagraphHeroFragment> |

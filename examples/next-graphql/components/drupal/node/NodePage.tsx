@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { FragmentOf, readFragment } from "gql.tada";
-import { NodePageFragment } from "@/graphql/fragments/node";
+import { NodePageFragment } from "@/graphql/drupal/fragments/node";
 import Heading from "@/components/ui/Heading";
 import { resolve } from "@/components/helpers/ComponentResolver";
 import { ComponentRenderer } from "@/components/helpers/ComponentRenderer";

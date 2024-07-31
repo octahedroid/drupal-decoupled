@@ -1,7 +1,7 @@
 import { graphql } from "@/graphql/gql.tada";
-import { TextFragment } from "@/graphql/fragments/misc";
-import { MediaImageFragment } from "@/graphql/fragments/media";
-import { UserFragment } from "@/graphql/fragments/user";
+import { TextFragment } from "@/graphql/drupal/fragments/misc";
+import { MediaImageFragment } from "@/graphql/drupal/fragments/media";
+import { UserFragment } from "@/graphql/drupal/fragments/user";
 // @todo fix use of NodeArticleTeaserFragment
 // import { NodeArticleTeaserFragment  } from "./node";
 

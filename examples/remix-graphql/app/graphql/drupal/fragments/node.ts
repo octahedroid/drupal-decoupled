@@ -1,7 +1,7 @@
 import { graphql } from "~/graphql/gql.tada";
 
-import { MediaImageFragment } from "~/graphql/fragments/media";
-import { UserFragment } from "~/graphql/fragments/user";
+import { MediaImageFragment } from "~/graphql/drupal/fragments/media";
+import { UserFragment } from "~/graphql/drupal/fragments/user";
 import { MetatagFragment } from "./metatag";
 import {
   ParagraphUnionFragment,

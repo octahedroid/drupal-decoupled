@@ -38,4 +38,4 @@ next-env.d.ts
 .env
 
 # gql:fragments (generated) - do not commit
-graphql/fragments/generated
+graphql/drupal/fragments/generated

@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from "gql.tada";
 import { type MetaTag } from "drupal-remix";
-import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
-import { EntityFragmentType } from "~/graphql/types";
+import { NodePageFragment, NodeArticleFragment } from "~/graphql/drupal/fragments/node";
+import { EntityFragmentType } from "~/graphql/drupal/types";
 
 export const calculateMetaTags = (type: string, node: EntityFragmentType): Array<MetaTag> => {
   if (type === "NodePage") {

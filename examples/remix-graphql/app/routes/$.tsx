@@ -3,16 +3,17 @@ import { useLoaderData } from "@remix-run/react";
 import { FragmentOf } from "gql.tada";
 import { metaTags } from "drupal-remix";
 
-import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
-import { TermTagsFragment } from "~/graphql/fragments/terms";
+import { NodePageFragment, NodeArticleFragment } from "~/graphql/drupal/fragments/node";
+import { TermTagsFragment } from "~/graphql/drupal/fragments/terms";
+import { EntityFragmentType } from "~/graphql/drupal/types";
 import { graphql } from "~/graphql/gql.tada";
 import NodeArticleComponent from "~/components/drupal/node/NodeArticle";
 import NodePageComponent from "~/components/drupal/node/NodePage";
 import TermTagsComponent from "~/components/drupal/taxonomy/TermTags";
 import { getClient } from "~/utils/client.server";
-import { calculatePath } from "~/utils/routes";
-import { calculateMetaTags } from "~/utils/metatags";
-import { EntityFragmentType } from "~/graphql/types";
+import { calculatePath } from "~/utils/drupal/routes";
+import { calculateMetaTags } from "~/utils/drupal/metatags";
+
 
 export const meta: MetaFunction<typeof loader> = ({
   data,
