@@ -1,5 +1,11 @@
 # @octahedroid/create-drupal-decoupled
 
+## 0.3.0
+
+### Minor Changes
+
+- 26a5e88: Fix redirects and add calculate path to support redirects
+
 ## 0.2.0
 
 ### Minor Changes
