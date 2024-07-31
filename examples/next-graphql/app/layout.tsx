@@ -1,12 +1,14 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import Container from "@/components/ui/Container";
+import Footer from "@/components/ui/Footer";
+import Header from "@/components/ui/Header";
+import NavigationEvents from "@/components/helpers/navigationEvents";
+
 import "./globals.css";
 import "./preview.css";
-import Container from "@/components/Container";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import { Suspense } from "react";
-import NavigationEvents from "@/components/helpers/navigationEvents";
 
 const inter = Inter({ subsets: ["latin"] });
 

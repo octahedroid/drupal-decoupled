@@ -1,6 +1,5 @@
 import { json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import { Fragment } from "react/jsx-runtime";
 import { FragmentOf } from "gql.tada";
 import { metaTags } from "drupal-remix";
 
@@ -12,7 +11,7 @@ import NodePageComponent from "~/components/node/NodePage";
 import { getClient } from "~/utils/client.server";
 import { calculatePath } from "~/utils/routes";
 import { calculateMetaTags } from "~/utils/metatags";
-import { EntityFragmentType } from "~/utils/types";
+import { EntityFragmentType } from "~/graphql/types";
 import TermTagsComponent from "~/components/taxonomy/TermTags";
 
 export const meta: MetaFunction<typeof loader> = ({
@@ -112,10 +111,10 @@ export default function Index() {
   }
 
   return (
-    <Fragment>
+    <>
       { type === "TermTags" && <TermTagsComponent term={entity as FragmentOf<typeof TermTagsFragment>} />}
       { type === "NodePage" && <NodePageComponent node={entity as FragmentOf<typeof NodePageFragment>} environment={environment} />}
       { type === "NodeArticle" && <NodeArticleComponent node={entity as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
-    </Fragment>
+    </>
   );
 }

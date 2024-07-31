@@ -1,19 +1,14 @@
-"""
-The schema's entry-point for queries.
-
-This acts as the public, top-level API from which all queries must start.
-"""
+"""The schema's entry-point for queries."""
 type Query {
-  """Schema information."""
-  info: SchemaInformation!
-
   """Load a MediaImage entity by id"""
   mediaImage(
     """The id of the MediaImage to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): MediaImage
 
   """Load a NodeArticle entity by id"""
@@ -21,8 +16,10 @@ type Query {
     """The id of the NodeArticle to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): NodeArticle
 
   """Load a NodePage entity by id"""
@@ -30,8 +27,10 @@ type Query {
     """The id of the NodePage to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): NodePage
 
   """Load a TermTags entity by id"""
@@ -39,44 +38,65 @@ type Query {
     """The id of the TermTags to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): TermTags
+
+  """Load a ParagraphCard entity by id"""
+  paragraphCard(
+    """The id of the ParagraphCard to load."""
+    id: ID!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): ParagraphCard
+
+  """Load a ParagraphCardGroup entity by id"""
+  paragraphCardGroup(
+    """The id of the ParagraphCardGroup to load."""
+    id: ID!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): ParagraphCardGroup
 
   """Load a ParagraphCodeBlock entity by id"""
   paragraphCodeBlock(
     """The id of the ParagraphCodeBlock to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): ParagraphCodeBlock
 
-  """Load a ParagraphHeroCta entity by id"""
-  paragraphHeroCta(
-    """The id of the ParagraphHeroCta to load."""
+  """Load a ParagraphHero entity by id"""
+  paragraphHero(
+    """The id of the ParagraphHero to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
-  ): ParagraphHeroCta
-
-  """Load a ParagraphHeroText entity by id"""
-  paragraphHeroText(
-    """The id of the ParagraphHeroText to load."""
-    id: ID!
-
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
-  ): ParagraphHeroText
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): ParagraphHero
 
   """Load a ParagraphImage entity by id"""
   paragraphImage(
     """The id of the ParagraphImage to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): ParagraphImage
 
   """Load a ParagraphStaticComponent entity by id"""
@@ -84,8 +104,10 @@ type Query {
     """The id of the ParagraphStaticComponent to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): ParagraphStaticComponent
 
   """Load a ParagraphText entity by id"""
@@ -93,8 +115,10 @@ type Query {
     """The id of the ParagraphText to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): ParagraphText
 
   """Load a ParagraphViewReference entity by id"""
@@ -102,35 +126,31 @@ type Query {
     """The id of the ParagraphViewReference to load."""
     id: ID!
 
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): ParagraphViewReference
 
   """Load a Menu by name."""
   menu(
     """Internal menu name. Eg MAIN"""
     name: MenuAvailable!
-
-    """
-    Optionally set the response language. Eg en, ja, fr. Setting this langcode
-    will change the current language of the entire response.
-    """
-    langcode: String
   ): Menu
 
   """Load a User entity by id"""
   user(
     """The id of the User to load."""
     id: ID!
-
-    """Optionally set the response language. Eg en, ja, fr."""
-    langcode: String
   ): User
 
   """
   Get information about the currently authenticated user. NULL if not logged in.
   """
   viewer: User
+
+  """Schema information."""
+  info: SchemaInformation!
 
   """List of all MediaImage on the platform."""
   mediaImages(
@@ -151,9 +171,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): MediaImageConnection!
 
   """List of all NodeArticle on the platform."""
@@ -175,9 +192,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): NodeArticleConnection!
 
   """List of all NodePage on the platform."""
@@ -199,9 +213,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): NodePageConnection!
 
   """List of all TermTags on the platform."""
@@ -223,10 +234,49 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): TermTagsConnection!
+
+  """List of all ParagraphCard on the platform."""
+  paragraphCards(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+  ): ParagraphCardConnection!
+
+  """List of all ParagraphCardGroup on the platform."""
+  paragraphCardGroups(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+  ): ParagraphCardGroupConnection!
 
   """List of all ParagraphCodeBlock on the platform."""
   paragraphCodeBlocks(
@@ -247,13 +297,10 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): ParagraphCodeBlockConnection!
 
-  """List of all ParagraphHeroCta on the platform."""
-  paragraphHeroCtas(
+  """List of all ParagraphHero on the platform."""
+  paragraphHeroes(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -271,34 +318,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
-  ): ParagraphHeroCtaConnection!
-
-  """List of all ParagraphHeroText on the platform."""
-  paragraphHeroTexts(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
-  ): ParagraphHeroTextConnection!
+  ): ParagraphHeroConnection!
 
   """List of all ParagraphImage on the platform."""
   paragraphImages(
@@ -319,9 +339,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): ParagraphImageConnection!
 
   """List of all ParagraphStaticComponent on the platform."""
@@ -343,9 +360,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): ParagraphStaticComponentConnection!
 
   """List of all ParagraphText on the platform."""
@@ -367,9 +381,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): ParagraphTextConnection!
 
   """List of all ParagraphViewReference on the platform."""
@@ -391,9 +402,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): ParagraphViewReferenceConnection!
 
   """List of all User on the platform."""
@@ -415,9 +423,6 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-
-    """Filter the results by language. Eg en, ja, fr."""
-    langcode: String
   ): UserConnection!
 
   """Load a content preview."""
@@ -439,28 +444,13 @@ type Query {
   route(
     """Internal path to load. Eg /about"""
     path: String!
-
-    """
-    Optionally set the response language. Eg en, ja, fr. Setting this langcode
-    will change the current language of the entire response.
-    """
-    langcode: String
   ): RouteUnion
 
   """Query for view blog display blog_teaser."""
-  viewBlogTeaser: ViewBlogTeaserResult
-}
-
-"""Schema information provided by the system."""
-type SchemaInformation {
-  """The schema description."""
-  description: String
-
-  """The internal path to the front page."""
-  home: String
-
-  """The schema version."""
-  version: String
+  viewBlogTeaser(
+    """The page number to display."""
+    page: Int = 0
+  ): ViewBlogTeaserResult
 }
 
 """Use local images for reusable media."""
@@ -564,7 +554,7 @@ type Language {
 }
 
 """A meta tag element."""
-union MetaTagUnion = MetaTagLink | MetaTagValue | MetaTagProperty
+union MetaTagUnion = MetaTagLink | MetaTagValue | MetaTagProperty | MetaTagScript
 
 """A meta link element."""
 type MetaTagLink implements MetaTag {
@@ -638,6 +628,30 @@ type MetaTagPropertyAttributes {
 
   """The content attribute of the meta tag."""
   content: String
+}
+
+"""A meta script element."""
+type MetaTagScript implements MetaTag {
+  """The HTML tag for this meta element."""
+  tag: String!
+
+  """The meta tag element attributes."""
+  attributes: MetaTagScriptAttributes!
+
+  """The content of the script tag."""
+  content: String
+}
+
+"""A meta script element's attributes."""
+type MetaTagScriptAttributes {
+  """The type attribute of the script tag."""
+  type: String
+
+  """The src attribute of the script tag."""
+  src: String
+
+  """The integrity attribute of the script tag."""
+  integrity: String
 }
 
 """This entity has meta tags enabled."""
@@ -864,7 +878,82 @@ enum UserStatus {
 union MediaUnion = MediaImage
 
 """Entity type paragraph."""
-union ParagraphUnion = ParagraphCodeBlock | ParagraphHeroCta | ParagraphHeroText | ParagraphImage | ParagraphStaticComponent | ParagraphText | ParagraphViewReference
+union ParagraphUnion = ParagraphCard | ParagraphCardGroup | ParagraphCodeBlock | ParagraphHero | ParagraphImage | ParagraphStaticComponent | ParagraphText | ParagraphViewReference
+
+"""Lorem"""
+type ParagraphCard implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """CTA"""
+  cta: Link
+
+  """Image"""
+  image: MediaUnion!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+
+  """Text"""
+  text: String!
+
+  """Title"""
+  title: String!
+}
+
+"""Entity type paragraph."""
+interface ParagraphInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""A link."""
+type Link {
+  """The title of the link."""
+  title: String
+
+  """The URL of the link."""
+  url: String
+
+  """Whether the link is internal to this website."""
+  internal: Boolean!
+}
+
+"""Entity type paragraph."""
+type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Items"""
+  items: [ParagraphUnion!]!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+
+  """Title"""
+  title: String!
+}
 
 """Entity type paragraph."""
 type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
@@ -886,71 +975,29 @@ type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
   """Show Line Numbers"""
   showLineNumbers: Boolean
 
+  """Published"""
+  status: Boolean!
+
   """Title"""
   titleOptional: String
 }
 
 """Entity type paragraph."""
-interface ParagraphInterface {
+type ParagraphHero implements ParagraphInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
 
-  """The paragraphs entity language code."""
-  langcode: Language!
-}
-
-"""Entity type paragraph."""
-type ParagraphHeroCta implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """CTA"""
-  cta: [Link!]!
-
-  """Intro"""
-  intro: String!
+  """Image"""
+  image: MediaUnion
 
   """The paragraphs entity language code."""
   langcode: Language!
 
-  """Text"""
-  text: String!
-
-  """Title"""
-  title: String!
-}
-
-"""A link."""
-type Link {
-  """The title of the link."""
-  title: String
-
-  """The URL of the link."""
-  url: String
-
-  """Whether the link is internal to this website."""
-  internal: Boolean!
-}
-
-"""Entity type paragraph."""
-type ParagraphHeroText implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """Intro"""
-  intro: String!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
+  """Published"""
+  status: Boolean!
 
   """Text"""
   text: String!
@@ -972,6 +1019,9 @@ type ParagraphImage implements ParagraphInterface & EdgeNode {
 
   """The paragraphs entity language code."""
   langcode: Language!
+
+  """Published"""
+  status: Boolean!
 }
 
 """Entity type paragraph."""
@@ -987,6 +1037,9 @@ type ParagraphStaticComponent implements ParagraphInterface & EdgeNode {
 
   """The paragraphs entity language code."""
   langcode: Language!
+
+  """Published"""
+  status: Boolean!
 }
 
 """Entity type paragraph."""
@@ -999,6 +1052,9 @@ type ParagraphText implements ParagraphInterface & EdgeNode {
 
   """The paragraphs entity language code."""
   langcode: Language!
+
+  """Published"""
+  status: Boolean!
 
   """Text Rich"""
   textRich: Text!
@@ -1063,6 +1119,9 @@ type ParagraphViewReference implements ParagraphInterface & EdgeNode {
     sortDir: SortDirection
   ): ViewResultUnion!
 
+  """Published"""
+  status: Boolean!
+
   """Text"""
   text: String
 
@@ -1070,7 +1129,7 @@ type ParagraphViewReference implements ParagraphInterface & EdgeNode {
   title: String
 }
 
-"""Generic untyped input for key-value pairs."""
+"""Generic input for key-value pairs."""
 input KeyValueInput {
   key: String!
   value: String
@@ -1115,7 +1174,7 @@ type ViewBlogTeaserResult implements View {
   results: [NodeUnion!]!
 }
 
-"""Views represent collections of curated data from the site."""
+"""Views represent collections of curated data from the CMS."""
 interface View {
   """The ID of the view."""
   id: ID!
@@ -1320,6 +1379,9 @@ type MenuItem {
   """The URL of the menu item."""
   url: String
 
+  """The language of the menu item."""
+  langcode: Language!
+
   """Whether this menu item links to an internal route."""
   internal: Boolean!
 
@@ -1397,6 +1459,15 @@ type RouteRedirect implements Route {
   redirect: Boolean!
 }
 
+"""Schema information provided by the system."""
+type SchemaInformation {
+  """The schema description."""
+  description: String
+
+  """The schema version."""
+  version: String
+}
+
 """A cursor for use in pagination."""
 scalar Cursor
 
@@ -1416,6 +1487,9 @@ enum ConnectionSortKeys {
 
   """Sort by promoted status."""
   PROMOTED
+
+  """Sort by term weight."""
+  WEIGHT
 }
 
 """A paginated set of results for MediaImage."""
@@ -1508,6 +1582,32 @@ type TermTagsEdge implements Edge {
   node: TermTags!
 }
 
+"""A paginated set of results for ParagraphCard."""
+type ParagraphCardConnection implements Connection {
+  edges: [ParagraphCardEdge!]!
+  nodes: [ParagraphCard!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for ParagraphCard."""
+type ParagraphCardEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphCard!
+}
+
+"""A paginated set of results for ParagraphCardGroup."""
+type ParagraphCardGroupConnection implements Connection {
+  edges: [ParagraphCardGroupEdge!]!
+  nodes: [ParagraphCardGroup!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for ParagraphCardGroup."""
+type ParagraphCardGroupEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphCardGroup!
+}
+
 """A paginated set of results for ParagraphCodeBlock."""
 type ParagraphCodeBlockConnection implements Connection {
   edges: [ParagraphCodeBlockEdge!]!
@@ -1521,30 +1621,17 @@ type ParagraphCodeBlockEdge implements Edge {
   node: ParagraphCodeBlock!
 }
 
-"""A paginated set of results for ParagraphHeroCta."""
-type ParagraphHeroCtaConnection implements Connection {
-  edges: [ParagraphHeroCtaEdge!]!
-  nodes: [ParagraphHeroCta!]!
+"""A paginated set of results for ParagraphHero."""
+type ParagraphHeroConnection implements Connection {
+  edges: [ParagraphHeroEdge!]!
+  nodes: [ParagraphHero!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for ParagraphHeroCta."""
-type ParagraphHeroCtaEdge implements Edge {
+"""Edge for ParagraphHero."""
+type ParagraphHeroEdge implements Edge {
   cursor: Cursor!
-  node: ParagraphHeroCta!
-}
-
-"""A paginated set of results for ParagraphHeroText."""
-type ParagraphHeroTextConnection implements Connection {
-  edges: [ParagraphHeroTextEdge!]!
-  nodes: [ParagraphHeroText!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for ParagraphHeroText."""
-type ParagraphHeroTextEdge implements Edge {
-  cursor: Cursor!
-  node: ParagraphHeroText!
+  node: ParagraphHero!
 }
 
 """A paginated set of results for ParagraphImage."""
@@ -1612,9 +1699,15 @@ type UserEdge implements Edge {
   node: User!
 }
 
-"""A GraphQL mutation is a request that changes data on the server."""
+"""The schema's entry-point for mutations."""
 type Mutation {
-  """Placeholder field to enable schema mutation extension."""
+  """Placeholder for mutation extension."""
+  _: Boolean!
+}
+
+"""The schema's entry-point for subscriptions."""
+type Subscription {
+  """Placeholder for subscription extension."""
   _: Boolean!
 }
 
@@ -1689,11 +1782,51 @@ scalar UntypedStructuredData
 """Entity type user."""
 union UserUnion = User
 
+"""An exposed filter option for the view."""
+type ViewFilter {
+  """The filter identifier."""
+  id: ID!
+
+  """The filter plugin type."""
+  plugin: String!
+
+  """The filter field type."""
+  type: String!
+
+  """The filter element label."""
+  label: String
+
+  """The filter element description."""
+  description: String
+
+  """Whether the filter is required."""
+  required: Boolean!
+
+  """Whether the filter allows multiple values."""
+  multiple: Boolean!
+
+  """The value for the filter. Could be an array for multiple values."""
+  value: UntypedStructuredData
+
+  """The filter element options if any are defined."""
+  options: UntypedStructuredData
+
+  """The filter element attributes."""
+  attributes: UntypedStructuredData!
+}
+
 """A reference to an embedded view"""
 type ViewReference {
+  """The machine name of the view."""
   view: String!
+
+  """The machine name of the display."""
   display: String!
+
+  """The contextual filter values used."""
   contextualFilter: [String!]
+
+  """How many results per page."""
   pageSize: Int
 
   """

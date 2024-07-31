@@ -1,8 +1,9 @@
-import { Fragment } from "react";
 import { FragmentOf, readFragment } from "gql.tada";
 import { NodeArticleFragment } from "~/graphql/fragments/node";
-import Cover from "~/components/Cover";
+import Cover from "~/components/ui/Cover";
 import { resolve } from "~/components/helpers/ComponentResolver";
+import { ComponentRenderer } from "~/components/helpers/ComponentRenderer";
+import { extractImageFromMedia, extractUser } from "~/graphql/helpers";
 
 type NodeArticleComponentProps = {
   node: FragmentOf<typeof NodeArticleFragment>;
@@ -10,22 +11,24 @@ type NodeArticleComponentProps = {
 }
 
 export default function NodeArticleComponent({ node, environment }: NodeArticleComponentProps) {
-  const nodeArticle = readFragment(NodeArticleFragment, node);
+  const {id, title, image: nodeArticleImage, author: nodeArticleAuthor, components: nodeArticleComponents } = readFragment(NodeArticleFragment, node);
+  const image = extractImageFromMedia(nodeArticleImage);
+  if (!nodeArticleAuthor) {
+    return null;
+  }
+  const author = extractUser(nodeArticleAuthor);
   const components = resolve({
-    data: nodeArticle.components,
-    environment,
+    data: nodeArticleComponents,
   });
 
   return (
     <>
       <Cover
-        title={nodeArticle.title}
-        image={nodeArticle.image}
-        author={nodeArticle.author}
+        title={title}
+        image={image}
+        author={author}
       />
-      {components.map((component, index: number) => {
-        return <Fragment key={index}>{component}</Fragment>;
-      })}
+      <ComponentRenderer key={id} components={components} environment={environment} />
     </>
   );
 }

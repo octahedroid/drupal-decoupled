@@ -1,6 +1,6 @@
 import { FragmentOf, readFragment } from "gql.tada";
 import { TermTagsFragment } from "~/graphql/fragments/terms";
-import Title from "~/components/field/Title";
+import Heading from "~/components/ui/Heading";
 
 type TermTagsComponentProps = {
   term: FragmentOf<typeof TermTagsFragment>;
@@ -11,7 +11,7 @@ export default function TermTagsComponent({ term }: TermTagsComponentProps) {
  
   return (
     <>
-      <Title>{termTags.name}</Title>
+      <Heading level="h2">{termTags.name}</Heading>
       <div dangerouslySetInnerHTML={{ __html: termTags.description.processed as string }} />
     </>
   )
