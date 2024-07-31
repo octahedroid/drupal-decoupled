@@ -1,5 +1,11 @@
 # @octahedroid/create-drupal-decoupled
 
+## 0.2.0
+
+### Minor Changes
+
+- 307b1d7: Adds the node page for the Route query, and add base styles to tailwind
+
 ## 0.1.1
 
 ### Patch Changes
