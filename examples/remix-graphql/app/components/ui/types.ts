@@ -1,7 +1,7 @@
 export type ImageType = {
   url: string;
+  alt: string;
   title: string | null;
-  alt: string | null;
   width: number | string | null;
   height: number | string | null;
   className: string | null;

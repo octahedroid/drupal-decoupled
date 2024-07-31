@@ -1,5 +1,5 @@
-import { ImageType } from "~/components/ui/types";
-import Image from "~/components/ui/Image";
+import { ImageType } from "./types";
+import Image from "./Image";
 
 interface HeroProps {
   title: string;
@@ -21,7 +21,7 @@ export default function Hero({ title, text, image }: HeroProps) {
         </div>
 
         <div className="w-full lg:basis-[68%]">
-          <Image {...image} className={"w-full h-auto aspect-auto"} />
+          <Image {...image} className={"w-full h-auto aspect-auto"} alt={image.alt} />
         </div>
       </div>
     </section>

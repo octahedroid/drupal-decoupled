@@ -1,7 +1,7 @@
 
 import { FragmentOf, readFragment } from "gql.tada";
 import { ImageFragment, MediaImageFragment } from "@/graphql/fragments/media";
-import { ImageType, UserType } from "@/components/ui/types.server";
+import { ImageType, UserType } from "@/components/ui/types";
 import { UserFragment } from "@/graphql/fragments/user";
 import { ImageElement } from "@/graphql/types";
 

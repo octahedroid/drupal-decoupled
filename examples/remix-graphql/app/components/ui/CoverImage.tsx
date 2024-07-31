@@ -1,6 +1,5 @@
-import { Link } from '@remix-run/react'
-import Image from '~/components/ui/Image';
-import { ImageType } from '~/utils/types';
+import Image from './Image';
+import { ImageType } from './types';
 
 interface CoverImageProps {
   title: string;
@@ -30,9 +29,9 @@ export default function CoverImage({ title, path, image }: CoverImageProps) {
   return (
     <div className="-mx-5 sm:mx-0">
       {path ? (
-        <Link prefetch='intent' to={path} aria-label={title}>
-          {ImageComponent}
-        </Link>
+        <a href={path} aria-label={title}>
+        {ImageComponent}
+      </a>
       ) : (
         ImageComponent
       )}

@@ -1,11 +1,19 @@
-import { ImageType } from "@/components/ui/types.server";
+/* eslint-disable @next/next/no-img-element */
+import { ImageType } from "./types";
 
 type ImageProps = {
   variant?: "primary";
   style?: React.CSSProperties;
 } & ImageType;
 
-export default function Image({ alt, height, className, title, url, width, variant = "primary", style }: ImageProps) {
+export default function Image({
+  url,
+  alt = "Enter Image Alt",
+  width,
+  height,
+  className,
+  title,
+  variant = "primary", style }: ImageProps) {
   const wrapperClass = {
     primary: "flex items-center justify-center",
   }; 
@@ -13,12 +21,12 @@ export default function Image({ alt, height, className, title, url, width, varia
   return (
     <div className={wrapperClass[variant]}>
       <img
-        title={title ?? ""}
         src={url}
+        alt={alt}
+        title={title ?? ""}
         className={className ?? ""}
-        alt={alt ?? ""}
-        width={width ?? ""}
-        height={height ?? ""}
+        width={width ?? "auto"}
+        height={height ?? "auto"}
         style={style ?? {}}
       />
     </div>
