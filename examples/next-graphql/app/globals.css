@@ -1,3 +1,96 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4px;
+  max-width: 100%;
+  max-width: 100%;
+  padding-left: 1.875rem;
+}
+ 
+.paragraph {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.bg-cover {
+  background: url("/images/cover.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.article-content::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .25) -17.98%, rgba(0, 0, 0, .5));
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border-radius: 1.25rem;
+}
+
+.article-content:hover .article-img {
+  transform: scale(1.1);
+}
+
+.hover-transition {
+  transition: .5s;
+}
+
+.hover-transition:hover {
+  border-color: transparent;
+}
+
+@media (min-width: 1706px) {
+  .container {
+     max-width: 1706px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+     padding-left: 0;
+     padding-right: 0;
+  }
+}
+
+@media (min-width: 1248px) {
+  .container {
+     max-width: 1248px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .responsive-grid-cols {
+     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .content-layout {
+     flex-direction: row !important;
+  }
+
+  .drupal-descp {
+     max-width: 32% !important
+  }
+}
+
+@media (min-width: 992px) {
+  .flex-layout {
+     flex: 0 1 calc(50% - 15px)
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-layout {
+     flex: 0 1 calc(50%)
+  }
+}

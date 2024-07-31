@@ -1,5 +1,5 @@
-import Image from '@/components/ui/Image';
-import { ImageType } from '@/components/ui/types.server';
+import Image from './Image';
+import { ImageType } from './types';
 
 interface CoverImageProps {
   title: string;

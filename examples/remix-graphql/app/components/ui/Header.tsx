@@ -1,5 +1,3 @@
-import { Link } from "@remix-run/react" 
-
 export default function Header() {
 
   // @todo: Fetch menusItems from Drupal
@@ -27,7 +25,7 @@ export default function Header() {
       <div className="text-center md:text-left text-lg mt-5 md:pl-8">
         <ul className="flex">
           {menus && menus?.map(function (item) {
-            return (<li key={item.id} className="mr-6"><Link prefetch="intent" to={item.url}>{item.title}</Link></li>)
+            return (<li key={item.id} className="mr-6"><a href={item.url}>{item.title}</a></li>)
           })}
         </ul>
       </div>

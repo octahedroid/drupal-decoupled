@@ -1,7 +1,7 @@
-import Avatar from "@/components/ui/Avatar";
-import CoverImage from "@/components/ui/CoverImage";
-import Heading from "@/components/ui/Heading";
-import { ImageType, UserType } from '@/components/ui/types.server';
+import Avatar from "./Avatar";
+import CoverImage from "./CoverImage";
+import Heading from "./Heading";
+import { ImageType, UserType } from './types';
 
 interface CoverProps {
   title: string;

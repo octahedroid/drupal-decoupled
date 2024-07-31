@@ -1,3 +1,5 @@
+ "use client"
+
 import { CodeBlock as ReactCodeBlock, dracula } from "react-code-blocks";
 
 type CodeBlockProps = {
