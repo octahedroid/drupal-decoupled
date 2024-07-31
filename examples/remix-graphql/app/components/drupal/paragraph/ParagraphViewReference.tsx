@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { ParagraphViewReferenceFragment } from "@/graphql/fragments/paragraph";
-import BlogTeaser from "@/components/view/BlogTeaser";
-import { NodeArticleTeaserFragment } from "@/graphql/fragments/node";
+import { ParagraphViewReferenceFragment } from "~/graphql/fragments/paragraph";
+import BlogTeaser from "~/components/drupal/view/BlogTeaser";
+import { NodeArticleTeaserFragment } from "~/graphql/fragments/node";
 interface ParagraphViewReferenceProps {
   paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>
 }

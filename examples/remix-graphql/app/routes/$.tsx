@@ -6,13 +6,13 @@ import { metaTags } from "drupal-remix";
 import { NodePageFragment, NodeArticleFragment } from "~/graphql/fragments/node";
 import { TermTagsFragment } from "~/graphql/fragments/terms";
 import { graphql } from "~/graphql/gql.tada";
-import NodeArticleComponent from "~/components/node/NodeArticle";
-import NodePageComponent from "~/components/node/NodePage";
+import NodeArticleComponent from "~/components/drupal/node/NodeArticle";
+import NodePageComponent from "~/components/drupal/node/NodePage";
+import TermTagsComponent from "~/components/drupal/taxonomy/TermTags";
 import { getClient } from "~/utils/client.server";
 import { calculatePath } from "~/utils/routes";
 import { calculateMetaTags } from "~/utils/metatags";
 import { EntityFragmentType } from "~/graphql/types";
-import TermTagsComponent from "~/components/taxonomy/TermTags";
 
 export const meta: MetaFunction<typeof loader> = ({
   data,

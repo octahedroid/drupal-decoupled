@@ -1,8 +1,7 @@
 import { FragmentOf, readFragment } from "gql.tada";
 import { ParagraphHeroFragment } from "~/graphql/fragments/paragraph";
-import Hero from "~/components/ui/Hero"
 import { extractImageFromMedia } from "~/graphql/helpers";
-
+import Hero from "~/components/ui/Hero"
 interface ParagraphHeroProps {
   paragraph: FragmentOf<typeof ParagraphHeroFragment>
 }

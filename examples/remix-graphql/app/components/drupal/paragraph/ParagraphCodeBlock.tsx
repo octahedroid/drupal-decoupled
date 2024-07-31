@@ -1,7 +1,6 @@
 import { FragmentOf, readFragment } from "gql.tada";
-// import { CodeBlock, dracula } from "react-code-blocks";ß
 import { ParagraphCodeBlockFragment } from "~/graphql/fragments/paragraph";
-import CodeBlock from "../ui/CodeBlock";
+import CodeBlock from "~/components/ui/CodeBlock";
  
 interface ParagraphCodeBlockProps {
   paragraph: FragmentOf<typeof ParagraphCodeBlockFragment>

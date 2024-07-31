@@ -1,8 +1,8 @@
 import { FragmentOf, readFragment } from "gql.tada";
 import { TextFragment } from "~/graphql/fragments/misc";
 import { ParagraphTextFragment } from "~/graphql/fragments/paragraph";
-import RichText from "../ui/RichText";
-import Heading from "../ui/Heading";
+import RichText from "~/components/ui/RichText";
+import Heading from "~/components/ui/Heading";
 
 interface ParagraphTextProps {
   paragraph: FragmentOf<typeof ParagraphTextFragment>

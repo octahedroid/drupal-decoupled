@@ -3,9 +3,9 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
 
-import NodeArticleComponent from "@/components/node/NodeArticle";
-import NodePageComponent from "@/components/node/NodePage";
-import TermTagsComponent from "@/components/taxonomy/TermTags";
+import NodeArticleComponent from "@/components/drupal/node/NodeArticle";
+import NodePageComponent from "@/components/drupal/node/NodePage";
+import TermTagsComponent from "@/components/drupal/taxonomy/TermTags";
 import {
   NodeArticleFragment,
   NodePageFragment,
