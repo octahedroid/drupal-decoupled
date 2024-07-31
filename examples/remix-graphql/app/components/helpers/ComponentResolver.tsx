@@ -1,12 +1,13 @@
 import { FragmentOf, readFragment } from "gql.tada";
 
-import ParagraphHero from "~/components/paragraph/ParagraphHero";
-import ParagraphCardGroup from "~/components/paragraph/ParagraphCardGroup";
-import ParagraphText from "~/components/paragraph/ParagraphText";
-import ParagraphImage from "~/components/paragraph/ParagraphImage";
-import ParagraphCodeBlock from "~/components/paragraph/ParagraphCodeBlock";
-import ParagraphStaticComponent from "~/components/paragraph/ParagraphStaticComponent";
-import ParagraphViewReference from "~/components/paragraph/ParagraphViewReference";
+// Drupal 
+import ParagraphHero from "~/components/drupal/paragraph/ParagraphHero";
+import ParagraphCardGroup from "~/components/drupal/paragraph/ParagraphCardGroup";
+import ParagraphText from "~/components/drupal/paragraph/ParagraphText";
+import ParagraphImage from "~/components/drupal/paragraph/ParagraphImage";
+import ParagraphCodeBlock from "~/components/drupal/paragraph/ParagraphCodeBlock";
+import ParagraphStaticComponent from "~/components/drupal/paragraph/ParagraphStaticComponent";
+import ParagraphViewReference from "~/components/drupal/paragraph/ParagraphViewReference";
 
 import {
   ParagraphHeroFragment,
@@ -17,7 +18,7 @@ import {
   ParagraphStaticComponentFragment,
   ParagraphUnionFragment,
   ParagraphViewReferenceFragment,
-} from "~/graphql/fragments/paragraph";
+} from "~/graphql/drupal/fragments/paragraph";
 
 type ParagraphFragmentType =
   FragmentOf<typeof ParagraphHeroFragment> |

@@ -1,6 +1,6 @@
 export default function Header() {
 
-  // @todo: Fetch menusItems from Drupal
+  // @todo: Fetch menuItems from Drupal
   const menus = [
     {
       id: 1,
