@@ -1,31 +1,14 @@
-import {
-  isRouteErrorResponse,
-  useRouteError,
-  useLoaderData,
-  MetaFunction,
-} from '@remix-run/react'
-import { LoaderFunctionArgs, redirect } from '@remix-run/node'
-import { gql } from 'urql'
-import { metaTags } from 'drupal-remix'
+import { redirect } from "next/navigation";
 
-import { getDrupalClient } from '~/utils/drupal/client.server'
-import { calculatePath } from '~/utils/drupal/calculate-path.server'
+import { getDrupalClient } from "@/utils/drupal/client";
+import { gql } from "urql";
 
-const GET_DRUPAL_CONTENT_ERROR = 'Error fetching data from Drupal'
+async function getDrupalData({ params }: { params: { slug: string[] } }) {
+  const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  if (!data) {
-    return []
-  }
+  const pathFromParams = params.slug?.join("/");
 
-  return metaTags({
-    tags: data.node.metatag,
-  })
-}
-
-export const loader = async ({ params, request }: LoaderFunctionArgs) => {
-  const path = params['*']
-  const drupalClient = await getDrupalClient()
+  const drupalClient = await getDrupalClient();
   const { data, error } = await drupalClient.query(
     gql`
       query getNodeArticleByPath($path: String!) {
@@ -105,28 +88,24 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
       }
     `,
     {
-      path: calculatePath({
-        path,
-        url: request.url,
-      }),
+      path: pathFromParams,
     }
-  )
+  );
 
   if (error) {
-    throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 })
+    throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 });
   }
 
-  if (data.route.__typename === 'RouteRedirect') {
-    return redirect(data.route.url, {
-      status: data.route.status || 302,
-    })
+  if (data.route.__typename === "RouteRedirect") {
+    return redirect(data.route.url);
   }
 
-  return { node: data.route.entity }
+  return { node: data.route.entity };
 }
 
-export default function Index() {
-  const { node } = useLoaderData<typeof loader>()
+export default async function Page({ params }: { params: { slug: string[] } }) {
+  const { node } = await getDrupalData({ params });
+
   return (
     <div className="container mx-auto">
       <h1 className="text-6xl font-bold tracking-tighter leading-none mb-6 text-left">
@@ -136,6 +115,8 @@ export default function Index() {
         <img
           src={node.image.url}
           alt={node.image.alt}
+          width={node.image.width}
+          height={node.image.height}
           className="mb-6 mx-auto max-w-lg"
         />
       )}
@@ -144,24 +125,5 @@ export default function Index() {
         dangerouslySetInnerHTML={{ __html: node.body.value }}
       />
     </div>
-  )
-}
-
-export function ErrorBoundary() {
-  const error = useRouteError()
-  if (isRouteErrorResponse(error)) {
-    if (error.data === GET_DRUPAL_CONTENT_ERROR) {
-      return (
-        <div className="p-4 text-center">
-          <p>There was an error fetching the Drupal content</p>
-          <p>
-            Hint: Make sure that the query in the loader function is correct and
-            the fields are enabled in the GraphQL Compose module
-          </p>
-        </div>
-      )
-    }
-    return <p>Uh oh, something went wrong</p>
-  }
-  return <p>Uh oh, something went wrong</p>
+  );
 }

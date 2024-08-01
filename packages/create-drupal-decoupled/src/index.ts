@@ -2,7 +2,11 @@
 import { Command } from 'commander'
 import packageJson from '../package.json'
 import { isJavascriptProject, scaffoldFrontend } from './helpers/scaffolding'
-import { getFrontendMachineName, SUPPORTED_FRONTENDS } from './constants'
+import {
+  getFrontendReadableName,
+  isSupportedFrontend,
+  SUPPORTED_FRONTENDS,
+} from './constants'
 
 process.on('SIGINT', () => process.exit(0))
 process.on('SIGTERM', () => process.exit(0))
@@ -13,7 +17,11 @@ async function main() {
   const program = new Command()
     .name('create-drupal-decoupled') // Temporary name
     .description('Scaffold the integration with Drupal in a decoupled frontend')
-    .version(packageJson.version, '-v, --version, -V', 'display the version number')
+    .version(
+      packageJson.version,
+      '-v, --version, -V',
+      'display the version number'
+    )
     .argument(
       '[project-directory]',
       'Project directory to scaffold the integration',
@@ -25,8 +33,7 @@ async function main() {
     .usage('<project-directory> [options]')
     .option(
       '-f, --frontend <frontend>',
-      'Frontend framework to use, supported: Remix',
-      'Remix'
+      `Frontend framework to use, supported: ${SUPPORTED_FRONTENDS.join(', ')}`
     )
     .parse(process.argv)
 
@@ -39,22 +46,30 @@ async function main() {
   }
 
   const { frontend: frontendFramework } = program.opts()
-  const frontendMachineName = getFrontendMachineName(frontendFramework)
 
-  if (!frontendFramework) {
+  if (!frontendFramework || typeof frontendFramework !== 'string') {
     console.error('Please specify the frontend framework to use')
     console.error('Exiting...')
     process.exit(1)
   }
 
-  if (!SUPPORTED_FRONTENDS.includes(frontendMachineName)) {
+  if (!isSupportedFrontend(frontendFramework)) {
     console.error(`${frontendFramework} framework is not supported`)
     console.error('Exiting...')
     process.exit(1)
   }
 
-  console.log(`Scaffolding integration for ${frontendFramework}`)
-  scaffoldFrontend(frontendMachineName, projectDirectoryRoute)
+  const frontendReadableName = getFrontendReadableName(frontendFramework)
+
+  console.log(`Scaffolding integration for ${frontendReadableName}\n`)
+  const createdFiles = scaffoldFrontend(
+    frontendFramework,
+    projectDirectoryRoute
+  )
+
+  createdFiles.forEach((file) => {
+    console.log(`Created ${file}`)
+  })
 }
 
 main()

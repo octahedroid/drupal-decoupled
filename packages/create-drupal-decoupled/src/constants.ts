@@ -1,16 +1,21 @@
-export const SUPPORTED_FRONTENDS = ['remix'] as const
+export const SUPPORTED_FRONTENDS = ['remix', 'next'] as const
 
 export type SupportedFrontend = (typeof SUPPORTED_FRONTENDS)[number]
 
-export const FRONTEND_READABLE_NAME_TO_MACHINE_NAME: Record<
-  string,
-  SupportedFrontend
+export const FRONTEND_MACHINE_NAME_TO_READABLE_NAME: Record<
+  SupportedFrontend,
+  Capitalize<SupportedFrontend>
 > = {
-  Remix: 'remix',
+  remix: 'Remix',
+  next: 'Next',
 } as const
 
-export function getFrontendMachineName(
-  frontendReadableName: string
-): SupportedFrontend {
-  return FRONTEND_READABLE_NAME_TO_MACHINE_NAME[frontendReadableName]
+export function getFrontendReadableName(
+  frontendName: SupportedFrontend
+) {
+  return FRONTEND_MACHINE_NAME_TO_READABLE_NAME[frontendName]
+}
+
+export function isSupportedFrontend(frontend: string): frontend is SupportedFrontend {
+  return SUPPORTED_FRONTENDS.includes(frontend as SupportedFrontend)
 }
