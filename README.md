@@ -1,42 +1,21 @@
-# Drupal Decoupled Integrations
+# Drupal Decoupled 
 
-## Why Decoupled Drupal
 Using Drupal as a headless CMS with a Decoupled front-end implementation is a great way to get an enterprise-quality CMS, paired with a great modern development experience using Remix, Next.js, Astro and/or others.
 
 It only takes a few steps to use Drupal paired with a Decoupled front-end framework, follow these instructions below to get that running on your local machine.
 
 ## Getting Started
 
-### Decoupled Drupal GraphQL Example
+Visit the docs to see how to use this project.
 
-```
-git clone git@github.com:octahedroid/drupal-graphql-example.git
-```
+### Fully functional example 
+- [Decoupled Drupal GraphQL Example](https://drupal-decoupled-docs.pages.dev/docs/examples/drupal-graphql)
+- [Integration: Remix](https://drupal-decoupled-docs.pages.dev/docs/examples/remix-graphql)
+- [Integration: Next.js](https://drupal-decoupled-docs.pages.dev/docs/examples/next-graphql)
 
-> Follow instructions reading [README.md](https://github.com/octahedroid/drupal-graphql-example) file on cloned project
-
-### Remix Example Project
-
-```
-npx create-remix@latest --template octahedroid/drupal-decoupled/examples/remix-graphql
-```
-> Follow instructions reading [README.md](examples/remix-graphql) file on cloned project
-
-### Next.js Example Project
-
-```
-npx create-next-app@latest --example "https://github.com/octahedroid/drupal-decoupled/tree/main/examples/next-graphql"
-```
-> Follow instructions reading [README.md](examples/next-graphql) file on cloned project
-
-### Components
-
-This repository will provide you with the building blocks to achive this in a simplified way, list of components:
-
-- [Drupal sites](drupal/sites)
-- [Drupal modules](drupal/modules)
-- [Decoupled project examples](examples)
-- [Npm packages](packages)
+### Start a new project from scratch
+- [Drupal](https://drupal-decoupled-docs.pages.dev/docs/drupal/install)
+- [Remix](https://drupal-decoupled-docs.pages.dev/docs/frontend-integrations/remix)
 
 ## Supporting organizations
 
