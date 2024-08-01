@@ -1,5 +1,11 @@
 # @octahedroid/create-drupal-decoupled
 
+## 0.4.0
+
+### Minor Changes
+
+- a9411f1: Added scaffold for Next.Js and updated file layout
+
 ## 0.3.0
 
 ### Minor Changes
