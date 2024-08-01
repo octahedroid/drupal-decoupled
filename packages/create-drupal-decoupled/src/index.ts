@@ -2,7 +2,11 @@
 import { Command } from 'commander'
 import packageJson from '../package.json'
 import { isJavascriptProject, scaffoldFrontend } from './helpers/scaffolding'
-import { getFrontendReadableName, isSupportedFrontend } from './constants'
+import {
+  getFrontendReadableName,
+  isSupportedFrontend,
+  SUPPORTED_FRONTENDS,
+} from './constants'
 
 process.on('SIGINT', () => process.exit(0))
 process.on('SIGTERM', () => process.exit(0))
@@ -29,7 +33,7 @@ async function main() {
     .usage('<project-directory> [options]')
     .option(
       '-f, --frontend <frontend>',
-      'Frontend framework to use, supported: remix, next'
+      `Frontend framework to use, supported: ${SUPPORTED_FRONTENDS.join(', ')}`
     )
     .parse(process.argv)
 
