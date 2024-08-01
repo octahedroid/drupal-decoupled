@@ -8,8 +8,8 @@ import { LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { gql } from 'urql'
 import { metaTags } from 'drupal-remix'
 
-import { getDrupalClient } from '~/utils/drupal-client.server'
-import { calculatePath } from '~/utils/calculate-path.server'
+import { getDrupalClient } from '~/utils/drupal/client.server'
+import { calculatePath } from '~/utils/drupal/calculate-path.server'
 
 const GET_DRUPAL_CONTENT_ERROR = 'Error fetching data from Drupal'
 
