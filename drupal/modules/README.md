@@ -1,4 +1,4 @@
-# Drupal Decoupled Integrations: Drupal Modules
+# Drupal Decoupled: Drupal Modules
 
 ## GraphQL Compose
 

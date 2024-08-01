@@ -1,4 +1,4 @@
-# Drupal Decoupled 
+# Drupal Decoupled
 
 Using Drupal as a headless CMS with a Decoupled front-end implementation is a great way to get an enterprise-quality CMS, paired with a great modern development experience using Remix, Next.js, Astro and/or others.
 

@@ -1,4 +1,4 @@
-# Drupal Decoupled Integrations: NPM Packages
+# Drupal Decoupled: NPM Packages
 
 ## Drupal Auth Client
 
