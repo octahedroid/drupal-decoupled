@@ -9,13 +9,14 @@ It only takes a few steps to use Drupal paired with a Decoupled front-end framew
 Visit the docs to see how to use this project.
 
 ### Fully functional example 
-- [Decoupled Drupal GraphQL Example](https://drupal-decoupled-docs.pages.dev/docs/examples/drupal-graphql)
-- [Integration: Remix](https://drupal-decoupled-docs.pages.dev/docs/examples/remix-graphql)
-- [Integration: Next.js](https://drupal-decoupled-docs.pages.dev/docs/examples/next-graphql)
+- [Decoupled Drupal GraphQL Example](https://drupal-decoupled.octahedroid.com/docs/getting-started/examples/drupal-graphql)
+- [Integration: Remix](https://drupal-decoupled.octahedroid.com/docs/getting-started/examples/remix-graphql)
+- [Integration: Next.js](https://drupal-decoupled.octahedroid.com/docs/getting-started/examples/next-graphql)
 
 ### Start a new project from scratch
-- [Drupal](https://drupal-decoupled-docs.pages.dev/docs/drupal/install)
-- [Remix](https://drupal-decoupled-docs.pages.dev/docs/frontend-integrations/remix)
+- [Drupal](https://drupal-decoupled.octahedroid.com/docs/category/drupal)
+- [Remix](https://drupal-decoupled.octahedroid.com/docs/getting-started/frontend/remix)
+- [Next.js](https://drupal-decoupled.octahedroid.com/docs/getting-started/frontend/next)
 
 ## Supporting organizations
 

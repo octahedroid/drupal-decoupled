@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Visit the docs to see how to use this [Next.js](https://drupal-decoupled-docs.pages.dev/docs/examples/next-graphql) project.
+Visit the docs to see how to use this [Next.js](https://drupal-decoupled.octahedroid.com/docs/getting-started/examples/next-graphql) project.
 
 ## Supporting organizations
 
