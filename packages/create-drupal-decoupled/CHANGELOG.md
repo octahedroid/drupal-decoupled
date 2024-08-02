@@ -1,5 +1,11 @@
 # @octahedroid/create-drupal-decoupled
 
+## 0.4.1
+
+### Patch Changes
+
+- 7a7b14f: Added preview support to nextjs
+
 ## 0.4.0
 
 ### Minor Changes
