@@ -2,8 +2,15 @@ import { redirect } from "next/navigation";
 
 import { getDrupalClient } from "@/utils/drupal/client";
 import { gql } from "urql";
+import { calculatePath } from "@/utils/drupal/calculate-path";
 
-async function getDrupalData({ params }: { params: { slug: string[] } }) {
+async function getDrupalData({
+  params,
+  searchParams,
+}: {
+  params: { slug: string[] };
+  searchParams: Record<string, string>;
+}) {
   const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 
   const pathFromParams = params.slug?.join("/");
@@ -88,7 +95,10 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
       }
     `,
     {
-      path: pathFromParams,
+      path: calculatePath({
+        path: pathFromParams,
+        token: searchParams?.token,
+      }),
     }
   );
 
@@ -103,8 +113,14 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
   return { node: data.route.entity };
 }
 
-export default async function Page({ params }: { params: { slug: string[] } }) {
-  const { node } = await getDrupalData({ params });
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string[] };
+  searchParams: Record<string, string>;
+}) {
+  const { node } = await getDrupalData({ params, searchParams });
 
   return (
     <div className="container mx-auto">
