@@ -1,6 +1,8 @@
 <?php
+
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Random;
+use Drupal\Core\File\FileSystemInterface;
 
 $random = new Random();
 $consumerStorage = \Drupal::entityTypeManager()->getStorage('consumer');
@@ -29,7 +31,15 @@ $consumerStorage->create([
   'roles' => ['viewer'],
 ])->save();
 
-\Drupal::service('simple_oauth.key.generator')->generateKeys('../');
+$directory = '../keys';
+
+if (create_directory($directory)) {
+  echo 'Keys dir created succesfully' . PHP_EOL;
+} else {
+  echo 'Failed to create directory' . PHP_EOL;
+}
+
+\Drupal::service('simple_oauth.key.generator')->generateKeys($directory);
 
 $messages = [
   'Consumers created successfully. Please save the following credentials.',
@@ -52,4 +62,17 @@ if (PHP_SAPI === 'cli') {
   foreach ($messages as $message) {
     \Drupal::messenger()->addWarning($message);
   }
+}
+
+function create_directory($directory)
+{
+  // Get the file system service.
+  $file_system = \Drupal::service('file_system');
+
+  // Check if the directory exists and create it if it doesn't.
+  if (!$file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS)) {
+    return FALSE;
+  }
+
+  return TRUE;
 }
