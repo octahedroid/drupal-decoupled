@@ -1,6 +1,6 @@
 {
   "name": "drupal-remix",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Drupal utils for remix.run",
   "type": "module",
   "keywords": [
