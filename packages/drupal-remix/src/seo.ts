@@ -1,23 +1,30 @@
 // Keep in sync with the types in Remix MetaTags
-type MetaDescriptor = {
-  charSet: "utf-8";
-} | {
-  title: string;
-} | {
-  name: string;
-  content: string;
-} | {
-  property: string;
-  content: string;
-} | {
-  httpEquiv: string;
-  content: string;
-} | {
-  [name: string]: string;
-  tagName: "meta" | "link";
-} | {
-  [name: string]: unknown;
-}
+type MetaDescriptor =
+  | {
+      charSet: "utf-8";
+    }
+  | {
+      title: string;
+    }
+  | {
+      name: string;
+      content: string;
+    }
+  | {
+      property: string;
+      content: string;
+    }
+  | {
+      httpEquiv: string;
+      content: string;
+    }
+  | {
+      [name: string]: string;
+      tagName: "meta" | "link";
+    }
+  | {
+      [name: string]: unknown;
+    };
 
 type MetaTagUnion = (MetaTagLink | MetaTagValue | MetaTagProperty) & {
   __isUnion?: true;
@@ -28,7 +35,7 @@ interface MetaTagLink {
   __typename: "MetaTagLink";
 }
 
-export type MetaTag = (MetaTagLink | MetaTagValue | MetaTagProperty) 
+export type MetaTag = MetaTagLink | MetaTagValue | MetaTagProperty;
 
 interface MetaTagLinkAttributes {
   rel?: string | null;
@@ -55,13 +62,12 @@ interface MetaTagPropertyAttributes {
   content?: string | null;
 }
 
-type OverrideKind = "replace" | "override";
-
-type OverrideOptions = {
-  kind: OverrideKind;
-  pattern?: string;
+type OverrideOptionsReplace = {
+  pattern: string;
   replacement: string;
-};
+}[];
+
+type OverrideOptions = string | OverrideOptionsReplace;
 
 type MetaTagOverrides = {
   [key in MetaTagUnion["__typename"]]?: {
@@ -73,6 +79,20 @@ const DEFAULT_TAGS = [
   { charSet: "utf-8" },
   { name: "viewport", content: "width=device-width,initial-scale=1" },
 ];
+
+const applyOverrides = (
+  overrides: OverrideOptions,
+  initial: string | null | undefined
+) => {
+  if (typeof overrides === "string") {
+    return overrides;
+  }
+
+  return overrides.reduce(
+    (acc, { pattern, replacement }) => acc?.replace(pattern, replacement),
+    initial
+  );
+};
 
 export const metaTags = ({
   tags,
@@ -102,10 +122,7 @@ export const metaTags = ({
         };
       }
 
-      const { kind, pattern, replacement } = willOverrideTag;
-
-      const hrefOverride =
-        kind === "override" ? replacement : href?.replace(pattern!, replacement);
+      const hrefOverride = applyOverrides(willOverrideTag, href);
 
       return {
         tagName: "link",
@@ -123,12 +140,7 @@ export const metaTags = ({
         };
       }
 
-      const { kind, pattern, replacement } = willOverrideTag;
-
-      const contentOverride =
-        kind === "override"
-          ? replacement
-          : content?.replace(pattern!, replacement);
+      const contentOverride = applyOverrides(willOverrideTag, content);
 
       return {
         property,
@@ -146,12 +158,7 @@ export const metaTags = ({
         };
       }
 
-      const { kind, pattern, replacement } = willOverrideTag;
-
-      const contentOverride =
-        kind === "override"
-          ? replacement
-          : content?.replace(pattern!, replacement);
+      const contentOverride = applyOverrides(willOverrideTag, content);
 
       return {
         name,
