@@ -1,0 +1,14 @@
+diff --git a/src/Plugin/Field/FieldWidget/ParagraphsWidget.php b/src/Plugin/Field/FieldWidget/ParagraphsWidget.php
+index efd9c44..6dc3346 100644
+--- a/src/Plugin/Field/FieldWidget/ParagraphsWidget.php
++++ b/src/Plugin/Field/FieldWidget/ParagraphsWidget.php
+@@ -514,6 +514,9 @@ class ParagraphsWidget extends WidgetBase {
+         '#type' => 'container',
+         '#element_validate' => array(array($this, 'elementValidate')),
+         '#paragraph_type' => $paragraphs_entity->bundle(),
++        // patch to allow the paragraph to be identified by the visual editor.
++        '#uuid' => $paragraphs_entity->uuid(),
++        // patch to allow the paragraph to be identified by the visual editor.
+         'subform' => array(
+           '#type' => 'container',
+           '#parents' => $element_parents,
