@@ -1,4 +1,4 @@
-# Decoupled Drupal: Integration Remix
+# Drupal Decoupled: Remix
 
 ## Getting Started
 

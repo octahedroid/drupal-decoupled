@@ -1,4 +1,4 @@
-# Decoupled Drupal: Integration Next.js
+# Drupal Decoupled: Next.js
 
 ## Getting Started
 
