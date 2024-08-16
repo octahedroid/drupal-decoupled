@@ -75,8 +75,8 @@ export function VisualEditor({ ids, componentMapping }: VisualEditorProps) {
   
     if (active.id !== over.id) {
       setItems((items) => {
-        const oldIndex = items.indexOf(active.id) ;
-        const newIndex = items.indexOf(over.id);
+        const oldIndex = items.indexOf(active.id.toString()) ;
+        const newIndex = items.indexOf(over.id.toString());
 
         const newItems = arrayMove(items, oldIndex, newIndex);
 
