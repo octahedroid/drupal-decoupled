@@ -13,3 +13,5 @@ node_modules
 
 # gql:fragments (generated) - do not commit
 app/graphql/fragments/generated
+
+*storybook.log

@@ -21,7 +21,7 @@ module.exports = {
   },
 
   // Base config
-  extends: ["eslint:recommended"],
+  extends: ["eslint:recommended", "plugin:storybook/recommended"],
 
   overrides: [
     // React
