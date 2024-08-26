@@ -1,39 +1,60 @@
-import Image, { ImageType , ImageDefaultProps} from "./Image"
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from 'app/utils/ui'
+import { Button, ButtonProps } from './Button'
 
-export type HeroProps = {
-  title: string;
-  text: string;
-  image: ImageType
-}
+const heroVariants = cva('w-full px-4 py-16 md:py-24 lg:py-32', {
+  variants: {},
+  defaultVariants: {},
+})
 
-export const HeroPropsDefault: HeroProps = {
-  title: "Heading",
-  text: "This is a paragraph. You can use this to write a short description about your product or service.",
-  image: { 
-    ...ImageDefaultProps,
-    ...{
-      url: "https://drupal-graphql-example.ddev.site/sites/default/files/styles/large/public/2024-07/hero.png?itok=iBaEMRaJ",
-    }
+type ActionProps = ButtonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string
+    text: string
   }
+
+export interface HeroProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof heroVariants> {
+  heading: string
+  description?: string
+  image: React.ImgHTMLAttributes<HTMLImageElement>
+  actions?: ActionProps[]
 }
 
-export default function Hero({ title, text, image }: HeroProps) {
-  return (
-    <section className="bg-[#E0F2FE]">
-      <div className="container flex flex-col lg:flex-row items-center gap-6 xl:gap-10">
-        <div className="lg:basis-[32%]">
-          <h2 className="text-5xl xl:text-[4rem] md:leading-[3rem] lg:leading-[3.7rem] xl:leading-[5rem] text-secondary tracking-[-4px] font-bold mt-10 lg:mt-0">
-            {title}
-          </h2>
-          <p className="font-normal text-secondary text-base md:text-[1.25rem] lg:text-[1.25rem] leading-6 md:leading-8 lg:leading-[2.15rem] mt-6">
-            {text}
-          </p>
-        </div>
-
-        <div className="w-full lg:basis-[68%]">
-          <Image {...image} className={"w-full h-auto aspect-auto"} alt={image.alt} />
+export const Hero = React.forwardRef<HTMLDivElement, HeroProps>(
+  ({ className, heading, description, image, actions, ...props }, ref) => {
+    return (
+      <div className={cn(heroVariants(), className)} ref={ref} {...props}>
+        <div className="container mx-auto grid items-center gap-8 lg:grid-cols-2">
+          <div className="space-y-4 text-center lg:text-left">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              {heading}
+            </h1>
+            {description && (
+              <p className="text-muted-foreground mx-auto max-w-2xl text-lg lg:mx-0">
+                {description}
+              </p>
+            )}
+            {actions && actions.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
+                {actions.map(({ text, href, ...actionProps }, index) => (
+                  <Button key={index} asChild {...actionProps}>
+                    <a href={href}>{text}</a>
+                  </Button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="order-first mx-auto w-full max-w-lg lg:order-last lg:max-w-none">
+            {/* eslint-disable-next-line jsx-a11y/alt-text */}
+            <img {...image} className={cn('h-auto w-full object-cover')} />
+          </div>
         </div>
       </div>
-    </section>
-  );
-}
+    )
+  },
+)
+
+Hero.displayName = 'Hero'
