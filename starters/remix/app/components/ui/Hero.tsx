@@ -2,24 +2,21 @@ import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'app/utils/ui'
 import { Button, ButtonProps } from './Button'
+import { LinkProps, ImageProps } from './types'
 
 const heroVariants = cva('w-full px-4 py-16 md:py-24 lg:py-32', {
   variants: {},
   defaultVariants: {},
 })
 
-type ActionProps = ButtonProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-    href: string
-    text: string
-  }
+type ActionProps = ButtonProps & LinkProps
 
 export interface HeroProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof heroVariants> {
+  VariantProps<typeof heroVariants> {
   heading: string
   description?: string
-  image: React.ImgHTMLAttributes<HTMLImageElement>
+  image: ImageProps
   actions?: ActionProps[]
 }
 

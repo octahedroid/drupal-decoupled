@@ -52,13 +52,6 @@ export const CustomContent: Story = {
   },
 }
 
-export const WithoutDescription: Story = {
-  args: {
-    heading: 'Hero Without Description',
-    description: undefined,
-  },
-}
-
 export const WithoutActions: Story = {
   args: {
     heading: 'Hero Without Actions',
