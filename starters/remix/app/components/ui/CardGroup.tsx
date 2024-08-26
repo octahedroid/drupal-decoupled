@@ -1,57 +1,74 @@
-import Image, { ImageType, ImageDefaultProps } from './Image';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from 'app/utils/ui'
+import { Button, ButtonProps } from './Button'
+import { SimpleCard, SimpleCardProps } from './SimpleCard'
+import { TeaserCard, TeaserCardProps } from './TeaserCard'
 
-export type Cards = Array<Card>;
+const cardGroupVariants = cva('w-full py-12 md:py-16', {
+  variants: {},
+  defaultVariants: {},
+})
 
-type Card = { 
-  title: string;
-  text: string
-  image: ImageType;
+type ActionProps = ButtonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string
+    text: string
+  }
+
+type CardItem =
+  | ({ type: 'simple' } & SimpleCardProps)
+  | ({ type: 'teaser' } & TeaserCardProps)
+
+export interface CardGroupProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof cardGroupVariants> {
+  heading: string
+  subheading?: string
+  description?: string
+  action?: ActionProps
+  cards: CardItem[]
 }
 
-export type CardGroupProps = {
-  title: string;
-  cards: Cards
-}
-
-const CardPropsDefault: Card = {
-  title: "Cart Title",
-  text: "Cart Text",
-  image: ImageDefaultProps
-}
-
-export const CardGroupPropsDefault: CardGroupProps = {
-  title: "Card Group Title",
-  cards: [
-    CardPropsDefault,
-    CardPropsDefault,
-    CardPropsDefault,
-  ]
-}
-
-export default function CardGroup({ title, cards }: CardGroupProps) {
-  return (
-    <div className="container py-10 lg:py-[70px]">
-      <h2 className="text-[2rem] xl:text-[3.5rem] leading-[40px] xl:leading-[60px] mb-16 xl:mb-[105px] font-bold text-center text-primary">
-        {title}
-      </h2>
-      <div className="flex xl:flex-nowrap justify-center xl:justify-start gap-x-0 gap-y-8 md:gap-y-16">
-        {cards && cards.map((cardItem, index) => {
-          const card = { ...CardPropsDefault, ...cardItem };
-          return (
-          <div
-            className="flex-layout flex-[0_1_100%] xl:flex-[0_1_33.33%] flex flex-col gap-6 items-center justify-center"
-            key={index}
-          >
-            <Image {...card.image} width={200} height={200} alt={card.image.alt} />
-            <h4 className="text-primary text-xl lg:text-[1.625rem] leading-[1.87rem] lg:leading-9 font-ztgatha font-bold -mt-[10px] lg:mt-[0]">
-              {card.title}
-            </h4>
-            <p className="paragraph text-center w-full md:w-[97%] lg:w-[96%] xl:w-full m-auto">
-              {card.text}
-            </p>
+export const CardGroup = React.forwardRef<HTMLDivElement, CardGroupProps>(
+  (
+    { className, heading, subheading, description, action, cards, ...props },
+    ref,
+  ) => {
+    return (
+      <div className={cn(cardGroupVariants(), className)} ref={ref} {...props}>
+        <div className="container mx-auto">
+          <div className="mb-12 text-center">
+            {subheading && (
+              <p className="text-l mb-4 font-semibold">{subheading}</p>
+            )}
+            <h2 className="mb-4 text-3xl font-bold">{heading}</h2>
+            {description && (
+              <p className="text-muted-foreground mx-auto max-w-2xl">
+                {description}
+              </p>
+            )}
           </div>
-        )})}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {cards.map((card, index) =>
+              card.type === 'simple' ? (
+                <SimpleCard key={index} {...card} />
+              ) : (
+                <TeaserCard key={index} {...card} />
+              ),
+            )}
+          </div>
+          {action && (
+            <div className="mt-12 text-center">
+              <Button asChild variant="outline">
+                <a href={action.href}>{action.text}</a>
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
+    )
+  },
+)
+
+CardGroup.displayName = 'CardGroup'
