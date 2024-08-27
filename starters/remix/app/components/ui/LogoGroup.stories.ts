@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { LogoGroup } from './LogoGroup'
 
 const meta: Meta<typeof LogoGroup> = {
-  title: 'Components/LogoGroup',
+  title: 'Components/Logo Group',
   component: LogoGroup,
   tags: ['autodocs'],
   argTypes: {
@@ -14,36 +14,36 @@ const meta: Meta<typeof LogoGroup> = {
     logos: [
       {
         image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
-        link: 'https://octahedroid.com',
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
           src: 'https://picsum.photos/id/40/160/64',
           alt: 'Composabase',
         },
-        link: 'https://composabase.com',
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
       {
         image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
-        link: 'https://octahedroid.com',
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
           src: 'https://picsum.photos/id/40/160/64',
           alt: 'Composabase',
         },
-        link: 'https://composabase.com',
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
       {
         image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
-        link: 'https://octahedroid.com',
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
           src: 'https://picsum.photos/id/40/160/64',
           alt: 'Composabase',
         },
-        link: 'https://composabase.com',
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
     ],
   },
@@ -65,14 +65,14 @@ export const FewerLogos: Story = {
     logos: [
       {
         image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
-        link: 'https://octahedroid.com',
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
           src: 'https://picsum.photos/id/40/160/64',
           alt: 'Composabase',
         },
-        link: 'https://composabase.com',
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
     ],
   },
