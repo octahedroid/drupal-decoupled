@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { TeaserCard } from './TeaserCard'
 
 const meta: Meta<typeof TeaserCard> = {
-  title: 'Components/TeaserCard',
+  title: 'Components/Teaser Card',
   component: TeaserCard,
   tags: ['autodocs'],
   argTypes: {
@@ -11,10 +11,6 @@ const meta: Meta<typeof TeaserCard> = {
     tags: { control: 'object' },
     image: { control: 'object' },
     link: { control: 'object' },
-    size: {
-      control: { type: 'select' },
-      options: ['default', 'small', 'large'],
-    },
   },
   args: {
     heading: 'Blog title heading will go here',
@@ -48,16 +44,3 @@ export const WithMoreThanTwoTags: Story = {
   },
 }
 
-export const Small: Story = {
-  args: {
-    size: 'small',
-    tags: ['Category'],
-  },
-}
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    tags: ['Category', 'Featured'],
-  },
-}
