@@ -23,7 +23,7 @@ type Props = {
 
 export type CTAProps = ComponentProps<'div'> & VariantProps<typeof ctaVariants> & Partial<Props>
 
-const CTA = ({ className, subheading, heading, description, actions, ...props }: CTAProps) => {
+export const CTA = ({ className, subheading, heading, description, actions, ...props }: CTAProps) => {
   return (
     <div className={cn(ctaVariants(), className)} {...props}>
       {subheading && (
@@ -56,4 +56,3 @@ const CTA = ({ className, subheading, heading, description, actions, ...props }:
 
 CTA.displayName = 'CTA'
 
-export { CTA }

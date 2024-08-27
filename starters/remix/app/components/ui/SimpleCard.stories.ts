@@ -2,17 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { SimpleCard } from './SimpleCard'
 
 const meta: Meta<typeof SimpleCard> = {
-  title: 'Components/SimpleCard',
+  title: 'Components/Simple Card',
   component: SimpleCard,
   tags: ['autodocs'],
   argTypes: {
     heading: { control: 'text' },
     description: { control: 'text' },
     image: { control: 'object' },
-    size: {
-      control: { type: 'select' },
-      options: ['default', 'small', 'large'],
-    },
   },
   args: {
     heading: 'Card Heading',
@@ -26,18 +22,6 @@ export default meta
 type Story = StoryObj<typeof SimpleCard>
 
 export const Default: Story = {}
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-  },
-}
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-  },
-}
 
 export const LongContent: Story = {
   args: {
