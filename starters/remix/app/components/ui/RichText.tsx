@@ -1,22 +1,32 @@
-import Heading from "./Heading";
+import { ComponentProps } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from 'app/utils/ui'
 
-export type RichTextProps = {
-  title?: string;
-  content: string;
-}
+const richTextVariants = cva(
+  'prose max-w-none',
+  {
+    variants: {},
+    defaultVariants: {},
+  }
+);
 
-export const RichTextDefaultPropos = {
-  title: '',
-  content: "Lorem ipsum text here ..."
-}
+type RichTextProps = ComponentProps<'div'> &
+  VariantProps<typeof richTextVariants> & {
+    content: string;
+  }
 
-export default function RichText({ title, content }: RichTextProps ) {
+export const RichText = ({
+  className,
+  content,
+  ...props
+}: RichTextProps) => {
   return (
-    <>
-    {title && <Heading level="h2">{title}</Heading>}
-    <div className="mt-6 text-2xl prose max-w-6xl text-gray-500 mx-auto">
-      <div dangerouslySetInnerHTML={{__html: content}}></div>
-    </div>
-    </>
+    <div
+      className={cn(richTextVariants(), className)}
+      dangerouslySetInnerHTML={{ __html: content }}
+      {...props}
+    />
   );
 }
+
+RichText.displayName = 'RichText';
