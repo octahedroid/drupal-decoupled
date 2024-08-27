@@ -16,7 +16,7 @@ const meta: Meta<typeof Hero> = {
     description:
       'This is a default description. You can customize it to fit your needs.',
     image: {
-      src: 'https://picsum.photos/800/600',
+      src: '/placeholders/drupal-decoupled/landscape-large.png',
       alt: 'Default hero image',
     },
     actions: [
@@ -37,7 +37,7 @@ export const CustomContent: Story = {
     description:
       'Describe exactly what your product or service does to solve this problem. Avoid using verbose words or phrases.',
     image: {
-      src: 'https://picsum.photos/800/600',
+      src: '/placeholders/doc-tahedroid/landscape-large.png',
       alt: 'Custom hero image',
     },
     actions: [

@@ -27,7 +27,7 @@ export const SimpleCard = ({ className, image, heading, description, ...props }:
         <img
           {...image}
           alt={image?.alt}
-          className={cn('h-16 w-16 object-contain')}
+          className={cn('object-contain')}
         />
       </div>
       <h3 className="text-lg font-semibold">{heading}</h3>

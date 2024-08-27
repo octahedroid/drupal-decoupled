@@ -23,7 +23,10 @@ const meta: Meta<typeof CardGroup> = {
     cards: [
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 1' },
+        image: {
+          src: '/placeholders/drupal-decoupled/landscape-small.png',
+          alt: 'Blog post 1',
+        },
         tags: ['Category', 'Featured'],
         heading: 'Blog title heading will go here',
         summary:
@@ -32,7 +35,10 @@ const meta: Meta<typeof CardGroup> = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 2' },
+        image: {
+          src: '/placeholders/doc-tahedroid/landscape-small.png',
+          alt: 'Blog post 2',
+        },
         tags: ['Category'],
         heading: 'Blog title heading will go here',
         summary:
@@ -41,7 +47,10 @@ const meta: Meta<typeof CardGroup> = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 3' },
+        image: {
+          src: '/placeholders/drupal-decoupled/landscape-small.png',
+          alt: 'Blog post 3',
+        },
         tags: ['New', 'Popular'],
         heading: 'Blog title heading will go here',
         summary:
@@ -78,7 +87,10 @@ export const WithoutCategories: Story = {
     cards: [
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 1' },
+        image: {
+          src: '/placeholders/doc-tahedroid/landscape-small.png',
+          alt: 'Blog post 1',
+        },
         tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
@@ -87,7 +99,10 @@ export const WithoutCategories: Story = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 2' },
+        image: {
+          src: '/placeholders/drupal-decoupled/landscape-small.png',
+          alt: 'Blog post 2',
+        },
         tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
@@ -96,7 +111,10 @@ export const WithoutCategories: Story = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 3' },
+        image: {
+          src: '/placeholders/doc-tahedroid/landscape-small.png',
+          alt: 'Blog post 3',
+        },
         tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
@@ -115,7 +133,10 @@ export const MixedEmptyCategories: Story = {
     cards: [
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 2' },
+        image: {
+          src: '/placeholders/doc-tahedroid/landscape-small.png',
+          alt: 'Blog post1',
+        },
         tags: ['Category', 'Featured'],
         heading: 'Blog title heading will go here',
         summary:
@@ -124,7 +145,10 @@ export const MixedEmptyCategories: Story = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 1' },
+        image: {
+          src: '/placeholders/drupal-decoupled/landscape-small.png',
+          alt: 'Blog post 1',
+        },
         tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
@@ -133,7 +157,10 @@ export const MixedEmptyCategories: Story = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 3' },
+        image: {
+          src: '/placeholders/doc-tahedroid/landscape-small.png',
+          alt: 'Blog post 3',
+        },
         tags: ['Category', 'Featured'],
         heading: 'Blog title heading will go here',
         summary:
@@ -150,7 +177,10 @@ export const WithoutAction: Story = {
     cards: [
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 1' },
+        image: {
+          src: '/placeholders/drupal-decoupled/landscape-small.png',
+          alt: 'Blog post 1',
+        },
         tags: ['Category', 'Featured'],
         heading: 'Blog title heading will go here',
         summary:
@@ -159,7 +189,10 @@ export const WithoutAction: Story = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 2' },
+        image: {
+          src: '/placeholders/doc-tahedroid/landscape-small.png',
+          alt: 'Blog post 2',
+        },
         tags: ['Category'],
         heading: 'Blog title heading will go here',
         summary:
@@ -168,7 +201,10 @@ export const WithoutAction: Story = {
       },
       {
         type: 'teaser',
-        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 3' },
+        image: {
+          src: '/placeholders/drupal-decoupled/landscape-small.png',
+          alt: 'Blog post 3',
+        },
         tags: ['New', 'Popular'],
         heading: 'Blog title heading will go here',
         summary:
