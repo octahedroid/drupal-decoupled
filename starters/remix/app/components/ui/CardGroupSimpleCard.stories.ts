@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CardGroup } from './CardGroup'
 
 const meta: Meta<typeof CardGroup> = {
-  title: 'Components/CardGroup-SimpleCard',
+  title: 'Components/Card Group - Simple Card',
   component: CardGroup,
   tags: ['autodocs'],
   argTypes: {

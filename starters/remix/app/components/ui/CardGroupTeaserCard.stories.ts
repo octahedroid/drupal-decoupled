@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CardGroup } from './CardGroup'
 
 const meta: Meta<typeof CardGroup> = {
-  title: 'Components/CardGroup-TeaserCard',
+  title: 'Components/Card Group - Teaser Card',
   component: CardGroup,
   tags: ['autodocs'],
   argTypes: {
@@ -106,6 +106,44 @@ export const WithoutCategories: Story = {
     ],
   },
 }
+
+export const MixedEmptyCategories: Story = {
+  args: {
+    heading: 'Headline introducing resources',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+    cards: [
+      {
+        type: 'teaser',
+        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 2' },
+        tags: ['Category', 'Featured'],
+        heading: 'Blog title heading will go here',
+        summary:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
+        link: { href: '#', text: 'Read more' },
+      },
+      {
+        type: 'teaser',
+        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 1' },
+        tags: undefined,
+        heading: 'Blog title heading will go here',
+        summary:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
+        link: { href: '#', text: 'Read more' },
+      },
+      {
+        type: 'teaser',
+        image: { src: 'https://picsum.photos/800/600', alt: 'Blog post 3' },
+        tags: ['Category', 'Featured'],
+        heading: 'Blog title heading will go here',
+        summary:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
+        link: { href: '#', text: 'Read more' },
+      },
+    ],
+  },
+}
+
 export const WithoutAction: Story = {
   args: {
     action: undefined,
