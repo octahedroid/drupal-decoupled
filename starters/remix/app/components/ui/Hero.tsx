@@ -33,8 +33,12 @@ export const Hero = ({ className, heading, description, image, actions, ...props
           </p>
           {actions && actions.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
-              {actions.map(({ text, href, ...actionProps }, index) => (
-                <Button key={index} asChild {...actionProps}>
+              {actions.slice(0, 2).map(({ text, href, variant, ...actionProps }, index) => (
+                <Button
+                  key={index}
+                  variant={index === 1 ? 'outline' : (variant || 'default')}
+                  asChild {...actionProps}
+                >
                   <a href={href}>{text}</a>
                 </Button>
               ))}

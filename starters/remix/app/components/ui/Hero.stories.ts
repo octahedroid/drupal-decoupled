@@ -52,6 +52,20 @@ export const CustomContent: Story = {
   },
 }
 
+export const SingleAction: Story = {
+  args: {
+    heading: 'Hero With One Actions',
+    actions: [
+      {
+        text: 'Start Now',
+        href: '#',
+        variant: 'default',
+        className: 'font-bold',
+      },
+    ],
+  },
+}
+
 export const WithoutActions: Story = {
   args: {
     heading: 'Hero Without Actions',
