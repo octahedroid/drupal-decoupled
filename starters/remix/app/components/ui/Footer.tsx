@@ -1,48 +1,70 @@
-import Container from './Container'
+import { ComponentProps } from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from 'app/utils/ui'
+import { LinkProps, ImageProps } from './types'
 
-export default function Footer() {
-  const technologies = [
-    {
-      name: 'Remix',
-      url: 'https://www.remix.run/',
-    },
-    {
-      name: 'Tailwind',
-      url: 'https://tailwindcss.com/',
-    },
-    {
-      name: 'Drupal',
-      url: 'https://www.drupal.org/',
-    },
-    {
-      name: 'GraphQL Compose',
-      url: 'https://www.drupal.org/project/graphql_compose',
-    },
-    {
-      name: 'GQL Tada',
-      url: 'https://gql-tada.0no.co/',
-    },
-  ]
+const footerVariants = cva('w-full bg-background', {
+  variants: {},
+  defaultVariants: {},
+})
+
+type FooterColumn = {
+  title: string
+  links: LinkProps[]
+}
+
+type Props = {
+  columns: FooterColumn[]
+  logo: ImageProps
+  copyrightText: string
+}
+
+export type FooterProps = ComponentProps<'footer'> &
+  VariantProps<typeof footerVariants> &
+  Props
+
+const FooterColumn = ({ title, links }: FooterColumn) => (
+  <div className="mb-8 lg:mb-0">
+    <h2 className="text-foreground mb-4 text-sm font-semibold">{title}</h2>
+    <ul className="space-y-2">
+      {links.map((link, index) => (
+        <li key={index}>
+          <a
+            href={link.href}
+            className="text-muted-foreground hover:text-foreground text-sm"
+          >
+            {link.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)
+
+export const Footer = ({
+  className,
+  columns,
+  logo,
+  copyrightText,
+  ...props
+}: FooterProps) => {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2 mt-28 mb-24">
-      <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl font-bold">
-            Drupal Decoupled GraphQL Example:{' '}
-            {technologies.map((tech, index) => (
-              <span key={tech.name}>
-                <a
-                  href={tech.url}
-                  className="underline hover:text-success duration-200 transition-colors"
-                >
-                  {tech.name}
-                </a>
-                {index < technologies.length - 1 ? (index === technologies.length - 2 ? ' & ' : ', ') : ''}
-              </span>
-            ))}
-          </h3>
+    <footer className={cn(footerVariants(), className)} {...props}>
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
+          {columns.map((column, index) => (
+            <FooterColumn key={index} {...column} />
+          ))}
         </div>
-      </Container>
+        <div className="border-border mt-12 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
+          <div className="mb-4 md:mb-0">
+            <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
+          </div>
+          <div className="text-muted-foreground text-sm">{copyrightText}</div>
+        </div>
+      </div>
     </footer>
   )
 }
+
+Footer.displayName = 'Footer'
