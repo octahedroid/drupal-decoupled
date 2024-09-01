@@ -71,7 +71,6 @@ export const Article = ({
           </div>
           <p className="text-sm text-gray-500">{formatDate(publishDate)}</p>
         </div>
-        {summary && <p className="mb-8 text-gray-600">{summary}</p>}
         {tags && tags.length > 0 && (
           <div className="mb-8 flex flex-wrap gap-2">
             {tags.map(tag => (
@@ -81,6 +80,7 @@ export const Article = ({
             ))}
           </div>
         )}
+        {summary && <p className="mb-8 italic text-gray-400">{summary}</p>}
         <RichText content={content} />
       </div>
     </article>

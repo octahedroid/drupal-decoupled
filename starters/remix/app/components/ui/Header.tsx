@@ -13,7 +13,7 @@ import {
 import { LinkProps, ImageProps } from './types'
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react'
 
-const headerVariants = cva('w-full bg-background border-b border-border', {
+const headerVariants = cva('w-full border-b border-border bg-white', {
   variants: {
     sticky: {
       true: 'sticky top-0 z-50',

@@ -45,7 +45,7 @@ export const TeaserCard = ({
         {tags && tags.length > 0 && (
           <div className="flex gap-2">
             {tags.slice(0, 2).map((tag, index) => (
-              <Badge key={index} variant={index === 0 ? 'default' : 'outline'}>
+              <Badge key={index} variant="secondary">
                 {tag}
               </Badge>
             ))}
