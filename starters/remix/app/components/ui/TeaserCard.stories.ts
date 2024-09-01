@@ -43,4 +43,3 @@ export const WithMoreThanTwoTags: Story = {
     tags: ['Category', 'Featured', 'New'], // Only the first two will be displayed
   },
 }
-

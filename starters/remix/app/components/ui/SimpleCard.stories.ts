@@ -14,7 +14,10 @@ const meta: Meta<typeof SimpleCard> = {
     heading: 'Card Heading',
     description:
       'This is a simple card description that explains the feature or step.',
-    image: { src: '/placeholders/icons/drupal-decoupled-hexagon.png', alt: 'Feature icon' },
+    image: {
+      src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+      alt: 'Feature icon',
+    },
   },
 }
 

@@ -14,27 +14,26 @@ type Props = {
   description: string
 }
 
-export type SimpleCardProps = ComponentProps<'div'> & VariantProps<typeof simpleCardVariants> & Partial<Props>
+export type SimpleCardProps = ComponentProps<'div'> &
+  VariantProps<typeof simpleCardVariants> &
+  Partial<Props>
 
-
-export const SimpleCard = ({ className, image, heading, description, ...props }: SimpleCardProps) => {
+export const SimpleCard = ({
+  className,
+  image,
+  heading,
+  description,
+  ...props
+}: SimpleCardProps) => {
   return (
-    <div
-      className={cn(simpleCardVariants(), className)}
-      {...props}
-    >
+    <div className={cn(simpleCardVariants(), className)} {...props}>
       <div className="place-self-center">
-        <img
-          {...image}
-          alt={image?.alt}
-          className={cn('object-contain')}
-        />
+        <img {...image} alt={image?.alt} className={cn('object-contain')} />
       </div>
       <h3 className="text-lg font-semibold">{heading}</h3>
       <p className="text-muted-foreground text-sm">{description}</p>
     </div>
   )
 }
-
 
 SimpleCard.displayName = 'SimpleCard'

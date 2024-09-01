@@ -20,7 +20,7 @@ const meta: Meta<typeof Testimonial> = {
       name: 'Jane Doe',
       position: 'CEO',
       company: 'Tech Innovators Inc.',
-    }
+    },
   },
 }
 
@@ -39,6 +39,6 @@ export const CustomTestimonial: Story = {
       name: 'John Doe',
       position: 'CEO',
       company: 'Tech Innovators Inc.',
-    }
+    },
   },
 }

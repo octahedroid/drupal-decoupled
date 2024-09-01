@@ -21,9 +21,18 @@ type Props = {
   actions: ActionProps[]
 }
 
-export type CTAProps = ComponentProps<'div'> & VariantProps<typeof ctaVariants> & Partial<Props>
+export type CTAProps = ComponentProps<'div'> &
+  VariantProps<typeof ctaVariants> &
+  Partial<Props>
 
-export const CTA = ({ className, subheading, heading, description, actions, ...props }: CTAProps) => {
+export const CTA = ({
+  className,
+  subheading,
+  heading,
+  description,
+  actions,
+  ...props
+}: CTAProps) => {
   return (
     <div className={cn(ctaVariants(), className)} {...props}>
       {subheading && (
@@ -39,15 +48,18 @@ export const CTA = ({ className, subheading, heading, description, actions, ...p
       </p>
       {actions && actions.length > 0 && (
         <div className="flex flex-wrap justify-center gap-4">
-          {actions.slice(0, 2).map(({ text, href, variant, ...actionProps }, index) => (
-            <Button
-              key={index}
-              variant={index === 1 ? 'outline' : (variant || 'default')}
-              asChild {...actionProps}
-            >
-              <a href={href}>{text}</a>
-            </Button>
-          ))}
+          {actions
+            .slice(0, 2)
+            .map(({ text, href, variant, ...actionProps }, index) => (
+              <Button
+                key={index}
+                variant={index === 1 ? 'outline' : variant || 'default'}
+                asChild
+                {...actionProps}
+              >
+                <a href={href}>{text}</a>
+              </Button>
+            ))}
         </div>
       )}
     </div>
@@ -55,4 +67,3 @@ export const CTA = ({ className, subheading, heading, description, actions, ...p
 }
 
 CTA.displayName = 'CTA'
-

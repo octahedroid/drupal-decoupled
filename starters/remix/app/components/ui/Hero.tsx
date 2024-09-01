@@ -18,9 +18,18 @@ type Props = {
   actions?: ActionProps[]
 }
 
-export type HeroProps = ComponentProps<'div'> & VariantProps<typeof heroVariants> & Partial<Props>
+export type HeroProps = ComponentProps<'div'> &
+  VariantProps<typeof heroVariants> &
+  Partial<Props>
 
-export const Hero = ({ className, heading, description, image, actions, ...props }: HeroProps) => {
+export const Hero = ({
+  className,
+  heading,
+  description,
+  image,
+  actions,
+  ...props
+}: HeroProps) => {
   return (
     <div className={cn(heroVariants(), className)} {...props}>
       <div className="container mx-auto grid items-center gap-8 lg:grid-cols-2">
@@ -33,20 +42,27 @@ export const Hero = ({ className, heading, description, image, actions, ...props
           </p>
           {actions && actions.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
-              {actions.slice(0, 2).map(({ text, href, variant, ...actionProps }, index) => (
-                <Button
-                  key={index}
-                  variant={index === 1 ? 'outline' : (variant || 'default')}
-                  asChild {...actionProps}
-                >
-                  <a href={href}>{text}</a>
-                </Button>
-              ))}
+              {actions
+                .slice(0, 2)
+                .map(({ text, href, variant, ...actionProps }, index) => (
+                  <Button
+                    key={index}
+                    variant={index === 1 ? 'outline' : variant || 'default'}
+                    asChild
+                    {...actionProps}
+                  >
+                    <a href={href}>{text}</a>
+                  </Button>
+                ))}
             </div>
           )}
         </div>
         <div className="order-first mx-auto w-full max-w-lg lg:order-last lg:max-w-none">
-          <img alt={image?.alt} {...image} className={cn('h-auto w-full object-cover')} />
+          <img
+            alt={image?.alt}
+            {...image}
+            className={cn('h-auto w-full object-cover')}
+          />
         </div>
       </div>
     </div>

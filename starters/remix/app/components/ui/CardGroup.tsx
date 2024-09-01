@@ -17,7 +17,6 @@ type CardItem =
   | ({ type: 'simple' } & SimpleCardProps)
   | ({ type: 'teaser' } & TeaserCardProps)
 
-
 type Props = {
   heading: string
   subheading?: string
@@ -26,9 +25,20 @@ type Props = {
   cards: CardItem[]
 }
 
-export type CardGroupProps = ComponentProps<'div'> & VariantProps<typeof cardGroupVariants> & Required<Pick<Props, 'cards'>> & Partial<Omit<Props, 'cards'>>
+export type CardGroupProps = ComponentProps<'div'> &
+  VariantProps<typeof cardGroupVariants> &
+  Required<Pick<Props, 'cards'>> &
+  Partial<Omit<Props, 'cards'>>
 
-export const CardGroup = ({ className, heading, subheading, description, action, cards, ...props }: CardGroupProps) => {
+export const CardGroup = ({
+  className,
+  heading,
+  subheading,
+  description,
+  action,
+  cards,
+  ...props
+}: CardGroupProps) => {
   return (
     <div className={cn(cardGroupVariants(), className)} {...props}>
       <div className="container mx-auto">

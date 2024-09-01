@@ -23,21 +23,30 @@ const meta: Meta<typeof CardGroup> = {
     cards: [
       {
         type: 'simple',
-        image: { src: '/placeholders/icons/drupal-decoupled-hexagon.png', alt: 'Step 1' },
+        image: {
+          src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+          alt: 'Step 1',
+        },
         heading: 'Short summary of step one',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
       },
       {
         type: 'simple',
-        image: { src: '/placeholders/icons/drupal-decoupled-hexagon.png', alt: 'Step 2' },
+        image: {
+          src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+          alt: 'Step 2',
+        },
         heading: 'Short summary of step two',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
       },
       {
         type: 'simple',
-        image: { src: '/placeholders/icons/drupal-decoupled-hexagon.png', alt: 'Step 3' },
+        image: {
+          src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+          alt: 'Step 3',
+        },
         heading: 'Short summary of step three',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
@@ -74,13 +83,19 @@ export const TwoCards: Story = {
     cards: [
       {
         type: 'simple',
-        image: { src: '/placeholders/icons/drupal-decoupled-hexagon.png', alt: 'Step 1' },
+        image: {
+          src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+          alt: 'Step 1',
+        },
         heading: 'Short summary of step one',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       },
       {
         type: 'simple',
-        image: { src: '/placeholders/icons/drupal-decoupled-hexagon.png', alt: 'Step 2' },
+        image: {
+          src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+          alt: 'Step 2',
+        },
         heading: 'Short summary of step two',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       },

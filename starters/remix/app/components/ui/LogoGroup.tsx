@@ -18,11 +18,18 @@ type Props = {
   logos: LogoProps[]
 }
 
-export type LogoGroupProps = ComponentProps<'div'> & VariantProps<typeof logoGroupVariants> & Partial<Props>
+export type LogoGroupProps = ComponentProps<'div'> &
+  VariantProps<typeof logoGroupVariants> &
+  Partial<Props>
 
-export const LogoGroup = ({ className, heading, logos, ...props }: LogoGroupProps) => {
+export const LogoGroup = ({
+  className,
+  heading,
+  logos,
+  ...props
+}: LogoGroupProps) => {
   return (
-    <div className={cn(logoGroupVariants(), className)}  {...props}>
+    <div className={cn(logoGroupVariants(), className)} {...props}>
       <div className="container mx-auto">
         <h2 className="mb-6 text-center text-xl font-semibold md:mb-8">
           {heading}
@@ -39,10 +46,7 @@ export const LogoGroup = ({ className, heading, logos, ...props }: LogoGroupProp
               <img
                 {...image}
                 alt={image.alt || `Logo ${index + 1}`}
-                className={cn(
-                  'h-8 w-auto object-contain',
-                  image.className,
-                )}
+                className={cn('h-8 w-auto object-contain', image.className)}
               />
             </a>
           ))}

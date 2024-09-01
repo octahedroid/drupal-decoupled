@@ -27,9 +27,17 @@ type Props = {
   questions: QuestionProps[]
 }
 
-type FAQProps = ComponentProps<'div'> & VariantProps<typeof faqVariants> & Partial<Props>
+type FAQProps = ComponentProps<'div'> &
+  VariantProps<typeof faqVariants> &
+  Partial<Props>
 
-export const FAQ = ({ className, heading, description, questions, ...props }: FAQProps) => {
+export const FAQ = ({
+  className,
+  heading,
+  description,
+  questions,
+  ...props
+}: FAQProps) => {
   return (
     <div className={cn(faqVariants(), className)} {...props}>
       <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -39,18 +47,20 @@ export const FAQ = ({ className, heading, description, questions, ...props }: FA
         <p className="text-muted-foreground mb-8 text-lg">{description}</p>
       )}
       <Accordion type="single" collapsible className="w-full">
-        {questions && questions.map((item, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className='text-left' >{item.answer}</AccordionContent>
-          </AccordionItem>
-        ))}
+        {questions &&
+          questions.map((item, index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger className="text-left">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-left">
+                {item.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
       </Accordion>
     </div>
   )
 }
 
 FAQ.displayName = 'FAQ'
-

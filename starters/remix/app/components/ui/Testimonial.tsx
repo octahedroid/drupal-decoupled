@@ -11,7 +11,6 @@ const testimonialVariants = cva(
   },
 )
 
-
 export type PeopleProps = {
   avatar: string
   name: string
@@ -19,26 +18,26 @@ export type PeopleProps = {
   company: string
 }
 
-
 export type Props = {
   heading: string
   quote: string
   people: PeopleProps
 }
 
-export type TestimonialProps =
-  ComponentProps<'div'> &
+export type TestimonialProps = ComponentProps<'div'> &
   VariantProps<typeof testimonialVariants> &
   Required<Pick<Props, 'people'>> &
   Partial<Omit<Props, 'people'>>
 
-
-export const Testimonial = ({ className, heading, quote, people, ...props }: TestimonialProps) => {
+export const Testimonial = ({
+  className,
+  heading,
+  quote,
+  people,
+  ...props
+}: TestimonialProps) => {
   return (
-    <div
-      className={cn(testimonialVariants(), className)}
-      {...props}
-    >
+    <div className={cn(testimonialVariants(), className)} {...props}>
       <h2 className="text-muted-foreground mb-6 text-lg font-medium">
         {heading}
       </h2>
@@ -62,4 +61,3 @@ export const Testimonial = ({ className, heading, quote, people, ...props }: Tes
 }
 
 Testimonial.displayName = 'Testimonial'
-
