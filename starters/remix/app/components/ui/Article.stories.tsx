@@ -28,7 +28,7 @@ const meta: Meta<typeof Article> = {
       alt: 'A cartoon character on a beach with an ice cream',
     },
     tags: ['UX', 'Design', 'Business'],
-    publishDate: 172528555,
+    publishDate: 1667260800,
     author: {
       avatar: {
         src: '/placeholders/doc-tahedroid/avatar.png',
@@ -75,5 +75,11 @@ export const LongTitle: Story = {
 export const ShortContent: Story = {
   args: {
     content: '<p>This is a short article content.</p>',
+  },
+}
+
+export const DifferentDate: Story = {
+  args: {
+    publishDate: 1684108800,
   },
 }

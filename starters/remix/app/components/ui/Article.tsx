@@ -39,6 +39,7 @@ const formatDate = (timestamp: number): string => {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   }
   return date.toLocaleDateString('en-US', options)
 }
