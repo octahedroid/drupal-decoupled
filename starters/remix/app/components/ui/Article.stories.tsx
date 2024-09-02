@@ -28,9 +28,12 @@ const meta: Meta<typeof Article> = {
       alt: 'A cartoon character on a beach with an ice cream',
     },
     tags: ['UX', 'Design', 'Business'],
-    publishDate: new Date('2022-11-01'),
+    publishDate: 172528555,
     author: {
-      avatar: '/placeholders/doc-tahedroid/avatar.png',
+      avatar: {
+        src: '/placeholders/doc-tahedroid/avatar.png',
+        alt: 'Doc Tahedroid',
+      },
       name: 'Doc Tahedroid',
     },
   },

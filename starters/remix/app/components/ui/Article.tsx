@@ -12,7 +12,10 @@ const articleVariants = cva('w-full bg-white', {
 })
 
 type AuthorProps = {
-  avatar: string
+  avatar: {
+    src: string
+    alt: string
+  }
   name: string
 }
 
@@ -22,7 +25,7 @@ type Props = {
   content: string
   image: ImageProps
   tags?: string[]
-  publishDate: Date
+  publishDate: number
   author: AuthorProps
 }
 
@@ -30,7 +33,8 @@ type ArticleProps = ComponentProps<'article'> &
   VariantProps<typeof articleVariants> &
   Props
 
-const formatDate = (date: Date): string => {
+const formatDate = (timestamp: number): string => {
+  const date = new Date(timestamp * 1000) // Convert seconds to milliseconds
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
@@ -52,19 +56,22 @@ export const Article = ({
 }: ArticleProps) => {
   return (
     <article className={cn(articleVariants(), className)} {...props}>
-      <div className="mb-8">
+      <div className="container mb-8">
         <img
           {...image}
           alt={image.alt}
           className="h-auto w-full object-cover"
         />
       </div>
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mb-8 max-w-3xl px-4 sm:px-6 lg:px-8">
         <h1 className="mb-6 text-3xl font-bold">{title}</h1>
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Avatar className="mr-4 h-10 w-10">
-              <AvatarImage src={author.avatar} alt={author.name} />
+              <AvatarImage
+                src={author.avatar.src}
+                alt={author.avatar.alt || author.name}
+              />
               <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <p className="text-sm font-medium">{author.name}</p>

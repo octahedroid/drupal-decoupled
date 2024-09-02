@@ -6,18 +6,18 @@ const meta: Meta<typeof Testimonial> = {
   component: Testimonial,
   tags: ['autodocs'],
   argTypes: {
-    heading: { control: 'text' },
     quote: { control: 'text' },
-    people: { control: 'object' },
+    author: { control: 'object' },
   },
   args: {
-    heading:
-      'A customer testimonial that highlights features and answers potential customer doubts about your product or service. Showcase testimonials from a similar demographic to your customers.',
     quote:
       "This product has completely transformed our workflow. It's intuitive, powerful, and addresses all the pain points we were experiencing with our previous solution.",
-    people: {
-      avatar: '/api/placeholder/100/100',
-      name: 'Jane Doe',
+    author: {
+      avatar: {
+        src: 'placeholders/doc-tahedroid/avatar.png',
+        alt: 'Doc Tahedroid',
+      },
+      name: 'Doc Tahedroid',
       position: 'CEO',
       company: 'Tech Innovators Inc.',
     },
@@ -31,14 +31,7 @@ export const Default: Story = {}
 
 export const CustomTestimonial: Story = {
   args: {
-    heading: 'Our customers love our product',
     quote:
       "This solution has revolutionized how we manage our projects. It's a game-changer for our team's productivity.",
-    people: {
-      avatar: '/api/placeholder/100/100',
-      name: 'John Doe',
-      position: 'CEO',
-      company: 'Tech Innovators Inc.',
-    },
   },
 }

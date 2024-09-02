@@ -11,48 +11,49 @@ const testimonialVariants = cva(
   },
 )
 
-export type PeopleProps = {
-  avatar: string
+export type AvatarProps = {
+  src: string
+  alt: string
+}
+export type AuthorProps = {
+  avatar: AvatarProps
   name: string
   position: string
   company: string
 }
 
 export type Props = {
-  heading: string
   quote: string
-  people: PeopleProps
+  author: AuthorProps
 }
 
 export type TestimonialProps = ComponentProps<'div'> &
   VariantProps<typeof testimonialVariants> &
-  Required<Pick<Props, 'people'>> &
-  Partial<Omit<Props, 'people'>>
+  Props
 
 export const Testimonial = ({
   className,
-  heading,
   quote,
-  people,
+  author,
   ...props
 }: TestimonialProps) => {
   return (
     <div className={cn(testimonialVariants(), className)} {...props}>
-      <h2 className="text-muted-foreground mb-6 text-lg font-medium">
-        {heading}
-      </h2>
       <blockquote className="mb-10 text-2xl font-bold sm:text-3xl">
-        "{quote}"
+        &ldquo;{quote}&rdquo;
       </blockquote>
       <div className="flex flex-col items-center">
         <Avatar className="mb-4 h-16 w-16">
-          <AvatarImage src={people.avatar} alt={people.name} />
-          <AvatarFallback>{people.name.charAt(0)}</AvatarFallback>
+          <AvatarImage
+            src={author.avatar.src}
+            alt={author.avatar.alt || author.name}
+          />
+          <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
         </Avatar>
         <div className="text-center">
-          <p className="font-semibold">{people.name}</p>
+          <p className="font-semibold">{author.name}</p>
           <p className="text-muted-foreground text-sm">
-            {people.position}, {people.company}
+            {author.position}, {author.company}
           </p>
         </div>
       </div>

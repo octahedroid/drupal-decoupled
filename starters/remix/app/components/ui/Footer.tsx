@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'app/utils/ui'
 import { LinkProps, ImageProps } from './types'
 
-const footerVariants = cva('w-full bg-background', {
+const footerVariants = cva('w-full bg-gray-200 ', {
   variants: {},
   defaultVariants: {},
 })
