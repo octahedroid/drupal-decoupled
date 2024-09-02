@@ -51,7 +51,7 @@ export const TeaserCard = ({
             ))}
           </div>
         )}
-        <h3 className="text-xl font-semibold">{heading}</h3>
+        <h3 className="h3">{heading}</h3>
         <p className="text-muted-foreground text-sm">{summary}</p>
         <Button variant="link" asChild className="p-0">
           <a href={link?.href} className="flex items-center">

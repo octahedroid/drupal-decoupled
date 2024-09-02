@@ -25,7 +25,7 @@ export type FooterProps = ComponentProps<'footer'> &
 
 const FooterColumn = ({ title, links }: FooterColumn) => (
   <div className="mb-8 lg:mb-0">
-    <h2 className="text-foreground mb-4 text-sm font-semibold">{title}</h2>
+    <h5 className="h5">{title}</h5>
     <ul className="space-y-2">
       {links.map((link, index) => (
         <li key={index}>

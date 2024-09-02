@@ -46,14 +46,14 @@ export const CardGroup = ({
           {subheading && (
             <p className="text-l mb-4 font-semibold">{subheading}</p>
           )}
-          <h2 className="mb-4 text-3xl font-bold">{heading}</h2>
+          <h2 className="h2">{heading}</h2>
           {description && (
             <p className="text-muted-foreground mx-auto max-w-2xl">
               {description}
             </p>
           )}
         </div>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {cards.map((card, index) =>
             card.type === 'simple' ? (
               <SimpleCard key={index} {...card} />

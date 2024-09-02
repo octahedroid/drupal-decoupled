@@ -30,7 +30,7 @@ export const SimpleCard = ({
       <div className="place-self-center">
         <img {...image} alt={image?.alt} className={cn('object-contain')} />
       </div>
-      <h3 className="text-lg font-semibold">{heading}</h3>
+      <h3 className="h3">{heading}</h3>
       <p className="text-muted-foreground text-sm">{description}</p>
     </div>
   )

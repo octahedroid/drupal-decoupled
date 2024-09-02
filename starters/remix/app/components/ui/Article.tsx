@@ -6,7 +6,7 @@ import { Badge } from './Badge'
 import { RichText } from './RichText'
 import { ImageProps } from './types'
 
-const articleVariants = cva('w-full bg-white', {
+const articleVariants = cva('w-full mb-12 md:mb-16', {
   variants: {},
   defaultVariants: {},
 })
@@ -57,7 +57,7 @@ export const Article = ({
 }: ArticleProps) => {
   return (
     <article className={cn(articleVariants(), className)} {...props}>
-      <div className="container mb-8">
+      <div className="md:md-16 container mb-12">
         <img
           {...image}
           alt={image.alt}
@@ -65,7 +65,7 @@ export const Article = ({
         />
       </div>
       <div className="mx-auto mb-8 max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h1 className="mb-6 text-3xl font-bold">{title}</h1>
+        <h1 className="h1">{title}</h1>
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Avatar className="mr-4 h-10 w-10">

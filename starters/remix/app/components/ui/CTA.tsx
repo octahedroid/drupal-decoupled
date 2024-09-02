@@ -40,9 +40,7 @@ export const CTA = ({
           {subheading}
         </p>
       )}
-      <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-        {heading}
-      </h2>
+      <h2 className="h2">{heading}</h2>
       <p className="text-muted-foreground mx-auto mb-4 max-w-2xl">
         {description}
       </p>
