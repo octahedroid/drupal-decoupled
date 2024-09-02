@@ -6,10 +6,13 @@ import { Button } from './Button'
 import { ChevronRight } from 'lucide-react'
 import { LinkProps, ImageProps } from './types'
 
-const teaserCardVariants = cva('w-full overflow-hidden rounded-lg shadow-md', {
-  variants: {},
-  defaultVariants: {},
-})
+const teaserCardVariants = cva(
+  'w-full overflow-hidden rounded-lg shadow-md flex flex-col',
+  {
+    variants: {},
+    defaultVariants: {},
+  },
+)
 
 export type Props = {
   image: ImageProps
@@ -41,7 +44,7 @@ export const TeaserCard = ({
           className={cn('h-auto w-full object-cover')}
         />
       </div>
-      <div className="space-y-2 p-4">
+      <div className="flex flex-grow flex-col space-y-2 p-4">
         {tags && tags.length > 0 && (
           <div className="flex gap-2">
             {tags.slice(0, 2).map((tag, index) => (
@@ -52,13 +55,15 @@ export const TeaserCard = ({
           </div>
         )}
         <h3 className="h3">{heading}</h3>
-        <p className="text-muted-foreground text-sm">{summary}</p>
-        <Button variant="link" asChild className="p-0">
-          <a href={link?.href} className="flex items-center">
-            {link?.text}
-            <ChevronRight className="ml-1 h-4 w-4" />
-          </a>
-        </Button>
+        <p className="text-muted-foreground flex-grow text-sm">{summary}</p>
+        <div className="pt-2">
+          <Button variant="link" asChild className="p-0">
+            <a href={link?.href} className="flex items-center">
+              {link?.text}
+              <ChevronRight className="ml-1 h-4 w-4" />
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   )
