@@ -16,7 +16,10 @@ const meta: Meta<typeof TeaserCard> = {
     heading: 'Blog title heading will go here',
     summary:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
-    image: { src: 'https://picsum.photos/400/250', alt: 'Blog post image' },
+    image: {
+      src: '/placeholders/drupal-decoupled/landscape-small.png',
+      alt: 'Blog post image',
+    },
     link: { href: '#', text: 'Read more' },
   },
 }

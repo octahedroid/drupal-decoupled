@@ -13,34 +13,43 @@ const meta: Meta<typeof LogoGroup> = {
     heading: "Trusted by the world's best companies",
     logos: [
       {
-        image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
+        image: {
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
+        },
         link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: 'https://picsum.photos/id/40/160/64',
+          src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
         link: { href: 'https://composabase.com', target: '_blank' },
       },
       {
-        image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
+        image: {
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
+        },
         link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: 'https://picsum.photos/id/40/160/64',
+          src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
         link: { href: 'https://composabase.com', target: '_blank' },
       },
       {
-        image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
+        image: {
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
+        },
         link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: 'https://picsum.photos/id/40/160/64',
+          src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
         link: { href: 'https://composabase.com', target: '_blank' },
@@ -64,12 +73,15 @@ export const FewerLogos: Story = {
   args: {
     logos: [
       {
-        image: { src: 'https://picsum.photos/160/64', alt: 'Octahedroid' },
+        image: {
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
+        },
         link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: 'https://picsum.photos/id/40/160/64',
+          src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
         link: { href: 'https://composabase.com', target: '_blank' },
