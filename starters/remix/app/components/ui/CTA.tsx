@@ -36,9 +36,9 @@ export const CTA = ({
   return (
     <div className={cn(ctaVariants(), className)} {...props}>
       {subheading && (
-        <p className="text-l text-muted-foreground mb-4 font-semibold">
+        <h5 className="font-semibold text-gray-900 dark:text-gray-100 mb-4 text-lg sm:text-xl md:text-2xl">
           {subheading}
-        </p>
+        </h5>
       )}
       <h2 className="font-bold text-gray-900 dark:text-gray-100 mb-5 text-3xl sm:text-4xl md:text-5xl">{heading}</h2>
       <p className="text-muted-foreground mx-auto mb-4 max-w-2xl">

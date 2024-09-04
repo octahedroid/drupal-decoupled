@@ -43,7 +43,7 @@ export const CardGroup = ({
     <div className={cn(cardGroupVariants(), className)} {...props}>
       <div className="container mx-auto">
         <div className="mb-12 text-center">
-          {subheading && <p className="font-semibold text-gray-900 dark:text-gray-100 mb-4 text-lg sm:text-xl md:text-2xl">{subheading}</p>}
+          {subheading && <h5 className="font-semibold text-gray-900 dark:text-gray-100 mb-4 text-lg sm:text-xl md:text-2xl">{subheading}</h5>}
           <h2 className="font-bold text-gray-900 dark:text-gray-100 mb-5 text-3xl sm:text-4xl md:text-5xl">{heading}</h2>
           {description && (
             <p className="text-muted-foreground mx-auto max-w-2xl">
