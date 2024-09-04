@@ -1,32 +1,6 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
 
-// Typography plugin configuration
-
-const typographyConfig = {
-  DEFAULT: {
-    css: {
-      h1: {
-        '@apply h1': {},
-      },
-      h2: {
-        '@apply h2': {},
-      },
-      h3: {
-        '@apply h3': {},
-      },
-      h4: {
-        '@apply h4': {},
-      },
-      h5: {
-        '@apply h5': {},
-      },
-      h6: {
-        '@apply h6': {},
-      },
-    },
-  },
-}
 
 export default {
   darkMode: ['class'],
@@ -60,7 +34,6 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
-      typography: typographyConfig,
     },
   },
   plugins: [require('tailwindcss-animate'), typography],

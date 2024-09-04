@@ -6,7 +6,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from './Accordion'
+} from 'app/components/ui'
 
 const faqVariants = cva(
   'w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center',
@@ -40,7 +40,7 @@ export const FAQ = ({
 }: FAQProps) => {
   return (
     <div className={cn(faqVariants(), className)} {...props}>
-      <h2 className="h2">{heading}</h2>
+      <h2 className="font-bold text-gray-900 dark:text-gray-100 mb-5 text-3xl sm:text-4xl md:text-5xl">{heading}</h2>
       {description && (
         <p className="text-muted-foreground mb-8 text-lg">{description}</p>
       )}

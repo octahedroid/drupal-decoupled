@@ -31,7 +31,7 @@ export const LogoGroup = ({
   return (
     <div className={cn(logoGroupVariants(), className)} {...props}>
       <div className="container mx-auto">
-        <h2 className="h2">{heading}</h2>
+        <h2 className="font-bold text-gray-900 dark:text-gray-100 mb-5 text-3xl sm:text-4xl md:text-5xl">{heading}</h2>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
           {logos?.map(({ link, image }, index) => (
             <a

@@ -54,7 +54,7 @@ export const TeaserCard = ({
             ))}
           </div>
         )}
-        <h3 className="h3">{heading}</h3>
+        <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4 text-2xl sm:text-3xl md:text-4xl">{heading}</h3>
         <p className="text-muted-foreground flex-grow text-sm">{summary}</p>
         <div className="pt-2">
           <Button variant="link" asChild className="p-0">

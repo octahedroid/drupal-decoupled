@@ -65,7 +65,7 @@ export const Article = ({
         />
       </div>
       <div className="mx-auto mb-8 max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h1 className="h1">{title}</h1>
+        <h1 className="font-bold text-gray-900 dark:text-gray-100 mb-6 text-4xl sm:text-5xl md:text-6xl">{title}</h1>
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Avatar className="mr-4 h-10 w-10">
