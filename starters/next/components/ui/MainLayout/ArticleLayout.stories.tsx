@@ -1,21 +1,21 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { MainLayout, Article, Footer, Header } from '../'
-import * as ArticleStories from '../Article/Article.stories'
-import * as FooterStories from '../Footer/Footer.stories'
-import * as HeaderStories from '../Header/Header.stories'
+import { MainLayout, Article, Footer, Header } from "@/components/ui";
+import * as ArticleStories from "../Article/Article.stories";
+import * as FooterStories from "../Footer/Footer.stories";
+import * as HeaderStories from "../Header/Header.stories";
 
 const meta: Meta<typeof MainLayout> = {
-  title: 'Layout/Article Layout',
+  title: "Layout/Article Layout",
   component: MainLayout,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof MainLayout>
+type Story = StoryObj<typeof MainLayout>;
 
 export const Default: Story = {
   args: {
@@ -27,4 +27,4 @@ export const Default: Story = {
       </>
     ),
   },
-}
+};

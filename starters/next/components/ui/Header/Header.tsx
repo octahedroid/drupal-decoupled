@@ -1,8 +1,6 @@
-'use client'
-
-import { ComponentProps, useState } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
+import { ComponentProps, useState } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
 import {
   Button,
   ButtonProps,
@@ -14,41 +12,41 @@ import {
   NavigationMenuContent,
   LinkProps,
   ImageProps,
-} from '../'
-import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react'
+} from "@/components/ui";
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 
-const headerVariants = cva('w-full border-b border-border bg-white', {
+const headerVariants = cva("w-full border-b border-border bg-white", {
   variants: {
     sticky: {
-      true: 'sticky top-0 z-50',
-      false: '',
+      true: "sticky top-0 z-50",
+      false: "",
     },
   },
   defaultVariants: {
     sticky: false,
   },
-})
+});
 
 type NavItem = {
-  label: string
-  href?: string
-  children?: NavItem[]
-}
+  label: string;
+  href?: string;
+  children?: NavItem[];
+};
 
-type ActionProps = ButtonProps & LinkProps
+type ActionProps = ButtonProps & LinkProps;
 
 type Props = {
-  logo: ImageProps
-  navItems: NavItem[]
-  actions: ActionProps[]
-}
+  logo: ImageProps;
+  navItems: NavItem[];
+  actions: ActionProps[];
+};
 
-export type HeaderProps = ComponentProps<'header'> &
+export type HeaderProps = ComponentProps<"header"> &
   VariantProps<typeof headerVariants> &
-  Props
+  Props;
 
 const MobileNavItem = ({ item }: { item: NavItem }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <li className="w-full">
@@ -82,8 +80,8 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
         </a>
       )}
     </li>
-  )
-}
+  );
+};
 
 export const Header = ({
   className,
@@ -93,7 +91,7 @@ export const Header = ({
   actions,
   ...props
 }: HeaderProps) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className={cn(headerVariants({ sticky }), className)} {...props}>
@@ -147,7 +145,7 @@ export const Header = ({
               {actions.map(({ text, href, ...actionProps }, index) => (
                 <Button
                   key={index}
-                  variant={index === actions.length - 1 ? 'default' : 'outline'}
+                  variant={index === actions.length - 1 ? "default" : "outline"}
                   asChild
                   {...actionProps}
                 >
@@ -189,7 +187,7 @@ export const Header = ({
               {actions.map(({ text, href, ...actionProps }, index) => (
                 <Button
                   key={index}
-                  variant={index === actions.length - 1 ? 'default' : 'outline'}
+                  variant={index === actions.length - 1 ? "default" : "outline"}
                   className="w-full"
                   asChild
                   {...actionProps}
@@ -202,7 +200,7 @@ export const Header = ({
         </div>
       )}
     </header>
-  )
-}
+  );
+};
 
-Header.displayName = 'Header'
+Header.displayName = "Header";

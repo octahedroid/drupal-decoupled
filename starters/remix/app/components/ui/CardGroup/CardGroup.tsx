@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
+import { cn } from '~/components/ui/utils'
 import {
   Button,
   ButtonProps,
@@ -9,7 +9,7 @@ import {
   TeaserCard,
   TeaserCardProps,
   LinkProps,
-} from 'app/components/ui'
+} from '~/components/ui'
 
 const cardGroupVariants = cva('w-full py-12 md:py-16', {
   variants: {},

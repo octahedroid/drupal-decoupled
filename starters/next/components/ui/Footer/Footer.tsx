@@ -1,27 +1,27 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
-import { LinkProps, ImageProps } from '../'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
+import { LinkProps, ImageProps } from "@/components/ui";
 
-const footerVariants = cva('w-full bg-gray-200 ', {
+const footerVariants = cva("w-full bg-gray-200 ", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 type FooterColumn = {
-  title: string
-  links: LinkProps[]
-}
+  title: string;
+  links: LinkProps[];
+};
 
 type Props = {
-  columns: FooterColumn[]
-  logo: ImageProps
-  copyrightText: string
-}
+  columns: FooterColumn[];
+  logo: ImageProps;
+  copyrightText: string;
+};
 
-export type FooterProps = ComponentProps<'footer'> &
+export type FooterProps = ComponentProps<"footer"> &
   VariantProps<typeof footerVariants> &
-  Props
+  Props;
 
 const FooterColumn = ({ title, links }: FooterColumn) => (
   <div className="mb-8 lg:mb-0">
@@ -39,7 +39,7 @@ const FooterColumn = ({ title, links }: FooterColumn) => (
       ))}
     </ul>
   </div>
-)
+);
 
 export const Footer = ({
   className,
@@ -64,7 +64,7 @@ export const Footer = ({
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-Footer.displayName = 'Footer'
+Footer.displayName = "Footer";

@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
-import { LinkProps, ImageProps } from 'app/components/ui'
+import { cn } from '~/components/ui/utils'
+import { LinkProps, ImageProps } from '~/components/ui'
 
 const logoGroupVariants = cva('w-full py-8 md:py-12 text-center', {
   variants: {},

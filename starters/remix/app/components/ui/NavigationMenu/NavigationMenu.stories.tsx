@@ -6,7 +6,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
-} from 'app/components/ui'
+} from '~/components/ui'
 
 const meta: Meta<typeof NavigationMenu> = {
   title: 'Components/Navigation Menu',

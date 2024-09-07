@@ -1,13 +1,13 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
+import { cn } from '~/components/ui/utils'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
   RichText,
-} from 'app/components/ui'
+} from '~/components/ui'
 
 const faqVariants = cva(
   'w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center',

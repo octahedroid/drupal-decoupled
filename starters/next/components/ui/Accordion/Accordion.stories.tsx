@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from '../'
+} from "@/components/ui";
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordion',
+  title: "Components/Accordion",
   component: Accordion,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
-    type: 'single',
+    type: "single",
     collapsible: true,
     children: [
       <AccordionItem key="item-1" value="item-1">
@@ -36,40 +36,40 @@ const meta: Meta<typeof Accordion> = {
     ],
   },
   argTypes: {
-    type: { control: 'radio', options: ['single', 'multiple'] },
-    collapsible: { control: 'boolean' },
-    children: { control: 'object' },
+    type: { control: "radio", options: ["single", "multiple"] },
+    collapsible: { control: "boolean" },
+    children: { control: "object" },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof Accordion>
+export default meta;
+type Story = StoryObj<typeof Accordion>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const SingleType: Story = {
   args: {
-    type: 'single',
+    type: "single",
     collapsible: true,
   },
-}
+};
 
 export const MultipleType: Story = {
   args: {
-    type: 'multiple',
+    type: "multiple",
   },
-}
+};
 
 export const NonCollapsible: Story = {
   args: {
-    type: 'single',
+    type: "single",
     collapsible: false,
   },
-}
+};
 
 export const CustomContent: Story = {
   args: {
-    type: 'single',
+    type: "single",
     collapsible: true,
     children: [
       <AccordionItem key="item-1" value="item-1">
@@ -90,4 +90,4 @@ export const CustomContent: Story = {
       </AccordionItem>,
     ],
   },
-}
+};

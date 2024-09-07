@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
-import { LinkProps, ImageProps } from 'app/components/ui'
+import { cn } from '~/components/ui/utils'
+import { LinkProps, ImageProps } from '~/components/ui'
 
 const footerVariants = cva('w-full bg-gray-200 ', {
   variants: {},

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   CTA,
@@ -9,28 +9,28 @@ import {
   Hero,
   MainLayout,
   Testimonial,
-} from '../'
+} from "@/components/ui";
 
-import * as CTAStories from '../CTA/CTA.stories'
-import * as SimpleCardStories from '../CardGroup/CardGroupSimpleCard.stories'
-import * as TeaserCardStories from '../CardGroup/CardGroupTeaserCard.stories'
-import * as FAQStories from '../FAQ/FAQ.stories'
-import * as FooterStories from '../Footer/Footer.stories'
-import * as HeaderStories from '../Header/Header.stories'
-import * as HeroStories from '../Hero/Hero.stories'
-import * as TestimonialStories from '../Testimonial/Testimonial.stories'
+import * as CTAStories from "../CTA/CTA.stories";
+import * as SimpleCardStories from "../CardGroup/CardGroupSimpleCard.stories";
+import * as TeaserCardStories from "../CardGroup/CardGroupTeaserCard.stories";
+import * as FAQStories from "../FAQ/FAQ.stories";
+import * as FooterStories from "../Footer/Footer.stories";
+import * as HeaderStories from "../Header/Header.stories";
+import * as HeroStories from "../Hero/Hero.stories";
+import * as TestimonialStories from "../Testimonial/Testimonial.stories";
 
 const meta: Meta<typeof MainLayout> = {
-  title: 'Layout/Page Layout',
+  title: "Layout/Page Layout",
   component: MainLayout,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof MainLayout>
+type Story = StoryObj<typeof MainLayout>;
 
 export const Default: Story = {
   args: {
@@ -47,4 +47,4 @@ export const Default: Story = {
       </>
     ),
   },
-}
+};

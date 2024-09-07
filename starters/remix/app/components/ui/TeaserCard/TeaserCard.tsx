@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
-import { Badge, Button, LinkProps, ImageProps } from 'app/components/ui'
+import { cn } from '~/components/ui/utils'
+import { Badge, Button, LinkProps, ImageProps } from '~/components/ui'
 import { ChevronRight } from 'lucide-react'
 
 const teaserCardVariants = cva(

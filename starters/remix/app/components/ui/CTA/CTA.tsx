@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
-import { Button, ButtonProps, LinkProps } from 'app/components/ui'
+import { cn } from '~/components/ui/utils'
+import { Button, ButtonProps, LinkProps } from '~/components/ui'
 
 const ctaVariants = cva(
   'w-full max-w-4xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16',

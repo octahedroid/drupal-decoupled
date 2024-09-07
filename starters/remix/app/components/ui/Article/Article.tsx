@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
+import { cn } from '~/components/ui/utils'
 import {
   Avatar,
   AvatarFallback,
@@ -8,7 +8,7 @@ import {
   Badge,
   RichText,
   ImageProps,
-} from 'app/components/ui'
+} from '~/components/ui'
 
 const articleVariants = cva('w-full mb-12 md:mb-16', {
   variants: {},

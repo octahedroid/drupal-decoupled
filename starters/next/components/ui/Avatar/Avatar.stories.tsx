@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Avatar, AvatarImage, AvatarFallback } from '../'
+import type { Meta, StoryObj } from "@storybook/react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui";
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Components/Avatar',
+  title: "Components/Avatar",
   component: Avatar,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
     children: (
       <>
@@ -17,14 +17,14 @@ const meta: Meta<typeof Avatar> = {
     ),
   },
   argTypes: {
-    children: { control: 'object' },
+    children: { control: "object" },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof Avatar>
+export default meta;
+type Story = StoryObj<typeof Avatar>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const WithImage: Story = {
   args: {
@@ -38,17 +38,17 @@ export const WithImage: Story = {
       </>
     ),
   },
-}
+};
 
 export const Fallback: Story = {
   args: {
     children: <AvatarFallback>DH</AvatarFallback>,
   },
-}
+};
 
 export const CustomSize: Story = {
   args: {
-    className: 'h-16 w-16',
+    className: "h-16 w-16",
     children: (
       <>
         <AvatarImage
@@ -59,7 +59,7 @@ export const CustomSize: Story = {
       </>
     ),
   },
-}
+};
 
 export const NoImage: Story = {
   args: {
@@ -70,4 +70,4 @@ export const NoImage: Story = {
       </>
     ),
   },
-}
+};

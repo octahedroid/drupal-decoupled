@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
-import { Button, ButtonProps, LinkProps, ImageProps } from 'app/components/ui'
+import { cn } from '~/components/ui/utils'
+import { Button, ButtonProps, LinkProps, ImageProps } from '~/components/ui'
 
 const heroVariants = cva('w-full px-4 py-8 md:py-16 lg:py-24', {
   variants: {},

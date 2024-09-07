@@ -1,6 +1,6 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
 import {
   Avatar,
   AvatarFallback,
@@ -8,45 +8,45 @@ import {
   Badge,
   RichText,
   ImageProps,
-} from '../'
+} from "@/components/ui";
 
-const articleVariants = cva('w-full mb-12 md:mb-16', {
+const articleVariants = cva("w-full mb-12 md:mb-16", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 type AuthorProps = {
   avatar: {
-    src: string
-    alt: string
-  }
-  name: string
-}
+    src: string;
+    alt: string;
+  };
+  name: string;
+};
 
 type Props = {
-  title: string
-  summary?: string
-  content: string
-  image: ImageProps
-  tags?: string[]
-  publishDate: number
-  author: AuthorProps
-}
+  title: string;
+  summary?: string;
+  content: string;
+  image: ImageProps;
+  tags?: string[];
+  publishDate: number;
+  author: AuthorProps;
+};
 
-type ArticleProps = ComponentProps<'article'> &
+type ArticleProps = ComponentProps<"article"> &
   VariantProps<typeof articleVariants> &
-  Props
+  Props;
 
 const formatDate = (timestamp: number): string => {
-  const date = new Date(timestamp * 1000) // Convert seconds to milliseconds
+  const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
   const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  }
-  return date.toLocaleDateString('en-US', options)
-}
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  return date.toLocaleDateString("en-US", options);
+};
 
 export const Article = ({
   className,
@@ -87,7 +87,7 @@ export const Article = ({
         </div>
         {tags && tags.length > 0 && (
           <div className="mb-8 flex flex-wrap gap-2">
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <Badge key={tag} variant="secondary">
                 {tag}
               </Badge>
@@ -98,7 +98,7 @@ export const Article = ({
         <RichText content={content} />
       </div>
     </article>
-  )
-}
+  );
+};
 
-Article.displayName = 'Article'
+Article.displayName = "Article";

@@ -23,9 +23,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "~/components/*": ["./app/components/*"],
-      "~/graphql/*": ["./app/graphql/*"],
+      "~/*": ["./app/*"]
     },
     "plugins": [
       {
@@ -34,8 +32,8 @@
         "tadaOutputLocation": "./app/graphql/gql.tada.instrospection.ts",
         "tadaTurboLocation": "./app/graphql/gql.tada.cache.ts",
         "trackFieldUsage": false,
-        "shouldCheckForColocatedFragments": false,
-      },
+        "shouldCheckForColocatedFragments": false
+      }
     ],
     "noEmit": true
   }

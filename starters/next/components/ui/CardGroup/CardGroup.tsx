@@ -1,6 +1,6 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
 import {
   Button,
   ButtonProps,
@@ -9,31 +9,31 @@ import {
   TeaserCard,
   TeaserCardProps,
   LinkProps,
-} from '../'
+} from "@/components/ui";
 
-const cardGroupVariants = cva('w-full py-12 md:py-16', {
+const cardGroupVariants = cva("w-full py-12 md:py-16", {
   variants: {},
   defaultVariants: {},
-})
+});
 
-type ActionProps = ButtonProps & LinkProps
+type ActionProps = ButtonProps & LinkProps;
 
 type CardItem =
-  | ({ type: 'simple' } & SimpleCardProps)
-  | ({ type: 'teaser' } & TeaserCardProps)
+  | ({ type: "simple" } & SimpleCardProps)
+  | ({ type: "teaser" } & TeaserCardProps);
 
 type Props = {
-  heading: string
-  subheading?: string
-  description?: string
-  action?: ActionProps
-  cards: CardItem[]
-}
+  heading: string;
+  subheading?: string;
+  description?: string;
+  action?: ActionProps;
+  cards: CardItem[];
+};
 
-export type CardGroupProps = ComponentProps<'div'> &
+export type CardGroupProps = ComponentProps<"div"> &
   VariantProps<typeof cardGroupVariants> &
-  Required<Pick<Props, 'cards'>> &
-  Partial<Omit<Props, 'cards'>>
+  Required<Pick<Props, "cards">> &
+  Partial<Omit<Props, "cards">>;
 
 export const CardGroup = ({
   className,
@@ -64,11 +64,11 @@ export const CardGroup = ({
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {cards.map((card, index) =>
-            card.type === 'simple' ? (
+            card.type === "simple" ? (
               <SimpleCard key={index} {...card} />
             ) : (
               <TeaserCard key={index} {...card} />
-            ),
+            )
           )}
         </div>
         {action && (
@@ -80,7 +80,7 @@ export const CardGroup = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-CardGroup.displayName = 'CardGroup'
+CardGroup.displayName = "CardGroup";

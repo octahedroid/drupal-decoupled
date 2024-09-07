@@ -1,25 +1,25 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
-import { Button, ButtonProps, LinkProps, ImageProps } from '../'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
+import { Button, ButtonProps, LinkProps, ImageProps } from "@/components/ui";
 
-const heroVariants = cva('w-full px-4 py-8 md:py-16 lg:py-24', {
+const heroVariants = cva("w-full px-4 py-8 md:py-16 lg:py-24", {
   variants: {},
   defaultVariants: {},
-})
+});
 
-type ActionProps = ButtonProps & LinkProps
+type ActionProps = ButtonProps & LinkProps;
 
 type Props = {
-  heading: string
-  description: string
-  image: ImageProps
-  actions?: ActionProps[]
-}
+  heading: string;
+  description: string;
+  image: ImageProps;
+  actions?: ActionProps[];
+};
 
-export type HeroProps = ComponentProps<'div'> &
+export type HeroProps = ComponentProps<"div"> &
   VariantProps<typeof heroVariants> &
-  Partial<Props>
+  Partial<Props>;
 
 export const Hero = ({
   className,
@@ -46,7 +46,7 @@ export const Hero = ({
                 .map(({ text, href, variant, ...actionProps }, index) => (
                   <Button
                     key={index}
-                    variant={index === 1 ? 'outline' : variant || 'default'}
+                    variant={index === 1 ? "outline" : variant || "default"}
                     asChild
                     {...actionProps}
                   >
@@ -60,12 +60,12 @@ export const Hero = ({
           <img
             alt={image?.alt}
             {...image}
-            className={cn('h-auto w-full object-cover')}
+            className={cn("h-auto w-full object-cover")}
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-Hero.displayName = 'Hero'
+Hero.displayName = "Hero";

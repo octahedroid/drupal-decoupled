@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CTA } from 'app/components/ui'
+import { CTA } from '~/components/ui'
 
 const meta: Meta<typeof CTA> = {
   title: 'Components/CTA',

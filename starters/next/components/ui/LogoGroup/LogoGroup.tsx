@@ -1,26 +1,26 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
-import { LinkProps, ImageProps } from '../'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
+import { LinkProps, ImageProps } from "@/components/ui";
 
-const logoGroupVariants = cva('w-full py-8 md:py-12 text-center', {
+const logoGroupVariants = cva("w-full py-8 md:py-12 text-center", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 type LogoProps = {
-  image: ImageProps
-  link: LinkProps
-}
+  image: ImageProps;
+  link: LinkProps;
+};
 
 type Props = {
-  heading: string
-  logos: LogoProps[]
-}
+  heading: string;
+  logos: LogoProps[];
+};
 
-export type LogoGroupProps = ComponentProps<'div'> &
+export type LogoGroupProps = ComponentProps<"div"> &
   VariantProps<typeof logoGroupVariants> &
-  Partial<Props>
+  Partial<Props>;
 
 export const LogoGroup = ({
   className,
@@ -46,14 +46,14 @@ export const LogoGroup = ({
               <img
                 {...image}
                 alt={image.alt || `Logo ${index + 1}`}
-                className={cn('h-8 w-auto object-contain', image.className)}
+                className={cn("h-8 w-auto object-contain", image.className)}
               />
             </a>
           ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-LogoGroup.displayName = 'LogoGroup'
+LogoGroup.displayName = "LogoGroup";

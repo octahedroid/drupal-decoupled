@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CardGroup } from 'app/components/ui'
+import { CardGroup } from '~/components/ui'
 
 const meta: Meta<typeof CardGroup> = {
   title: 'Components/Card Group - Teaser Card',

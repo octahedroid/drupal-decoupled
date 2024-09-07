@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { SimpleCard } from 'app/components/ui'
+import { SimpleCard } from '~/components/ui'
 
 const meta: Meta<typeof SimpleCard> = {
   title: 'Components/Simple Card',

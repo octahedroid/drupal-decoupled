@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { LogoGroup } from 'app/components/ui'
+import { LogoGroup } from '~/components/ui'
 
 const meta: Meta<typeof LogoGroup> = {
   title: 'Components/Logo Group',

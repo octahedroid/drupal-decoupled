@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { RichText } from 'app/components/ui'
+import { RichText } from '~/components/ui'
 
 const meta: Meta<typeof RichText> = {
   title: 'Components/RichText',

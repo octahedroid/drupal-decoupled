@@ -1,28 +1,28 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
-import { Button, ButtonProps, LinkProps } from '../'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
+import { Button, ButtonProps, LinkProps } from "@/components/ui";
 
 const ctaVariants = cva(
-  'w-full max-w-4xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16',
+  "w-full max-w-4xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16",
   {
     variants: {},
     defaultVariants: {},
-  },
-)
+  }
+);
 
-type ActionProps = ButtonProps & LinkProps
+type ActionProps = ButtonProps & LinkProps;
 
 type Props = {
-  subheading?: string
-  heading: string
-  description: string
-  actions: ActionProps[]
-}
+  subheading?: string;
+  heading: string;
+  description: string;
+  actions: ActionProps[];
+};
 
-export type CTAProps = ComponentProps<'div'> &
+export type CTAProps = ComponentProps<"div"> &
   VariantProps<typeof ctaVariants> &
-  Partial<Props>
+  Partial<Props>;
 
 export const CTA = ({
   className,
@@ -52,7 +52,7 @@ export const CTA = ({
             .map(({ text, href, variant, ...actionProps }, index) => (
               <Button
                 key={index}
-                variant={index === 1 ? 'outline' : variant || 'default'}
+                variant={index === 1 ? "outline" : variant || "default"}
                 asChild
                 {...actionProps}
               >
@@ -62,7 +62,7 @@ export const CTA = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-CTA.displayName = 'CTA'
+CTA.displayName = "CTA";

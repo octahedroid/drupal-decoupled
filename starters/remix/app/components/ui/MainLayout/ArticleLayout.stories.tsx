@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { MainLayout, Article, Footer, Header } from 'app/components/ui'
+import { MainLayout, Article, Footer, Header } from '~/components/ui'
 import * as ArticleStories from '../Article/Article.stories'
 import * as FooterStories from '../Footer/Footer.stories'
 import * as HeaderStories from '../Header/Header.stories'

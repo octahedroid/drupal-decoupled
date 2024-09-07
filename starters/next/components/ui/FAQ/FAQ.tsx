@@ -1,36 +1,36 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
   RichText,
-} from '../'
+} from "@/components/ui";
 
 const faqVariants = cva(
-  'w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center',
+  "w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center",
   {
     variants: {},
     defaultVariants: {},
-  },
-)
+  }
+);
 
 type QuestionProps = {
-  question: string
-  answer: string
-}
+  question: string;
+  answer: string;
+};
 
 type Props = {
-  heading: string
-  description?: string
-  questions: QuestionProps[]
-}
+  heading: string;
+  description?: string;
+  questions: QuestionProps[];
+};
 
-type FAQProps = ComponentProps<'div'> &
+type FAQProps = ComponentProps<"div"> &
   VariantProps<typeof faqVariants> &
-  Partial<Props>
+  Partial<Props>;
 
 export const FAQ = ({
   className,
@@ -55,13 +55,13 @@ export const FAQ = ({
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-left">
-                <RichText content={item.answer} /> 
+                <RichText content={item.answer} />
               </AccordionContent>
             </AccordionItem>
           ))}
       </Accordion>
     </div>
-  )
-}
+  );
+};
 
-FAQ.displayName = 'FAQ'
+FAQ.displayName = "FAQ";

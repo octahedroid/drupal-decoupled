@@ -1,6 +1,6 @@
 import { ComponentProps, useState } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
+import { cn } from '~/components/ui/utils'
 import {
   Button,
   ButtonProps,
@@ -12,7 +12,7 @@ import {
   NavigationMenuContent,
   LinkProps,
   ImageProps,
-} from 'app/components/ui'
+} from '~/components/ui'
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react'
 
 const headerVariants = cva('w-full border-b border-border bg-white', {

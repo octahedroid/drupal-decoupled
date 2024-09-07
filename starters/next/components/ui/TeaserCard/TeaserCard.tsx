@@ -1,28 +1,28 @@
-import { ComponentProps } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
-import { Badge, Button, LinkProps, ImageProps } from '../'
-import { ChevronRight } from 'lucide-react'
+import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/components/ui/utils";
+import { Badge, Button, LinkProps, ImageProps } from "@/components/ui";
+import { ChevronRight } from "lucide-react";
 
 const teaserCardVariants = cva(
-  'w-full overflow-hidden rounded-lg shadow-md flex flex-col',
+  "w-full overflow-hidden rounded-lg shadow-md flex flex-col",
   {
     variants: {},
     defaultVariants: {},
-  },
-)
+  }
+);
 
 export type Props = {
-  image: ImageProps
-  tags?: string[]
-  heading: string
-  summary: string
-  link: LinkProps
-}
+  image: ImageProps;
+  tags?: string[];
+  heading: string;
+  summary: string;
+  link: LinkProps;
+};
 
-export type TeaserCardProps = ComponentProps<'div'> &
+export type TeaserCardProps = ComponentProps<"div"> &
   VariantProps<typeof teaserCardVariants> &
-  Partial<Props>
+  Partial<Props>;
 
 export const TeaserCard = ({
   className,
@@ -39,7 +39,7 @@ export const TeaserCard = ({
         <img
           {...image}
           alt={image?.alt}
-          className={cn('h-auto w-full object-cover')}
+          className={cn("h-auto w-full object-cover")}
         />
       </div>
       <div className="flex flex-grow flex-col space-y-2 p-4">
@@ -66,7 +66,7 @@ export const TeaserCard = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-TeaserCard.displayName = 'TeaserCard'
+TeaserCard.displayName = "TeaserCard";

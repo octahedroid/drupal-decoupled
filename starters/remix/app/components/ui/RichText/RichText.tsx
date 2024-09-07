@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
+import { cn } from '~/components/ui/utils'
 
 const richTextVariants = cva('prose max-w-none', {
   variants: {},

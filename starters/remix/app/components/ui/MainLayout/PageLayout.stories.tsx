@@ -9,7 +9,7 @@ import {
   Hero,
   MainLayout,
   Testimonial,
-} from 'app/components/ui'
+} from '~/components/ui'
 
 import * as CTAStories from '../CTA/CTA.stories'
 import * as SimpleCardStories from '../CardGroup/CardGroupSimpleCard.stories'

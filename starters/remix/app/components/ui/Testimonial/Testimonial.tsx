@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'app/utils/ui'
-import { Avatar, AvatarImage, AvatarFallback } from 'app/components/ui'
+import { cn } from '~/components/ui/utils'
+import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui'
 
 const testimonialVariants = cva(
   'w-full max-w-3xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16',
