@@ -1,27 +1,26 @@
 import { FragmentOf, readFragment } from "gql.tada";
+import { ImageProps } from "~/components/ui/types";
 import { ImageFragment, MediaImageFragment } from "~/graphql/drupal/fragments/media";
 import { UserFragment } from "~/graphql/drupal/fragments/user";
 import { ImageElement } from "~/graphql/drupal/types";
-import { UserType } from "~/components/ui/types";
-import { ImageType } from "~/components/ui/Image";
 
 export const extractImageFromMedia = (image: ImageElement) => {
   if (!image) {
-    return {} as ImageType;
+    return {} as ImageProps;
   }
 
   const { mediaImage }  = readFragment(MediaImageFragment, image);
   const imageElement = readFragment(ImageFragment, mediaImage);
 
-  return imageElement as ImageType;
+  return imageElement as ImageProps;
 }
 
 export const extractUser = (user: FragmentOf<typeof UserFragment>): UserType => {
   if (!user) {
-    return {} as UserType;
+    return {} as ImageProps;
   }
 
   const { name, picture } = readFragment(UserFragment, user);
 
-  return { name, picture: extractImageFromMedia(picture) };
+  return { name, avatar: extractImageFromMedia(picture) };
 }

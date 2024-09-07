@@ -6,6 +6,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  RichText,
 } from 'app/components/ui'
 
 const faqVariants = cva(
@@ -54,7 +55,7 @@ export const FAQ = ({
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-left">
-                {item.answer}
+                <RichText content={item.answer} />
               </AccordionContent>
             </AccordionItem>
           ))}

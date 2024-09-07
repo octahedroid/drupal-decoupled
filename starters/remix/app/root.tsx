@@ -10,10 +10,6 @@ import {
 import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
 import { syncDrupalPreviewRoutes } from "drupal-decoupled";
 
-import Container from "./components/ui/Container";
-import Footer from "./components/ui/Footer";
-import Header from "./components/ui//Header";
-
 import './tailwind.css'
 import './preview.css'
 
@@ -54,11 +50,7 @@ export default function App() {
 
   return (
     <>
-      <Container>
-        <Header />
-        <Outlet />
-        <Footer />
-      </Container>
+      <Outlet />
     </>
   );
 }

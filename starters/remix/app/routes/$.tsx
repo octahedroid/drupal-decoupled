@@ -1,6 +1,6 @@
 import { json, redirect, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import { FragmentOf } from "gql.tada";
+import { FragmentOf, readFragment } from "gql.tada";
 import { metaTags } from "drupal-remix";
 
 import { NodePageFragment, NodeArticleFragment } from "~/graphql/drupal/fragments/node";
@@ -13,6 +13,10 @@ import TermTagsComponent from "~/components/drupal/taxonomy/TermTags";
 import { getClient } from "~/utils/drupal/client.server";
 import { calculatePath } from "~/utils/drupal/routes";
 import { calculateMetaTags } from "~/utils/drupal/metatags";
+
+import { Header } from "~/components/ui//Header";
+import { Footer } from "~/components/ui/Footer";
+import { MenuFragment, MenuItemFragment } from "~/graphql/drupal/fragments/menu";
 
 export const meta: MetaFunction<typeof loader> = ({
   data,
@@ -74,11 +78,20 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
           }
         }
       }
+
+      menuMain: menu (name: MAIN) {
+        ...MenuFragment
+      }
+
+      menuFooter: menu (name: FOOTER) {
+        ...MenuFragment
+      }
     }
   `, [
     NodePageFragment,
     NodeArticleFragment,
-    TermTagsFragment
+    TermTagsFragment,
+    MenuFragment,
   ])
 
   const { data, error } = await client.query(
@@ -96,26 +109,68 @@ export const loader = async ({ params, context, request }: LoaderFunctionArgs) =
     return redirect("/404");
   }
 
+  const menuMain = readFragment(MenuFragment, data.menuMain) 
+  const navItems = menuMain?.items.map((item) => {
+    const menuItem = readFragment(MenuItemFragment, item)
+
+    return {
+      label: menuItem.label,
+      href: menuItem.href,
+      expanded: menuItem.expanded,
+    }
+  });
+
   return json({
     type: data.route.entity.__typename,
+    header: {
+      logo: {
+        // add DRUPAL URI as env variable
+        src: `${context.cloudflare.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
+        alt: 'Company Logo',
+      },
+      navItems,
+      sticky: true,
+      actions: [
+        {
+          text: 'Docs',
+          href: 'https://drupal-decoupled.octahedroid.com/docs',
+          variant: 'secondary',
+        },
+        {
+          text: 'Get started',
+          href: 'https://drupal-decoupled.octahedroid.com/',
+          variant: 'default',
+        },
+      ],
+    },
+    footer: {
+      logo: {
+        // add DRUPAL URI as env variable
+        src: `${context.cloudflare.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
+        alt: 'Company Logo',
+      },
+      copyrightText: `© ${new Date().getFullYear()} Drupal Decoupled`,
+      navItems: [],
+    },
     entity: data.route.entity as EntityFragmentType,
     environment: context.cloudflare.env.ENVIRONMENT,
   })
 }
 
 export default function Index() {
-  const { type, entity, environment } = useLoaderData<typeof loader>();
+  const { type, entity, environment, header, footer } = useLoaderData<typeof loader>();
 
   if (!type || !entity) {
     return null;
   }
 
   return (
-    <>     
+    <>  
+        <Header logo={header.logo} navItems={header.navItems} sticky={header.sticky} actions={header.actions} />
         { type === "TermTags" && <TermTagsComponent term={entity as FragmentOf<typeof TermTagsFragment>} />}
         { type === "NodePage" && <NodePageComponent node={entity as FragmentOf<typeof NodePageFragment>} environment={environment} />}
         { type === "NodeArticle" && <NodeArticleComponent node={entity as FragmentOf<typeof NodeArticleFragment>} environment={environment} />}
-      
+        <Footer logo={footer.logo} copyrightText={footer.copyrightText} columns={[]} />
     </>
   );
 }

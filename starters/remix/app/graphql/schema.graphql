@@ -44,16 +44,16 @@ type Query {
     revision: ID
   ): TermTags
 
-  """Load a ParagraphCard entity by id"""
-  paragraphCard(
-    """The id of the ParagraphCard to load."""
+  """Load a ParagraphAuthor entity by id"""
+  paragraphAuthor(
+    """The id of the ParagraphAuthor to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): ParagraphCard
+  ): ParagraphAuthor
 
   """Load a ParagraphCardGroup entity by id"""
   paragraphCardGroup(
@@ -66,16 +66,27 @@ type Query {
     revision: ID
   ): ParagraphCardGroup
 
-  """Load a ParagraphCodeBlock entity by id"""
-  paragraphCodeBlock(
-    """The id of the ParagraphCodeBlock to load."""
+  """Load a ParagraphCta entity by id"""
+  paragraphCta(
+    """The id of the ParagraphCta to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): ParagraphCodeBlock
+  ): ParagraphCta
+
+  """Load a ParagraphFaq entity by id"""
+  paragraphFaq(
+    """The id of the ParagraphFaq to load."""
+    id: ID!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): ParagraphFaq
 
   """Load a ParagraphHero entity by id"""
   paragraphHero(
@@ -88,38 +99,38 @@ type Query {
     revision: ID
   ): ParagraphHero
 
-  """Load a ParagraphImage entity by id"""
-  paragraphImage(
-    """The id of the ParagraphImage to load."""
+  """Load a ParagraphLogo entity by id"""
+  paragraphLogo(
+    """The id of the ParagraphLogo to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): ParagraphImage
+  ): ParagraphLogo
 
-  """Load a ParagraphStaticComponent entity by id"""
-  paragraphStaticComponent(
-    """The id of the ParagraphStaticComponent to load."""
+  """Load a ParagraphLogoGroup entity by id"""
+  paragraphLogoGroup(
+    """The id of the ParagraphLogoGroup to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): ParagraphStaticComponent
+  ): ParagraphLogoGroup
 
-  """Load a ParagraphText entity by id"""
-  paragraphText(
-    """The id of the ParagraphText to load."""
+  """Load a ParagraphTestimonial entity by id"""
+  paragraphTestimonial(
+    """The id of the ParagraphTestimonial to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): ParagraphText
+  ): ParagraphTestimonial
 
   """Load a ParagraphViewReference entity by id"""
   paragraphViewReference(
@@ -131,6 +142,17 @@ type Query {
     """
     revision: ID
   ): ParagraphViewReference
+
+  """Load a ParagraphWebform entity by id"""
+  paragraphWebform(
+    """The id of the ParagraphWebform to load."""
+    id: ID!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): ParagraphWebform
 
   """Load a Menu by name."""
   menu(
@@ -236,8 +258,8 @@ type Query {
     sortKey: ConnectionSortKeys
   ): TermTagsConnection!
 
-  """List of all ParagraphCard on the platform."""
-  paragraphCards(
+  """List of all ParagraphAuthor on the platform."""
+  paragraphAuthors(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -255,7 +277,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): ParagraphCardConnection!
+  ): ParagraphAuthorConnection!
 
   """List of all ParagraphCardGroup on the platform."""
   paragraphCardGroups(
@@ -278,8 +300,8 @@ type Query {
     sortKey: ConnectionSortKeys
   ): ParagraphCardGroupConnection!
 
-  """List of all ParagraphCodeBlock on the platform."""
-  paragraphCodeBlocks(
+  """List of all ParagraphCta on the platform."""
+  paragraphCtas(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -297,7 +319,28 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): ParagraphCodeBlockConnection!
+  ): ParagraphCtaConnection!
+
+  """List of all ParagraphFaq on the platform."""
+  paragraphFaqs(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+  ): ParagraphFaqConnection!
 
   """List of all ParagraphHero on the platform."""
   paragraphHeroes(
@@ -320,8 +363,8 @@ type Query {
     sortKey: ConnectionSortKeys
   ): ParagraphHeroConnection!
 
-  """List of all ParagraphImage on the platform."""
-  paragraphImages(
+  """List of all ParagraphLogoGroup on the platform."""
+  paragraphLogoGroups(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -339,10 +382,10 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): ParagraphImageConnection!
+  ): ParagraphLogoGroupConnection!
 
-  """List of all ParagraphStaticComponent on the platform."""
-  paragraphStaticComponents(
+  """List of all ParagraphTestimonial on the platform."""
+  paragraphTestimonials(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -360,28 +403,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): ParagraphStaticComponentConnection!
-
-  """List of all ParagraphText on the platform."""
-  paragraphTexts(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-  ): ParagraphTextConnection!
+  ): ParagraphTestimonialConnection!
 
   """List of all ParagraphViewReference on the platform."""
   paragraphViewReferences(
@@ -403,6 +425,27 @@ type Query {
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
   ): ParagraphViewReferenceConnection!
+
+  """List of all ParagraphWebform on the platform."""
+  paragraphWebforms(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+  ): ParagraphWebformConnection!
 
   """List of all User on the platform."""
   users(
@@ -446,11 +489,14 @@ type Query {
     path: String!
   ): RouteUnion
 
-  """Query for view blog display blog_teaser."""
-  viewBlogTeaser(
+  """Query for view blog display blog_featured."""
+  viewBlogTeaserFeatured(
     """The page number to display."""
     page: Int = 0
-  ): ViewBlogTeaserResult
+  ): ViewBlogTeaserFeaturedResult
+
+  """Query for view blog display blog_teaser."""
+  viewBlogTeaser: ViewBlogTeaserResult
 }
 
 """Use local images for reusable media."""
@@ -716,11 +762,11 @@ type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
   """The author of this content."""
   author: User
 
+  """Body"""
+  body: TextSummary!
+
   """The time that the node was last edited."""
   changed: DateTime!
-
-  """Components"""
-  components: [ParagraphUnion!]
 
   """The date and time that the content was created."""
   created: DateTime!
@@ -877,34 +923,189 @@ enum UserStatus {
 """Entity type media."""
 union MediaUnion = MediaImage
 
-"""Entity type paragraph."""
-union ParagraphUnion = ParagraphCard | ParagraphCardGroup | ParagraphCodeBlock | ParagraphHero | ParagraphImage | ParagraphStaticComponent | ParagraphText | ParagraphViewReference
+"""A processed text format with summary defined by the CMS."""
+type TextSummary {
+  """The raw text value."""
+  value: String
 
-"""Lorem"""
-type ParagraphCard implements ParagraphInterface & EdgeNode {
+  """The processed text value."""
+  processed: Html
+
+  """The text format used to process the text value."""
+  format: String
+
+  """The processed text summary."""
+  summary: Html
+}
+
+"""
+An HTML string
+
+Content of this type is deemed safe by the server for raw output given the
+origin and the context of its usage. The HTML can still contain scripts or style
+tags where the creating user had permission to input these.
+"""
+scalar Html
+
+"""Entity type taxonomy_term."""
+union TermUnion = TermTags
+
+"""Use tags to group articles on similar topics into categories."""
+type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
+
+  """The time that the term was last edited."""
+  changed: DateTime!
+
+  """Description"""
+  description: Text!
+
+  """The term language code."""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """The parents of this term."""
+  parent: TermUnion
+
+  """URL alias"""
+  path: String!
+
+  """Published"""
+  status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
+}
+
+"""Entity type taxonomy_term."""
+interface TermInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the term was last edited."""
+  changed: DateTime!
+
+  """Description"""
+  description: Text!
+
+  """The term language code."""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """The parents of this term."""
+  parent: TermUnion
+
+  """URL alias"""
+  path: String!
+
+  """Published"""
+  status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
+}
+
+"""A processed text format defined by the CMS."""
+type Text {
+  """The raw text value."""
+  value: String
+
+  """The processed text value."""
+  processed: Html
+
+  """The text format used to process the text value."""
+  format: String
+}
+
+"""
+Use <em>basic pages</em> for your static content, such as an 'About us' page.
+"""
+type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The author of this content."""
+  author: User
+
+  """The time that the node was last edited."""
+  changed: DateTime!
+
+  """Components"""
+  components: [ParagraphUnion!]
+
+  """The date and time that the content was created."""
+  created: DateTime!
+
+  """Image"""
+  image: MediaUnion!
+
+  """Language"""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """URL alias"""
+  path: String!
+
+  """Promoted to front page"""
+  promote: Boolean!
+
+  """Show Title"""
+  showTitle: Boolean
+
+  """Published"""
+  status: Boolean!
+
+  """Sticky at top of lists"""
+  sticky: Boolean!
+
+  """Summary"""
+  summary: String!
+
+  """Title"""
+  title: String!
+}
+
+"""Entity type paragraph."""
+union ParagraphUnion = ParagraphAuthor | ParagraphCardGroup | ParagraphCta | ParagraphFaq | ParagraphHero | ParagraphLogo | ParagraphLogoGroup | ParagraphQuestion | ParagraphSimpleCard | ParagraphTestimonial | ParagraphViewReference | ParagraphWebform
+
+"""Entity type paragraph."""
+type ParagraphAuthor implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """Company"""
+  company: String!
 
   """The time that the Paragraph was created."""
   created: DateTime!
 
-  """CTA"""
-  cta: Link
-
-  """Image"""
+  """Avatar"""
   image: MediaUnion!
 
   """The paragraphs entity language code."""
   langcode: Language!
 
+  """Name"""
+  name: String!
+
+  """Position"""
+  position: String!
+
   """Published"""
   status: Boolean!
-
-  """Text"""
-  text: String!
-
-  """Title"""
-  title: String!
 }
 
 """Entity type paragraph."""
@@ -922,6 +1123,60 @@ interface ParagraphInterface {
   status: Boolean!
 }
 
+"""Entity type paragraph."""
+type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Description"""
+  description: String
+
+  """Heading"""
+  heading: String!
+
+  """Items"""
+  items: [ParagraphUnion!]!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+
+  """Subheading"""
+  subheading: String
+}
+
+"""Entity type paragraph."""
+type ParagraphCta implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """Actions"""
+  actions: [Link!]
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Description"""
+  description: String!
+
+  """Heading"""
+  heading: String!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+
+  """Subheading"""
+  subheading: String
+}
+
 """A link."""
 type Link {
   """The title of the link."""
@@ -935,12 +1190,18 @@ type Link {
 }
 
 """Entity type paragraph."""
-type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
+type ParagraphFaq implements ParagraphInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
+
+  """Description"""
+  description: String
+
+  """Heading"""
+  heading: String!
 
   """Items"""
   items: [ParagraphUnion!]!
@@ -950,36 +1211,6 @@ type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
-
-  """Title"""
-  title: String!
-}
-
-"""Entity type paragraph."""
-type ParagraphCodeBlock implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """Code"""
-  code: String!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-
-  """Language"""
-  language: String!
-
-  """Show Line Numbers"""
-  showLineNumbers: Boolean
-
-  """Published"""
-  status: Boolean!
-
-  """Title"""
-  titleOptional: String
 }
 
 """Entity type paragraph."""
@@ -987,35 +1218,107 @@ type ParagraphHero implements ParagraphInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
+  """Actions"""
+  actions: [Link!]
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Description"""
+  description: String!
+
+  """Heading"""
+  heading: String!
+
+  """Image"""
+  image: MediaUnion!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""Entity type paragraph."""
+type ParagraphLogo implements ParagraphInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
   """The time that the Paragraph was created."""
   created: DateTime!
 
   """Image"""
-  image: MediaUnion
+  image: MediaUnion!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Link"""
+  link: Link!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""Entity type paragraph."""
+type ParagraphLogoGroup implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Heading"""
+  heading: String!
+
+  """Items"""
+  items: [ParagraphUnion!]!
 
   """The paragraphs entity language code."""
   langcode: Language!
 
   """Published"""
   status: Boolean!
-
-  """Text"""
-  text: String!
-
-  """Title"""
-  title: String!
 }
 
 """Entity type paragraph."""
-type ParagraphImage implements ParagraphInterface & EdgeNode {
+type ParagraphQuestion implements ParagraphInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """Answer"""
+  answer: Text!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Question"""
+  question: String!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""Entity type paragraph."""
+type ParagraphSimpleCard implements ParagraphInterface {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
+
+  """Description"""
+  description: String!
+
+  """Heading"""
+  heading: String!
 
   """Image"""
-  image: MediaUnion
+  image: MediaUnion!
 
   """The paragraphs entity language code."""
   langcode: Language!
@@ -1025,12 +1328,12 @@ type ParagraphImage implements ParagraphInterface & EdgeNode {
 }
 
 """Entity type paragraph."""
-type ParagraphStaticComponent implements ParagraphInterface & EdgeNode {
+type ParagraphTestimonial implements ParagraphInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
-  """Component"""
-  component: String
+  """Author"""
+  author: ParagraphUnion!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1038,51 +1341,12 @@ type ParagraphStaticComponent implements ParagraphInterface & EdgeNode {
   """The paragraphs entity language code."""
   langcode: Language!
 
-  """Published"""
-  status: Boolean!
-}
-
-"""Entity type paragraph."""
-type ParagraphText implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
+  """Quote"""
+  quote: String!
 
   """Published"""
   status: Boolean!
-
-  """Text Rich"""
-  textRich: Text!
-
-  """Title"""
-  title: String!
 }
-
-"""A processed text format defined by the CMS."""
-type Text {
-  """The raw text value."""
-  value: String
-
-  """The processed text value."""
-  processed: Html
-
-  """The text format used to process the text value."""
-  format: String
-}
-
-"""
-An HTML string
-
-Content of this type is deemed safe by the server for raw output given the
-origin and the context of its usage. The HTML can still contain scripts or style
-tags where the creating user had permission to input these.
-"""
-scalar Html
 
 """Entity type paragraph."""
 type ParagraphViewReference implements ParagraphInterface & EdgeNode {
@@ -1092,8 +1356,17 @@ type ParagraphViewReference implements ParagraphInterface & EdgeNode {
   """The time that the Paragraph was created."""
   created: DateTime!
 
+  """Description"""
+  description: String
+
+  """Heading"""
+  heading: String
+
   """The paragraphs entity language code."""
   langcode: Language!
+
+  """Action"""
+  link: Link
 
   """
   This is a viewfield query proxy. Page size and contextual filters are applied
@@ -1122,11 +1395,8 @@ type ParagraphViewReference implements ParagraphInterface & EdgeNode {
   """Published"""
   status: Boolean!
 
-  """Text"""
-  text: String
-
-  """Title"""
-  title: String
+  """Subheading"""
+  subheading: String
 }
 
 """Generic input for key-value pairs."""
@@ -1145,10 +1415,10 @@ enum SortDirection {
 }
 
 """All available view result types."""
-union ViewResultUnion = ViewBlogTeaserResult
+union ViewResultUnion = ViewBlogTeaserFeaturedResult | ViewBlogTeaserResult
 
-"""Result for view blog display blog_teaser."""
-type ViewBlogTeaserResult implements View {
+"""Result for view blog display blog_featured."""
+type ViewBlogTeaserFeaturedResult implements View {
   """The ID of the view."""
   id: ID!
 
@@ -1216,127 +1486,65 @@ type ViewPageInfo {
 """Entity type node."""
 union NodeUnion = NodeArticle | NodePage
 
-"""
-Use <em>basic pages</em> for your static content, such as an 'About us' page.
-"""
-type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
+"""Result for view blog display blog_teaser."""
+type ViewBlogTeaserResult implements View {
+  """The ID of the view."""
+  id: ID!
+
+  """The machine name of the view."""
+  view: String!
+
+  """The machine name of the display."""
+  display: String!
+
+  """The language code of the view."""
+  langcode: String
+
+  """The human friendly label of the view."""
+  label: String
+
+  """The description of the view."""
+  description: String
+
+  """Information about the page in the view."""
+  pageInfo: ViewPageInfo!
+
+  """The results of the view."""
+  results: [NodeUnion!]!
+}
+
+"""Entity type paragraph."""
+type ParagraphWebform implements ParagraphInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
-  """The author of this content."""
-  author: User
-
-  """The time that the node was last edited."""
-  changed: DateTime!
-
-  """Components"""
-  components: [ParagraphUnion!]
-
-  """The date and time that the content was created."""
+  """The time that the Paragraph was created."""
   created: DateTime!
 
-  """Image"""
-  image: MediaUnion!
-
-  """Language"""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """URL alias"""
-  path: String!
-
-  """Promoted to front page"""
-  promote: Boolean!
-
-  """Show Title"""
-  showTitle: Boolean
-
-  """Published"""
-  status: Boolean!
-
-  """Sticky at top of lists"""
-  sticky: Boolean!
-
-  """Summary"""
-  summary: String!
-
-  """Title"""
-  title: String!
-}
-
-"""Entity type taxonomy_term."""
-union TermUnion = TermTags
-
-"""Entity type taxonomy_term."""
-type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the term was last edited."""
-  changed: DateTime!
-
   """Description"""
-  description: Text!
+  description: String
 
-  """The term language code."""
+  """Form"""
+  form: String!
+
+  """Heading"""
+  heading: String!
+
+  """The paragraphs entity language code."""
   langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """The parents of this term."""
-  parent: TermUnion
-
-  """URL alias"""
-  path: String!
 
   """Published"""
   status: Boolean!
 
-  """The weight of this term in relation to other terms."""
-  weight: Int!
-}
-
-"""Entity type taxonomy_term."""
-interface TermInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the term was last edited."""
-  changed: DateTime!
-
-  """Description"""
-  description: Text!
-
-  """The term language code."""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """The parents of this term."""
-  parent: TermUnion
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
+  """Subheading"""
+  subheading: String
 }
 
 """List of menus available to load."""
 enum MenuAvailable {
+  """Footer"""
+  FOOTER
+
   """Main navigation"""
   MAIN
 }
@@ -1466,6 +1674,24 @@ type SchemaInformation {
 
   """The schema version."""
   version: String
+
+  """List of fragments available."""
+  fragments: [SchemaFragment!]!
+}
+
+"""A fragment representing a type within the schema."""
+type SchemaFragment {
+  """The scheme type of the fragment."""
+  type: String!
+
+  """The name of the fragment."""
+  name: String!
+
+  """The base graphql type."""
+  class: String!
+
+  """The fragment content."""
+  content: String
 }
 
 """A cursor for use in pagination."""
@@ -1582,17 +1808,17 @@ type TermTagsEdge implements Edge {
   node: TermTags!
 }
 
-"""A paginated set of results for ParagraphCard."""
-type ParagraphCardConnection implements Connection {
-  edges: [ParagraphCardEdge!]!
-  nodes: [ParagraphCard!]!
+"""A paginated set of results for ParagraphAuthor."""
+type ParagraphAuthorConnection implements Connection {
+  edges: [ParagraphAuthorEdge!]!
+  nodes: [ParagraphAuthor!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for ParagraphCard."""
-type ParagraphCardEdge implements Edge {
+"""Edge for ParagraphAuthor."""
+type ParagraphAuthorEdge implements Edge {
   cursor: Cursor!
-  node: ParagraphCard!
+  node: ParagraphAuthor!
 }
 
 """A paginated set of results for ParagraphCardGroup."""
@@ -1608,17 +1834,30 @@ type ParagraphCardGroupEdge implements Edge {
   node: ParagraphCardGroup!
 }
 
-"""A paginated set of results for ParagraphCodeBlock."""
-type ParagraphCodeBlockConnection implements Connection {
-  edges: [ParagraphCodeBlockEdge!]!
-  nodes: [ParagraphCodeBlock!]!
+"""A paginated set of results for ParagraphCta."""
+type ParagraphCtaConnection implements Connection {
+  edges: [ParagraphCtaEdge!]!
+  nodes: [ParagraphCta!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for ParagraphCodeBlock."""
-type ParagraphCodeBlockEdge implements Edge {
+"""Edge for ParagraphCta."""
+type ParagraphCtaEdge implements Edge {
   cursor: Cursor!
-  node: ParagraphCodeBlock!
+  node: ParagraphCta!
+}
+
+"""A paginated set of results for ParagraphFaq."""
+type ParagraphFaqConnection implements Connection {
+  edges: [ParagraphFaqEdge!]!
+  nodes: [ParagraphFaq!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for ParagraphFaq."""
+type ParagraphFaqEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphFaq!
 }
 
 """A paginated set of results for ParagraphHero."""
@@ -1634,43 +1873,30 @@ type ParagraphHeroEdge implements Edge {
   node: ParagraphHero!
 }
 
-"""A paginated set of results for ParagraphImage."""
-type ParagraphImageConnection implements Connection {
-  edges: [ParagraphImageEdge!]!
-  nodes: [ParagraphImage!]!
+"""A paginated set of results for ParagraphLogoGroup."""
+type ParagraphLogoGroupConnection implements Connection {
+  edges: [ParagraphLogoGroupEdge!]!
+  nodes: [ParagraphLogoGroup!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for ParagraphImage."""
-type ParagraphImageEdge implements Edge {
+"""Edge for ParagraphLogoGroup."""
+type ParagraphLogoGroupEdge implements Edge {
   cursor: Cursor!
-  node: ParagraphImage!
+  node: ParagraphLogoGroup!
 }
 
-"""A paginated set of results for ParagraphStaticComponent."""
-type ParagraphStaticComponentConnection implements Connection {
-  edges: [ParagraphStaticComponentEdge!]!
-  nodes: [ParagraphStaticComponent!]!
+"""A paginated set of results for ParagraphTestimonial."""
+type ParagraphTestimonialConnection implements Connection {
+  edges: [ParagraphTestimonialEdge!]!
+  nodes: [ParagraphTestimonial!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for ParagraphStaticComponent."""
-type ParagraphStaticComponentEdge implements Edge {
+"""Edge for ParagraphTestimonial."""
+type ParagraphTestimonialEdge implements Edge {
   cursor: Cursor!
-  node: ParagraphStaticComponent!
-}
-
-"""A paginated set of results for ParagraphText."""
-type ParagraphTextConnection implements Connection {
-  edges: [ParagraphTextEdge!]!
-  nodes: [ParagraphText!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for ParagraphText."""
-type ParagraphTextEdge implements Edge {
-  cursor: Cursor!
-  node: ParagraphText!
+  node: ParagraphTestimonial!
 }
 
 """A paginated set of results for ParagraphViewReference."""
@@ -1684,6 +1910,19 @@ type ParagraphViewReferenceConnection implements Connection {
 type ParagraphViewReferenceEdge implements Edge {
   cursor: Cursor!
   node: ParagraphViewReference!
+}
+
+"""A paginated set of results for ParagraphWebform."""
+type ParagraphWebformConnection implements Connection {
+  edges: [ParagraphWebformEdge!]!
+  nodes: [ParagraphWebform!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for ParagraphWebform."""
+type ParagraphWebformEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphWebform!
 }
 
 """A paginated set of results for User."""
@@ -1752,21 +1991,6 @@ union MenuUnion = Menu
 """A field whose value conforms to the standard E.164"""
 scalar PhoneNumber
 
-"""A processed text format with summary defined by the CMS."""
-type TextSummary {
-  """The raw text value."""
-  value: String
-
-  """The processed text value."""
-  processed: Html
-
-  """The text format used to process the text value."""
-  format: String
-
-  """The processed text summary."""
-  summary: Html
-}
-
 """
 Unsupported entity or field type in the schema.
 This entity may not have been enabled in the schema yet and is being referenced via entity reference.
@@ -1833,4 +2057,10 @@ type ViewReference {
   The name of the query used to fetch the data, if the view is a GraphQL display.
   """
   query: String
+}
+
+"""A WebformEntityReference field."""
+type webform {
+  """The webform target_id."""
+  target_id: String
 }
