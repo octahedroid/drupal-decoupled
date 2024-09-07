@@ -1,20 +1,18 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { ParagraphStaticComponentFragment } from "~/graphql/drupal/fragments/paragraph";
+import { ParagraphWebformFragment } from "~/graphql/drupal/fragments/paragraph";
 
-interface ParagraphStaticComponentProps {
-  paragraph: FragmentOf<typeof ParagraphStaticComponentFragment>
+interface ParagraphWebformProps {
+  paragraph: FragmentOf<typeof ParagraphWebformFragment>
 }
 
-export const ParagraphStaticComponentResolver = ({ paragraph } : ParagraphStaticComponentProps) => {
-  const { id, component } = readFragment(ParagraphStaticComponentFragment, paragraph);
-
-  // @todo: Implement Contact component
-  const componentMap = {
-    'contact': 'Contact',
-  }
+export const ParagraphWebformResolver = ({ paragraph } : ParagraphWebformProps) => {
+  const { id, heading, subheadingOptional, descriptionOptional, form } = readFragment(ParagraphWebformFragment, paragraph);
 
   return {
     id,
-    component: component ? componentMap[component] : component,
+    heading,
+    subheading: subheadingOptional,
+    description: descriptionOptional,
+    form,
   }
 }

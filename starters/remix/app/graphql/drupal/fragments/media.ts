@@ -2,11 +2,10 @@ import { graphql } from "~/graphql/gql.tada";
 
 export const ImageFragment = graphql(`
   fragment ImageFragment on Image {
-    url
+    src: url
     width
     height
     alt
-    title
   }
 `)
 

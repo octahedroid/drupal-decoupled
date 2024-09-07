@@ -1,25 +1,24 @@
 import { FragmentOf, readFragment } from "gql.tada";
-import { ParagraphCardGroupFragment, ParagraphCardFragment } from "~/graphql/drupal/fragments/paragraph";
+import { ParagraphCardGroupFragment, ParagraphSimpleCardFragment } from "~/graphql/drupal/fragments/paragraph";
 import { extractImageFromMedia } from "~/graphql/drupal/helpers";
 
-interface ParagraphHeroProps {
+interface ParagraphCardGroupProps {
   paragraph: FragmentOf<typeof ParagraphCardGroupFragment>
 }
 
-export const ParagraphCardGroupResolver = ({ paragraph }: ParagraphHeroProps) => {
-  const { id, title, items } = readFragment(ParagraphCardGroupFragment, paragraph)
-  const cards = items.map((item) => {
-    const { title, text, image } = readFragment(ParagraphCardFragment, item as FragmentOf<typeof ParagraphCardFragment>)
-    if (!image) { 
-      return { title, text }
-    }
+export const ParagraphCardGroupResolver = ({ paragraph }: ParagraphCardGroupProps) => {
+  const { id, heading, subheadingOptional, items } = readFragment(ParagraphCardGroupFragment, paragraph)
+  const cards = items ? items.map((item) => {
+    const type = 'simple';
+    const { heading, description, image } = readFragment(ParagraphSimpleCardFragment, item as FragmentOf<typeof ParagraphSimpleCardFragment>)
 
-    return { title, text, image: extractImageFromMedia(image) } 
-  })
+    return { heading, description, image: extractImageFromMedia(image), type } 
+  }) : [];
   
   return {
     id,
-    title,
+    heading,
+    subhheading: subheadingOptional,
     cards,
   }
 }

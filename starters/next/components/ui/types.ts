@@ -1,13 +1,19 @@
-export type ImageType = {
-  url: string;
-  alt: string;
-  title: string | null;
-  width: number | string | null;
-  height: number | string | null;
-  className: string | null;
+export type LinkProps = {
+  href: string
+  text?: string
+  target?: '_blank' | '_self' | '_parent' | '_top'
+  rel?: string
+  className?: string
+  id?: string
+  ariaLabel?: string
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
-export type UserType = {
-  name: string;
-  picture: ImageType;
+export type ImageProps = {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  loading?: 'lazy' | 'eager'
+  className?: string
 }

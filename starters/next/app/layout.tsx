@@ -2,9 +2,6 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Container from "@/components/ui/Container";
-import Footer from "@/components/ui/Footer";
-import Header from "@/components/ui/Header";
 import NavigationEvents from "@/components/helpers/navigationEvents";
 
 import "./globals.css";
@@ -31,11 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Container>
-          <Header />
-          {children}
-          <Footer />
-        </Container>
+        {children}
         <Suspense fallback={null}>
           <NavigationEvents environment={environment} />
         </Suspense>

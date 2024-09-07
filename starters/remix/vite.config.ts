@@ -11,8 +11,8 @@ import { getLoadContext } from "./load-context";
 const isStorybook = process.argv[1]?.includes("storybook");
 export default defineConfig({
   plugins: [
-    !isStorybook && remix(),
     remixCloudflareDevProxy({ getLoadContext }),
+    !isStorybook && remix(),
     tsconfigPaths(),
     nodePolyfills({ include: ['crypto'] }),
   ],

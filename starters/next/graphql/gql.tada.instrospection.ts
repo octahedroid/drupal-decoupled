@@ -107,7 +107,7 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCardConnection"
+            "name": "ParagraphAuthorConnection"
           },
           {
             "kind": "OBJECT",
@@ -115,7 +115,11 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCodeBlockConnection"
+            "name": "ParagraphCtaConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphFaqConnection"
           },
           {
             "kind": "OBJECT",
@@ -123,19 +127,19 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphImageConnection"
+            "name": "ParagraphLogoGroupConnection"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphStaticComponentConnection"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphTextConnection"
+            "name": "ParagraphTestimonialConnection"
           },
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReferenceConnection"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphWebformConnection"
           },
           {
             "kind": "OBJECT",
@@ -330,7 +334,7 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCardEdge"
+            "name": "ParagraphAuthorEdge"
           },
           {
             "kind": "OBJECT",
@@ -338,7 +342,11 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCodeBlockEdge"
+            "name": "ParagraphCtaEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphFaqEdge"
           },
           {
             "kind": "OBJECT",
@@ -346,19 +354,19 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphImageEdge"
+            "name": "ParagraphLogoGroupEdge"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphStaticComponentEdge"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphTextEdge"
+            "name": "ParagraphTestimonialEdge"
           },
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReferenceEdge"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphWebformEdge"
           },
           {
             "kind": "OBJECT",
@@ -403,7 +411,7 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCard"
+            "name": "ParagraphAuthor"
           },
           {
             "kind": "OBJECT",
@@ -411,7 +419,11 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCodeBlock"
+            "name": "ParagraphCta"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphFaq"
           },
           {
             "kind": "OBJECT",
@@ -419,19 +431,19 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphImage"
+            "name": "ParagraphLogoGroup"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphStaticComponent"
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ParagraphText"
+            "name": "ParagraphTestimonial"
           },
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReference"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphWebform"
           },
           {
             "kind": "OBJECT",
@@ -794,8 +806,7 @@ const introspection = {
               "name": "String"
             }
           }
-        ],
-        "isOneOf": false
+        ]
       },
       {
         "kind": "OBJECT",
@@ -1281,6 +1292,10 @@ const introspection = {
         "kind": "ENUM",
         "name": "MenuAvailable",
         "enumValues": [
+          {
+            "name": "FOOTER",
+            "isDeprecated": false
+          },
           {
             "name": "MAIN",
             "isDeprecated": false
@@ -1929,27 +1944,24 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "changed",
+            "name": "body",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "DateTime"
+                "name": "TextSummary"
               }
             },
             "args": [],
             "isDeprecated": false
           },
           {
-            "name": "components",
+            "name": "changed",
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "ofType": {
-                "kind": "NON_NULL",
-                "ofType": {
-                  "kind": "UNION",
-                  "name": "ParagraphUnion"
-                }
+                "kind": "OBJECT",
+                "name": "DateTime"
               }
             },
             "args": [],
@@ -2687,8 +2699,20 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCard",
+        "name": "ParagraphAuthor",
         "fields": [
+          {
+            "name": "company",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
           {
             "name": "created",
             "type": {
@@ -2697,15 +2721,6 @@ const introspection = {
                 "kind": "OBJECT",
                 "name": "DateTime"
               }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "cta",
-            "type": {
-              "kind": "OBJECT",
-              "name": "Link"
             },
             "args": [],
             "isDeprecated": false
@@ -2747,36 +2762,36 @@ const introspection = {
             "isDeprecated": false
           },
           {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "position",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "text",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "title",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
               }
             },
             "args": [],
@@ -2796,7 +2811,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCardConnection",
+        "name": "ParagraphAuthorConnection",
         "fields": [
           {
             "name": "edges",
@@ -2808,7 +2823,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphCardEdge"
+                    "name": "ParagraphAuthorEdge"
                   }
                 }
               }
@@ -2826,7 +2841,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphCard"
+                    "name": "ParagraphAuthor"
                   }
                 }
               }
@@ -2856,7 +2871,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCardEdge",
+        "name": "ParagraphAuthorEdge",
         "fields": [
           {
             "name": "cursor",
@@ -2876,7 +2891,7 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphCard"
+                "name": "ParagraphAuthor"
               }
             },
             "args": [],
@@ -2901,6 +2916,27 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
               }
             },
             "args": [],
@@ -2961,13 +2997,10 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "title",
+            "name": "subheading",
             "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
-              }
+              "kind": "SCALAR",
+              "name": "String"
             },
             "args": [],
             "isDeprecated": false
@@ -3082,15 +3115,18 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCodeBlock",
+        "name": "ParagraphCta",
         "fields": [
           {
-            "name": "code",
+            "name": "actions",
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Link"
+                }
               }
             },
             "args": [],
@@ -3103,6 +3139,30 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
               }
             },
             "args": [],
@@ -3133,27 +3193,6 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "language",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "showLineNumbers",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
@@ -3166,7 +3205,7 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "titleOptional",
+            "name": "subheading",
             "type": {
               "kind": "SCALAR",
               "name": "String"
@@ -3188,7 +3227,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCodeBlockConnection",
+        "name": "ParagraphCtaConnection",
         "fields": [
           {
             "name": "edges",
@@ -3200,7 +3239,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphCodeBlockEdge"
+                    "name": "ParagraphCtaEdge"
                   }
                 }
               }
@@ -3218,7 +3257,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphCodeBlock"
+                    "name": "ParagraphCta"
                   }
                 }
               }
@@ -3248,7 +3287,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphCodeBlockEdge",
+        "name": "ParagraphCtaEdge",
         "fields": [
           {
             "name": "cursor",
@@ -3268,7 +3307,7 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphCodeBlock"
+                "name": "ParagraphCta"
               }
             },
             "args": [],
@@ -3284,7 +3323,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphHero",
+        "name": "ParagraphFaq",
         "fields": [
           {
             "name": "created",
@@ -3293,6 +3332,27 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
               }
             },
             "args": [],
@@ -3311,10 +3371,19 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "image",
+            "name": "items",
             "type": {
-              "kind": "UNION",
-              "name": "MediaUnion"
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "ParagraphUnion"
+                  }
+                }
+              }
             },
             "args": [],
             "isDeprecated": false
@@ -3342,9 +3411,148 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
           },
           {
-            "name": "text",
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphFaqConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphFaqEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphFaq"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphFaqEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphFaq"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphHero",
+        "fields": [
+          {
+            "name": "actions",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Link"
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -3356,12 +3564,60 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "title",
+            "name": "heading",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "UNION",
+                "name": "MediaUnion"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
               }
             },
             "args": [],
@@ -3476,175 +3732,6 @@ const introspection = {
         ]
       },
       {
-        "kind": "OBJECT",
-        "name": "ParagraphImage",
-        "fields": [
-          {
-            "name": "created",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "DateTime"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "id",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "image",
-            "type": {
-              "kind": "UNION",
-              "name": "MediaUnion"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "langcode",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Language"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "status",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "EdgeNode"
-          },
-          {
-            "kind": "INTERFACE",
-            "name": "ParagraphInterface"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphImageConnection",
-        "fields": [
-          {
-            "name": "edges",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphImageEdge"
-                  }
-                }
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "nodes",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "LIST",
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ParagraphImage"
-                  }
-                }
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "pageInfo",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConnectionPageInfo"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Connection"
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ParagraphImageEdge",
-        "fields": [
-          {
-            "name": "cursor",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Cursor"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "node",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphImage"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          }
-        ],
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Edge"
-          }
-        ]
-      },
-      {
         "kind": "INTERFACE",
         "name": "ParagraphInterface",
         "fields": [
@@ -3701,7 +3788,7 @@ const introspection = {
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "ParagraphCard"
+            "name": "ParagraphAuthor"
           },
           {
             "kind": "OBJECT",
@@ -3709,7 +3796,11 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCodeBlock"
+            "name": "ParagraphCta"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphFaq"
           },
           {
             "kind": "OBJECT",
@@ -3717,35 +3808,38 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphImage"
+            "name": "ParagraphLogo"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphStaticComponent"
+            "name": "ParagraphLogoGroup"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphText"
+            "name": "ParagraphQuestion"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphSimpleCard"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphTestimonial"
           },
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReference"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphWebform"
           }
         ]
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphStaticComponent",
+        "name": "ParagraphLogo",
         "fields": [
-          {
-            "name": "component",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
           {
             "name": "created",
             "type": {
@@ -3765,6 +3859,120 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "UNION",
+                "name": "MediaUnion"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "link",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Link"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphLogoGroup",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "items",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "ParagraphUnion"
+                  }
+                }
               }
             },
             "args": [],
@@ -3808,7 +4016,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphStaticComponentConnection",
+        "name": "ParagraphLogoGroupConnection",
         "fields": [
           {
             "name": "edges",
@@ -3820,7 +4028,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphStaticComponentEdge"
+                    "name": "ParagraphLogoGroupEdge"
                   }
                 }
               }
@@ -3838,7 +4046,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphStaticComponent"
+                    "name": "ParagraphLogoGroup"
                   }
                 }
               }
@@ -3868,7 +4076,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphStaticComponentEdge",
+        "name": "ParagraphLogoGroupEdge",
         "fields": [
           {
             "name": "cursor",
@@ -3888,7 +4096,7 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphStaticComponent"
+                "name": "ParagraphLogoGroup"
               }
             },
             "args": [],
@@ -3904,8 +4112,20 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphText",
+        "name": "ParagraphQuestion",
         "fields": [
+          {
+            "name": "answer",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Text"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
           {
             "name": "created",
             "type": {
@@ -3943,6 +4163,18 @@ const introspection = {
             "isDeprecated": false
           },
           {
+            "name": "question",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
@@ -3953,26 +4185,182 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
+          }
+        ],
+        "interfaces": [
           {
-            "name": "textRich",
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphSimpleCard",
+        "fields": [
+          {
+            "name": "created",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Text"
+                "name": "DateTime"
               }
             },
             "args": [],
             "isDeprecated": false
           },
           {
-            "name": "title",
+            "name": "description",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "image",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "UNION",
+                "name": "MediaUnion"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphTestimonial",
+        "fields": [
+          {
+            "name": "author",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "UNION",
+                "name": "ParagraphUnion"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "quote",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
               }
             },
             "args": [],
@@ -3992,7 +4380,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphTextConnection",
+        "name": "ParagraphTestimonialConnection",
         "fields": [
           {
             "name": "edges",
@@ -4004,7 +4392,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphTextEdge"
+                    "name": "ParagraphTestimonialEdge"
                   }
                 }
               }
@@ -4022,7 +4410,7 @@ const introspection = {
                   "kind": "NON_NULL",
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "ParagraphText"
+                    "name": "ParagraphTestimonial"
                   }
                 }
               }
@@ -4052,7 +4440,7 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
-        "name": "ParagraphTextEdge",
+        "name": "ParagraphTestimonialEdge",
         "fields": [
           {
             "name": "cursor",
@@ -4072,7 +4460,7 @@ const introspection = {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphText"
+                "name": "ParagraphTestimonial"
               }
             },
             "args": [],
@@ -4092,7 +4480,7 @@ const introspection = {
         "possibleTypes": [
           {
             "kind": "OBJECT",
-            "name": "ParagraphCard"
+            "name": "ParagraphAuthor"
           },
           {
             "kind": "OBJECT",
@@ -4100,7 +4488,11 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphCodeBlock"
+            "name": "ParagraphCta"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphFaq"
           },
           {
             "kind": "OBJECT",
@@ -4108,19 +4500,31 @@ const introspection = {
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphImage"
+            "name": "ParagraphLogo"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphStaticComponent"
+            "name": "ParagraphLogoGroup"
           },
           {
             "kind": "OBJECT",
-            "name": "ParagraphText"
+            "name": "ParagraphQuestion"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphSimpleCard"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphTestimonial"
           },
           {
             "kind": "OBJECT",
             "name": "ParagraphViewReference"
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ParagraphWebform"
           }
         ]
       },
@@ -4141,6 +4545,24 @@ const introspection = {
             "isDeprecated": false
           },
           {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "id",
             "type": {
               "kind": "NON_NULL",
@@ -4160,6 +4582,15 @@ const introspection = {
                 "kind": "OBJECT",
                 "name": "Language"
               }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "link",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Link"
             },
             "args": [],
             "isDeprecated": false
@@ -4228,16 +4659,7 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "text",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "title",
+            "name": "subheading",
             "type": {
               "kind": "SCALAR",
               "name": "String"
@@ -4340,6 +4762,208 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ParagraphViewReference"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Edge"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphWebform",
+        "fields": [
+          {
+            "name": "created",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DateTime"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "form",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "heading",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Language"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "status",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "subheading",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "EdgeNode"
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "ParagraphInterface"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphWebformConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphWebformEdge"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "nodes",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ParagraphWebform"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConnectionPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Connection"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ParagraphWebformEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Cursor"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "node",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphWebform"
               }
             },
             "args": [],
@@ -4643,10 +5267,10 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphCard",
+            "name": "paragraphAuthor",
             "type": {
               "kind": "OBJECT",
-              "name": "ParagraphCard"
+              "name": "ParagraphAuthor"
             },
             "args": [
               {
@@ -4664,6 +5288,62 @@ const introspection = {
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphAuthors",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphAuthorConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
                 }
               }
             ],
@@ -4753,12 +5433,39 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphCards",
+            "name": "paragraphCta",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphCta"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphCtas",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphCardConnection"
+                "name": "ParagraphCtaConnection"
               }
             },
             "args": [
@@ -4809,10 +5516,10 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphCodeBlock",
+            "name": "paragraphFaq",
             "type": {
               "kind": "OBJECT",
-              "name": "ParagraphCodeBlock"
+              "name": "ParagraphFaq"
             },
             "args": [
               {
@@ -4836,12 +5543,12 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphCodeBlocks",
+            "name": "paragraphFaqs",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphCodeBlockConnection"
+                "name": "ParagraphFaqConnection"
               }
             },
             "args": [
@@ -4975,10 +5682,10 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphImage",
+            "name": "paragraphLogo",
             "type": {
               "kind": "OBJECT",
-              "name": "ParagraphImage"
+              "name": "ParagraphLogo"
             },
             "args": [
               {
@@ -5002,12 +5709,39 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphImages",
+            "name": "paragraphLogoGroup",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphLogoGroup"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphLogoGroups",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphImageConnection"
+                "name": "ParagraphLogoGroupConnection"
               }
             },
             "args": [
@@ -5058,10 +5792,10 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphStaticComponent",
+            "name": "paragraphTestimonial",
             "type": {
               "kind": "OBJECT",
-              "name": "ParagraphStaticComponent"
+              "name": "ParagraphTestimonial"
             },
             "args": [
               {
@@ -5085,95 +5819,12 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "paragraphStaticComponents",
+            "name": "paragraphTestimonials",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ParagraphStaticComponentConnection"
-              }
-            },
-            "args": [
-              {
-                "name": "after",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor"
-                }
-              },
-              {
-                "name": "before",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Cursor"
-                }
-              },
-              {
-                "name": "first",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int"
-                }
-              },
-              {
-                "name": "last",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int"
-                }
-              },
-              {
-                "name": "reverse",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean"
-                },
-                "defaultValue": "false"
-              },
-              {
-                "name": "sortKey",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ConnectionSortKeys"
-                }
-              }
-            ],
-            "isDeprecated": false
-          },
-          {
-            "name": "paragraphText",
-            "type": {
-              "kind": "OBJECT",
-              "name": "ParagraphText"
-            },
-            "args": [
-              {
-                "name": "id",
-                "type": {
-                  "kind": "NON_NULL",
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID"
-                  }
-                }
-              },
-              {
-                "name": "revision",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID"
-                }
-              }
-            ],
-            "isDeprecated": false
-          },
-          {
-            "name": "paragraphTexts",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ParagraphTextConnection"
+                "name": "ParagraphTestimonialConnection"
               }
             },
             "args": [
@@ -5257,6 +5908,89 @@ const introspection = {
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ParagraphViewReferenceConnection"
+              }
+            },
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                },
+                "defaultValue": "false"
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ConnectionSortKeys"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphWebform",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ParagraphWebform"
+            },
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID"
+                  }
+                }
+              },
+              {
+                "name": "revision",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              }
+            ],
+            "isDeprecated": false
+          },
+          {
+            "name": "paragraphWebforms",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ParagraphWebformConnection"
               }
             },
             "args": [
@@ -5525,6 +6259,15 @@ const introspection = {
               "kind": "OBJECT",
               "name": "ViewBlogTeaserResult"
             },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "viewBlogTeaserFeatured",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ViewBlogTeaserFeaturedResult"
+            },
             "args": [
               {
                 "name": "page",
@@ -5792,6 +6535,58 @@ const introspection = {
       },
       {
         "kind": "OBJECT",
+        "name": "SchemaFragment",
+        "fields": [
+          {
+            "name": "class",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "content",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "type",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
         "name": "SchemaInformation",
         "fields": [
           {
@@ -5799,6 +6594,24 @@ const introspection = {
             "type": {
               "kind": "SCALAR",
               "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "fragments",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "SchemaFragment"
+                  }
+                }
+              }
             },
             "args": [],
             "isDeprecated": false
@@ -6828,7 +7641,116 @@ const introspection = {
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "ViewBlogTeaserFeaturedResult"
+          },
+          {
+            "kind": "OBJECT",
             "name": "ViewBlogTeaserResult"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ViewBlogTeaserFeaturedResult",
+        "fields": [
+          {
+            "name": "description",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "display",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "id",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "label",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "langcode",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "pageInfo",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ViewPageInfo"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "results",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "UNION",
+                    "name": "NodeUnion"
+                  }
+                }
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "view",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          }
+        ],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "View"
           }
         ]
       },
@@ -7175,6 +8097,10 @@ const introspection = {
         "kind": "UNION",
         "name": "ViewResultUnion",
         "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "ViewBlogTeaserFeaturedResult"
+          },
           {
             "kind": "OBJECT",
             "name": "ViewBlogTeaserResult"
