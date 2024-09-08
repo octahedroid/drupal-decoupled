@@ -32,6 +32,7 @@ export const CTA = ({
   actions,
   ...props
 }: CTAProps) => {
+
   return (
     <div className={cn(ctaVariants(), className)} {...props}>
       {subheading && (
@@ -50,15 +51,16 @@ export const CTA = ({
           {actions
             .slice(0, 2)
             .map(({ text, href, variant, ...actionProps }, index) => (
-              <Button
+                href && <Button
                 key={index}
-                variant={index === 1 ? "outline" : variant || "default"}
+                variant={index === 1 ? "outline" : "default"}
                 asChild
                 {...actionProps}
               >
                 <a href={href}>{text}</a>
               </Button>
-            ))}
+              )
+          )}
         </div>
       )}
     </div>

@@ -1,7 +1,8 @@
 export type LinkProps = {
-  href: string
-  text?: string
-  target?: '_blank' | '_self' | '_parent' | '_top'
+  href: string | null
+  internal?: boolean
+  text?: string | null
+  target?: string
   rel?: string
   className?: string
   id?: string
@@ -16,4 +17,14 @@ export type ImageProps = {
   height?: number
   loading?: 'lazy' | 'eager'
   className?: string
+}
+
+export type ButtonProps = {
+  text: string | null
+  href: string | null
+  internal?: boolean
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost'  | 'link' | string
+  className?: string
+  id?: string
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }

@@ -28,7 +28,7 @@ const FooterColumn = ({ title, links }: FooterColumn) => (
     <h5 className="h5">{title}</h5>
     <ul className="space-y-2">
       {links.map((link, index) => (
-        <li key={index}>
+        link && link.href && <li key={index}>
           <a
             href={link.href}
             className="text-muted-foreground hover:text-foreground text-sm"

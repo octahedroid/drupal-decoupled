@@ -31,11 +31,12 @@ const headerVariants = cva("w-full border-b border-border bg-white", {
 
 type NavItem = {
   label: string;
-  href?: string;
+  href?: string | null;
+  expanded?: boolean;
   children?: NavItem[];
 };
 
-type ActionProps = ButtonProps & LinkProps;
+type ActionProps = ButtonProps | LinkProps;
 
 type Props = {
   logo: ImageProps;

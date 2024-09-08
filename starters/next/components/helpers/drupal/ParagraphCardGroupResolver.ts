@@ -7,7 +7,7 @@ interface ParagraphCardGroupProps {
 }
 
 export const ParagraphCardGroupResolver = ({ paragraph }: ParagraphCardGroupProps) => {
-  const { id, heading, subheadingOptional, items } = readFragment(ParagraphCardGroupFragment, paragraph)
+  const { id, heading, subheadingOptional, items, descriptionOptional } = readFragment(ParagraphCardGroupFragment, paragraph)
   const cards = items ? items.map((item) => {
     const type = 'simple';
     const { heading, description, image } = readFragment(ParagraphSimpleCardFragment, item as FragmentOf<typeof ParagraphSimpleCardFragment>)
@@ -18,7 +18,8 @@ export const ParagraphCardGroupResolver = ({ paragraph }: ParagraphCardGroupProp
   return {
     id,
     heading,
-    subhheading: subheadingOptional,
+    description: descriptionOptional || null,
+    subheading: subheadingOptional || null,
     cards,
   }
 }
