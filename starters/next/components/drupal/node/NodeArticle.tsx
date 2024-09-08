@@ -25,7 +25,7 @@ export default function NodeArticleComponent({ node }: NodeArticleComponentProps
   return (
       <>
         {  }
-        <Article title={title} content={body.processed.toString()} author={author} image={image} publishDate={changed.timestamp} />
+        <Article title={title} content={body.processed.toString()} author={author} image={image} publishDate={Number(changed.timestamp)} />
       </>
     );
 }

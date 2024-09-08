@@ -18,10 +18,11 @@ export type Props = {
   heading: string;
   summary: string;
   link: LinkProps;
+  className?: string;
+  type: string
 };
 
-export type TeaserCardProps = ComponentProps<"div"> &
-  VariantProps<typeof teaserCardVariants> &
+export type TeaserCardProps = VariantProps<typeof teaserCardVariants> &
   Partial<Props>;
 
 export const TeaserCard = ({
@@ -58,7 +59,7 @@ export const TeaserCard = ({
         <p className="text-muted-foreground flex-grow text-sm">{summary}</p>
         <div className="pt-2">
           <Button variant="link" asChild className="p-0">
-            <a href={link?.href} className="flex items-center">
+            <a href={link.href} className="flex items-center">
               {link?.text}
               <ChevronRight className="ml-1 h-4 w-4" />
             </a>

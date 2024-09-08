@@ -12,7 +12,7 @@ export const ParagraphFaqResolver = ({ paragraph }: ParagraphFaqProps) => {
 
     return {
       question,
-      answer: answer.processed,
+      answer: String(answer.processed),
     }
   })
 

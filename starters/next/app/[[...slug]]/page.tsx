@@ -108,7 +108,7 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
         src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
         alt: 'Company Logo',
       },
-      navItems,
+      navItems: navItems || [],
       sticky: true,
       actions: [
         {

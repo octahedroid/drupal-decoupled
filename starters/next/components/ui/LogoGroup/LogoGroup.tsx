@@ -16,10 +16,10 @@ type LogoProps = {
 type Props = {
   heading: string;
   logos: LogoProps[];
+  className?: string;
 };
 
-export type LogoGroupProps = ComponentProps<"div"> &
-  VariantProps<typeof logoGroupVariants> &
+export type LogoGroupProps = VariantProps<typeof logoGroupVariants> &
   Partial<Props>;
 
 export const LogoGroup = ({

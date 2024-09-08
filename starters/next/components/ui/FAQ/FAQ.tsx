@@ -24,12 +24,12 @@ type QuestionProps = {
 
 type Props = {
   heading: string;
-  description?: string;
+  description?: string | null;
   questions: QuestionProps[];
+  className?: string ;
 };
 
-type FAQProps = ComponentProps<"div"> &
-  VariantProps<typeof faqVariants> &
+type FAQProps = VariantProps<typeof faqVariants> &
   Partial<Props>;
 
 export const FAQ = ({

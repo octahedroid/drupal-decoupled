@@ -1,4 +1,3 @@
-import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { ImageProps } from "@/components/ui";
@@ -12,10 +11,11 @@ type Props = {
   image: ImageProps;
   heading: string;
   description: string;
+  className?: string;
+  type: string;
 };
 
-export type SimpleCardProps = ComponentProps<"div"> &
-  VariantProps<typeof simpleCardVariants> &
+export type SimpleCardProps = VariantProps<typeof simpleCardVariants> &
   Partial<Props>;
 
 export const SimpleCard = ({

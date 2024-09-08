@@ -58,7 +58,13 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphHeroFragment>,
     })
 
-    return <Hero key={paragraphHero.id} {...paragraphHero} />
+    return <Hero 
+      key={paragraphHero.id}
+      heading={paragraphHero.heading}
+      description={paragraphHero.description}
+      image={paragraphHero.image}
+      actions={paragraphHero.actions}
+    />
   }
 
   if (type === 'ParagraphCardGroup') {
@@ -66,7 +72,13 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphCardGroupFragment>,
     })
 
-    return <CardGroup key={paragraphCardGroup.id} {...paragraphCardGroup} />
+    return <CardGroup
+      key={paragraphCardGroup.id}
+      heading={paragraphCardGroup.heading}
+      subheading={paragraphCardGroup.subheading}
+      description={paragraphCardGroup.description}
+      cards={paragraphCardGroup.cards}
+    />
   }
 
   if (type === 'ParagraphViewReference') {
@@ -88,8 +100,8 @@ const calculateComponent = function (
     }
 
     if (view === 'blog' && display === 'blog_featured') {
-
       const featured = cards[0];
+
       return (
         <>
           <Hero
@@ -103,14 +115,14 @@ const calculateComponent = function (
               }
             ]}
           />
-          <CardGroup
+          {cards && <CardGroup
             key={id}
             heading={heading}
             subheading={subheading}
             description={description}
             cards={cards.splice(1)}
             action={action}
-          />
+          />}
         </>
       )
     }
@@ -136,7 +148,12 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphCtaFragment>,
     })
 
-    return <CTA key={paragraphCta.id} {...paragraphCta} />
+    return <CTA
+      key={paragraphCta.id}
+      heading={paragraphCta.heading}
+      description={paragraphCta.description}
+      actions={paragraphCta.actions}
+    />
   }
 
   if (type === 'ParagraphFaq') {
@@ -144,7 +161,12 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphFaqFragment>,
     })
 
-    return <FAQ key={paragraphFaq.id} {...paragraphFaq} />
+    return <FAQ
+      key={paragraphFaq.id}
+      heading={paragraphFaq.heading}
+      description={paragraphFaq.description}
+      questions={paragraphFaq.questions}
+    />
   }
 
   if (type === 'ParagraphLogoGroup') {
@@ -152,7 +174,10 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphLogoGroupFragment>,
     })
 
-    return <LogoGroup key={paragraphLogoGroup.id} {...paragraphLogoGroup} />
+    return <LogoGroup
+      key={paragraphLogoGroup.id}
+      logos={paragraphLogoGroup.logos}
+    />
   }
 
   if (type === 'ParagraphTestimonial') {
@@ -160,7 +185,11 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphTestimonialFragment>,
     })
 
-    return <Testimonial key={paragraphTestimonial.id} {...paragraphTestimonial} />
+    return <Testimonial
+      key={paragraphTestimonial.id}
+      quote={paragraphTestimonial.quote}
+      author={paragraphTestimonial.author}
+    />
   }
 
   if (type === 'ParagraphWebform') {
@@ -170,9 +199,9 @@ const calculateComponent = function (
         typeof ParagraphWebformFragment
       >,
     })
+    // @todo: implement Webform React Component
   }
 
-  // @todo: implement Webform React Component
   return (
     <div className='container'>
       <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">Implement Form Componet</h2>
@@ -196,15 +225,14 @@ export const resolve = ({ data = [] }: ResolveProps) => {
     const skipComponents = [
       'ParagraphSimpleCard',
       'ParagraphLogo',
-      'ParagraphPeople',
       'ParagraphQuestion',
-      'ParagraphImage',
+      'ParagraphAuthor',
     ]
 
     if (!type || skipComponents.includes(type)) {
       return <></>
     }
 
-    return calculateComponent(type, paragraph)
+    return calculateComponent(type, paragraph as ParagraphFragmentType)
   })
 }
