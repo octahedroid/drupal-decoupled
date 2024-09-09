@@ -1,0 +1,3 @@
+graphql/gql.tada.*
+graphql/schema.graphql
+components/ui/**/*.mdx

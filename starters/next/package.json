@@ -10,8 +10,8 @@
     "start": "next start",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore ."
+    "format": "prettier --check --ignore-path .gitignore --ignore-path .prettierignore  .",
+    "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore ."
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
