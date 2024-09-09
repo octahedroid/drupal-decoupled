@@ -1,3 +1,2 @@
-graphql/gql.tada.*
-graphql/schema.graphql
+graphql/generated/*
 components/ui/**/*.mdx
