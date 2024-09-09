@@ -61,6 +61,7 @@ const calculateComponent = function (
 
     return (
       <Hero
+        id={paragraphHero.id}
         key={paragraphHero.id}
         heading={paragraphHero.heading}
         description={paragraphHero.description}
@@ -77,6 +78,7 @@ const calculateComponent = function (
 
     return (
       <CardGroup
+        id={paragraphCardGroup.id}
         key={paragraphCardGroup.id}
         heading={paragraphCardGroup.heading}
         subheading={paragraphCardGroup.subheading}
@@ -109,7 +111,7 @@ const calculateComponent = function (
       const remainingCards = cards.splice(1) as TeaserCardProps[]
 
       return (
-        <>
+        <div id={id}>
           <Hero
             heading={featured.heading}
             image={featured.image}
@@ -131,13 +133,14 @@ const calculateComponent = function (
               action={action}
             />
           )}
-        </>
+        </div>
       )
     }
 
     if (view === 'blog' && display === 'blog_teaser') {
       return (
         <CardGroup
+          id={id}
           key={id}
           heading={heading}
           subheading={subheading}
@@ -156,6 +159,7 @@ const calculateComponent = function (
 
     return (
       <CTA
+        id={paragraphCta.id}
         key={paragraphCta.id}
         heading={paragraphCta.heading}
         description={paragraphCta.description}
@@ -171,6 +175,7 @@ const calculateComponent = function (
 
     return (
       <FAQ
+        id={paragraphFaq.id}
         key={paragraphFaq.id}
         heading={paragraphFaq.heading}
         description={paragraphFaq.description}
@@ -186,8 +191,9 @@ const calculateComponent = function (
 
     return (
       <LogoGroup
-        heading={paragraphLogoGroup.heading}
+        id={paragraphLogoGroup.id}
         key={paragraphLogoGroup.id}
+        heading={paragraphLogoGroup.heading}
         logos={paragraphLogoGroup.logos}
       />
     )
@@ -200,6 +206,7 @@ const calculateComponent = function (
 
     return (
       <Testimonial
+        id={paragraphTestimonial.id}
         key={paragraphTestimonial.id}
         quote={paragraphTestimonial.quote}
         author={paragraphTestimonial.author}
