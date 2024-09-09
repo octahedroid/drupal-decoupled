@@ -1,7 +1,7 @@
-import { graphql } from "@/graphql/gql.tada";
+import { graphql } from '@/graphql/gql.tada'
 
 export const TermTagsFragment = graphql(`
-  fragment TermTagsFragment on TermTags  {
+  fragment TermTagsFragment on TermTags {
     __typename
     id
     name
@@ -9,4 +9,4 @@ export const TermTagsFragment = graphql(`
       processed
     }
   }
-`);
+`)

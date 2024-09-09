@@ -1,35 +1,45 @@
-import { FragmentOf, readFragment } from "gql.tada";
-import { NodeArticleFragment } from "@/graphql/drupal/fragments/node";
-import Cover from "@/components/ui/Cover";
-import { resolve } from "@/components/helpers/ComponentResolver";
-import { ComponentRenderer } from "@/components/helpers/ComponentRenderer";
-import { extractImageFromMedia, extractUser } from "@/graphql/drupal/helpers";
+import { FragmentOf, readFragment } from 'gql.tada'
+import { Article } from '@/components/ui/Article'
+import { NodeArticleFragment } from '@/graphql/drupal/fragments/node'
+import { extractImageFromMedia, extractUser } from '@/graphql/drupal/helpers'
 
 type NodeArticleComponentProps = {
-  node: FragmentOf<typeof NodeArticleFragment>;
-  environment: string;
+  node: FragmentOf<typeof NodeArticleFragment>
+  environment: string
 }
 
-export default function NodeArticleComponent({ node, environment }: NodeArticleComponentProps) {
-  const {id, title, image: nodeArticleImage, author: nodeArticleAuthor, components: nodeArticleComponents } = readFragment(NodeArticleFragment, node);
-  const image = extractImageFromMedia(nodeArticleImage);
-  if (!nodeArticleAuthor) {
-    return null;
+export default function NodeArticleComponent({
+  node,
+}: NodeArticleComponentProps) {
+  const {
+    title,
+    body,
+    image: nodeArticleImage,
+    author: nodeArticleAuthor,
+    changed,
+  } = readFragment(NodeArticleFragment, node)
+  const image = extractImageFromMedia(nodeArticleImage)
+  if (!image) {
+    throw new Error('NodeArticleComponent: image is required')
   }
-  const author = extractUser(nodeArticleAuthor);
-  const components = resolve({
-    data: nodeArticleComponents,
-  });
+  if (!nodeArticleAuthor) {
+    throw new Error('NodeArticleComponent: author is required')
+  }
+  if (!body || !body.processed) {
+    throw new Error('NodeArticleComponent: body is required')
+  }
+  const author = extractUser(nodeArticleAuthor)
 
   return (
     <>
-      <Cover
+      {}
+      <Article
         title={title}
-        image={image}
+        content={body.processed.toString()}
         author={author}
+        image={image}
+        publishDate={Number(changed.timestamp)}
       />
-      <ComponentRenderer key={id} components={components} environment={environment} />
     </>
-  );
+  )
 }
-

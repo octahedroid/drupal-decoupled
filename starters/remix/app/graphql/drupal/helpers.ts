@@ -1,27 +1,31 @@
-import { FragmentOf, readFragment } from "gql.tada";
-import { ImageFragment, MediaImageFragment } from "~/graphql/drupal/fragments/media";
-import { UserFragment } from "~/graphql/drupal/fragments/user";
-import { ImageElement } from "~/graphql/drupal/types";
-import { UserType } from "~/components/ui/types";
-import { ImageType } from "~/components/ui/Image";
+import { FragmentOf, readFragment } from 'gql.tada'
+import { ImageProps, UserProps } from '~/components/ui/types'
+import {
+  ImageFragment,
+  MediaImageFragment,
+} from '~/graphql/drupal/fragments/media'
+import { UserFragment } from '~/graphql/drupal/fragments/user'
+import { ImageElement } from '~/graphql/drupal/types'
 
 export const extractImageFromMedia = (image: ImageElement) => {
   if (!image) {
-    return {} as ImageType;
+    return {} as ImageProps
   }
 
-  const { mediaImage }  = readFragment(MediaImageFragment, image);
-  const imageElement = readFragment(ImageFragment, mediaImage);
+  const { mediaImage } = readFragment(MediaImageFragment, image)
+  const imageElement = readFragment(ImageFragment, mediaImage)
 
-  return imageElement as ImageType;
+  return imageElement as ImageProps
 }
 
-export const extractUser = (user: FragmentOf<typeof UserFragment>): UserType => {
+export const extractUser = (
+  user: FragmentOf<typeof UserFragment>
+): UserProps => {
   if (!user) {
-    return {} as UserType;
+    return {} as UserProps
   }
 
-  const { name, picture } = readFragment(UserFragment, user);
+  const { name, picture } = readFragment(UserFragment, user)
 
-  return { name, picture: extractImageFromMedia(picture) };
+  return { name, avatar: extractImageFromMedia(picture) }
 }

@@ -1,122 +1,253 @@
-import { FragmentOf, readFragment } from "gql.tada";
+import { FragmentOf, readFragment } from 'gql.tada'
 
 // Drupal - fragments
 import {
   ParagraphHeroFragment,
   ParagraphCardGroupFragment,
-  ParagraphCodeBlockFragment,
-  ParagraphImageFragment,
-  ParagraphTextFragment,
-  ParagraphStaticComponentFragment,
-  ParagraphUnionFragment,
+  ParagraphWebformFragment,
   ParagraphViewReferenceFragment,
-} from "~/graphql/drupal/fragments/paragraph";
+  ParagraphCtaFragment,
+  ParagraphFaqFragment,
+  ParagraphLogoGroupFragment,
+  ParagraphTestimonialFragment,
+  ParagraphUnionFragment,
+} from '~/graphql/drupal/fragments/paragraph'
 
 // Drupal - resolvers
 import {
-  ParagraphViewReferenceResolver,
-  ParagraphCardGroupResolver,
-  ParagraphTextResolver,
-  ParagraphImageResolver,  
   ParagraphHeroResolver,
-  ParagraphStaticComponentResolver
-} from "~/components/helpers/drupal";
- 
-// Drupal - components
-import ViewReference from "~/components/drupal/paragraph/ViewReference";
+  ParagraphCardGroupResolver,
+  ParagraphWebformResolver,
+  ParagraphViewReferenceResolver,
+  ParagraphCtaResolver,
+  ParagraphFaqResolver,
+  ParagraphLogoGroupResolver,
+  ParagraphTestimonialResolver,
+} from '~/components/helpers/drupal'
 
 // UI components
-import CardGroup from "~/components/ui/CardGroup";
-import RichText from "~/components/ui/RichText";
-import Image from "~/components/ui/Image";
-import Hero from "~/components/ui/Hero";
-import { Fragment } from "react/jsx-runtime";
+import {
+  CardGroup,
+  Hero,
+  CTA,
+  FAQ,
+  LogoGroup,
+  Testimonial,
+  TeaserCardProps,
+} from '~/components/ui/'
 
 type ParagraphFragmentType =
-  FragmentOf<typeof ParagraphHeroFragment> |
-  FragmentOf<typeof ParagraphCardGroupFragment> |
-  FragmentOf<typeof ParagraphTextFragment> |
-  FragmentOf<typeof ParagraphImageFragment> |
-  FragmentOf<typeof ParagraphCodeBlockFragment> |
-  FragmentOf<typeof ParagraphStaticComponentFragment> |
-  FragmentOf<typeof ParagraphViewReferenceFragment>;
+  | FragmentOf<typeof ParagraphHeroFragment>
+  | FragmentOf<typeof ParagraphCardGroupFragment>
+  | FragmentOf<typeof ParagraphWebformFragment>
+  | FragmentOf<typeof ParagraphViewReferenceFragment>
+  | FragmentOf<typeof ParagraphCtaFragment>
+  | FragmentOf<typeof ParagraphFaqFragment>
+  | FragmentOf<typeof ParagraphLogoGroupFragment>
+  | FragmentOf<typeof ParagraphTestimonialFragment>
 
 interface ResolveProps {
-  data: FragmentOf<typeof ParagraphUnionFragment>[] | null;
+  data: FragmentOf<typeof ParagraphUnionFragment>[] | null
 }
 
 const calculateComponent = function (
   type: string,
   paragraph: ParagraphFragmentType
 ): JSX.Element {
-  
   if (type === 'ParagraphHero') {
-    const paragraphHero = ParagraphHeroResolver({ 
-      paragraph: paragraph as FragmentOf<typeof ParagraphHeroFragment> 
-    });
+    const paragraphHero = ParagraphHeroResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphHeroFragment>,
+    })
 
-    if (!paragraphHero) {
-      return <></>;
-    }
-    
-    return <Hero key={paragraphHero.id} {...paragraphHero} />
+    return (
+      <Hero
+        key={paragraphHero.id}
+        heading={paragraphHero.heading}
+        description={paragraphHero.description}
+        image={paragraphHero.image}
+        actions={paragraphHero.actions}
+      />
+    )
   }
 
   if (type === 'ParagraphCardGroup') {
-    const paragraphCardGroupResolver = ParagraphCardGroupResolver({ 
-      paragraph: paragraph as FragmentOf<typeof ParagraphCardGroupFragment> 
+    const paragraphCardGroup = ParagraphCardGroupResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphCardGroupFragment>,
     })
 
-    return <CardGroup key={paragraphCardGroupResolver.id} {...paragraphCardGroupResolver} />;
+    return (
+      <CardGroup
+        key={paragraphCardGroup.id}
+        heading={paragraphCardGroup.heading}
+        subheading={paragraphCardGroup.subheading}
+        description={paragraphCardGroup.description}
+        cards={paragraphCardGroup.cards}
+      />
+    )
   }
-  if (type === 'ParagraphText') {
-    const { id, title, content } = ParagraphTextResolver({ paragraph: paragraph as FragmentOf<typeof ParagraphTextFragment> });
 
-    return <RichText key={id} title={title} content={content} />
-  }
-  if (type === 'ParagraphImage') {
-
-    const image = ParagraphImageResolver({
-      paragraph: paragraph as FragmentOf<typeof ParagraphImageFragment> 
-    });
-
-    return <Image key={paragraph.id} {...image} variant='primary' />;
-  }
-  // if (type === 'ParagraphCodeBlock') {
-  //   return <ParagraphCodeBlock paragraph={paragraph as FragmentOf<typeof ParagraphCodeBlockFragment>} />;
-  // }
-  if (type === 'ParagraphStaticComponent') {
-    const { id, component } = ParagraphStaticComponentResolver({ paragraph: paragraph as FragmentOf<typeof ParagraphStaticComponentFragment> });
-    return <Fragment key={id}>
-      <h2>ParagraphStaticComponent</h2>
-      <pre>
-        {JSON.stringify({ id, component }, null, 2)}
-      </pre>
-    </Fragment>;
-  }
   if (type === 'ParagraphViewReference') {
-    const { id, display, view, results } = ParagraphViewReferenceResolver({ paragraph: paragraph as FragmentOf<typeof ParagraphViewReferenceFragment> })
+    const {
+      id,
+      display,
+      view,
+      heading,
+      subheading,
+      description,
+      cards,
+      action,
+    } = ParagraphViewReferenceResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphViewReferenceFragment>,
+    })
 
-    return <ViewReference key={id} display={display} view={view} results={results} />;
+    if (cards.length === 0) {
+      return <></>
+    }
+
+    if (view === 'blog' && display === 'blog_featured') {
+      const featured = cards[0]
+      const remainingCards = cards.splice(1) as TeaserCardProps[]
+
+      return (
+        <>
+          <Hero
+            heading={featured.heading}
+            image={featured.image}
+            description={featured.summary}
+            actions={[
+              {
+                href: featured.link.href,
+                text: featured.link.text,
+              },
+            ]}
+          />
+          {cards && (
+            <CardGroup
+              key={id}
+              heading={heading}
+              subheading={subheading}
+              description={description}
+              cards={remainingCards}
+              action={action}
+            />
+          )}
+        </>
+      )
+    }
+
+    if (view === 'blog' && display === 'blog_teaser') {
+      return (
+        <CardGroup
+          key={id}
+          heading={heading}
+          subheading={subheading}
+          description={description}
+          cards={cards as TeaserCardProps[]}
+          action={action}
+        />
+      )
+    }
   }
 
-  return <>{JSON.stringify(paragraph, null, 2)}</>;
+  if (type === 'ParagraphCta') {
+    const paragraphCta = ParagraphCtaResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphCtaFragment>,
+    })
+
+    return (
+      <CTA
+        key={paragraphCta.id}
+        heading={paragraphCta.heading}
+        description={paragraphCta.description}
+        actions={paragraphCta.actions}
+      />
+    )
+  }
+
+  if (type === 'ParagraphFaq') {
+    const paragraphFaq = ParagraphFaqResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphFaqFragment>,
+    })
+
+    return (
+      <FAQ
+        key={paragraphFaq.id}
+        heading={paragraphFaq.heading}
+        description={paragraphFaq.description}
+        questions={paragraphFaq.questions}
+      />
+    )
+  }
+
+  if (type === 'ParagraphLogoGroup') {
+    const paragraphLogoGroup = ParagraphLogoGroupResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphLogoGroupFragment>,
+    })
+
+    return (
+      <LogoGroup
+        heading={paragraphLogoGroup.heading}
+        key={paragraphLogoGroup.id}
+        logos={paragraphLogoGroup.logos}
+      />
+    )
+  }
+
+  if (type === 'ParagraphTestimonial') {
+    const paragraphTestimonial = ParagraphTestimonialResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphTestimonialFragment>,
+    })
+
+    return (
+      <Testimonial
+        key={paragraphTestimonial.id}
+        quote={paragraphTestimonial.quote}
+        author={paragraphTestimonial.author}
+      />
+    )
+  }
+
+  if (type === 'ParagraphWebform') {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const paragraphWebform = ParagraphWebformResolver({
+      paragraph: paragraph as FragmentOf<typeof ParagraphWebformFragment>,
+    })
+    // @todo: implement Webform React Component
+  }
+
+  return (
+    <div className="container">
+      <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">
+        Implement Form Componet
+      </h2>
+      <hr />
+      <pre>
+        <code>{JSON.stringify(paragraph, null, 2)}</code>
+      </pre>
+    </div>
+  )
 }
 
-export const resolve = ({data = []}: ResolveProps) => {
+export const resolve = ({ data = [] }: ResolveProps) => {
   if (!data) {
     return []
   }
 
-  const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data);
+  const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data)
 
   return paragraphUnionFragment.map((paragraph) => {
-    const type = paragraph.__typename;
+    const type = paragraph.__typename
+    const skipComponents = [
+      'ParagraphSimpleCard',
+      'ParagraphLogo',
+      'ParagraphQuestion',
+      'ParagraphAuthor',
+    ]
 
-    if (!type ||  type === "ParagraphCard") {
-      return <></>;
+    if (!type || skipComponents.includes(type)) {
+      return <></>
     }
 
-    return calculateComponent(type, paragraph);
-  });
-};
+    return calculateComponent(type, paragraph as ParagraphFragmentType)
+  })
+}

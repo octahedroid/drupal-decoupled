@@ -39,3 +39,6 @@ next-env.d.ts
 
 # gql:fragments (generated) - do not commit
 graphql/drupal/fragments/generated
+
+*storybook.log
+storybook-static

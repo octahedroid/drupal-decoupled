@@ -1,0 +1,1 @@
+export { LogoGroup } from './LogoGroup'
