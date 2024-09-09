@@ -6,21 +6,21 @@ import {
   ScrollRestoration,
   useLoaderData,
   useNavigation,
-} from "@remix-run/react";
-import { LoaderFunctionArgs, json } from "@remix-run/cloudflare";
-import { syncDrupalPreviewRoutes } from "drupal-decoupled";
+} from '@remix-run/react'
+import { LoaderFunctionArgs, json } from '@remix-run/cloudflare'
+import { syncDrupalPreviewRoutes } from 'drupal-decoupled'
 
 import './tailwind.css'
 import './preview.css'
 
-export const loader = async ({ context }: LoaderFunctionArgs ) => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   return json(
     {
       environment: context.cloudflare.env.ENVIRONMENT,
     },
     { status: 200 }
-  );
-};
+  )
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -37,20 +37,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }
 
 export default function App() {
-  const { environment } = useLoaderData<typeof loader>();
-  const navigation = useNavigation();
+  const { environment } = useLoaderData<typeof loader>()
+  const navigation = useNavigation()
 
-  if (environment === "preview" && navigation.state === "loading") {
-    syncDrupalPreviewRoutes(navigation.location.pathname);
+  if (environment === 'preview' && navigation.state === 'loading') {
+    syncDrupalPreviewRoutes(navigation.location.pathname)
   }
 
   return (
     <>
       <Outlet />
     </>
-  );
+  )
 }

@@ -13,7 +13,9 @@
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --check --ignore-path .gitignore --ignore-path .prettierignore  .",
+    "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore ."
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
