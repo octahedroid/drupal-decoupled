@@ -13,13 +13,13 @@ type ActionProps = ButtonProps & LinkProps;
 type Props = {
   heading: string;
   description: string;
-  image: ImageProps;
+  image?: ImageProps;
   actions?: ActionProps[];
 };
 
 export type HeroProps = ComponentProps<"div"> &
-  VariantProps<typeof heroVariants> &
-  Partial<Props>;
+  VariantProps<typeof heroVariants> & 
+  Props;
 
 export const Hero = ({
   className,
@@ -58,11 +58,10 @@ export const Hero = ({
           )}
         </div>
         <div className="order-first mx-auto w-full max-w-lg lg:order-last lg:max-w-none">
-          <img
-            alt={image?.alt}
+          {image && <img
             {...image}
             className={cn("h-auto w-full object-cover")}
-          />
+          />}
         </div>
       </div>
     </div>

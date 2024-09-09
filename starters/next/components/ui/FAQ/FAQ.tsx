@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
   RichText,
 } from "@/components/ui";
+import { ComponentProps } from "react";
 
 const faqVariants = cva(
   "w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center",
@@ -25,10 +26,11 @@ type Props = {
   heading: string;
   description?: string | null;
   questions: QuestionProps[];
-  className?: string;
 };
 
-type FAQProps = VariantProps<typeof faqVariants> & Partial<Props>;
+export type FAQProps = ComponentProps<"div"> &
+  VariantProps<typeof faqVariants> &
+  Props;
 
 export const FAQ = ({
   className,

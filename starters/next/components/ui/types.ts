@@ -28,3 +28,8 @@ export type ButtonProps = {
   id?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
+export type UserProps = {
+  name: string;
+  avatar: ImageProps;
+};

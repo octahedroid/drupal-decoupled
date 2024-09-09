@@ -19,6 +19,12 @@ import * as FooterStories from "../Footer/Footer.stories";
 import * as HeaderStories from "../Header/Header.stories";
 import * as HeroStories from "../Hero/Hero.stories";
 import * as TestimonialStories from "../Testimonial/Testimonial.stories";
+import { HeaderProps } from "../Header/Header";
+import { TestimonialProps } from "../Testimonial/Testimonial";
+import { FooterProps } from "../Footer/Footer";
+import { CardGroupProps } from "../CardGroup/CardGroup";
+import { HeroProps } from "../Hero/Hero";
+import { FAQProps } from "../FAQ/FAQ";
 
 const meta: Meta<typeof MainLayout> = {
   title: "Layout/Page Layout",
@@ -36,14 +42,14 @@ export const Default: Story = {
   args: {
     children: (
       <>
-        <Header {...HeaderStories.default.args} />
-        <Hero {...HeroStories.default.args} />
-        <CardGroup {...SimpleCardStories.default.args} />
+        <Header {...HeaderStories.default.args as HeaderProps} />
+        <Hero {...HeroStories.default.args as HeroProps } />
+        <CardGroup {...SimpleCardStories.default.args as CardGroupProps} />
         <CTA {...CTAStories.default.args} />
-        <Testimonial {...TestimonialStories.default.args} />
-        <FAQ {...FAQStories.default.args} />
-        <CardGroup {...TeaserCardStories.default.args} />
-        <Footer {...FooterStories.default.args} />
+        <Testimonial {...TestimonialStories.default.args as TestimonialProps} />
+        <FAQ {...FAQStories.default.args as FAQProps } />
+        <CardGroup {...TeaserCardStories.default.args as CardGroupProps} />
+        <Footer {...FooterStories.default.args as FooterProps} />
       </>
     ),
   },

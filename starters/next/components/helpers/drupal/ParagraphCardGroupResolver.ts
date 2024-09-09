@@ -21,5 +21,6 @@ export const ParagraphCardGroupResolver = ({ paragraph }: ParagraphCardGroupProp
     description: descriptionOptional || null,
     subheading: subheadingOptional || null,
     cards,
+    action: null,
   }
 }

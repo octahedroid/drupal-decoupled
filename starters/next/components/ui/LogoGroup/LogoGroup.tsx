@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { LinkProps, ImageProps } from "@/components/ui";
+import { ComponentProps } from "react";
 
 const logoGroupVariants = cva("w-full py-8 md:py-12 text-center", {
   variants: {},
@@ -15,11 +16,11 @@ type LogoProps = {
 type Props = {
   heading: string;
   logos: LogoProps[];
-  className?: string;
 };
 
-export type LogoGroupProps = VariantProps<typeof logoGroupVariants> &
-  Partial<Props>;
+export type LogoGroupProps = ComponentProps<"div"> &
+  VariantProps<typeof logoGroupVariants> &
+  Props;
 
 export const LogoGroup = ({
   className,

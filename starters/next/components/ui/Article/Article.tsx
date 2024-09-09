@@ -33,7 +33,7 @@ type Props = {
   author: AuthorProps;
 };
 
-type ArticleProps = ComponentProps<"article"> &
+export type ArticleProps = ComponentProps<"article"> &
   VariantProps<typeof articleVariants> &
   Props;
 
