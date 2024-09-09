@@ -60,14 +60,15 @@ export const CardGroup = ({
           )}
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {cards &&
-            cards.map((card, index) =>
-              card.type === "simple" ? (
-                <SimpleCard key={index} {...card} />
+          {cards.map((card, index) => {
+            return (
+              card && card.type === "simple" ? (
+                <SimpleCard key={index}  {...card as SimpleCardProps} />
               ) : (
-                <TeaserCard key={index} {...card} />
+                <TeaserCard key={index} {...card as TeaserCardProps} />
               )
-            )}
+            )
+          })}
         </div>
         {action && action.href && (
           <div className="mt-12 text-center">

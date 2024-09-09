@@ -2,6 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { Badge, Button, LinkProps, ImageProps } from "@/components/ui";
 import { ChevronRight } from "lucide-react";
+import { ComponentProps } from "react";
 
 const teaserCardVariants = cva(
   "w-full overflow-hidden rounded-lg shadow-md flex flex-col",
@@ -21,8 +22,9 @@ export type Props = {
   type: string;
 };
 
-export type TeaserCardProps = VariantProps<typeof teaserCardVariants> &
-  Partial<Props>;
+export type TeaserCardProps = ComponentProps<"div"> & 
+  VariantProps<typeof teaserCardVariants> &
+  Props;
 
 export const TeaserCard = ({
   className,

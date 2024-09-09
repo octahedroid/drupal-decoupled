@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { ImageProps } from "@/components/ui";
+import { ComponentProps } from "react";
 
 const simpleCardVariants = cva("grid gap-4 text-center", {
   variants: {},
@@ -11,12 +12,12 @@ type Props = {
   image: ImageProps;
   heading: string;
   description: string;
-  className?: string;
   type: string;
 };
 
-export type SimpleCardProps = VariantProps<typeof simpleCardVariants> &
-  Partial<Props>;
+export type SimpleCardProps = ComponentProps<"div"> & 
+  VariantProps<typeof simpleCardVariants> &
+  Props;
 
 export const SimpleCard = ({
   className,

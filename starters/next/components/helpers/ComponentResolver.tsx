@@ -33,6 +33,7 @@ import {
   FAQ,
   LogoGroup,
   Testimonial,
+  TeaserCardProps,
 } from '@/components/ui/';
 
 type ParagraphFragmentType =
@@ -101,6 +102,7 @@ const calculateComponent = function (
 
     if (view === 'blog' && display === 'blog_featured') {
       const featured = cards[0];
+      const remainingCards = cards.splice(1) as TeaserCardProps[];
 
       return (
         <>
@@ -120,7 +122,7 @@ const calculateComponent = function (
             heading={heading}
             subheading={subheading}
             description={description}
-            cards={cards.splice(1)}
+            cards={remainingCards}
             action={action}
           />}
         </>
@@ -134,7 +136,7 @@ const calculateComponent = function (
           heading={heading}
           subheading={subheading}
           description={description}
-          cards={cards}
+          cards={cards as TeaserCardProps[]}
           action={action}
         />
       )
