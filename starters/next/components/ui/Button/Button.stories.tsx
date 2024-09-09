@@ -1,75 +1,75 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components/ui";
-import { ChevronRight } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Button } from '@/components/ui'
+import { ChevronRight } from 'lucide-react'
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: 'Components/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    children: "Button",
-    variant: "default",
-    size: "default",
+    children: 'Button',
+    variant: 'default',
+    size: 'default',
   },
   argTypes: {
     variant: {
-      control: "select",
+      control: 'select',
       options: [
-        "default",
-        "destructive",
-        "outline",
-        "secondary",
-        "ghost",
-        "link",
+        'default',
+        'destructive',
+        'outline',
+        'secondary',
+        'ghost',
+        'link',
       ],
     },
     size: {
-      control: "select",
-      options: ["default", "sm", "lg", "icon"],
+      control: 'select',
+      options: ['default', 'sm', 'lg', 'icon'],
     },
-    className: { control: "text" },
+    className: { control: 'text' },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Button>;
+export default meta
+type Story = StoryObj<typeof Button>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const Secondary: Story = {
   args: {
-    variant: "secondary",
-    children: "Secondary",
+    variant: 'secondary',
+    children: 'Secondary',
   },
-};
+}
 
 export const Destructive: Story = {
   args: {
-    variant: "destructive",
-    children: "Destructive",
+    variant: 'destructive',
+    children: 'Destructive',
   },
-};
+}
 
 export const Outline: Story = {
   args: {
-    variant: "outline",
-    children: "Outline",
+    variant: 'outline',
+    children: 'Outline',
   },
-};
+}
 
 export const Small: Story = {
   args: {
-    size: "sm",
-    children: "Small",
+    size: 'sm',
+    children: 'Small',
   },
-};
+}
 
 export const Large: Story = {
   args: {
-    size: "lg",
-    children: "Large",
+    size: 'lg',
+    children: 'Large',
   },
-};
+}
 
 export const WithIcon: Story = {
   args: {
@@ -80,12 +80,12 @@ export const WithIcon: Story = {
       </>
     ),
   },
-};
+}
 
 export const IconOnly: Story = {
   args: {
-    size: "icon",
+    size: 'icon',
     children: <ChevronRight className="h-4 w-4" />,
-    "aria-label": "Next",
+    'aria-label': 'Next',
   },
-};
+}

@@ -1,91 +1,91 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { LogoGroup } from "@/components/ui";
+import type { Meta, StoryObj } from '@storybook/react'
+import { LogoGroup } from '@/components/ui'
 
 const meta: Meta<typeof LogoGroup> = {
-  title: "Components/Logo Group",
+  title: 'Components/Logo Group',
   component: LogoGroup,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    heading: { control: "text" },
-    logos: { control: "object" },
+    heading: { control: 'text' },
+    logos: { control: 'object' },
   },
   args: {
     heading: "Trusted by the world's best companies",
     logos: [
       {
         image: {
-          src: "/placeholders/icons/doc-tahedroid.png",
-          alt: "Octahedroid",
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
         },
-        link: { href: "https://octahedroid.com", target: "_blank" },
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: "/placeholders/icons/drupal-decoupled.png",
-          alt: "Composabase",
+          src: '/placeholders/icons/drupal-decoupled.png',
+          alt: 'Composabase',
         },
-        link: { href: "https://composabase.com", target: "_blank" },
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
       {
         image: {
-          src: "/placeholders/icons/doc-tahedroid.png",
-          alt: "Octahedroid",
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
         },
-        link: { href: "https://octahedroid.com", target: "_blank" },
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: "/placeholders/icons/drupal-decoupled.png",
-          alt: "Composabase",
+          src: '/placeholders/icons/drupal-decoupled.png',
+          alt: 'Composabase',
         },
-        link: { href: "https://composabase.com", target: "_blank" },
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
       {
         image: {
-          src: "/placeholders/icons/doc-tahedroid.png",
-          alt: "Octahedroid",
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
         },
-        link: { href: "https://octahedroid.com", target: "_blank" },
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: "/placeholders/icons/drupal-decoupled.png",
-          alt: "Composabase",
+          src: '/placeholders/icons/drupal-decoupled.png',
+          alt: 'Composabase',
         },
-        link: { href: "https://composabase.com", target: "_blank" },
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
     ],
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof LogoGroup>;
+export default meta
+type Story = StoryObj<typeof LogoGroup>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const CustomHeading: Story = {
   args: {
-    heading: "Our Partners",
+    heading: 'Our Partners',
   },
-};
+}
 
 export const FewerLogos: Story = {
   args: {
     logos: [
       {
         image: {
-          src: "/placeholders/icons/doc-tahedroid.png",
-          alt: "Octahedroid",
+          src: '/placeholders/icons/doc-tahedroid.png',
+          alt: 'Octahedroid',
         },
-        link: { href: "https://octahedroid.com", target: "_blank" },
+        link: { href: 'https://octahedroid.com', target: '_blank' },
       },
       {
         image: {
-          src: "/placeholders/icons/drupal-decoupled.png",
-          alt: "Composabase",
+          src: '/placeholders/icons/drupal-decoupled.png',
+          alt: 'Composabase',
         },
-        link: { href: "https://composabase.com", target: "_blank" },
+        link: { href: 'https://composabase.com', target: '_blank' },
       },
     ],
   },
-};
+}

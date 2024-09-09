@@ -806,7 +806,8 @@ const introspection = {
               "name": "String"
             }
           }
-        ]
+        ],
+        "isOneOf": false
       },
       {
         "kind": "OBJECT",

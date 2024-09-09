@@ -1,6 +1,6 @@
-import { ComponentProps } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/components/ui/utils";
+import { ComponentProps } from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/components/ui/utils'
 import {
   Button,
   ButtonProps,
@@ -9,28 +9,28 @@ import {
   TeaserCard,
   TeaserCardProps,
   LinkProps,
-} from "@/components/ui";
+} from '@/components/ui'
 
-const cardGroupVariants = cva("w-full py-12 md:py-16", {
+const cardGroupVariants = cva('w-full py-12 md:py-16', {
   variants: {},
   defaultVariants: {},
-});
+})
 
-type ActionProps = ButtonProps | LinkProps;
+type ActionProps = ButtonProps | LinkProps
 
-type CardItem = SimpleCardProps | TeaserCardProps;
+type CardItem = SimpleCardProps | TeaserCardProps
 
 type Props = {
-  heading?: string | null;
-  subheading?: string | null;
-  description?: string | null;
-  action?: ActionProps | null;
-  cards: CardItem[];
-};
+  heading?: string | null
+  subheading?: string | null
+  description?: string | null
+  action?: ActionProps | null
+  cards: CardItem[]
+}
 
-export type CardGroupProps = ComponentProps<"div"> &
+export type CardGroupProps = ComponentProps<'div'> &
   VariantProps<typeof cardGroupVariants> &
-  Props;
+  Props
 
 export const CardGroup = ({
   className,
@@ -61,12 +61,10 @@ export const CardGroup = ({
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {cards.map((card, index) => {
-            return (
-              card && card.type === "simple" ? (
-                <SimpleCard key={index}  {...card as SimpleCardProps} />
-              ) : (
-                <TeaserCard key={index} {...card as TeaserCardProps} />
-              )
+            return card && card.type === 'simple' ? (
+              <SimpleCard key={index} {...(card as SimpleCardProps)} />
+            ) : (
+              <TeaserCard key={index} {...(card as TeaserCardProps)} />
             )
           })}
         </div>
@@ -79,7 +77,7 @@ export const CardGroup = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-CardGroup.displayName = "CardGroup";
+CardGroup.displayName = 'CardGroup'

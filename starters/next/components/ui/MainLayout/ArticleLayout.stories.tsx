@@ -1,35 +1,35 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { MainLayout, Article, Footer, Header } from "@/components/ui";
-import * as ArticleStories from "../Article/Article.stories";
-import * as FooterStories from "../Footer/Footer.stories";
-import * as HeaderStories from "../Header/Header.stories";
-import { HeaderProps } from "../Header/Header";
-import { ArticleProps } from "../Article/Article";
-import { FooterProps } from "../Footer/Footer";
+import { MainLayout, Article, Footer, Header } from '@/components/ui'
+import * as ArticleStories from '../Article/Article.stories'
+import * as FooterStories from '../Footer/Footer.stories'
+import * as HeaderStories from '../Header/Header.stories'
+import { HeaderProps } from '../Header/Header'
+import { ArticleProps } from '../Article/Article'
+import { FooterProps } from '../Footer/Footer'
 
 const meta: Meta<typeof MainLayout> = {
-  title: "Layout/Article Layout",
+  title: 'Layout/Article Layout',
   component: MainLayout,
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof MainLayout>;
+type Story = StoryObj<typeof MainLayout>
 
-console.log(ArticleStories.default.args);
+console.log(ArticleStories.default.args)
 
 export const Default: Story = {
   args: {
     children: (
       <>
-        <Header {...HeaderStories.default.args as HeaderProps} />
-        <Article {...ArticleStories.default.args as ArticleProps} />
-        <Footer {...FooterStories.default.args as FooterProps}  />
+        <Header {...(HeaderStories.default.args as HeaderProps)} />
+        <Article {...(ArticleStories.default.args as ArticleProps)} />
+        <Footer {...(FooterStories.default.args as FooterProps)} />
       </>
     ),
   },
-};
+}

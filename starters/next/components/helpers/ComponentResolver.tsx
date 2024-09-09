@@ -34,7 +34,7 @@ import {
   LogoGroup,
   Testimonial,
   TeaserCardProps,
-} from '@/components/ui/';
+} from '@/components/ui/'
 
 type ParagraphFragmentType =
   | FragmentOf<typeof ParagraphHeroFragment>
@@ -52,20 +52,22 @@ interface ResolveProps {
 
 const calculateComponent = function (
   type: string,
-  paragraph: ParagraphFragmentType,
+  paragraph: ParagraphFragmentType
 ): JSX.Element {
   if (type === 'ParagraphHero') {
     const paragraphHero = ParagraphHeroResolver({
       paragraph: paragraph as FragmentOf<typeof ParagraphHeroFragment>,
     })
 
-    return <Hero 
-      key={paragraphHero.id}
-      heading={paragraphHero.heading}
-      description={paragraphHero.description}
-      image={paragraphHero.image}
-      actions={paragraphHero.actions}
-    />
+    return (
+      <Hero
+        key={paragraphHero.id}
+        heading={paragraphHero.heading}
+        description={paragraphHero.description}
+        image={paragraphHero.image}
+        actions={paragraphHero.actions}
+      />
+    )
   }
 
   if (type === 'ParagraphCardGroup') {
@@ -73,13 +75,15 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphCardGroupFragment>,
     })
 
-    return <CardGroup
-      key={paragraphCardGroup.id}
-      heading={paragraphCardGroup.heading}
-      subheading={paragraphCardGroup.subheading}
-      description={paragraphCardGroup.description}
-      cards={paragraphCardGroup.cards}
-    />
+    return (
+      <CardGroup
+        key={paragraphCardGroup.id}
+        heading={paragraphCardGroup.heading}
+        subheading={paragraphCardGroup.subheading}
+        description={paragraphCardGroup.description}
+        cards={paragraphCardGroup.cards}
+      />
+    )
   }
 
   if (type === 'ParagraphViewReference') {
@@ -101,8 +105,8 @@ const calculateComponent = function (
     }
 
     if (view === 'blog' && display === 'blog_featured') {
-      const featured = cards[0];
-      const remainingCards = cards.splice(1) as TeaserCardProps[];
+      const featured = cards[0]
+      const remainingCards = cards.splice(1) as TeaserCardProps[]
 
       return (
         <>
@@ -113,18 +117,20 @@ const calculateComponent = function (
             actions={[
               {
                 href: featured.link.href,
-                text: featured.link.text
-              }
+                text: featured.link.text,
+              },
             ]}
           />
-          {cards && <CardGroup
-            key={id}
-            heading={heading}
-            subheading={subheading}
-            description={description}
-            cards={remainingCards}
-            action={action}
-          />}
+          {cards && (
+            <CardGroup
+              key={id}
+              heading={heading}
+              subheading={subheading}
+              description={description}
+              cards={remainingCards}
+              action={action}
+            />
+          )}
         </>
       )
     }
@@ -148,12 +154,14 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphCtaFragment>,
     })
 
-    return <CTA
-      key={paragraphCta.id}
-      heading={paragraphCta.heading}
-      description={paragraphCta.description}
-      actions={paragraphCta.actions}
-    />
+    return (
+      <CTA
+        key={paragraphCta.id}
+        heading={paragraphCta.heading}
+        description={paragraphCta.description}
+        actions={paragraphCta.actions}
+      />
+    )
   }
 
   if (type === 'ParagraphFaq') {
@@ -161,12 +169,14 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphFaqFragment>,
     })
 
-    return <FAQ
-      key={paragraphFaq.id}
-      heading={paragraphFaq.heading}
-      description={paragraphFaq.description}
-      questions={paragraphFaq.questions}
-    />
+    return (
+      <FAQ
+        key={paragraphFaq.id}
+        heading={paragraphFaq.heading}
+        description={paragraphFaq.description}
+        questions={paragraphFaq.questions}
+      />
+    )
   }
 
   if (type === 'ParagraphLogoGroup') {
@@ -174,11 +184,13 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphLogoGroupFragment>,
     })
 
-    return <LogoGroup
-      heading={paragraphLogoGroup.heading}
-      key={paragraphLogoGroup.id}
-      logos={paragraphLogoGroup.logos}
-    />
+    return (
+      <LogoGroup
+        heading={paragraphLogoGroup.heading}
+        key={paragraphLogoGroup.id}
+        logos={paragraphLogoGroup.logos}
+      />
+    )
   }
 
   if (type === 'ParagraphTestimonial') {
@@ -186,26 +198,28 @@ const calculateComponent = function (
       paragraph: paragraph as FragmentOf<typeof ParagraphTestimonialFragment>,
     })
 
-    return <Testimonial
-      key={paragraphTestimonial.id}
-      quote={paragraphTestimonial.quote}
-      author={paragraphTestimonial.author}
-    />
+    return (
+      <Testimonial
+        key={paragraphTestimonial.id}
+        quote={paragraphTestimonial.quote}
+        author={paragraphTestimonial.author}
+      />
+    )
   }
 
   if (type === 'ParagraphWebform') {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const paragraphWebform = ParagraphWebformResolver({
-      paragraph: paragraph as FragmentOf<
-        typeof ParagraphWebformFragment
-      >,
+      paragraph: paragraph as FragmentOf<typeof ParagraphWebformFragment>,
     })
     // @todo: implement Webform React Component
   }
 
   return (
-    <div className='container'>
-      <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">Implement Form Componet</h2>
+    <div className="container">
+      <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">
+        Implement Form Componet
+      </h2>
       <hr />
       <pre>
         <code>{JSON.stringify(paragraph, null, 2)}</code>
@@ -221,7 +235,7 @@ export const resolve = ({ data = [] }: ResolveProps) => {
 
   const paragraphUnionFragment = readFragment(ParagraphUnionFragment, data)
 
-  return paragraphUnionFragment.map(paragraph => {
+  return paragraphUnionFragment.map((paragraph) => {
     const type = paragraph.__typename
     const skipComponents = [
       'ParagraphSimpleCard',

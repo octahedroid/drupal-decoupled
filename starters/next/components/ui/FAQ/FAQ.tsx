@@ -1,36 +1,36 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/components/ui/utils";
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/components/ui/utils'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
   RichText,
-} from "@/components/ui";
-import { ComponentProps } from "react";
+} from '@/components/ui'
+import { ComponentProps } from 'react'
 
 const faqVariants = cva(
-  "w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center",
+  'w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center',
   {
     variants: {},
     defaultVariants: {},
-  },
-);
+  }
+)
 
 type QuestionProps = {
-  question: string;
-  answer: string;
-};
+  question: string
+  answer: string
+}
 
 type Props = {
-  heading: string;
-  description?: string | null;
-  questions: QuestionProps[];
-};
+  heading: string
+  description?: string | null
+  questions: QuestionProps[]
+}
 
-export type FAQProps = ComponentProps<"div"> &
+export type FAQProps = ComponentProps<'div'> &
   VariantProps<typeof faqVariants> &
-  Props;
+  Props
 
 export const FAQ = ({
   className,
@@ -61,7 +61,7 @@ export const FAQ = ({
           ))}
       </Accordion>
     </div>
-  );
-};
+  )
+}
 
-FAQ.displayName = "FAQ";
+FAQ.displayName = 'FAQ'

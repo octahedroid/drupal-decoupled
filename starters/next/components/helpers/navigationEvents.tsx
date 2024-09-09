@@ -1,23 +1,23 @@
-"use client";
+'use client'
 
-import { syncDrupalPreviewRoutes } from "drupal-decoupled";
-import { useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { syncDrupalPreviewRoutes } from 'drupal-decoupled'
+import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 interface Props {
-  environment: string;
+  environment: string
 }
 
 export default function NavigationEvents({ environment }: Props) {
-  const pathname = usePathname();
-  const isRevision = pathname.includes("/revisions/");
+  const pathname = usePathname()
+  const isRevision = pathname.includes('/revisions/')
 
   useEffect(() => {
-    const url = `${pathname}`;
-    if (environment === "preview" && !isRevision) {
-      syncDrupalPreviewRoutes(url);
+    const url = `${pathname}`
+    if (environment === 'preview' && !isRevision) {
+      syncDrupalPreviewRoutes(url)
     }
-  }, [pathname]);
+  }, [pathname])
 
-  return null;
+  return null
 }

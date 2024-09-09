@@ -41,3 +41,4 @@ next-env.d.ts
 graphql/drupal/fragments/generated
 
 *storybook.log
+storybook-static

@@ -1,48 +1,48 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Badge } from "@/components/ui";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Badge } from '@/components/ui'
 
 const meta: Meta<typeof Badge> = {
-  title: "Components/Badge",
+  title: 'Components/Badge',
   component: Badge,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    children: "Badge",
-    variant: "default",
+    children: 'Badge',
+    variant: 'default',
   },
   argTypes: {
-    children: { control: "text" },
+    children: { control: 'text' },
     variant: {
-      control: "select",
-      options: ["default", "secondary", "destructive", "outline"],
+      control: 'select',
+      options: ['default', 'secondary', 'destructive', 'outline'],
     },
   },
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof Badge>;
+export default meta
+type Story = StoryObj<typeof Badge>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const Secondary: Story = {
   args: {
-    variant: "secondary",
-    children: "Secondary",
+    variant: 'secondary',
+    children: 'Secondary',
   },
-};
+}
 
 export const Destructive: Story = {
   args: {
-    variant: "destructive",
-    children: "Destructive",
+    variant: 'destructive',
+    children: 'Destructive',
   },
-};
+}
 
 export const Outline: Story = {
   args: {
-    variant: "outline",
-    children: "Outline",
+    variant: 'outline',
+    children: 'Outline',
   },
-};
+}
 
 export const WithIcon: Story = {
   args: {
@@ -67,10 +67,10 @@ export const WithIcon: Story = {
       </>
     ),
   },
-};
+}
 
 export const LongText: Story = {
   args: {
-    children: "This is a badge with a very long text",
+    children: 'This is a badge with a very long text',
   },
-};
+}
