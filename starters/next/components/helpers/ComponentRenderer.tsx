@@ -13,12 +13,12 @@ export function ComponentRenderer({
   // If we are in preview mode, render the VisualEditor
   if (environment === 'preview') {
     const ids = components.map((component) => {
-      return component.props.paragraph.id
+      return component.props.id
     })
 
     const componentMapping = components.reduce(
       (acc, component) => {
-        acc[component.props.paragraph.id] = component
+        acc[component.props.id] = component
         return acc
       },
       {} as { [key: string]: JSX.Element }
