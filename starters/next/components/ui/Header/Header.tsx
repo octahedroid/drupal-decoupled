@@ -36,7 +36,7 @@ type NavItem = {
   children?: NavItem[];
 };
 
-type ActionProps = ButtonProps | LinkProps;
+type ActionProps = ButtonProps & LinkProps;
 
 type Props = {
   logo: ImageProps;
@@ -76,7 +76,7 @@ const MobileNavItem = ({ item }: { item: NavItem }) => {
         </div>
       ) : (
         <a
-          href={item.href}
+          href={item.href ?? undefined}
           className="text-foreground hover:bg-accent hover:text-accent-foreground block w-full px-4 py-2 text-sm font-medium"
         >
           {item.label}
@@ -119,7 +119,7 @@ export const Header = ({
                           {item.children.map((child, childIndex) => (
                             <li key={childIndex}>
                               <NavigationMenuLink
-                                href={child.href}
+                                href={child.href ?? undefined}
                                 className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors"
                               >
                                 <div className="text-sm font-medium leading-none">
@@ -133,7 +133,7 @@ export const Header = ({
                     </>
                   ) : (
                     <NavigationMenuLink
-                      href={item.href}
+                      href={item.href ?? undefined}
                       className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium"
                     >
                       {item.label}
@@ -145,14 +145,18 @@ export const Header = ({
           </NavigationMenu>
           {actions && actions.length > 0 && (
             <div className="flex items-center space-x-4">
-              {actions.map(({ text, href, ...actionProps }, index) => (
+              {actions.map(({ text, href, variant, ...actionProps }, index) => (
                 <Button
                   key={index}
-                  variant={index === actions.length - 1 ? "default" : "outline"}
+                  variant={
+                    variant || index === actions.length - 1
+                      ? "default"
+                      : "outline"
+                  }
                   asChild
                   {...actionProps}
                 >
-                  <a href={href}>{text}</a>
+                  <a href={href ?? undefined}>{text}</a>
                 </Button>
               ))}
             </div>
@@ -187,15 +191,19 @@ export const Header = ({
           </nav>
           {actions && actions.length > 0 && (
             <div className="flex flex-col space-y-2 p-4">
-              {actions.map(({ text, href, ...actionProps }, index) => (
+              {actions.map(({ text, href, variant, ...actionProps }, index) => (
                 <Button
                   key={index}
-                  variant={index === actions.length - 1 ? "default" : "outline"}
+                  variant={
+                    variant || index === actions.length - 1
+                      ? "default"
+                      : "outline"
+                  }
                   className="w-full"
                   asChild
                   {...actionProps}
                 >
-                  <a href={href}>{text}</a>
+                  <a href={href ?? undefined}>{text}</a>
                 </Button>
               ))}
             </div>

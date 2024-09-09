@@ -1,4 +1,3 @@
-import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import {
@@ -29,7 +28,8 @@ type Props = {
   className?: string;
 };
 
-export type CardGroupProps = VariantProps<typeof cardGroupVariants> & Partial<Props>;
+export type CardGroupProps = VariantProps<typeof cardGroupVariants> &
+  Partial<Props>;
 
 export const CardGroup = ({
   className,
@@ -59,21 +59,22 @@ export const CardGroup = ({
           )}
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {cards && cards.map((card, index) =>
-            card.type === "simple" ? (
-              <SimpleCard key={index} {...card} />
-            ) : (
-              <TeaserCard key={index} {...card} />
-            )
-          )}
+          {cards &&
+            cards.map((card, index) =>
+              card.type === "simple" ? (
+                <SimpleCard key={index} {...card} />
+              ) : (
+                <TeaserCard key={index} {...card} />
+              )
+            )}
         </div>
-        {action && action.href && 
+        {action && action.href && (
           <div className="mt-12 text-center">
             <Button asChild variant="outline">
               <a href={action.href}>{action.text}</a>
             </Button>
           </div>
-        }
+        )}
       </div>
     </div>
   );

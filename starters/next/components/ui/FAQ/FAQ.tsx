@@ -1,4 +1,3 @@
-import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import {
@@ -14,7 +13,7 @@ const faqVariants = cva(
   {
     variants: {},
     defaultVariants: {},
-  }
+  },
 );
 
 type QuestionProps = {
@@ -26,11 +25,10 @@ type Props = {
   heading: string;
   description?: string | null;
   questions: QuestionProps[];
-  className?: string ;
+  className?: string;
 };
 
-type FAQProps = VariantProps<typeof faqVariants> &
-  Partial<Props>;
+type FAQProps = VariantProps<typeof faqVariants> & Partial<Props>;
 
 export const FAQ = ({
   className,

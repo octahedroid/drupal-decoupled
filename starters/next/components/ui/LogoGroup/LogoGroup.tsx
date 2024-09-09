@@ -1,4 +1,3 @@
-import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { LinkProps, ImageProps } from "@/components/ui";
@@ -35,21 +34,24 @@ export const LogoGroup = ({
           {heading}
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-          {logos?.map(({ link, image }, index) => (
-            <a
-              key={`logo-${index}`}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block transition-transform hover:scale-105"
-            >
-              <img
-                {...image}
-                alt={image.alt || `Logo ${index + 1}`}
-                className={cn("h-8 w-auto object-contain", image.className)}
-              />
-            </a>
-          ))}
+          {logos?.map(
+            ({ link, image }, index) =>
+              link?.href && (
+                <a
+                  key={`logo-${index}`}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block transition-transform hover:scale-105"
+                >
+                  <img
+                    {...image}
+                    alt={image.alt || `Logo ${index + 1}`}
+                    className={cn("h-8 w-auto object-contain", image.className)}
+                  />
+                </a>
+              )
+          )}
         </div>
       </div>
     </div>

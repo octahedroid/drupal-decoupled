@@ -8,7 +8,7 @@ const heroVariants = cva("w-full px-4 py-8 md:py-16 lg:py-24", {
   defaultVariants: {},
 });
 
-type ActionProps = ButtonProps | LinkProps;
+type ActionProps = ButtonProps & LinkProps;
 
 type Props = {
   heading: string;
@@ -41,18 +41,19 @@ export const Hero = ({
           </p>
           {actions && actions.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
-              {actions
-                .slice(0, 2)
-                .map(({ text, href, variant, ...actionProps }, index) => (
-                  <Button
-                    key={index}
-                    variant={index === 1 ? "outline" : variant || "default"}
-                    asChild
-                    {...actionProps}
-                  >
-                    <a href={href}>{text}</a>
-                  </Button>
-                ))}
+              {actions.slice(0, 2).map(
+                ({ text, href, variant, ...actionProps }, index) =>
+                  href && (
+                    <Button
+                      key={index}
+                      variant={variant || index === 1 ? "outline" : "default"}
+                      asChild
+                      {...actionProps}
+                    >
+                      <a href={href}>{text}</a>
+                    </Button>
+                  )
+              )}
             </div>
           )}
         </div>

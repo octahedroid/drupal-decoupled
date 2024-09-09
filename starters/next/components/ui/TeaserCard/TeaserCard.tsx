@@ -1,4 +1,3 @@
-import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { Badge, Button, LinkProps, ImageProps } from "@/components/ui";
@@ -19,7 +18,7 @@ export type Props = {
   summary: string;
   link: LinkProps;
   className?: string;
-  type: string
+  type: string;
 };
 
 export type TeaserCardProps = VariantProps<typeof teaserCardVariants> &
@@ -57,14 +56,16 @@ export const TeaserCard = ({
           {heading}
         </h3>
         <p className="text-muted-foreground flex-grow text-sm">{summary}</p>
-        <div className="pt-2">
-          <Button variant="link" asChild className="p-0">
-            <a href={link.href} className="flex items-center">
-              {link?.text}
-              <ChevronRight className="ml-1 h-4 w-4" />
-            </a>
-          </Button>
-        </div>
+        {link && link.text && link.href && (
+          <div className="pt-2">
+            <Button variant="link" asChild className="p-0">
+              <a href={link.href ?? undefined} className="flex items-center">
+                {link?.text}
+                <ChevronRight className="ml-1 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
