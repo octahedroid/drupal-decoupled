@@ -7,13 +7,13 @@ export const calculateMetaTags = (type: string, node: EntityFragmentType): Array
   if (type === "NodePage") {
     const { metatag } = readFragment(NodePageFragment, node as FragmentOf<typeof NodePageFragment>);
 
-    return metatag;
+    return metatag as MetaTag[];
   }
 
   if (type === "NodeArticle") {
     const { metatag } = readFragment(NodeArticleFragment, node as FragmentOf<typeof NodeArticleFragment>);
 
-    return metatag;
+    return metatag as MetaTag[];
   }
 
   return [];

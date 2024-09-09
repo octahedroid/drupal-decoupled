@@ -1,4 +1,3 @@
-import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '~/components/ui/utils'
 import {
@@ -8,13 +7,14 @@ import {
   AccordionTrigger,
   RichText,
 } from '~/components/ui'
+import { ComponentProps } from 'react'
 
 const faqVariants = cva(
   'w-full max-w-3xl mx-auto px-4 py-8 md:py-12 lg:py-16 text-center',
   {
     variants: {},
     defaultVariants: {},
-  },
+  }
 )
 
 type QuestionProps = {
@@ -24,13 +24,13 @@ type QuestionProps = {
 
 type Props = {
   heading: string
-  description?: string
+  description?: string | null
   questions: QuestionProps[]
 }
 
-type FAQProps = ComponentProps<'div'> &
+export type FAQProps = ComponentProps<'div'> &
   VariantProps<typeof faqVariants> &
-  Partial<Props>
+  Props
 
 export const FAQ = ({
   className,
