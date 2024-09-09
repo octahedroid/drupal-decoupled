@@ -13,13 +13,13 @@ type ActionProps = ButtonProps & LinkProps
 type Props = {
   heading: string
   description: string
-  image: ImageProps
+  image?: ImageProps
   actions?: ActionProps[]
 }
 
 export type HeroProps = ComponentProps<'div'> &
   VariantProps<typeof heroVariants> &
-  Partial<Props>
+  Props
 
 export const Hero = ({
   className,
@@ -41,27 +41,26 @@ export const Hero = ({
           </p>
           {actions && actions.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
-              {actions
-                .slice(0, 2)
-                .map(({ text, href, variant, ...actionProps }, index) => (
-                  <Button
-                    key={index}
-                    variant={index === 1 ? 'outline' : variant || 'default'}
-                    asChild
-                    {...actionProps}
-                  >
-                    <a href={href}>{text}</a>
-                  </Button>
-                ))}
+              {actions.slice(0, 2).map(
+                ({ text, href, variant, ...actionProps }, index) =>
+                  href && (
+                    <Button
+                      key={index}
+                      variant={variant || index === 1 ? 'outline' : 'default'}
+                      asChild
+                      {...actionProps}
+                    >
+                      <a href={href}>{text}</a>
+                    </Button>
+                  )
+              )}
             </div>
           )}
         </div>
         <div className="order-first mx-auto w-full max-w-lg lg:order-last lg:max-w-none">
-          <img
-            alt={image?.alt}
-            {...image}
-            className={cn('h-auto w-full object-cover')}
-          />
+          {image && (
+            <img {...image} className={cn('h-auto w-full object-cover')} />
+          )}
         </div>
       </div>
     </div>

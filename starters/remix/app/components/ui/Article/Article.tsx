@@ -33,7 +33,7 @@ type Props = {
   author: AuthorProps
 }
 
-type ArticleProps = ComponentProps<'article'> &
+export type ArticleProps = ComponentProps<'article'> &
   VariantProps<typeof articleVariants> &
   Props
 
@@ -68,7 +68,7 @@ export const Article = ({
           className="h-auto w-full object-cover"
         />
       </div>
-      <div className="mx-auto mb-8 max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mb-8 max-w-4xl px-4 sm:px-6 lg:px-8">
         <h1 className="mb-6 text-4xl font-bold text-gray-900 dark:text-gray-100 sm:text-5xl md:text-6xl">
           {title}
         </h1>
@@ -87,7 +87,7 @@ export const Article = ({
         </div>
         {tags && tags.length > 0 && (
           <div className="mb-8 flex flex-wrap gap-2">
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <Badge key={tag} variant="secondary">
                 {tag}
               </Badge>

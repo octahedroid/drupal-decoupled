@@ -16,24 +16,21 @@ const cardGroupVariants = cva('w-full py-12 md:py-16', {
   defaultVariants: {},
 })
 
-type ActionProps = ButtonProps & LinkProps
+type ActionProps = ButtonProps | LinkProps
 
-type CardItem =
-  | ({ type: 'simple' } & SimpleCardProps)
-  | ({ type: 'teaser' } & TeaserCardProps)
+type CardItem = SimpleCardProps | TeaserCardProps
 
 type Props = {
-  heading: string
-  subheading?: string
-  description?: string
-  action?: ActionProps
+  heading?: string | null
+  subheading?: string | null
+  description?: string | null
+  action?: ActionProps | null
   cards: CardItem[]
 }
 
 export type CardGroupProps = ComponentProps<'div'> &
   VariantProps<typeof cardGroupVariants> &
-  Required<Pick<Props, 'cards'>> &
-  Partial<Omit<Props, 'cards'>>
+  Props
 
 export const CardGroup = ({
   className,
@@ -63,15 +60,15 @@ export const CardGroup = ({
           )}
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {cards.map((card, index) =>
-            card.type === 'simple' ? (
-              <SimpleCard key={index} {...card} />
+          {cards.map((card, index) => {
+            return card && card.type === 'simple' ? (
+              <SimpleCard key={index} {...(card as SimpleCardProps)} />
             ) : (
-              <TeaserCard key={index} {...card} />
-            ),
-          )}
+              <TeaserCard key={index} {...(card as TeaserCardProps)} />
+            )
+          })}
         </div>
-        {action && (
+        {action && action.href && (
           <div className="mt-12 text-center">
             <Button asChild variant="outline">
               <a href={action.href}>{action.text}</a>

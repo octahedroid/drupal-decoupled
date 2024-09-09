@@ -44,6 +44,17 @@ type Query {
     revision: ID
   ): TermTags
 
+  """Load a ParagraphHero entity by id"""
+  paragraphHero(
+    """The id of the ParagraphHero to load."""
+    id: ID!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): ParagraphHero
+
   """Load a ParagraphAuthor entity by id"""
   paragraphAuthor(
     """The id of the ParagraphAuthor to load."""
@@ -87,17 +98,6 @@ type Query {
     """
     revision: ID
   ): ParagraphFaq
-
-  """Load a ParagraphHero entity by id"""
-  paragraphHero(
-    """The id of the ParagraphHero to load."""
-    id: ID!
-
-    """
-    Optionally set the revision of the entity. Eg current, latest, or an ID.
-    """
-    revision: ID
-  ): ParagraphHero
 
   """Load a ParagraphLogo entity by id"""
   paragraphLogo(
@@ -258,6 +258,27 @@ type Query {
     sortKey: ConnectionSortKeys
   ): TermTagsConnection!
 
+  """List of all ParagraphHero on the platform."""
+  paragraphHeroes(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+  ): ParagraphHeroConnection!
+
   """List of all ParagraphAuthor on the platform."""
   paragraphAuthors(
     """Returns the elements that come after the specified cursor."""
@@ -341,27 +362,6 @@ type Query {
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
   ): ParagraphFaqConnection!
-
-  """List of all ParagraphHero on the platform."""
-  paragraphHeroes(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-  ): ParagraphHeroConnection!
 
   """List of all ParagraphLogoGroup on the platform."""
   paragraphLogoGroups(
@@ -1079,7 +1079,61 @@ type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
 }
 
 """Entity type paragraph."""
-union ParagraphUnion = ParagraphAuthor | ParagraphCardGroup | ParagraphCta | ParagraphFaq | ParagraphHero | ParagraphLogo | ParagraphLogoGroup | ParagraphQuestion | ParagraphSimpleCard | ParagraphTestimonial | ParagraphViewReference | ParagraphWebform
+union ParagraphUnion = ParagraphHero | ParagraphAuthor | ParagraphCardGroup | ParagraphCta | ParagraphFaq | ParagraphLogo | ParagraphLogoGroup | ParagraphQuestion | ParagraphSimpleCard | ParagraphTestimonial | ParagraphViewReference | ParagraphWebform
+
+"""Entity type paragraph."""
+type ParagraphHero implements ParagraphInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """Actions"""
+  actions: [Link!]
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """Description"""
+  description: String!
+
+  """Heading"""
+  heading: String!
+
+  """Image"""
+  image: MediaUnion!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""Entity type paragraph."""
+interface ParagraphInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the Paragraph was created."""
+  created: DateTime!
+
+  """The paragraphs entity language code."""
+  langcode: Language!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""A link."""
+type Link {
+  """The title of the link."""
+  title: String
+
+  """The URL of the link."""
+  url: String
+
+  """Whether the link is internal to this website."""
+  internal: Boolean!
+}
 
 """Entity type paragraph."""
 type ParagraphAuthor implements ParagraphInterface & EdgeNode {
@@ -1103,21 +1157,6 @@ type ParagraphAuthor implements ParagraphInterface & EdgeNode {
 
   """Position"""
   position: String!
-
-  """Published"""
-  status: Boolean!
-}
-
-"""Entity type paragraph."""
-interface ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
 
   """Published"""
   status: Boolean!
@@ -1177,18 +1216,6 @@ type ParagraphCta implements ParagraphInterface & EdgeNode {
   subheading: String
 }
 
-"""A link."""
-type Link {
-  """The title of the link."""
-  title: String
-
-  """The URL of the link."""
-  url: String
-
-  """Whether the link is internal to this website."""
-  internal: Boolean!
-}
-
 """Entity type paragraph."""
 type ParagraphFaq implements ParagraphInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
@@ -1205,33 +1232,6 @@ type ParagraphFaq implements ParagraphInterface & EdgeNode {
 
   """Items"""
   items: [ParagraphUnion!]!
-
-  """The paragraphs entity language code."""
-  langcode: Language!
-
-  """Published"""
-  status: Boolean!
-}
-
-"""Entity type paragraph."""
-type ParagraphHero implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """Actions"""
-  actions: [Link!]
-
-  """The time that the Paragraph was created."""
-  created: DateTime!
-
-  """Description"""
-  description: String!
-
-  """Heading"""
-  heading: String!
-
-  """Image"""
-  image: MediaUnion!
 
   """The paragraphs entity language code."""
   langcode: Language!
@@ -1808,6 +1808,19 @@ type TermTagsEdge implements Edge {
   node: TermTags!
 }
 
+"""A paginated set of results for ParagraphHero."""
+type ParagraphHeroConnection implements Connection {
+  edges: [ParagraphHeroEdge!]!
+  nodes: [ParagraphHero!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for ParagraphHero."""
+type ParagraphHeroEdge implements Edge {
+  cursor: Cursor!
+  node: ParagraphHero!
+}
+
 """A paginated set of results for ParagraphAuthor."""
 type ParagraphAuthorConnection implements Connection {
   edges: [ParagraphAuthorEdge!]!
@@ -1858,19 +1871,6 @@ type ParagraphFaqConnection implements Connection {
 type ParagraphFaqEdge implements Edge {
   cursor: Cursor!
   node: ParagraphFaq!
-}
-
-"""A paginated set of results for ParagraphHero."""
-type ParagraphHeroConnection implements Connection {
-  edges: [ParagraphHeroEdge!]!
-  nodes: [ParagraphHero!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for ParagraphHero."""
-type ParagraphHeroEdge implements Edge {
-  cursor: Cursor!
-  node: ParagraphHero!
 }
 
 """A paginated set of results for ParagraphLogoGroup."""
@@ -2057,10 +2057,4 @@ type ViewReference {
   The name of the query used to fetch the data, if the view is a GraphQL display.
   """
   query: String
-}
-
-"""A WebformEntityReference field."""
-type webform {
-  """The webform target_id."""
-  target_id: String
 }

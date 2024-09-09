@@ -1,7 +1,7 @@
-import RouteComponent from './$';
+import RouteComponent from './$'
 
-export { meta } from './$';
+export { meta } from './$'
 
-export { loader } from './$';
+export { loader } from './$'
 
-export default RouteComponent;
+export default RouteComponent

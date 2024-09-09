@@ -8,7 +8,7 @@ const ctaVariants = cva(
   {
     variants: {},
     defaultVariants: {},
-  },
+  }
 )
 
 type ActionProps = ButtonProps & LinkProps
@@ -47,18 +47,19 @@ export const CTA = ({
       </p>
       {actions && actions.length > 0 && (
         <div className="flex flex-wrap justify-center gap-4">
-          {actions
-            .slice(0, 2)
-            .map(({ text, href, variant, ...actionProps }, index) => (
-              <Button
-                key={index}
-                variant={index === 1 ? 'outline' : variant || 'default'}
-                asChild
-                {...actionProps}
-              >
-                <a href={href}>{text}</a>
-              </Button>
-            ))}
+          {actions.slice(0, 2).map(
+            ({ text, href, variant, ...actionProps }, index) =>
+              href && (
+                <Button
+                  key={index}
+                  variant={variant || index === 1 ? 'outline' : 'default'}
+                  asChild
+                  {...actionProps}
+                >
+                  <a href={href}>{text}</a>
+                </Button>
+              )
+          )}
         </div>
       )}
     </div>

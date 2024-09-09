@@ -27,16 +27,20 @@ const FooterColumn = ({ title, links }: FooterColumn) => (
   <div className="mb-8 lg:mb-0">
     <h5 className="h5">{title}</h5>
     <ul className="space-y-2">
-      {links.map((link, index) => (
-        <li key={index}>
-          <a
-            href={link.href}
-            className="text-muted-foreground hover:text-foreground text-sm"
-          >
-            {link.text}
-          </a>
-        </li>
-      ))}
+      {links.map(
+        (link, index) =>
+          link &&
+          link.href && (
+            <li key={index}>
+              <a
+                href={link.href}
+                className="text-muted-foreground hover:text-foreground text-sm"
+              >
+                {link.text}
+              </a>
+            </li>
+          )
+      )}
     </ul>
   </div>
 )
