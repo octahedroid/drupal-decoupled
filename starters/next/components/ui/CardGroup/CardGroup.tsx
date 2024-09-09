@@ -1,3 +1,4 @@
+import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import {
@@ -20,16 +21,16 @@ type ActionProps = ButtonProps | LinkProps;
 type CardItem = SimpleCardProps | TeaserCardProps;
 
 type Props = {
-  heading: string;
+  heading?: string | null;
   subheading?: string | null;
   description?: string | null;
   action?: ActionProps | null;
   cards: CardItem[];
-  className?: string;
 };
 
-export type CardGroupProps = VariantProps<typeof cardGroupVariants> &
-  Partial<Props>;
+export type CardGroupProps = ComponentProps<"div"> &
+  VariantProps<typeof cardGroupVariants> &
+  Props;
 
 export const CardGroup = ({
   className,

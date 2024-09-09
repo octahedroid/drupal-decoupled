@@ -1,7 +1,7 @@
-import { ComponentProps } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/components/ui/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui";
+import { ComponentProps } from "react";
 
 const testimonialVariants = cva(
   "w-full max-w-3xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16",
@@ -27,7 +27,7 @@ export type Props = {
   author: AuthorProps;
 };
 
-export type TestimonialProps = ComponentProps<"div"> &
+export type TestimonialProps = ComponentProps<"div"> & 
   VariantProps<typeof testimonialVariants> &
   Props;
 

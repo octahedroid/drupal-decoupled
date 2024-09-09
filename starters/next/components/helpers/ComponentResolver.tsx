@@ -139,8 +139,6 @@ const calculateComponent = function (
         />
       )
     }
-
-    return <pre>{JSON.stringify(paragraph, null, 2)};</pre>
   }
 
   if (type === 'ParagraphCta') {
@@ -175,6 +173,7 @@ const calculateComponent = function (
     })
 
     return <LogoGroup
+      heading={paragraphLogoGroup.heading}
       key={paragraphLogoGroup.id}
       logos={paragraphLogoGroup.logos}
     />
