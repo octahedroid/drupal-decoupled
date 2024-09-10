@@ -256,6 +256,10 @@ export const resolve = ({ data = [] }: ResolveProps) => {
       return <></>
     }
 
-    return calculateComponent(paragraph.id, type, paragraph as ParagraphFragmentType)
+    return calculateComponent(
+      paragraph.id,
+      type,
+      paragraph as ParagraphFragmentType
+    )
   })
 }
