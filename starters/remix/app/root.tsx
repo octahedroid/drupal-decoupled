@@ -42,50 +42,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function useClientNavigationLinks() {
-  useEffect(() => {
-    const controller = new AbortController()
-    document.addEventListener(
-      'click',
-      (event) => {
-        // exit early if we're not in an iframe
-        if (window.location === window.parent.location) {
-          return
-        }
-
-        const target = (event.target as Partial<HTMLElement>).closest?.('a')
-        if (!target) {
-          return
-        }
-
-        const url = new URL(target.href, location.origin)
-        if (
-          url.origin === window.location.origin &&
-          // Ignore clicks with modifiers
-          !event.ctrlKey &&
-          !event.metaKey &&
-          !event.shiftKey &&
-          // Ignore right clicks
-          event.button === 0 &&
-          // Ignore if `target="_blank"`
-          [null, undefined, '', 'self'].includes(target.target) &&
-          !target.hasAttribute('download')
-        ) {
-          console.log(
-            'Treating anchor as <Link> and navigating to:',
-            url.pathname
-          )
-          event.preventDefault()
-          syncDrupalPreviewRoutes(url.pathname)
-        }
-      },
-      { signal: controller.signal }
-    )
-
-    return () => controller.abort()
-  })
-}
-
 export default function App() {
   const { environment } = useLoaderData<typeof loader>()
 
