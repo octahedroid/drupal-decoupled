@@ -100,7 +100,9 @@ export const Header = ({
     <header className={cn(headerVariants({ sticky }), className)} {...props}>
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <div className="flex items-center">
-          <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
+          <a href="/">
+            <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
+          </a>
         </div>
 
         {/* Desktop Navigation */}
