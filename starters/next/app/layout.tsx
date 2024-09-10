@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import NavigationEvents from '@/components/helpers/navigationEvents'
+import NavigationEvents from '@/components/helpers/NavigationEvents'
 
 import './globals.css'
 import './preview.css'
@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {children}
         <Suspense fallback={null}>
-          <NavigationEvents environment={environment} />
+          {environment === 'preview' && <NavigationEvents />}
         </Suspense>
       </body>
     </html>
