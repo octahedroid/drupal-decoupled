@@ -51,6 +51,7 @@ interface ResolveProps {
 }
 
 const calculateComponent = function (
+  id: string,
   type: string,
   paragraph: ParagraphFragmentType
 ): JSX.Element {
@@ -223,7 +224,7 @@ const calculateComponent = function (
   }
 
   return (
-    <div className="container">
+    <div id={id} className="container">
       <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">
         Implement Form Componet
       </h2>
@@ -255,6 +256,6 @@ export const resolve = ({ data = [] }: ResolveProps) => {
       return <></>
     }
 
-    return calculateComponent(type, paragraph as ParagraphFragmentType)
+    return calculateComponent(paragraph.id, type, paragraph as ParagraphFragmentType)
   })
 }
