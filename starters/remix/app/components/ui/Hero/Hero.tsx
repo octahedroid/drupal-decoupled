@@ -42,14 +42,21 @@ export const Hero = ({
           {actions && actions.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
               {actions.slice(0, 2).map(
-                ({ text, href, variant }, index) =>
+                ({ text, href, variant, internal, ...actionProps }, index) =>
                   href && (
                     <Button
                       key={index}
                       variant={variant || index === 1 ? 'outline' : 'default'}
                       asChild
+                      {...actionProps}
                     >
-                      <a href={href}>{text}</a>
+                      <a
+                        target={internal ? '_self' : '_blank'}
+                        rel="noopener noreferrer"
+                        href={href}
+                      >
+                        {text}
+                      </a>
                     </Button>
                   )
               )}
