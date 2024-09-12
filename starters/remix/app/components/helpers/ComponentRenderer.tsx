@@ -12,19 +12,7 @@ export function ComponentRenderer({
 }: ComponentsProps) {
   // If we are in preview mode, render the VisualEditor
   if (environment === 'preview') {
-    const ids = components.map((component) => {
-      return component.props.id
-    })
-
-    const componentMapping = components.reduce(
-      (acc, component) => {
-        acc[component.props.id] = component
-        return acc
-      },
-      {} as { [key: string]: JSX.Element }
-    )
-
-    return <VisualEditor ids={ids} componentMapping={componentMapping} />
+    return <VisualEditor components={components} />
   }
 
   // If we are not in preview mode, render the components as they are
