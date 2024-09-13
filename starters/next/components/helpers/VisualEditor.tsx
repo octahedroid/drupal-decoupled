@@ -1,9 +1,7 @@
 'use client'
 
 import type { VisualEditorComponentProps } from 'drupal-visual-editor'
-import {
-  openVisualEditorComponent,
-} from 'drupal-visual-editor'
+import { openVisualEditorComponent } from 'drupal-visual-editor'
 
 interface VisualEditorComponentContainerProps
   extends VisualEditorComponentProps {
@@ -38,21 +36,21 @@ type VisualEditorProps = {
 }
 
 export function VisualEditor({ components }: VisualEditorProps) {
-
   return (
     <>
       {components.map((component) => {
         const id = component.props.id
         return (
-        <VisualEditorComponentContainer
-              storage="paragraph"
-              uuid={id}
-              action="edit"
-              key={id}
-            >
-              {component}
-            </VisualEditorComponentContainer>)
-          })}
-        </>
-    )
+          <VisualEditorComponentContainer
+            storage="paragraph"
+            uuid={id}
+            action="edit"
+            key={id}
+          >
+            {component}
+          </VisualEditorComponentContainer>
+        )
+      })}
+    </>
+  )
 }

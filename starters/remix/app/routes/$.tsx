@@ -25,6 +25,7 @@ import { calculateMetaTags } from '~/utils/drupal/metatags'
 import { Header } from '~/components/ui//Header'
 import { Footer } from '~/components/ui/Footer'
 import { MenuFragment, MenuItemFragment } from '~/graphql/drupal/fragments/menu'
+import type { ButtonProps } from '~/components/ui/types'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
@@ -144,16 +145,16 @@ export const loader = async ({
         {
           text: 'Docs',
           href: 'https://drupal-decoupled.octahedroid.com/docs',
-          variant: 'secondary',
-          target: '_blank',
+          variant: 'default',
+          internal: false,
         },
         {
           text: 'Quickstart',
           href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
           variant: 'default',
-          target: '_blank',
+          internal: false,
         },
-      ],
+      ] as ButtonProps[],
     },
     footer: {
       logo: {

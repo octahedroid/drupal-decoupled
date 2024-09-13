@@ -18,6 +18,7 @@ import { calculatePath } from '@/utils/drupal/routes'
 import { Header } from '@/components/ui//Header'
 import { Footer } from '@/components/ui/Footer'
 import { MenuFragment, MenuItemFragment } from '@/graphql/drupal/fragments/menu'
+import type { ButtonProps } from '@/components/ui/types'
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {
   const pathFromParams = params.slug?.join('/') || '/home'
@@ -108,16 +109,16 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
         {
           text: 'Docs',
           href: 'https://drupal-decoupled.octahedroid.com/docs',
-          variant: 'secondary',
-          target: '_blank',
+          variant: 'default',
+          internal: false,
         },
         {
           text: 'Quickstart',
           href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
           variant: 'default',
-          target: '_blank',
+          internal: false,
         },
-      ],
+      ] as ButtonProps[],
     },
     footer: {
       logo: {

@@ -41,7 +41,7 @@ export const ParagraphLogoGroupResolver = ({
           link: {
             text,
             href,
-            target: internal ? '_self' : '_blank',
+            internal,
           },
         }
       })
