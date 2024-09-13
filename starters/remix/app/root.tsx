@@ -7,13 +7,11 @@ import {
   useLoaderData,
 } from '@remix-run/react'
 import { LoaderFunctionArgs, json } from '@remix-run/cloudflare'
-import { syncDrupalPreviewRoutes } from 'drupal-decoupled'
 
 import NavigationEvents from '~/components/helpers/NavigationEvents'
 
 import './tailwind.css'
 import './preview.css'
-import { useEffect } from 'react'
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   return json(

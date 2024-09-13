@@ -41,8 +41,8 @@ export const LogoGroup = ({
                 <a
                   key={`logo-${index}`}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={link.internal ? '_self' : '_blank'}
+                  rel={link.internal ? '' : 'noopener noreferrer'}
                   className="inline-block transition-transform hover:scale-105"
                 >
                   <img

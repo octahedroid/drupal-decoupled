@@ -29,7 +29,7 @@ export default function NavigationEvents() {
           // Ignore right clicks
           event.button === 0 &&
           // Ignore if `target="_blank"`
-          [null, undefined, '', 'self'].includes(target.target) &&
+          [null, undefined, '', '_self'].includes(target.target) &&
           !target.hasAttribute('download')
         ) {
           event.preventDefault()

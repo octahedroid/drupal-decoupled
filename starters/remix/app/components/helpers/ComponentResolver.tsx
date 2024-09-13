@@ -121,6 +121,7 @@ const calculateComponent = function (
               {
                 href: featured.link.href,
                 text: featured.link.text,
+                internal: true,
               },
             ]}
           />

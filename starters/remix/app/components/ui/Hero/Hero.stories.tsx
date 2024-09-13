@@ -47,7 +47,7 @@ export const CustomContent: Story = {
         variant: 'default',
         className: 'font-bold',
       },
-      { text: 'Explore', href: '#', variant: 'secondary', target: '_blank' },
+      { text: 'Explore', href: '#', variant: 'secondary', internal: false },
     ],
   },
 }
