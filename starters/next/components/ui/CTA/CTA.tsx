@@ -50,7 +50,7 @@ export const CTA = ({
               href && (
                 <Button
                   key={index}
-                  variant={variant || index === 1 ? 'outline' : 'default'}
+                  variant={index === 1 ? 'outline' : variant || 'default'}
                   asChild
                   {...actionProps}
                 >

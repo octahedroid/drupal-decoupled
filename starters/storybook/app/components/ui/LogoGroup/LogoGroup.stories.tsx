@@ -17,42 +17,42 @@ const meta: Meta<typeof LogoGroup> = {
           src: '/placeholders/icons/doc-tahedroid.png',
           alt: 'Octahedroid',
         },
-        link: { href: 'https://octahedroid.com', target: '_blank' },
+        link: { href: 'https://octahedroid.com', internal: false },
       },
       {
         image: {
           src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
-        link: { href: 'https://composabase.com', target: '_blank' },
+        link: { href: 'https://composabase.com', internal: false },
       },
       {
         image: {
           src: '/placeholders/icons/doc-tahedroid.png',
           alt: 'Octahedroid',
         },
-        link: { href: 'https://octahedroid.com', target: '_blank' },
+        link: { href: 'https://octahedroid.com', internal: false },
       },
       {
         image: {
           src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
-        link: { href: 'https://composabase.com', target: '_blank' },
+        link: { href: 'https://composabase.com', internal: false },
       },
       {
         image: {
           src: '/placeholders/icons/doc-tahedroid.png',
           alt: 'Octahedroid',
         },
-        link: { href: 'https://octahedroid.com', target: '_blank' },
+        link: { href: 'https://octahedroid.com', internal: false },
       },
       {
         image: {
           src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
-        link: { href: 'https://composabase.com', target: '_blank' },
+        link: { href: 'https://composabase.com', internal: false },
       },
     ],
   },
@@ -77,14 +77,14 @@ export const FewerLogos: Story = {
           src: '/placeholders/icons/doc-tahedroid.png',
           alt: 'Octahedroid',
         },
-        link: { href: 'https://octahedroid.com', target: '_blank' },
+        link: { href: 'https://octahedroid.com', internal: false },
       },
       {
         image: {
           src: '/placeholders/icons/drupal-decoupled.png',
           alt: 'Composabase',
         },
-        link: { href: 'https://composabase.com', target: '_blank' },
+        link: { href: 'https://composabase.com', internal: false },
       },
     ],
   },

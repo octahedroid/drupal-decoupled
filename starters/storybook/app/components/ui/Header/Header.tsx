@@ -10,7 +10,6 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
   NavigationMenuContent,
-  LinkProps,
   ImageProps,
 } from '~/components/ui'
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react'
@@ -34,12 +33,10 @@ type NavItem = {
   children?: NavItem[]
 }
 
-type ActionProps = ButtonProps & LinkProps
-
 type Props = {
   logo: ImageProps
   navItems: NavItem[]
-  actions: ActionProps[]
+  actions: ButtonProps[]
 }
 
 export type HeaderProps = ComponentProps<'header'> &
@@ -145,20 +142,25 @@ export const Header = ({
           </NavigationMenu>
           {actions && actions.length > 0 && (
             <div className="flex items-center space-x-4">
-              {actions.map(({ text, href, variant, ...actionProps }, index) => (
-                <Button
-                  key={index}
-                  variant={
-                    variant || index === actions.length - 1
-                      ? 'default'
-                      : 'outline'
-                  }
-                  asChild
-                  {...actionProps}
-                >
-                  <a href={href ?? undefined}>{text}</a>
-                </Button>
-              ))}
+              {actions.map(
+                ({ text, href, internal, variant, ...actionProps }, index) =>
+                  href && (
+                    <Button
+                      key={index}
+                      variant={variant || 'default'}
+                      asChild
+                      {...actionProps}
+                    >
+                      <a
+                        href={href}
+                        target={internal ? '_self' : '_blank'}
+                        rel="noreferrer"
+                      >
+                        {text}
+                      </a>
+                    </Button>
+                  )
+              )}
             </div>
           )}
         </div>
@@ -191,21 +193,26 @@ export const Header = ({
           </nav>
           {actions && actions.length > 0 && (
             <div className="flex flex-col space-y-2 p-4">
-              {actions.map(({ text, href, variant, ...actionProps }, index) => (
-                <Button
-                  key={index}
-                  variant={
-                    variant || index === actions.length - 1
-                      ? 'default'
-                      : 'outline'
-                  }
-                  className="w-full"
-                  asChild
-                  {...actionProps}
-                >
-                  <a href={href ?? undefined}>{text}</a>
-                </Button>
-              ))}
+              {actions.map(
+                ({ text, href, internal, variant, ...actionProps }, index) =>
+                  href && (
+                    <Button
+                      key={index}
+                      variant={variant || 'default'}
+                      className="w-full"
+                      asChild
+                      {...actionProps}
+                    >
+                      <a
+                        href={href}
+                        target={internal ? '_self' : '_blank'}
+                        rel="noreferrer"
+                      >
+                        {text}
+                      </a>
+                    </Button>
+                  )
+              )}
             </div>
           )}
         </div>
