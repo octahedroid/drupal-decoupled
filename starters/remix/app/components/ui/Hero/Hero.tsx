@@ -1,20 +1,18 @@
 import { ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '~/components/ui/utils'
-import { Button, ButtonProps, LinkProps, ImageProps } from '~/components/ui'
+import { Button, ButtonProps, ImageProps } from '~/components/ui'
 
 const heroVariants = cva('w-full px-4 py-8 md:py-16 lg:py-24', {
   variants: {},
   defaultVariants: {},
 })
 
-type ActionProps = ButtonProps & LinkProps
-
 type Props = {
   heading: string
   description: string
   image?: ImageProps
-  actions?: ActionProps[]
+  actions?: ButtonProps[]
 }
 
 export type HeroProps = ComponentProps<'div'> &
@@ -42,14 +40,21 @@ export const Hero = ({
           {actions && actions.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
               {actions.slice(0, 2).map(
-                ({ text, href, variant }, index) =>
+                ({ text, href, variant, internal, ...actionProps }, index) =>
                   href && (
                     <Button
                       key={index}
-                      variant={variant || index === 1 ? 'outline' : 'default'}
+                      variant={index === 1 ? 'outline' : variant || 'default'}
                       asChild
+                      {...actionProps}
                     >
-                      <a href={href}>{text}</a>
+                      <a
+                        target={internal ? '_self' : '_blank'}
+                        rel={internal ? '' : 'noopener noreferrer'}
+                        href={href}
+                      >
+                        {text}
+                      </a>
                     </Button>
                   )
               )}
