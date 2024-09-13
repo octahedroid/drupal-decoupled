@@ -1,0 +1,15 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks'
+
+import colors from 'tailwindcss/colors'
+
+# Colors
+
+This is a list of all the colors available in Tailwind CSS.
+
+<ColorPalette>
+  {Object.entries(colors)
+    .filter(([, value]) => typeof value !== 'string')
+    .map(([name, value]) => (
+      <ColorItem key={name} title={name} colors={value} />
+    ))}
+</ColorPalette>
