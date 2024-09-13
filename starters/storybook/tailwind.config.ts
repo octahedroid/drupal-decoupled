@@ -37,4 +37,3 @@ export default {
   },
   plugins: [require('tailwindcss-animate'), typography],
 } satisfies Config
-
