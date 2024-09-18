@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "build": "yarn lerna run build",
-    "release": "yarn build && yarn changeset publish"
+    "release": "yarn build && yarn changeset publish",
+    "copy:components": "node scripts/copy-components.js"
   },
   "engines": {
     "node": ">=20.15.1",
