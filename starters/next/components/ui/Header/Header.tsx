@@ -153,7 +153,11 @@ export const Header = ({
                       asChild
                       {...actionProps}
                     >
-                      <a href={href} target={internal ? '_self' : '_blank'}>
+                      <a
+                        href={href}
+                        target={internal ? '_self' : '_blank'}
+                        rel="noreferrer"
+                      >
                         {text}
                       </a>
                     </Button>
@@ -201,7 +205,11 @@ export const Header = ({
                       asChild
                       {...actionProps}
                     >
-                      <a href={href} target={internal ? '_self' : '_blank'}>
+                      <a
+                        href={href}
+                        target={internal ? '_self' : '_blank'}
+                        rel="noreferrer"
+                      >
                         {text}
                       </a>
                     </Button>
