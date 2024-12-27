@@ -1,10 +1,10 @@
 import { graphql } from '~/graphql/gql.tada'
-import { MediaImageFragment } from '~/graphql/drupal/fragments/media'
-import { UserFragment } from '~/graphql/drupal/fragments/user'
-import { LinkFragment } from '~/graphql/drupal/fragments/misc'
+import { MediaImageFragment } from '~/graphql/fragments/media'
+import { UserFragment } from '~/graphql/fragments/user'
+import { LinkFragment } from '~/graphql/fragments/misc'
 
 // @todo fix importing NodeArticleTeaserFragment from node.ts
-// import { NodeArticleTeaserFragment  } from "~/graphql/drupal/fragments/node";
+// import { NodeArticleTeaserFragment  } from "~/graphql/fragments/node";
 const NodeArticleTeaserFragment = graphql(`
     fragment NodeArticleTeaserFragment on NodeArticle {
       __typename

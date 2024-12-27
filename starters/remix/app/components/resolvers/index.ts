@@ -10,4 +10,3 @@ export * from "./ParagraphLogoGroupResolver";
 export * from "./ParagraphTestimonialResolver";
 export * from "./ParagraphViewReferenceResolver";
 export * from "./ParagraphWebformResolver";
-

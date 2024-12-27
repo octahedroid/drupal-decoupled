@@ -1,6 +1,6 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { Component, fieldText, fieldTextArea } from '~/components/resolvers/types'
-import { ParagraphWebformFragment } from '~/graphql/drupal/fragments/paragraph'
+import { ParagraphWebformFragment } from '~/graphql/fragments/paragraph'
 
 const resolve = (paragraph: FragmentOf<typeof ParagraphWebformFragment>) => {
   const {

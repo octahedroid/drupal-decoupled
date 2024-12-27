@@ -3,7 +3,7 @@ import { FAQ } from '~/components/ui'
 import {
   ParagraphFaqFragment,
   ParagraphQuestionFragment,
-} from '~/graphql/drupal/fragments/paragraph'
+} from '~/graphql/fragments/paragraph'
 
 import { Component, fieldText, fieldTextArea } from '~/components/resolvers/types'
 

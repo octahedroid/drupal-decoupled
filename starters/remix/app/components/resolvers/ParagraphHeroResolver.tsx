@@ -1,11 +1,11 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { Hero } from '~/components/ui'
-import { ParagraphHeroFragment } from '~/graphql/drupal/fragments/paragraph'
-import { LinkFragment } from '~/graphql/drupal/fragments/misc'
+import { ParagraphHeroFragment } from '~/graphql/fragments/paragraph'
+import { LinkFragment } from '~/graphql/fragments/misc'
 import {
   resolveLink,
   resolveMediaImage,
-} from '~/graphql/drupal/helpers'
+} from '~/graphql/helpers'
 import {
   Component,
   fieldText,

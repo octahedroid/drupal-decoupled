@@ -6,9 +6,9 @@ import {
   fieldTextArea,
   fieldLinks,
 } from '~/components/resolvers/types'
-import { ParagraphCtaFragment } from '~/graphql/drupal/fragments/paragraph'
-import { LinkFragment } from '~/graphql/drupal/fragments/misc'
-import { resolveLink } from '~/graphql/drupal/helpers'
+import { ParagraphCtaFragment } from '~/graphql/fragments/paragraph'
+import { LinkFragment } from '~/graphql/fragments/misc'
+import { resolveLink } from '~/graphql/helpers'
 
 const resolve = (paragraph: FragmentOf<typeof ParagraphCtaFragment>) => {
   const { id, heading, description, actions } = readFragment(

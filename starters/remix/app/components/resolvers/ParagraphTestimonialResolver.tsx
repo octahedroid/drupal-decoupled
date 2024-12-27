@@ -3,9 +3,9 @@ import { Testimonial } from '~/components/ui'
 import {
   ParagraphAuthorFragment,
   ParagraphTestimonialFragment,
-} from '~/graphql/drupal/fragments/paragraph'
+} from '~/graphql/fragments/paragraph'
 import { Component, fieldAuthor, fieldText } from '~/components/resolvers/types'
-import { resolveMediaImage } from '~/graphql/drupal/helpers'
+import { resolveMediaImage } from '~/graphql/helpers'
 
 const resolve = (
   paragraph: FragmentOf<typeof ParagraphTestimonialFragment>

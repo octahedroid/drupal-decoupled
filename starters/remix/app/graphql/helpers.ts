@@ -3,9 +3,9 @@ import { ImageProps, UserProps } from '~/components/ui/types'
 import {
   ImageFragment,
   MediaImageFragment,
-} from '~/graphql/drupal/fragments/media'
-import { UserFragment } from '~/graphql/drupal/fragments/user'
-import { Link } from '~/graphql/drupal/types'
+} from '~/graphql/fragments/media'
+import { UserFragment } from '~/graphql/fragments/user'
+import { Link } from '~/graphql/types'
 
 export const resolveMediaImage = (media: FragmentOf<typeof MediaImageFragment>): ImageProps => {
   if (!media) {

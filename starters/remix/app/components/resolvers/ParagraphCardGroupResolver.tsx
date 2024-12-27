@@ -10,8 +10,8 @@ import {
 import {
   ParagraphCardGroupFragment,
   ParagraphSimpleCardFragment,
-} from '~/graphql/drupal/fragments/paragraph'
-import { resolveMediaImage } from '~/graphql/drupal/helpers'
+} from '~/graphql/fragments/paragraph'
+import { resolveMediaImage } from '~/graphql/helpers'
 
 export const resolve = (
   paragraph: FragmentOf<typeof ParagraphCardGroupFragment>

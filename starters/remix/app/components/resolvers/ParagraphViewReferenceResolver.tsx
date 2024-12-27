@@ -4,11 +4,11 @@ import {
   ParagraphViewReferenceFragment,
   ViewBlogTeaserResultFragment,
   ViewBlogTeaserFeaturedResultFragment,
-} from '~/graphql/drupal/fragments/paragraph'
-import { NodeArticleTeaserFragment } from '~/graphql/drupal/fragments/node'
+} from '~/graphql/fragments/paragraph'
+import { NodeArticleTeaserFragment } from '~/graphql/fragments/node'
 import { Component, fieldAuthor, fieldLink, fieldText, fieldTextArea } from '~/components/resolvers/types'
-import { resolveLink, resolveMediaImage } from '~/graphql/drupal/helpers'
-import { LinkFragment } from '~/graphql/drupal/fragments/misc'
+import { resolveLink, resolveMediaImage } from '~/graphql/helpers'
+import { LinkFragment } from '~/graphql/fragments/misc'
 
 type ReferenceFragment = (
   | FragmentOf<typeof ViewBlogTeaserResultFragment>

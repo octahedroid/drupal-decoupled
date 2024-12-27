@@ -1,10 +1,10 @@
 import { FragmentOf, ResultOf } from 'gql.tada'
-import { MediaImageFragment } from '~/graphql/drupal/fragments/media'
+import { MediaImageFragment } from '~/graphql/fragments/media'
 import {
   NodeArticleFragment,
   NodePageFragment,
-} from '~/graphql/drupal/fragments/node'
-import { TermTagsFragment } from '~/graphql/drupal/fragments/terms'
+} from '~/graphql/fragments/node'
+import { TermTagsFragment } from '~/graphql/fragments/terms'
 import { LinkFragment } from './fragments/misc'
 
 

@@ -1,5 +1,5 @@
 import { graphql } from '~/graphql/gql.tada'
-import { MediaImageFragment } from '~/graphql/drupal/fragments/media'
+import { MediaImageFragment } from '~/graphql/fragments/media'
 
 export const UserFragment = graphql(`
     fragment UserFragment on User {
