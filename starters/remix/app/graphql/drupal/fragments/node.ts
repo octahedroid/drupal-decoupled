@@ -5,8 +5,7 @@ import { UserFragment } from '~/graphql/drupal/fragments/user'
 import { MetatagFragment } from '~/graphql/drupal/fragments/metatag'
 import { ParagraphUnionFragment } from './paragraph'
 
-export const NodePageFragment = graphql(
-  `
+export const NodePageFragment = graphql(`
     fragment NodePageFragment on NodePage {
       __typename
       id
@@ -27,8 +26,7 @@ export const NodePageFragment = graphql(
   [MediaImageFragment, MetatagFragment, ParagraphUnionFragment]
 )
 
-export const NodeArticleFragment = graphql(
-  `
+export const NodeArticleFragment = graphql(`
     fragment NodeArticleFragment on NodeArticle {
       __typename
       id
@@ -55,8 +53,7 @@ export const NodeArticleFragment = graphql(
   [MediaImageFragment, UserFragment, MetatagFragment, ParagraphUnionFragment]
 )
 
-export const NodeArticleTeaserFragment = graphql(
-  `
+export const NodeArticleTeaserFragment = graphql(`
     fragment NodeArticleTeaserFragment on NodeArticle {
       __typename
       id

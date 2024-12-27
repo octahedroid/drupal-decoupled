@@ -1,26 +1,20 @@
-import { Fragment } from 'react'
-import { VisualEditor } from '~/components/helpers/VisualEditor'
+import { Editor, Render } from '~/components/resolvers/Puck'
 
 interface ComponentsProps {
-  components: Array<JSX.Element>
+  data: object
   environment: string
 }
 
-export function ComponentRenderer({
-  components,
+export default function ComponentRenderer({
+  data,
   environment,
 }: ComponentsProps) {
-  // If we are in preview mode, render the VisualEditor
-  if (environment === 'preview') {
-    return <VisualEditor components={components} />
-  }
 
-  // If we are not in preview mode, render the components as they are
-  return (
-    <>
-      {components.map((component, index: number) => {
-        return <Fragment key={index}>{component}</Fragment>
-      })}
-    </>
-  )
+  // @todo: implement toolbar to enable editing
+  // if (environment === 'preview') {
+  //   return <Editor data={data} />
+  // }
+
+  // return <Editor components={components} />
+  return <Render data={data} />
 }

@@ -1,7 +1,6 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { NodePageFragment } from '~/graphql/drupal/fragments/node'
-import { resolve } from '~/components/helpers/ComponentResolver'
-import { ComponentRenderer } from '~/components/helpers/ComponentRenderer'
+import ComponentRenderer from '~/components/helpers/ComponentRenderer'
 
 type NodePageComponentProps = {
   node: FragmentOf<typeof NodePageFragment>
@@ -12,19 +11,35 @@ export default function NodePageComponent({
   node,
   environment,
 }: NodePageComponentProps) {
-  const { id, components: nodePageComponents } = readFragment(
+  const { id, title, summary, showTitle, components } = readFragment(
     NodePageFragment,
     node
   )
-  const components = resolve({
-    data: nodePageComponents,
-  })
+
+  const data = {
+    root: {
+      props: {
+        id,
+        title,
+        summary,
+        showTitle,
+      },
+    },
+    content: components ? components.map((component) => {
+      return {
+        type: component.__typename,
+        props: {
+          ...component,
+        }
+      }
+    }) : []
+  }
 
   return (
     <>
       <ComponentRenderer
         key={id}
-        components={components}
+        data={data}
         environment={environment}
       />
     </>

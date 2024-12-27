@@ -1,4 +1,4 @@
-import { FragmentOf } from 'gql.tada'
+import { FragmentOf, ResultOf } from 'gql.tada'
 import { MediaImageFragment } from '~/graphql/drupal/fragments/media'
 import {
   NodeArticleFragment,
@@ -6,9 +6,10 @@ import {
 } from '~/graphql/drupal/fragments/node'
 import { TermTagsFragment } from '~/graphql/drupal/fragments/terms'
 
+
 export type EntityFragmentType =
   | FragmentOf<typeof NodePageFragment>
   | FragmentOf<typeof NodeArticleFragment>
   | FragmentOf<typeof TermTagsFragment>
 
-export type ImageElement = FragmentOf<typeof MediaImageFragment> | null
+export type MediaImage = ResultOf<typeof MediaImageFragment> | null

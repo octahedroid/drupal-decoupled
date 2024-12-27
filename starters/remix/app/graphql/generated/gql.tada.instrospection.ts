@@ -6539,6 +6539,15 @@ const introspection = {
         "name": "SchemaFragment",
         "fields": [
           {
+            "name": "bundle",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "class",
             "type": {
               "kind": "NON_NULL",
@@ -6552,6 +6561,27 @@ const introspection = {
           },
           {
             "name": "content",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "dependencies",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "entity",
             "type": {
               "kind": "SCALAR",
               "name": "String"
@@ -6614,7 +6644,29 @@ const introspection = {
                 }
               }
             },
-            "args": [],
+            "args": [
+              {
+                "name": "bundle",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "entity",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "withDependencies",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean"
+                }
+              }
+            ],
             "isDeprecated": false
           },
           {

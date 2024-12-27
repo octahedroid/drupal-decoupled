@@ -5,8 +5,7 @@ import { LinkFragment } from '~/graphql/drupal/fragments/misc'
 
 // @todo fix importing NodeArticleTeaserFragment from node.ts
 // import { NodeArticleTeaserFragment  } from "~/graphql/drupal/fragments/node";
-const NodeArticleTeaserFragment = graphql(
-  `
+const NodeArticleTeaserFragment = graphql(`
     fragment NodeArticleTeaserFragment on NodeArticle {
       __typename
       id
@@ -35,8 +34,7 @@ export const ParagraphWebformFragment = graphql(`
   }
 `)
 
-export const ViewBlogTeaserResultFragment = graphql(
-  `
+export const ViewBlogTeaserResultFragment = graphql(`
     fragment ViewBlogTeaserResultFragment on ViewBlogTeaserResult {
       __typename
       id
@@ -50,8 +48,7 @@ export const ViewBlogTeaserResultFragment = graphql(
   [NodeArticleTeaserFragment]
 )
 
-export const ViewBlogTeaserFeaturedResultFragment = graphql(
-  `
+export const ViewBlogTeaserFeaturedResultFragment = graphql(`
     fragment ViewBlogTeaserFeaturedResultFragment on ViewBlogTeaserFeaturedResult {
       __typename
       id
@@ -65,8 +62,7 @@ export const ViewBlogTeaserFeaturedResultFragment = graphql(
   [NodeArticleTeaserFragment]
 )
 
-export const ParagraphViewReferenceFragment = graphql(
-  `
+export const ParagraphViewReferenceFragment = graphql(`
     fragment ParagraphViewReference on ParagraphViewReference {
       __typename
       id
@@ -83,17 +79,17 @@ export const ParagraphViewReferenceFragment = graphql(
       }
     }
   `,
-  [ViewBlogTeaserResultFragment, ViewBlogTeaserFeaturedResultFragment]
+  [ViewBlogTeaserResultFragment, ViewBlogTeaserFeaturedResultFragment, LinkFragment]
 )
 
-export const ParagraphHeroFragment = graphql(
-  `
+export const ParagraphHeroFragment = graphql(`
     fragment ParagraphHeroFragment on ParagraphHero {
       __typename
       id
       heading
       description
       image {
+        __typename
         ... on MediaImage {
           ...MediaImageFragment
         }
@@ -106,8 +102,7 @@ export const ParagraphHeroFragment = graphql(
   [MediaImageFragment, LinkFragment]
 )
 
-export const ParagraphSimpleCardFragment = graphql(
-  `
+export const ParagraphSimpleCardFragment = graphql(`
     fragment ParagraphSimpleCardFragment on ParagraphSimpleCard {
       __typename
       id
@@ -121,8 +116,7 @@ export const ParagraphSimpleCardFragment = graphql(
   [MediaImageFragment]
 )
 
-export const ParagraphCardGroupFragment = graphql(
-  `
+export const ParagraphCardGroupFragment = graphql(`
     fragment ParagraphCardGroupFragment on ParagraphCardGroup {
       __typename
       id
@@ -138,8 +132,7 @@ export const ParagraphCardGroupFragment = graphql(
   [ParagraphSimpleCardFragment]
 )
 
-export const ParagraphCtaFragment = graphql(
-  `
+export const ParagraphCtaFragment = graphql(`
     fragment ParagraphCtaFragment on ParagraphCta {
       __typename
       id
@@ -160,13 +153,13 @@ export const ParagraphQuestionFragment = graphql(`
     id
     question
     answer {
+      __typename
       processed
     }
   }
 `)
 
-export const ParagraphFaqFragment = graphql(
-  `
+export const ParagraphFaqFragment = graphql(`
     fragment ParagraphFaqFragment on ParagraphFaq {
       __typename
       id
@@ -183,8 +176,7 @@ export const ParagraphFaqFragment = graphql(
   [ParagraphQuestionFragment]
 )
 
-export const ParagraphLogoFragment = graphql(
-  `
+export const ParagraphLogoFragment = graphql(`
     fragment ParagraphLogoFragment on ParagraphLogo {
       __typename
       id
@@ -199,8 +191,7 @@ export const ParagraphLogoFragment = graphql(
   [MediaImageFragment, LinkFragment]
 )
 
-export const ParagraphLogoGroupFragment = graphql(
-  `
+export const ParagraphLogoGroupFragment = graphql(`
     fragment ParagraphLogoGroupFragment on ParagraphLogoGroup {
       __typename
       id
@@ -213,8 +204,7 @@ export const ParagraphLogoGroupFragment = graphql(
   [ParagraphLogoFragment]
 )
 
-export const ParagraphAuthorFragment = graphql(
-  `
+export const ParagraphAuthorFragment = graphql(`
     fragment ParagraphAuthorFragment on ParagraphAuthor {
       __typename
       id
@@ -229,8 +219,7 @@ export const ParagraphAuthorFragment = graphql(
   [MediaImageFragment]
 )
 
-export const ParagraphTestimonialFragment = graphql(
-  `
+export const ParagraphTestimonialFragment = graphql(`
     fragment ParagraphTestimonialFragment on ParagraphTestimonial {
       __typename
       id
@@ -243,8 +232,7 @@ export const ParagraphTestimonialFragment = graphql(
   [ParagraphAuthorFragment]
 )
 
-export const ParagraphUnionFragment = graphql(
-  `
+export const ParagraphUnionFragment = graphql(`
     fragment ParagraphUnionFragment on ParagraphUnion {
       ... on ParagraphInterface {
         __typename
