@@ -3,7 +3,7 @@ import { FAQ } from '~/components/ui'
 import {
   ParagraphFaqFragment,
   ParagraphQuestionFragment,
-} from '~/graphql/fragments/paragraph'
+} from '~/graphql/fragments'
 
 import { Component, fieldText, fieldTextArea } from '~/components/resolvers/types'
 

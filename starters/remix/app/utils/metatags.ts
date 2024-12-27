@@ -3,7 +3,7 @@ import { type MetaTag } from 'drupal-remix'
 import {
   NodePageFragment,
   NodeArticleFragment,
-} from '~/graphql/fragments/node'
+} from '~/graphql/fragments'
 import { EntityFragmentType } from '~/graphql/types'
 
 export const calculateMetaTags = (

@@ -1,13 +1,15 @@
 import { FragmentOf, ResultOf, readFragment } from 'gql.tada'
-import { ImageProps, UserProps } from '~/components/ui/types'
+import { ImageProps, UserProps, ActionsProps } from '~/components/ui/types'
 import {
   ImageFragment,
   MediaImageFragment,
-} from '~/graphql/fragments/media'
-import { UserFragment } from '~/graphql/fragments/user'
-import { Link } from '~/graphql/types'
+  UserFragment,
+  LinkFragment,
+} from '~/graphql/fragments'
 
-export const resolveMediaImage = (media: FragmentOf<typeof MediaImageFragment>): ImageProps => {
+export const resolveMediaImage = (
+  media: FragmentOf<typeof MediaImageFragment>
+): ImageProps => {
   if (!media) {
     return {} as ImageProps
   }
@@ -30,13 +32,14 @@ export const resolveMediaImage = (media: FragmentOf<typeof MediaImageFragment>):
   }
 }
 
-export const resolveLink = (action: Link) => ({
+export const resolveLink = (
+  action: ResultOf<typeof LinkFragment>
+): ActionsProps => ({
   text: action.title,
   href: action.url,
   internal: action.internal,
 })
 
-// @todo: Review this function
 export const resolveUser = (
   user: FragmentOf<typeof UserFragment>
 ): UserProps => {

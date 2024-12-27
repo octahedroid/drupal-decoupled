@@ -1,27 +1,10 @@
 import { graphql } from '~/graphql/gql.tada'
 import { MediaImageFragment } from '~/graphql/fragments/media'
-import { UserFragment } from '~/graphql/fragments/user'
 import { LinkFragment } from '~/graphql/fragments/misc'
-
-// @todo fix importing NodeArticleTeaserFragment from node.ts
-// import { NodeArticleTeaserFragment  } from "~/graphql/fragments/node";
-const NodeArticleTeaserFragment = graphql(`
-    fragment NodeArticleTeaserFragment on NodeArticle {
-      __typename
-      id
-      title
-      summary
-      path
-      image {
-        ...MediaImageFragment
-      }
-      author {
-        ...UserFragment
-      }
-    }
-  `,
-  [MediaImageFragment, UserFragment]
-)
+import {
+  ViewBlogTeaserResultFragment,
+  ViewBlogTeaserFeaturedResultFragment,
+} from '~/graphql/fragments/view'
 
 export const ParagraphWebformFragment = graphql(`
   fragment ParagraphWebformFragment on ParagraphWebform {
@@ -34,115 +17,87 @@ export const ParagraphWebformFragment = graphql(`
   }
 `)
 
-export const ViewBlogTeaserResultFragment = graphql(`
-    fragment ViewBlogTeaserResultFragment on ViewBlogTeaserResult {
-      __typename
-      id
-      view
-      display
-      results {
-        ...NodeArticleTeaserFragment
-      }
-    }
-  `,
-  [NodeArticleTeaserFragment]
-)
-
-export const ViewBlogTeaserFeaturedResultFragment = graphql(`
-    fragment ViewBlogTeaserFeaturedResultFragment on ViewBlogTeaserFeaturedResult {
-      __typename
-      id
-      view
-      display
-      results {
-        ...NodeArticleTeaserFragment
-      }
-    }
-  `,
-  [NodeArticleTeaserFragment]
-)
-
 export const ParagraphViewReferenceFragment = graphql(`
-    fragment ParagraphViewReference on ParagraphViewReference {
-      __typename
-      id
-      headingOptional: heading
-      subheadingOptional: subheading
-      descriptionOptional: description
-      link {
-        ...LinkFragment
-      }
-      reference {
-        __typename
-        ...ViewBlogTeaserResultFragment
-        ...ViewBlogTeaserFeaturedResultFragment
-      }
+  fragment ParagraphViewReference on ParagraphViewReference {
+    __typename
+    id
+    headingOptional: heading
+    subheadingOptional: subheading
+    descriptionOptional: description
+    link {
+      ...LinkFragment
     }
+    reference {
+      __typename
+      ...ViewBlogTeaserResultFragment
+      ...ViewBlogTeaserFeaturedResultFragment
+    }
+  }
   `,
   [ViewBlogTeaserResultFragment, ViewBlogTeaserFeaturedResultFragment, LinkFragment]
 )
 
 export const ParagraphHeroFragment = graphql(`
-    fragment ParagraphHeroFragment on ParagraphHero {
+  fragment ParagraphHeroFragment on ParagraphHero {
+    __typename
+    id
+    heading
+    description
+    image {
       __typename
-      id
-      heading
-      description
-      image {
-        __typename
-        ... on MediaImage {
-          ...MediaImageFragment
-        }
-      }
-      actions {
-        ...LinkFragment
+      ... on MediaImage {
+        ...MediaImageFragment
       }
     }
+    actions {
+      ...LinkFragment
+    }
+  }
   `,
   [MediaImageFragment, LinkFragment]
 )
 
 export const ParagraphSimpleCardFragment = graphql(`
-    fragment ParagraphSimpleCardFragment on ParagraphSimpleCard {
-      __typename
-      id
-      heading
-      description
-      image {
-        ...MediaImageFragment
-      }
+  fragment ParagraphSimpleCardFragment on ParagraphSimpleCard {
+    __typename
+    id
+    heading
+    description
+    image {
+      ...MediaImageFragment
     }
+  }
   `,
   [MediaImageFragment]
 )
 
 export const ParagraphCardGroupFragment = graphql(`
-    fragment ParagraphCardGroupFragment on ParagraphCardGroup {
+  fragment ParagraphCardGroupFragment on ParagraphCardGroup {
+    __typename
+    id
+    heading
+    subheadingOptional: subheading
+    descriptionOptional: description
+    items {
       __typename
-      id
-      heading
-      subheadingOptional: subheading
-      descriptionOptional: description
-      items {
-        __typename
-        ...ParagraphSimpleCardFragment
-      }
+      ...ParagraphSimpleCardFragment
     }
+  }
   `,
   [ParagraphSimpleCardFragment]
 )
 
 export const ParagraphCtaFragment = graphql(`
-    fragment ParagraphCtaFragment on ParagraphCta {
-      __typename
-      id
-      heading
-      description
-      subheading
-      actions {
-        ...LinkFragment
-      }
+  fragment ParagraphCtaFragment on ParagraphCta {
+    __typename
+    id
+    heading
+    description
+    subheading
+    actions {
+      ...LinkFragment
     }
+  }
   `,
   [LinkFragment]
 )
@@ -160,93 +115,93 @@ export const ParagraphQuestionFragment = graphql(`
 `)
 
 export const ParagraphFaqFragment = graphql(`
-    fragment ParagraphFaqFragment on ParagraphFaq {
+  fragment ParagraphFaqFragment on ParagraphFaq {
+    __typename
+    id
+    heading
+    descriptionOptional: description
+    items {
       __typename
-      id
-      heading
-      descriptionOptional: description
-      items {
-        __typename
-        ... on ParagraphQuestion {
-          ...ParagraphQuestionFragment
-        }
+      ... on ParagraphQuestion {
+        ...ParagraphQuestionFragment
       }
     }
+  }
   `,
   [ParagraphQuestionFragment]
 )
 
 export const ParagraphLogoFragment = graphql(`
-    fragment ParagraphLogoFragment on ParagraphLogo {
-      __typename
-      id
-      image {
-        ...MediaImageFragment
-      }
-      link {
-        ...LinkFragment
-      }
+  fragment ParagraphLogoFragment on ParagraphLogo {
+    __typename
+    id
+    image {
+      ...MediaImageFragment
     }
+    link {
+      ...LinkFragment
+    }
+  }
   `,
   [MediaImageFragment, LinkFragment]
 )
 
 export const ParagraphLogoGroupFragment = graphql(`
-    fragment ParagraphLogoGroupFragment on ParagraphLogoGroup {
-      __typename
-      id
-      heading
-      items {
-        ...ParagraphLogoFragment
-      }
+  fragment ParagraphLogoGroupFragment on ParagraphLogoGroup {
+    __typename
+    id
+    heading
+    items {
+      ...ParagraphLogoFragment
     }
+  }
   `,
   [ParagraphLogoFragment]
 )
 
 export const ParagraphAuthorFragment = graphql(`
-    fragment ParagraphAuthorFragment on ParagraphAuthor {
-      __typename
-      id
-      image {
-        ...MediaImageFragment
-      }
-      name
-      company
-      position
+  fragment ParagraphAuthorFragment on ParagraphAuthor {
+    __typename
+    id
+    image {
+      ...MediaImageFragment
     }
+    name
+    company
+    position
+  }
   `,
   [MediaImageFragment]
 )
 
 export const ParagraphTestimonialFragment = graphql(`
-    fragment ParagraphTestimonialFragment on ParagraphTestimonial {
-      __typename
-      id
-      quote
-      author {
-        ...ParagraphAuthorFragment
-      }
+  fragment ParagraphTestimonialFragment on ParagraphTestimonial {
+    __typename
+    id
+    quote
+    author {
+      ...ParagraphAuthorFragment
     }
+  }
   `,
   [ParagraphAuthorFragment]
 )
 
 export const ParagraphUnionFragment = graphql(`
-    fragment ParagraphUnionFragment on ParagraphUnion {
-      ... on ParagraphInterface {
-        __typename
-        id
-      }
-      ...ParagraphHeroFragment
-      ...ParagraphCardGroupFragment
-      ...ParagraphWebformFragment
-      ...ParagraphViewReference
-      ...ParagraphCtaFragment
-      ...ParagraphFaqFragment
-      ...ParagraphLogoGroupFragment
-      ...ParagraphTestimonialFragment
+  fragment ParagraphUnionFragment on ParagraphUnion {
+    ... on ParagraphInterface {
+      __typename
+      id
     }
+    ...ParagraphHeroFragment
+    ...ParagraphCardGroupFragment
+    ...ParagraphWebformFragment
+    ...ParagraphViewReference
+    ...ParagraphCtaFragment
+    ...ParagraphFaqFragment
+    ...ParagraphLogoGroupFragment
+    ...ParagraphTestimonialFragment
+  }
   `,
   [
     ParagraphHeroFragment,

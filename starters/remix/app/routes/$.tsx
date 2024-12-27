@@ -11,10 +11,12 @@ import { metaTags } from 'drupal-remix'
 import {
   NodePageFragment,
   NodeArticleFragment,
-} from '~/graphql/fragments/node'
-import { TermTagsFragment } from '~/graphql/fragments/terms'
-import { EntityFragmentType } from '~/graphql/types'
+  TermTagsFragment,
+  MenuFragment,
+  MenuItemFragment,
+} from '~/graphql/fragments'
 import { graphql } from '~/graphql/gql.tada'
+import { EntityFragmentType } from '~/graphql/types'
 import NodeArticleComponent from '~/components/node/NodeArticle'
 import NodePageComponent from '~/components/node/NodePage'
 import TermTagsComponent from '~/components/taxonomy/TermTags'
@@ -24,7 +26,6 @@ import { calculateMetaTags } from '~/utils/metatags'
 
 import { Header } from '~/components/ui//Header'
 import { Footer } from '~/components/ui/Footer'
-import { MenuFragment, MenuItemFragment } from '~/graphql/fragments/menu'
 import type { ButtonProps } from '~/components/ui/types'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {

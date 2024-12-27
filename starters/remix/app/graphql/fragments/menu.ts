@@ -10,14 +10,14 @@ export const MenuItemFragment = graphql(`
 `)
 
 export const MenuFragment = graphql(`
-    fragment MenuFragment on Menu {
-      __typename
-      id
-      name
-      items {
-        ...MenuItemFragment
-      }
+  fragment MenuFragment on Menu {
+    __typename
+    id
+    name
+    items {
+      ...MenuItemFragment
     }
+  }
   `,
   [MenuItemFragment]
 )

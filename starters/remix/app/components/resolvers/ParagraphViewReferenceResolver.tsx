@@ -4,11 +4,11 @@ import {
   ParagraphViewReferenceFragment,
   ViewBlogTeaserResultFragment,
   ViewBlogTeaserFeaturedResultFragment,
-} from '~/graphql/fragments/paragraph'
-import { NodeArticleTeaserFragment } from '~/graphql/fragments/node'
-import { Component, fieldAuthor, fieldLink, fieldText, fieldTextArea } from '~/components/resolvers/types'
-import { resolveLink, resolveMediaImage } from '~/graphql/helpers'
-import { LinkFragment } from '~/graphql/fragments/misc'
+  NodeArticleTeaserFragment,
+  LinkFragment,
+} from '~/graphql/fragments'
+import { Component, fieldLink, fieldText, fieldTextArea } from '~/components/resolvers/types'
+import { resolveLink, resolveMediaImage } from '~/components/resolvers/helpers'
 
 type ReferenceFragment = (
   | FragmentOf<typeof ViewBlogTeaserResultFragment>

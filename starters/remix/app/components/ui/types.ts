@@ -1,7 +1,10 @@
-export type LinkProps = {
+export type ActionsProps = {
   href: string | null
   internal?: boolean
   text?: string | null
+}
+
+export type LinkProps = ActionsProps & {
   rel?: string
   className?: string
   id?: string
@@ -9,10 +12,7 @@ export type LinkProps = {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
-export type ButtonProps = {
-  text: string | null
-  href: string | null
-  internal?: boolean
+export type ButtonProps = ActionsProps & {
   variant?: ButtonVariant
   className?: string
   id?: string

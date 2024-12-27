@@ -10,8 +10,8 @@ import {
 import {
   ParagraphCardGroupFragment,
   ParagraphSimpleCardFragment,
-} from '~/graphql/fragments/paragraph'
-import { resolveMediaImage } from '~/graphql/helpers'
+} from '~/graphql/fragments'
+import { resolveMediaImage } from '~/components/resolvers/helpers'
 
 export const resolve = (
   paragraph: FragmentOf<typeof ParagraphCardGroupFragment>

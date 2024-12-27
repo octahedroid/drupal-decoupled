@@ -1,12 +1,12 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { LogoGroup } from '~/components/ui'
-import { LinkFragment } from '~/graphql/fragments/misc'
 import {
+  LinkFragment,
   ParagraphLogoGroupFragment,
   ParagraphLogoFragment,
-} from '~/graphql/fragments/paragraph'
+} from '~/graphql/fragments'
 import { Component, fieldLink, fieldMediaExternal, fieldText } from '~/components/resolvers/types'
-import { resolveLink, resolveMediaImage } from '~/graphql/helpers'
+import { resolveLink, resolveMediaImage } from '~/components/resolvers/helpers'
 
 const resolve = (paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>) => {
   const { id, heading, items } = readFragment(
