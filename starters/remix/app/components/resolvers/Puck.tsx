@@ -1,28 +1,24 @@
 import type { Config } from '@measured/puck'
 import { Puck as PuckEditor, Render as PuckRender } from '@measured/puck'
 import '@measured/puck/puck.css'
-import { o } from 'node_modules/@measured/puck/dist/resolve-all-data-zN5E6nBu'
 import { config } from '~/components/resolvers/Config'
-
 import { Component, Field } from '~/components/resolvers/types'
 
-// @todo: Move function to a helper file.
-//        Return a new object with the same keys as the original object,
-//        but with the values transformed by the function.
+type DataToUpdate = {
+  [key: string]: [
+    {
+      originalFieldName: string
+      replaceFieldName: string
+    },
+  ]
+}
+
 // @todo: Remove this once PuckEditor is updated to handle this automatically or when when could
 //        pass the dataToUpdate to the transformProps function.
 // data = transformProps(data, {
 //   ParagraphFaq: ({ descriptionOptional, ...props }) => ({ description: descriptionOptional, ...props }),
 // });
 function transformProps(data: any, config: Config) {
-  type DataToUpdate = {
-    [key: string]: [
-      {
-        originalFieldName: string
-        replaceFieldName: string
-      },
-    ]
-  }
   const dataToUpdate: DataToUpdate = {}
   Object.entries(config.components).forEach(([componentName, value]) => {
     const { fields } = value as Component
