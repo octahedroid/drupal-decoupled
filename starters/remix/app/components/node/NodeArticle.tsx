@@ -15,20 +15,19 @@ export default function NodeArticleComponent({
     title,
     body,
     image,
-    author: nodeArticleAuthor,
+    author,
     changed,
   } = readFragment(NodeArticleFragment, node)
 
   if (!image) {
     throw new Error('NodeArticleComponent: image is required')
   }
-  if (!nodeArticleAuthor) {
+  if (!author) {
     throw new Error('NodeArticleComponent: author is required')
   }
   if (!body || !body.processed) {
     throw new Error('NodeArticleComponent: body is required')
   }
-  const author = resolveUser(nodeArticleAuthor)
 
   return (
     <>
@@ -36,7 +35,7 @@ export default function NodeArticleComponent({
       <Article
         title={title}
         content={body.processed.toString()}
-        author={author}
+        author={resolveUser(author)}
         image={resolveMediaImage(image)}
         publishDate={Number(changed.timestamp)}
       />
