@@ -29,7 +29,7 @@ export const resolveMediaImage = (media: FragmentOf<typeof MediaImageFragment>):
     height: image.height,
   }
 }
-// @todo: Add Action type to ui/types
+
 export const resolveLink = (action: Link) => ({
   text: action.title,
   href: action.url,

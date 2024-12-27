@@ -6,8 +6,9 @@ import {
   ViewBlogTeaserFeaturedResultFragment,
 } from '~/graphql/drupal/fragments/paragraph'
 import { NodeArticleTeaserFragment } from '~/graphql/drupal/fragments/node'
-import { Component, fieldAuthor, fieldText, fieldTextArea } from '~/components/resolvers/types'
-import { parseMediaImage } from '~/graphql/drupal/helpers'
+import { Component, fieldAuthor, fieldLink, fieldText, fieldTextArea } from '~/components/resolvers/types'
+import { resolveLink, resolveMediaImage } from '~/graphql/drupal/helpers'
+import { LinkFragment } from '~/graphql/drupal/fragments/misc'
 
 type ReferenceFragment = (
   | FragmentOf<typeof ViewBlogTeaserResultFragment>
@@ -38,7 +39,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>) =
     headingOptional: heading = '',
     descriptionOptional: description = '',
     subheadingOptional: subheading = '',
-    // actionOptional: action,
+    link: action,
     reference: referenceFragment,
   } = readFragment(ParagraphViewReferenceFragment, paragraph)
 
@@ -69,7 +70,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>) =
         summary,
         type,
         link,
-        image: parseMediaImage(image)
+        image: resolveMediaImage(image)
       }
     })
     : []
@@ -82,7 +83,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>) =
     description: description || '',
     subheading: subheading || '',
     cards,
-    action: {},
+    action: action ? resolveLink(readFragment(LinkFragment, action)) : undefined,
   }
 }
 
@@ -118,7 +119,7 @@ export const ParagraphViewReference: Component = {
         }
       }
     },
-    // action: fieldLink,
+    link: fieldLink,
   },
   defaultProps: {
     subheadingOptional: '',
@@ -134,7 +135,7 @@ export const ParagraphViewReference: Component = {
     }
   },
   render: (props) => {
-    const { id, view, display, heading, subheading, description, cards, action = {} } = resolve(props)
+    const { id, view, display, heading, subheading, description, cards, action } = resolve(props)
 
     if (view === 'blog' && display === 'blog_featured') {
       const featured = cards[0]
@@ -161,7 +162,7 @@ export const ParagraphViewReference: Component = {
               subheading={subheading}
               description={description}
               cards={remainingCards}
-              // action={action}
+              action={action}
             />
           )}
         </div>
@@ -177,7 +178,7 @@ export const ParagraphViewReference: Component = {
           subheading={subheading}
           description={description}
           cards={cards as TeaserCardProps[]}
-          // action={action}
+          action={action}
         />
       )
     }

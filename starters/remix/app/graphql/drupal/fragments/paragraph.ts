@@ -69,7 +69,7 @@ export const ParagraphViewReferenceFragment = graphql(`
       headingOptional: heading
       subheadingOptional: subheading
       descriptionOptional: description
-      actionOptional: link {
+      link {
         ...LinkFragment
       }
       reference {
