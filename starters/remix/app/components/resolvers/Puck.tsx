@@ -45,7 +45,6 @@ function transformProps(data: any, config: Config) {
 
 // @todo: Use a GraphQL mutation to save the data if possible
 const save = async (data: any) => {
-
   // @fix: Update invalid CMS fields before saving.
   transformProps(data, config);
   

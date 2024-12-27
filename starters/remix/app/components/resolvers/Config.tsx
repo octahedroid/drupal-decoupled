@@ -13,17 +13,7 @@ import {
 
 export const config: Config = {
   root: {
-    // fields: {
-    //   title: fieldText,
-    //   showTitle: {
-    //     type: "select",
-    //     options: [
-    //       { label: "No", value: "false" },
-    //       { label: "Yes", value: "true" },
-    //     ],
-    //   },
-    //   summary: fieldTextArea,
-    // },
+    fields: {},
   },
   components: {
     ParagraphHero,

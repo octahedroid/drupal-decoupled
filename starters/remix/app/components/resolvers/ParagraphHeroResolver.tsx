@@ -29,7 +29,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphHeroFragment>) => {
     description,
     image: resolveMediaImage(image),
     actions: actions
-      ? actions.map((action) => resolveLink(readFragment(LinkFragment, action)))
+      ? actions.map((action) => resolveLink(action))
       : [],
   }
 }

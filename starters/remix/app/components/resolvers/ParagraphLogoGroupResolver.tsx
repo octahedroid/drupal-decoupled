@@ -30,7 +30,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>) => {
             ...resolveMediaImage(image),
             className: 'h-12',
           },
-          link: resolveLink(readFragment(LinkFragment, link))
+          link: resolveLink(link)
         }
       })
     : []

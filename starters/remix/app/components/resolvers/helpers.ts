@@ -33,12 +33,16 @@ export const resolveMediaImage = (
 }
 
 export const resolveLink = (
-  action: ResultOf<typeof LinkFragment>
-): ActionsProps => ({
-  text: action.title,
-  href: action.url,
-  internal: action.internal,
-})
+  action: FragmentOf<typeof LinkFragment>
+): ActionsProps => {
+  const { title: text, url: href, internal } = readFragment(LinkFragment, action)
+
+  return {
+    text,
+    href,
+    internal,
+  }
+}
 
 export const resolveUser = (
   user: FragmentOf<typeof UserFragment>

@@ -83,7 +83,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>) =
     description: description || '',
     subheading: subheading || '',
     cards,
-    action: action ? resolveLink(readFragment(LinkFragment, action)) : undefined,
+    action: action ? resolveLink(action) : undefined,
   }
 }
 

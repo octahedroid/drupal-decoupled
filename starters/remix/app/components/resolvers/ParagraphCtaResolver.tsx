@@ -24,7 +24,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphCtaFragment>) => {
     description,
     actions: actions
       ? actions.map((action) =>
-          resolveLink(readFragment(LinkFragment, action))
+          resolveLink(action)
         )
       : [],
   }
