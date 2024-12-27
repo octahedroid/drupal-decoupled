@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { Article } from '~/components/ui/Article'
 import { NodeArticleFragment } from '~/graphql/drupal/fragments/node'
-import { parseMediaImage, parseUser } from '~/graphql/drupal/helpers'
+import { resolveMediaImage, resolveUser } from '~/graphql/drupal/helpers'
 
 type NodeArticleComponentProps = {
   node: FragmentOf<typeof NodeArticleFragment>
@@ -28,7 +28,7 @@ export default function NodeArticleComponent({
   if (!body || !body.processed) {
     throw new Error('NodeArticleComponent: body is required')
   }
-  const author = parseUser(nodeArticleAuthor)
+  const author = resolveUser(nodeArticleAuthor)
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function NodeArticleComponent({
         title={title}
         content={body.processed.toString()}
         author={author}
-        image={parseMediaImage(image)}
+        image={resolveMediaImage(image)}
         publishDate={Number(changed.timestamp)}
       />
     </>

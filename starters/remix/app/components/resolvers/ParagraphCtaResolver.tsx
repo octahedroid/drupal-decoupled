@@ -8,7 +8,7 @@ import {
 } from '~/components/resolvers/types'
 import { ParagraphCtaFragment } from '~/graphql/drupal/fragments/paragraph'
 import { LinkFragment } from '~/graphql/drupal/fragments/misc'
-import { parseLink } from '~/graphql/drupal/helpers'
+import { resolveLink } from '~/graphql/drupal/helpers'
 
 const resolve = (paragraph: FragmentOf<typeof ParagraphCtaFragment>) => {
   const { id, heading, description, actions } = readFragment(
@@ -22,7 +22,7 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphCtaFragment>) => {
     description,
     actions: actions
       ? actions.map((action) =>
-          parseLink(readFragment(LinkFragment, action))
+          resolveLink(readFragment(LinkFragment, action))
         )
       : [],
   }

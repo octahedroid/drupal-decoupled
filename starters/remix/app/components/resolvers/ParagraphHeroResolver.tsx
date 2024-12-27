@@ -3,8 +3,8 @@ import { Hero } from '~/components/ui'
 import { ParagraphHeroFragment } from '~/graphql/drupal/fragments/paragraph'
 import { LinkFragment } from '~/graphql/drupal/fragments/misc'
 import {
-  parseLink,
-  parseMediaImage,
+  resolveLink,
+  resolveMediaImage,
 } from '~/graphql/drupal/helpers'
 import {
   Component,
@@ -25,9 +25,9 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphHeroFragment>) => {
     id,
     heading,
     description,
-    image: parseMediaImage(image),
+    image: resolveMediaImage(image),
     actions: actions
-      ? actions.map((action) => parseLink(readFragment(LinkFragment, action)))
+      ? actions.map((action) => resolveLink(readFragment(LinkFragment, action)))
       : [],
   }
 }

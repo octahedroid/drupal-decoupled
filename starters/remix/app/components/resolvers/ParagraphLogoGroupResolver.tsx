@@ -6,7 +6,7 @@ import {
   ParagraphLogoFragment,
 } from '~/graphql/drupal/fragments/paragraph'
 import { Component, fieldLink, fieldMediaExternal, fieldText } from '~/components/resolvers/types'
-import { parseLink, parseMediaImage } from '~/graphql/drupal/helpers'
+import { resolveLink, resolveMediaImage } from '~/graphql/drupal/helpers'
 
 const resolve = (paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>) => {
   const { id, heading, items } = readFragment(
@@ -27,10 +27,10 @@ const resolve = (paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>) => {
         return {
           id,
           image: {
-            ...parseMediaImage(image),
+            ...resolveMediaImage(image),
             className: 'h-12',
           },
-          link: parseLink(readFragment(LinkFragment, link))
+          link: resolveLink(readFragment(LinkFragment, link))
         }
       })
     : []

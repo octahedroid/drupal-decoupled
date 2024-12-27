@@ -5,7 +5,7 @@ import {
   ParagraphTestimonialFragment,
 } from '~/graphql/drupal/fragments/paragraph'
 import { Component, fieldAuthor, fieldText } from '~/components/resolvers/types'
-import { parseMediaImage } from '~/graphql/drupal/helpers'
+import { resolveMediaImage } from '~/graphql/drupal/helpers'
 
 const resolve = (
   paragraph: FragmentOf<typeof ParagraphTestimonialFragment>
@@ -27,7 +27,7 @@ const resolve = (
       name,
       position,
       company,
-      avatar: parseMediaImage(image),
+      avatar: resolveMediaImage(image),
     },
   }
 }

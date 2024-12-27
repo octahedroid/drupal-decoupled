@@ -11,7 +11,7 @@ import {
   ParagraphCardGroupFragment,
   ParagraphSimpleCardFragment,
 } from '~/graphql/drupal/fragments/paragraph'
-import { parseMediaImage } from '~/graphql/drupal/helpers'
+import { resolveMediaImage } from '~/graphql/drupal/helpers'
 
 export const resolve = (
   paragraph: FragmentOf<typeof ParagraphCardGroupFragment>
@@ -34,7 +34,7 @@ export const resolve = (
         return {
           heading,
           description,
-          image: parseMediaImage(image),
+          image: resolveMediaImage(image),
           type,
         }
       })
