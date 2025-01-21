@@ -1,1 +1,0 @@
-export { LogoGroup } from './LogoGroup'

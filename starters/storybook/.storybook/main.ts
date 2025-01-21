@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-import { join, dirname } from 'path'
+import { dirname, join } from 'path'
 import { mergeConfig } from 'vite'
 
 /**
@@ -22,7 +22,7 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
-  staticDirs: ['../app/components/ui/static'],
+  staticDirs: ['../app/static'],
   viteFinal: async (config) => {
     return mergeConfig(config, {
       plugins: [tsconfigPaths()],
