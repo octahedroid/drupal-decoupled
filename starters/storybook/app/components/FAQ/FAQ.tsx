@@ -20,7 +20,7 @@ export interface FAQProps
   extends ComponentPropsWithoutRef<'div'>,
     VariantProps<typeof faqVariants> {
   heading: string
-  description?: string | null
+  description?: string
   questions: QuestionProps[]
 }
 
