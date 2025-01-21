@@ -1,3 +1,4 @@
+import { RichText } from '~/components/primitives'
 import {
   AccordionContent,
   AccordionItem,
@@ -18,7 +19,9 @@ export const Accordion = ({ items }: AccordionProps) => {
       {items.map(({ title, content }, index) => (
         <AccordionItem value={`item-${index}`}>
           <AccordionTrigger>{title}</AccordionTrigger>
-          <AccordionContent>{content}</AccordionContent>
+          <AccordionContent>
+            <RichText content={content} />
+          </AccordionContent>
         </AccordionItem>
       ))}
     </ShadcnAccordion>
