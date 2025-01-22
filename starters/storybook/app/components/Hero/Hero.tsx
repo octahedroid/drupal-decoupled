@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { ComponentPropsWithoutRef } from 'react'
-import { Button, ButtonProps, ImageProps } from '~/components/primitives'
+import { Button, ButtonProps, Image, ImageProps } from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
 const heroVariants = cva('w-full px-4 py-8 md:py-16 lg:py-24', {
@@ -49,7 +49,7 @@ export const Hero = ({
         </div>
         <div className="order-first mx-auto w-full max-w-lg lg:order-last lg:max-w-none">
           {image && (
-            <img {...image} className={cn('h-auto w-full object-cover')} />
+            <Image {...image} className={cn('h-auto w-full object-cover')} />
           )}
         </div>
       </div>

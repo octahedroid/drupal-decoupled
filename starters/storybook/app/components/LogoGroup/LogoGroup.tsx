@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { ComponentPropsWithoutRef } from 'react'
-import { ImageProps, Link, LinkProps } from '~/components/primitives'
+import { Image, ImageProps, Link, LinkProps } from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
 const logoGroupVariants = cva('w-full py-8 md:py-12 text-center', {
@@ -57,7 +57,7 @@ export const LogoGroup = ({
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
           {logos.map(({ link, image }, index) => (
             <Link key={`logo-${index}`} {...link}>
-              <img
+              <Image
                 {...image}
                 alt={image.alt || `Logo ${index + 1}`}
                 className={cn('h-8 w-auto object-contain', image.className)}
