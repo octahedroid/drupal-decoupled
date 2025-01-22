@@ -4,6 +4,10 @@ export { Badge } from '~/components/primitives/Badge/Badge'
 export { Button, type ButtonProps } from '~/components/primitives/Button/Button'
 export { Image, type ImageProps } from '~/components/primitives/Image/Image'
 export { Link, type LinkProps } from '~/components/primitives/Link/Link'
+export {
+  NavigationMenu,
+  type NavigationMenuItemProps,
+} from '~/components/primitives/NavigationMenu/NavigationMenu'
 export { RichText } from '~/components/primitives/RichText/RichText'
 export {
   SimpleCard,
