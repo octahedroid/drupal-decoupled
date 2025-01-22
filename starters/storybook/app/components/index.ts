@@ -1,3 +1,4 @@
+export { Article } from '~/components/Article/Article'
 export { CardGroup } from '~/components/CardGroup/CardGroup'
 export { CTA } from '~/components/CTA/CTA'
 export { FAQ } from '~/components/FAQ/FAQ'
