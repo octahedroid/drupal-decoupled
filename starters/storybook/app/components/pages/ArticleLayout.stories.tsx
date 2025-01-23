@@ -2,16 +2,16 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   Article,
-  ArticleProps,
+  type ArticleProps,
   Footer,
-  FooterProps,
+  type FooterProps,
   Header,
-  HeaderProps,
+  type HeaderProps,
 } from '~/components/blocks'
 import { MainLayout } from '~/components/primitives'
-import * as ArticleStories from '../blocks/Article/Article.stories'
-import * as FooterStories from '../blocks/Footer/Footer.stories'
-import * as HeaderStories from '../blocks/Header/Header.stories'
+import * as ArticleStories from '~/components/blocks/Article/Article.stories'
+import * as FooterStories from '~/components/blocks/Footer/Footer.stories'
+import * as HeaderStories from '~/components/blocks/Header/Header.stories'
 
 const meta: Meta<typeof MainLayout> = {
   title: 'Pages/Article',

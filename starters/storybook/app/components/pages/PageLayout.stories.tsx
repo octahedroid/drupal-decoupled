@@ -3,28 +3,28 @@ import type { Meta, StoryObj } from '@storybook/react'
 import {
   CTA,
   CardGroup,
-  CardGroupProps,
+  type CardGroupProps,
   FAQ,
-  FAQProps,
+  type FAQProps,
   Footer,
-  FooterProps,
+  type FooterProps,
   Header,
-  HeaderProps,
+  type HeaderProps,
   Hero,
-  HeroProps,
+  type HeroProps,
   Testimonial,
-  TestimonialProps,
+  type TestimonialProps,
 } from '~/components/blocks'
 import { MainLayout } from '~/components/primitives'
 
-import * as CTAStories from '../blocks/CTA/CTA.stories'
-import * as SimpleCardStories from '../blocks/CardGroup/CardGroupSimpleCard.stories'
-import * as TeaserCardStories from '../blocks/CardGroup/CardGroupTeaserCard.stories'
-import * as FAQStories from '../blocks/FAQ/FAQ.stories'
-import * as FooterStories from '../blocks/Footer/Footer.stories'
-import * as HeaderStories from '../blocks/Header/Header.stories'
-import * as HeroStories from '../blocks/Hero/Hero.stories'
-import * as TestimonialStories from '../blocks/Testimonial/Testimonial.stories'
+import * as CTAStories from '~/components/blocks/CTA/CTA.stories'
+import * as SimpleCardStories from '~/components/blocks/CardGroup/CardGroupSimpleCard.stories'
+import * as TeaserCardStories from '~/components/blocks/CardGroup/CardGroupTeaserCard.stories'
+import * as FAQStories from '~/components/blocks/FAQ/FAQ.stories'
+import * as FooterStories from '~/components/blocks/Footer/Footer.stories'
+import * as HeaderStories from '~/components/blocks/Header/Header.stories'
+import * as HeroStories from '~/components/blocks/Hero/Hero.stories'
+import * as TestimonialStories from '~/components/blocks/Testimonial/Testimonial.stories'
 
 const meta: Meta<typeof MainLayout> = {
   title: 'Pages/Page',

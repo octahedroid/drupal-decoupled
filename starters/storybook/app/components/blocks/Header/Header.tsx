@@ -3,10 +3,10 @@ import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react'
 import { type ComponentPropsWithoutRef, useState } from 'react'
 import {
   Button,
-  ButtonProps,
-  ImageProps,
+  type ButtonProps,
+  type ImageProps,
   NavigationMenu,
-  NavigationMenuItemProps,
+  type NavigationMenuItemProps,
 } from '~/components/primitives'
 import { Button as MobileMenuButton } from '~/components/ui/button'
 import { cn } from '~/lib/utils'
