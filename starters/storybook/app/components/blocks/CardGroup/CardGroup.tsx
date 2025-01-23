@@ -45,9 +45,11 @@ export const CardGroup = ({
               {subheading}
             </h5>
           )}
-          <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">
-            {heading}
-          </h2>
+          {heading && (
+            <h2 className="mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">
+              {heading}
+            </h2>
+          )}
           {description && (
             <p className="mx-auto max-w-2xl text-muted-foreground">
               {description}
