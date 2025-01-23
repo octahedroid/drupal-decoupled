@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import {
   Avatar,
   AvatarProps,
@@ -76,7 +76,7 @@ export const Article = ({
         {tags && (
           <div className="mb-8 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <Badge text={tag} variant="secondary"></Badge>
+              <Badge text={tag} variant="secondary" />
             ))}
           </div>
         )}

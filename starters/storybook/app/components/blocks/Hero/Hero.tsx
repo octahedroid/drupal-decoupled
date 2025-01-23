@@ -1,6 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ComponentPropsWithoutRef } from 'react'
-import { Button, ButtonProps, Image, ImageProps } from '~/components/primitives'
+import type { ComponentPropsWithoutRef } from 'react'
+import {
+  Button,
+  type ButtonProps,
+  Image,
+  type ImageProps,
+} from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
 const heroVariants = cva('w-full px-4 py-8 md:py-16 lg:py-24', {

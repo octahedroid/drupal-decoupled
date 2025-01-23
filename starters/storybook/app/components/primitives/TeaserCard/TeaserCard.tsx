@@ -1,12 +1,12 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { ChevronRight } from 'lucide-react'
-import { ComponentProps } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import {
   Badge,
   Button,
-  ButtonProps,
+  type ButtonProps,
   Image,
-  ImageProps,
+  type ImageProps,
 } from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
@@ -19,7 +19,7 @@ const teaserCardVariants = cva(
 )
 
 export interface TeaserCardProps
-  extends ComponentProps<'div'>,
+  extends ComponentPropsWithoutRef<'div'>,
     VariantProps<typeof teaserCardVariants> {
   image: ImageProps
   tags?: string[]

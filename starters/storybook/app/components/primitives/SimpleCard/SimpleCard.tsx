@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ComponentPropsWithoutRef } from 'react'
-import { Image, ImageProps } from '~/components/primitives'
+import type { ComponentPropsWithoutRef } from 'react'
+import { Image, type ImageProps } from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
 const simpleCardVariants = cva('grid gap-4 text-center', {

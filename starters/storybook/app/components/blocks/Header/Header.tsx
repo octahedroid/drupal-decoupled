@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react'
-import { ComponentPropsWithoutRef, useState } from 'react'
+import { type ComponentPropsWithoutRef, useState } from 'react'
 import {
   Button,
   ButtonProps,

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 
 export interface LinkProps
   extends Omit<ComponentPropsWithoutRef<'a'>, 'target' | 'rel'> {

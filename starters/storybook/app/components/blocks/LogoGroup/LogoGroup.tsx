@@ -1,6 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ComponentPropsWithoutRef } from 'react'
-import { Image, ImageProps, Link, LinkProps } from '~/components/primitives'
+import type { ComponentPropsWithoutRef } from 'react'
+import {
+  Image,
+  type ImageProps,
+  Link,
+  type LinkProps,
+} from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
 const logoGroupVariants = cva('w-full py-8 md:py-12 text-center', {

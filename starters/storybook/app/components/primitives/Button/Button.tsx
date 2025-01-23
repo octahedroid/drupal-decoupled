@@ -13,16 +13,6 @@ export interface ButtonProps extends Omit<ShadcnButtonProps, 'asChild'> {
 }
 
 export const Button = ({ href, text, internal, ...props }: ButtonProps) => {
-  const externalProps = internal
-    ? {
-        target: '_self' as const,
-        rel: '' as const,
-      }
-    : {
-        target: '_blank' as const,
-        rel: 'noopener noreferrer' as const,
-      }
-
   const content = (
     <>
       {text}
@@ -31,7 +21,7 @@ export const Button = ({ href, text, internal, ...props }: ButtonProps) => {
   )
   if (href) {
     return (
-      <Link {...externalProps} href={href}>
+      <Link internal={internal} href={href}>
         <ShadcnButton {...props}>{content}</ShadcnButton>
       </Link>
     )
