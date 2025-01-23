@@ -1,19 +1,11 @@
-export { Accordion } from '~/components/primitives/Accordion/Accordion'
-export { Avatar, type AvatarProps } from '~/components/primitives/Avatar/Avatar'
-export { Badge } from '~/components/primitives/Badge/Badge'
-export { Button, type ButtonProps } from '~/components/primitives/Button/Button'
-export { Image, type ImageProps } from '~/components/primitives/Image/Image'
-export { Link, type LinkProps } from '~/components/primitives/Link/Link'
-export {
-  NavigationMenu,
-  type NavigationMenuItemProps,
-} from '~/components/primitives/NavigationMenu/NavigationMenu'
-export { RichText } from '~/components/primitives/RichText/RichText'
-export {
-  SimpleCard,
-  type SimpleCardProps,
-} from '~/components/primitives/SimpleCard/SimpleCard'
-export {
-  TeaserCard,
-  type TeaserCardProps,
-} from '~/components/primitives/TeaserCard/TeaserCard'
+export * from '~/components/primitives/Accordion/Accordion'
+export * from '~/components/primitives/Avatar/Avatar'
+export * from '~/components/primitives/Badge/Badge'
+export * from '~/components/primitives/Button/Button'
+export * from '~/components/primitives/Image/Image'
+export * from '~/components/primitives/Link/Link'
+export * from '~/components/primitives/MainLayout/MainLayout'
+export * from '~/components/primitives/NavigationMenu/NavigationMenu'
+export * from '~/components/primitives/RichText/RichText'
+export * from '~/components/primitives/SimpleCard/SimpleCard'
+export * from '~/components/primitives/TeaserCard/TeaserCard'

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { FAQ } from '~/components'
+import { FAQ } from '~/components/blocks'
 
 const meta: Meta<typeof FAQ> = {
   title: 'Components/FAQ',

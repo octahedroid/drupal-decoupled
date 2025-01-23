@@ -18,7 +18,7 @@ type AuthorProps = {
   company: string
 }
 
-interface TestimonialProps
+export interface TestimonialProps
   extends ComponentPropsWithoutRef<'div'>,
     VariantProps<typeof testimonialVariants> {
   quote: string
