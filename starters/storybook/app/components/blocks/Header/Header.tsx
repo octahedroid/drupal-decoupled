@@ -94,7 +94,7 @@ export const Header = ({
           {actions && actions.length > 0 && (
             <div className="flex items-center space-x-4">
               {actions.map(({ ...actionProps }, index) => (
-                <Button key={index} {...actionProps}></Button>
+                <Button key={index} {...actionProps} />
               ))}
             </div>
           )}
@@ -129,11 +129,7 @@ export const Header = ({
           {actions && actions.length > 0 && (
             <div className="flex flex-col space-y-2 p-4">
               {actions.map(({ ...actionProps }, index) => (
-                <Button
-                  key={index}
-                  className="w-full"
-                  {...actionProps}
-                ></Button>
+                <Button key={index} className="w-full" {...actionProps} />
               ))}
             </div>
           )}

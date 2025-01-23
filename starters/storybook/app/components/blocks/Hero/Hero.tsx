@@ -47,7 +47,7 @@ export const Hero = ({
                   variant={index === 1 ? 'outline' : variant || 'default'}
                   {...actionProps}
                   key={index}
-                ></Button>
+                />
               ))}
             </div>
           )}

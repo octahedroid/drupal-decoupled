@@ -65,7 +65,7 @@ export const CardGroup = ({
         </div>
         {action && (
           <div className="mt-12 text-center">
-            <Button {...action} variant="outline"></Button>
+            <Button {...action} variant="outline" />
           </div>
         )}
       </div>

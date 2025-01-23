@@ -48,7 +48,7 @@ export const CTA = ({
               variant={index === 1 ? 'outline' : 'default'}
               {...actionProps}
               key={index}
-            ></Button>
+            />
           ))}
         </div>
       )}
