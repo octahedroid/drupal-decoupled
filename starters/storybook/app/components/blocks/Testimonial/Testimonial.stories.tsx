@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Testimonial } from '~/components/blocks'
 
 const meta: Meta<typeof Testimonial> = {
-  title: 'Components/Testimonial',
+  title: 'Blocks/Testimonial',
   component: Testimonial,
   tags: ['autodocs'],
   argTypes: {

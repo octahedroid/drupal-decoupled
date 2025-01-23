@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Article } from '~/components/blocks'
 
 const meta: Meta<typeof Article> = {
-  title: 'Components/Article',
+  title: 'Blocks/Article',
   component: Article,
   parameters: {
     layout: 'fullscreen',

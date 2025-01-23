@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { LogoGroup } from '~/components/blocks'
 
 const meta: Meta<typeof LogoGroup> = {
-  title: 'Components/Logo Group',
+  title: 'Blocks/Logo Group',
   component: LogoGroup,
   tags: ['autodocs'],
   argTypes: {
