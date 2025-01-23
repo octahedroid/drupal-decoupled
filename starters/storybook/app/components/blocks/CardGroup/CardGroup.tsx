@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ComponentProps } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 import {
   Button,
   ButtonProps,
@@ -15,21 +15,17 @@ const cardGroupVariants = cva('w-full py-12 md:py-16', {
   defaultVariants: {},
 })
 
-type ActionProps = ButtonProps
-
 type CardItem = SimpleCardProps | TeaserCardProps
 
-type Props = {
-  heading?: string | null
-  subheading?: string | null
-  description?: string | null
-  action?: ActionProps | null
+export interface CardGroupProps
+  extends ComponentPropsWithoutRef<'div'>,
+    VariantProps<typeof cardGroupVariants> {
+  heading?: string
+  subheading?: string
+  description?: string
+  action?: ButtonProps
   cards: CardItem[]
 }
-
-export type CardGroupProps = ComponentProps<'div'> &
-  VariantProps<typeof cardGroupVariants> &
-  Props
 
 export const CardGroup = ({
   className,
@@ -117,4 +113,4 @@ CardGroup.defaultProps = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
     },
   ],
-}
+} satisfies CardGroupProps

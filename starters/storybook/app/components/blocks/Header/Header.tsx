@@ -164,4 +164,4 @@ Header.defaultProps = {
       href: 'https://drupal-decoupled.octahedroid.com/',
     },
   ],
-}
+} satisfies HeaderProps

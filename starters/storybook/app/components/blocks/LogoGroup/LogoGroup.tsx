@@ -22,30 +22,8 @@ export interface LogoGroupProps
 
 export const LogoGroup = ({
   className,
-  heading = 'Logo Group',
-  logos = [
-    {
-      image: {
-        src: '/placeholders/icons/doc-tahedroid.png',
-        alt: 'Octahedroid',
-      },
-      link: { href: 'https://octahedroid.com', internal: false },
-    },
-    {
-      image: {
-        src: '/placeholders/icons/drupal-decoupled.png',
-        alt: 'Composabase',
-      },
-      link: { href: 'https://composabase.com', internal: false },
-    },
-    {
-      image: {
-        src: '/placeholders/icons/doc-tahedroid.png',
-        alt: 'Octahedroid',
-      },
-      link: { href: 'https://octahedroid.com', internal: false },
-    },
-  ],
+  heading,
+  logos,
   ...props
 }: LogoGroupProps) => {
   return (
@@ -69,3 +47,30 @@ export const LogoGroup = ({
     </div>
   )
 }
+
+LogoGroup.defaultProps = {
+  heading: 'Logo Group',
+  logos: [
+    {
+      image: {
+        src: '/placeholders/icons/doc-tahedroid.png',
+        alt: 'Octahedroid',
+      },
+      link: { href: 'https://octahedroid.com', internal: false },
+    },
+    {
+      image: {
+        src: '/placeholders/icons/drupal-decoupled.png',
+        alt: 'Composabase',
+      },
+      link: { href: 'https://composabase.com', internal: false },
+    },
+    {
+      image: {
+        src: '/placeholders/icons/doc-tahedroid.png',
+        alt: 'Octahedroid',
+      },
+      link: { href: 'https://octahedroid.com', internal: false },
+    },
+  ],
+} satisfies LogoGroupProps

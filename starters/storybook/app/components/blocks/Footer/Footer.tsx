@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ComponentProps } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 import { ImageProps, Link, LinkProps } from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
@@ -13,15 +13,13 @@ type FooterColumn = {
   links: LinkProps[]
 }
 
-type Props = {
+export interface FooterProps
+  extends ComponentPropsWithoutRef<'footer'>,
+    VariantProps<typeof footerVariants> {
   columns: FooterColumn[]
   logo: ImageProps
   copyrightText: string
 }
-
-export type FooterProps = ComponentProps<'footer'> &
-  VariantProps<typeof footerVariants> &
-  Props
 
 const FooterColumn = ({ title, links }: FooterColumn) => (
   <div className="mb-8 lg:mb-0">
@@ -93,4 +91,4 @@ Footer.defaultProps = {
     alt: 'Company Logo',
   },
   copyrightText: '© 2023 Drupal Decoupled. All rights reserved.',
-}
+} satisfies FooterProps

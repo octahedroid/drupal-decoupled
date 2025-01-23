@@ -115,4 +115,4 @@ Article.defaultProps = {
     },
     name: 'Doc Tahedroid',
   },
-}
+} satisfies ArticleProps

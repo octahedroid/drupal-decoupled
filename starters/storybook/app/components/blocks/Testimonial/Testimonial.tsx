@@ -61,4 +61,4 @@ Testimonial.defaultProps = {
     position: 'CEO',
     company: 'Tech Innovators Inc.',
   },
-}
+} satisfies TestimonialProps
