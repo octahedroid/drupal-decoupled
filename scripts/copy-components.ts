@@ -8,8 +8,16 @@ const storybookDir = "starters/storybook/app";
 const remixDir = "starters/remix/app";
 const nextDir = "starters/next";
 
-function copyDesingSystem(source: string, destination: string) {
-  console.log("Cleanup destination directories");
+function syncComponentDirectories(source: string, destination: string) {
+  componentsConfig.directories.forEach((dir) => {
+    const src = path.join(source, dir.path);
+    const dest = path.join(destination, dir.path);
+    console.log("cp " + src + " -> " + dest);
+    fs.cpSync(src, dest, { recursive: true, force: true });
+  });
+}
+
+function clearDestinationDirectories(destination: string) {
   componentsConfig.directories.forEach((dir) => {
     const dest = path.join(destination, dir.path);
     if (fs.existsSync(dest)) {
@@ -17,14 +25,41 @@ function copyDesingSystem(source: string, destination: string) {
       fs.rmSync(dest, { recursive: true });
     }
   });
+}
 
-  console.log("\nCopying source to destination");
-  componentsConfig.directories.forEach((dir) => {
-    const src = path.join(source, dir.path);
-    const dest = path.join(destination, dir.path);
-    console.log("cp " + src + " -> " + dest);
-    fs.cpSync(src, dest, { recursive: true, force: true });
+function copyDesingSystem(source: string, destination: string) {
+  console.log("Cleanup destination directories");
+  clearDestinationDirectories(destination);
+
+  console.log("Copying source to destination");
+  syncComponentDirectories(source, destination);
+}
+
+function nextAdaption(dir: string, componentsToClient: string[]) {
+  const files = fs.readdirSync(dir, {
+    withFileTypes: true,
+    recursive: true,
+    encoding: "utf8",
   });
+
+  for (const file of files) {
+    if (file.isDirectory()) {
+      continue;
+    }
+    if (!file.name.endsWith(".tsx")) {
+      continue;
+    }
+    if (componentsToClient.includes(file.name.replace(".tsx", ""))) {
+      console.log("Adding use client to " + file.name);
+      const fileName = path.join(file.parentPath, file.name);
+      const content = fs.readFileSync(fileName, "utf8");
+      fs.writeFileSync(fileName, `'use client'\n\n${content}`);
+    }
+    console.log("Replacing path alias to next components in " + file.name);
+    const fileName = path.join(file.parentPath, file.name);
+    const content = fs.readFileSync(fileName, "utf8");
+    fs.writeFileSync(fileName, content.replace("~/", "@/"));
+  }
 }
 
 console.log("Copying remix components..");
@@ -34,6 +69,9 @@ console.log("Copying next components..");
 copyDesingSystem(storybookDir, nextDir);
 console.log("\n");
 
+console.log("Adaptering next components...");
+nextAdaption(nextDir + "/components", ["Header"]);
+console.log("\n");
 // function modifyComponents() {
 //   try {
 //     // Add use client to next components
