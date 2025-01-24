@@ -1,4 +1,4 @@
-import { Dirent, promises as fs } from "fs";
+import * as fs from "fs";
 import path from "path";
 
 import { componentsConfig } from "./components-config";
@@ -8,20 +8,31 @@ const storybookDir = "starters/storybook/app";
 const remixDir = "starters/remix/app";
 const nextDir = "starters/next";
 
-async function copyDesingSystem(source: string, destination: string) {
-  componentsConfig.directories.forEach(async (dir) => {
+function copyDesingSystem(source: string, destination: string) {
+  console.log("Cleanup destination directories");
+  componentsConfig.directories.forEach((dir) => {
+    const dest = path.join(destination, dir.path);
+    if (fs.existsSync(dest)) {
+      console.log("rm " + dest);
+      fs.rmSync(dest, { recursive: true });
+    }
+  });
+
+  console.log("\nCopying source to destination");
+  componentsConfig.directories.forEach((dir) => {
     const src = path.join(source, dir.path);
     const dest = path.join(destination, dir.path);
-    console.log("Cleanup destination directory: " + dir.name);
-    fs.rmdir(dest, { recursive: true });
-    console.log("Copying design system source to destination: " + dir.name);
-    fs.cp(src, dest, { recursive: true });
     console.log("cp " + src + " -> " + dest);
+    fs.cpSync(src, dest, { recursive: true, force: true });
   });
 }
 
+console.log("Copying remix components..");
 copyDesingSystem(storybookDir, remixDir);
+console.log("\n");
+console.log("Copying next components..");
 copyDesingSystem(storybookDir, nextDir);
+console.log("\n");
 
 // function modifyComponents() {
 //   try {
