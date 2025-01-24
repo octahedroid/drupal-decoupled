@@ -36,30 +36,33 @@ function copyDesingSystem(source: string, destination: string) {
 }
 
 function nextAdaption(dir: string, componentsToClient: string[]) {
-  const files = fs.readdirSync(dir, {
-    withFileTypes: true,
-    recursive: true,
-    encoding: "utf8",
-  });
+  componentsConfig.directories.forEach((directory) => {
+    const componentsDir = path.join(dir, directory.path);
+    const files = fs.readdirSync(componentsDir, {
+      withFileTypes: true,
+      recursive: true,
+      encoding: "utf8",
+    });
 
-  for (const file of files) {
-    if (file.isDirectory()) {
-      continue;
-    }
-    if (!file.name.endsWith(".tsx") && !file.name.endsWith(".ts")) {
-      continue;
-    }
-    if (componentsToClient.includes(file.name.replace(".tsx", ""))) {
-      console.log("Adding use client to " + file.name);
+    for (const file of files) {
+      if (file.isDirectory()) {
+        continue;
+      }
+      if (!file.name.endsWith(".tsx") && !file.name.endsWith(".ts")) {
+        continue;
+      }
+      if (componentsToClient.includes(file.name.replace(".tsx", ""))) {
+        console.log("Adding use client to " + file.name);
+        const fileName = path.join(file.parentPath, file.name);
+        const content = fs.readFileSync(fileName, "utf8");
+        fs.writeFileSync(fileName, `'use client'\n\n${content}`);
+      }
+      console.log("Replacing path alias to next components in " + file.name);
       const fileName = path.join(file.parentPath, file.name);
       const content = fs.readFileSync(fileName, "utf8");
-      fs.writeFileSync(fileName, `'use client'\n\n${content}`);
+      fs.writeFileSync(fileName, content.replaceAll("~/", "@/"));
     }
-    console.log("Replacing path alias to next components in " + file.name);
-    const fileName = path.join(file.parentPath, file.name);
-    const content = fs.readFileSync(fileName, "utf8");
-    fs.writeFileSync(fileName, content.replace(/~\//g, "@/"));
-  }
+  });
 }
 
 console.log("Copying remix components..");
