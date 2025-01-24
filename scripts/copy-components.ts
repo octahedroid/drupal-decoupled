@@ -46,7 +46,7 @@ function nextAdaption(dir: string, componentsToClient: string[]) {
     if (file.isDirectory()) {
       continue;
     }
-    if (!file.name.endsWith(".tsx")) {
+    if (!file.name.endsWith(".tsx") && !file.name.endsWith(".ts")) {
       continue;
     }
     if (componentsToClient.includes(file.name.replace(".tsx", ""))) {
@@ -58,7 +58,7 @@ function nextAdaption(dir: string, componentsToClient: string[]) {
     console.log("Replacing path alias to next components in " + file.name);
     const fileName = path.join(file.parentPath, file.name);
     const content = fs.readFileSync(fileName, "utf8");
-    fs.writeFileSync(fileName, content.replace("~/", "@/"));
+    fs.writeFileSync(fileName, content.replace(/~\//g, "@/"));
   }
 }
 
