@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name" : "root",
+			"path": "../"
+		},
+		{
+			"name": "packages",
+			"path": "../packages"
+		},
+		{
+			"name": "storybook - starter",
+			"path": "../starters/storybook"
+		},
+		{
+			"name": "next - starter",
+			"path": "../starters/next"
+		},
+		{
+			"name": "remix - starter",
+			"path": "../starters/remix"
+		},
+	],
+	"settings": {}
+}
