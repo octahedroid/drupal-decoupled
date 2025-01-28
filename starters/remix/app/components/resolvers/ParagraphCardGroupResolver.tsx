@@ -1,11 +1,10 @@
-import { CardGroup } from '~/components/ui'
 import {
   Component,
   fieldMediaExternal,
   fieldText,
   fieldTextArea,
 } from '~/components/resolvers/types'
-import { CardGroupProps } from '~/components/ui/CardGroup/CardGroup'
+import { CardGroup, type CardGroupProps } from '~/components/blocks'
 import { Parser } from '~/components/resolvers/helpers/parser'
 
 const parser = new Parser()
@@ -38,50 +37,6 @@ parser
     ],
   })
 
-const defaultProps = {
-  heading: 'How it works?',
-  subheading: 'Get started with our guides',
-  description: null,
-  cards: [
-    {
-      type: 'simple',
-      heading: 'Discover ...',
-      description:
-        'Learn how to use Drupal as a headless CMS with our quick-start guides.',
-      image: {
-        src: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
-        alt: 'Discover',
-        width: 300,
-        height: 200,
-      },
-    },
-    {
-      type: 'simple',
-      heading: 'Discover',
-      description:
-        'Learn how to use Drupal as a headless CMS with our quick-start guides.',
-      image: {
-        src: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
-        alt: 'Discover',
-        width: 300,
-        height: 200,
-      },
-    },
-    {
-      type: 'simple',
-      heading: 'Discover',
-      description:
-        'Learn how to use Drupal as a headless CMS with our quick-start guides.',
-      image: {
-        src: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
-        alt: 'Discover',
-        width: 300,
-        height: 200,
-      },
-    },
-  ],
-} as CardGroupProps
-
 export const ParagraphCardGroup: Component = {
   fields: {
     heading: fieldText,
@@ -108,7 +63,7 @@ export const ParagraphCardGroup: Component = {
       },
     },
   },
-  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
+  defaultProps: parser.apply({ data: CardGroup.defaultProps, target: 'data' }),
   render: (props) => {
     const cardGroup = parser.apply({
       data: props,

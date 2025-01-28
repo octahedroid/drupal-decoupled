@@ -24,9 +24,7 @@ import { getClient } from '~/utils/client.server'
 import { calculatePath } from '~/utils/routes'
 import { calculateMetaTags } from '~/utils/metatags'
 
-import { Header } from '~/components/ui//Header'
-import { Footer } from '~/components/ui/Footer'
-import type { ButtonProps } from '~/components/ui/types'
+import { Header, Footer } from '~/components/blocks'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
@@ -121,15 +119,15 @@ export const loader = async ({
   }
 
   const menuMain = readFragment(MenuFragment, data.menuMain)
-  const navItems = menuMain?.items.map((item) => {
+  const navItems = menuMain ? menuMain.items.map((item) => {
     const menuItem = readFragment(MenuItemFragment, item)
 
     return {
       label: menuItem.label,
-      href: menuItem.href,
+      href: menuItem.href || undefined,
       expanded: menuItem.expanded,
     }
-  })
+  }): []
 
   return json({
     type: data.route.entity.__typename,
@@ -145,16 +143,12 @@ export const loader = async ({
         {
           text: 'Docs',
           href: 'https://drupal-decoupled.octahedroid.com/docs',
-          variant: 'default',
-          internal: false,
         },
         {
           text: 'Quickstart',
           href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
-          variant: 'default',
-          internal: false,
         },
-      ] as ButtonProps[],
+      ],
     },
     footer: {
       logo: {

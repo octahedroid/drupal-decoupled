@@ -1,4 +1,4 @@
-import { CardGroup, Hero, TeaserCardProps } from '~/components/ui'
+import { CardGroup, Hero } from '~/components/blocks'
 import {
   Component,
   fieldLink,
@@ -193,7 +193,7 @@ export const ParagraphViewReference: Component = {
 
     if (view === 'blog' && display === 'teaser_featured' && cards.length > 0) {
       const featured = cards[0] as any
-      const remainingCards = cards.splice(1) as TeaserCardProps[]
+      const remainingCards = cards.splice(1)
 
       return (
         <div id={`${view}-${display}-${id}`}>
@@ -231,7 +231,7 @@ export const ParagraphViewReference: Component = {
           heading={heading}
           subheading={subheading}
           description={description}
-          cards={cards as TeaserCardProps[]}
+          cards={cards}
           action={action}
         />
       )

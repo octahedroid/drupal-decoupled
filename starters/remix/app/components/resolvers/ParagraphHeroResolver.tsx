@@ -1,4 +1,3 @@
-import { Hero } from '~/components/ui'
 import {
   Component,
   fieldText,
@@ -6,7 +5,7 @@ import {
   fieldMediaExternal,
   fieldLinks,
 } from '~/components/resolvers/types'
-import { HeroProps } from '~/components/ui/Hero/Hero'
+import { Hero, type HeroProps } from '~/components/blocks'
 
 import { Parser } from '~/components/resolvers/helpers/parser'
 const parser = new Parser()
