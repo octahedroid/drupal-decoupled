@@ -1,13 +1,4 @@
-import { FragmentOf, readFragment } from 'gql.tada'
 import { Hero } from '~/components/ui'
-import {
-  ParagraphHeroFragment,
-  LinkFragment,
-} from '~/graphql/fragments'
-import {
-  resolveLink,
-  resolveMediaImage,
-} from '~/components/resolvers/helpers'
 import {
   Component,
   fieldText,
@@ -15,24 +6,39 @@ import {
   fieldMediaExternal,
   fieldLinks,
 } from '~/components/resolvers/types'
+import { HeroProps } from '~/components/ui/Hero/Hero'
 
-const resolve = (paragraph: FragmentOf<typeof ParagraphHeroFragment>) => {
-  const { __typename, id, heading, description, image, actions } = readFragment(
-    ParagraphHeroFragment,
-    paragraph
-  )
+import { Parser } from '~/components/resolvers/helpers/parser'
+const parser = new Parser()
 
-  return {
-    __typename,
-    id,
-    heading,
-    description,
-    image: resolveMediaImage(image),
-    actions: actions
-      ? actions.map((action) => resolveLink(action))
-      : [],
-  }
-}
+parser
+  .with({
+    element: '/image',
+    preset: { preset: 'mediaImage', property: 'mediaImage' },
+  })
+  .with({
+    element: '/actions',
+    preset: { preset: 'link' },
+  })
+
+const defaultProps = {
+  heading: 'Think Outside the Drop',
+  description:
+    'Discover the power of Drupal as a headless CMS with our quick-start ready to use and step-by-step guides.',
+  image: {
+    alt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    src: 'data:image/jpeg;base64,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wBSYkNV/D/aLrV5n3R4aASR483mvLPK3z6hg29RfXQhGAInD7QXdLM/yPHuTfbeqem2vaXrfmraxGBABJDZtvfDJbQNv/2p+1g8EkFRqqHi8Aq4CAwIIIIAAAggggAACCCCAAAIIIIAAAkiQchuMAOI4EEAc+CSmcOAjgAhgIkrPOQLIT29tMAJIqsrEDoTcCBAB5N7ADBgBJFXv0trcfc84AsivIVFSYyIzYASQReOUNnbk+UYASXQIWJgBI4AsOUpnU0882wggy8OiZAo49j44BJAHDvppbGffGUAEkEeOk3hDXH7smUYAeXwwnCQwN8xPHfMIICvjEP0YsDh1AhABZHUB3x/EvYFD/WPpiLcLWHT0dtLE+3J/NPAMI4A8bVBO5rEO/0YmPCz74y/7gAeayXUb3+hvMPRqjxEg3QfFcW/+pYqpgVl/r2/0hwCy4UR40Kubb20MpwPz7E3hMEcAeZaisA+InXkBIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCAgggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIICCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCAggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIICAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAgAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAgIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCAgggAACCCBA3P4L30jaQltLEiwAAAAASUVORK5CYII=',
+    width: 48,
+    height: 48,
+  },
+  actions: [
+    {
+      text: 'Get Started',
+      href: 'https://drupal-decoupled.octahedroid.com/',
+      internal: false,
+    },
+  ],
+} as HeroProps
 
 export const ParagraphHero: Component = {
   fields: {
@@ -42,18 +48,10 @@ export const ParagraphHero: Component = {
     image: fieldMediaExternal,
     actions: fieldLinks,
   },
-  render: (props: FragmentOf<typeof ParagraphHeroFragment>) => {
-    const { id, heading, description, image, actions } = resolve(props)
+  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
+  render: (props) => {
+    const hero = parser.apply({ data: props, target: 'ui' }) as HeroProps
 
-    return (
-      <Hero
-        id={id}
-        key={id}
-        heading={heading}
-        description={description}
-        image={image}
-        actions={actions}
-      />
-    )
+    return <Hero {...hero} />
   },
 }

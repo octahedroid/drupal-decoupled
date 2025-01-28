@@ -1,6 +1,7 @@
 import { graphql } from '~/graphql/gql.tada'
 import { MediaImageFragment } from '~/graphql/fragments/media'
 import { LinkFragment } from '~/graphql/fragments/misc'
+import { WebformFragment } from '~/graphql/fragments/webform'
 import {
   ViewBlogTeaserResultFragment,
   ViewBlogTeaserFeaturedResultFragment,
@@ -14,8 +15,15 @@ export const ParagraphWebformFragment = graphql(`
     subheadingOptional: subheading
     descriptionOptional: description
     form
+    webform  {
+      id
+      __typename
+      ...WebformFragment
+    }
   }
-`)
+`,[
+  WebformFragment,
+])
 
 export const ParagraphViewReferenceFragment = graphql(`
   fragment ParagraphViewReference on ParagraphViewReference {
@@ -109,7 +117,8 @@ export const ParagraphQuestionFragment = graphql(`
     question
     answer {
       __typename
-      processed
+      value
+      # processed
     }
   }
 `)

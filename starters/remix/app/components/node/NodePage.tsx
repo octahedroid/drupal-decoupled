@@ -11,7 +11,7 @@ export default function NodePageComponent({
   node,
   environment,
 }: NodePageComponentProps) {
-  const { id, title, summary, showTitle, components } = readFragment(
+  const { id, components } = readFragment(
     NodePageFragment,
     node
   )
@@ -20,9 +20,6 @@ export default function NodePageComponent({
     root: {
       props: {
         id,
-        title,
-        summary,
-        showTitle,
       },
     },
     content: components ? components.map((component) => {

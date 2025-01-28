@@ -7,3 +7,4 @@ export * from "./paragraph";
 export * from "./terms";
 export * from "./user";
 export * from "./view";
+export * from "./webform";

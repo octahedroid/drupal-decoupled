@@ -1,4 +1,4 @@
-import { FragmentOf, ResultOf, readFragment } from 'gql.tada'
+import { FragmentOf, readFragment } from 'gql.tada'
 import { ImageProps, UserProps, ActionsProps } from '~/components/ui/types'
 import {
   ImageFragment,

@@ -1,45 +1,50 @@
-import { FragmentOf, readFragment } from 'gql.tada'
 import { Testimonial } from '~/components/ui'
-import {
-  ParagraphAuthorFragment,
-  ParagraphTestimonialFragment,
-} from '~/graphql/fragments'
 import { Component, fieldAuthor, fieldText } from '~/components/resolvers/types'
-import { resolveMediaImage } from '~/components/resolvers/helpers'
+import { TestimonialProps } from '~/components/ui/Testimonial/Testimonial'
+import { Parser } from '~/components/resolvers/helpers/parser'
 
-const resolve = (
-  paragraph: FragmentOf<typeof ParagraphTestimonialFragment>
-) => {
-  const { id, quote, author } = readFragment(
-    ParagraphTestimonialFragment,
-    paragraph
-  )
+const parser = new Parser()
 
-  const { name, position, company, image } = readFragment(
-    ParagraphAuthorFragment,
-    author as FragmentOf<typeof ParagraphAuthorFragment>
-  )
+parser
+  .with({
+    element: '/author.image',
+    preset: { preset: 'mediaImage', property: 'mediaImage' },
+  })
+  .with({
+    element: '/author',
+    operations: [
+      { operation: 'rename', source: 'image', destination: 'avatar' },
+    ],
+  })
 
-  return {
-    id,
-    quote,
-    author: {
-      name,
-      position,
-      company,
-      avatar: resolveMediaImage(image),
+const defaultProps = {
+  quote:
+    "This product has completely transformed our workflow. It's intuitive, powerful, and addresses all the pain points we were experiencing with our previous solution.",
+  author: {
+    avatar: {
+      src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+      alt: 'Doc Tahedroid',
+      width: 40,
+      height: 40,
     },
-  }
-}
+    name: 'Doc Tahedroid',
+    position: 'CEO',
+    company: 'Tech Innovators Inc.',
+  },
+} as TestimonialProps
 
 export const ParagraphTestimonial: Component = {
   fields: {
     quote: fieldText,
     author: fieldAuthor,
   },
+  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
   render: (props) => {
-    const { id, quote, author } = resolve(props)
+    const testimonial = parser.apply({
+      data: props,
+      target: 'ui',
+    }) as TestimonialProps
 
-    return <Testimonial id={id} key={id} quote={quote} author={author} />
+    return <Testimonial {...testimonial} />
   },
 }

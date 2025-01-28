@@ -36,10 +36,10 @@ import {
     tsconfig: undefined,
   })
 
-  console.log('\n🚀 Generating Cache')
-  await generateTurbo({
-    output: undefined,
-    failOnWarn: false,
-    tsconfig: undefined,
-  })
+  // console.log('\n🚀 Generating Cache')
+  // await generateTurbo({
+  //   output: undefined,
+  //   failOnWarn: false,
+  //   tsconfig: undefined,
+  // })
 })()

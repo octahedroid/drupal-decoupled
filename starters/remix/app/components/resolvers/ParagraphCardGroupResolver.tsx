@@ -1,54 +1,86 @@
-import { FragmentOf, readFragment } from 'gql.tada'
 import { CardGroup } from '~/components/ui'
 import {
   Component,
-  fieldLink,
   fieldMediaExternal,
   fieldText,
   fieldTextArea,
 } from '~/components/resolvers/types'
-import {
-  ParagraphCardGroupFragment,
-  ParagraphSimpleCardFragment,
-} from '~/graphql/fragments'
-import { resolveMediaImage } from '~/components/resolvers/helpers'
+import { CardGroupProps } from '~/components/ui/CardGroup/CardGroup'
+import { Parser } from '~/components/resolvers/helpers/parser'
 
-export const resolve = (
-  paragraph: FragmentOf<typeof ParagraphCardGroupFragment>
-) => {
-  const {
-    id,
-    heading,
-    subheadingOptional: subheading,
-    descriptionOptional: description,
-    items,
-  } = readFragment(ParagraphCardGroupFragment, paragraph)
-  const cards = items
-    ? items.map((item) => {
-        const type = 'simple'
-        const { heading, description, image } = readFragment(
-          ParagraphSimpleCardFragment,
-          item as FragmentOf<typeof ParagraphSimpleCardFragment>
-        )
+const parser = new Parser()
 
-        return {
-          heading,
-          description,
-          image: resolveMediaImage(image),
-          type,
-        }
-      })
-    : []
+parser
+  .with({
+    element: '/',
+    operations: [
+      {
+        operation: 'rename',
+        source: 'subheadingOptional',
+        destination: 'subheading',
+      },
+      {
+        operation: 'rename',
+        source: 'descriptionOptional',
+        destination: 'description',
+      },
+      { operation: 'rename', source: 'items', destination: 'cards' },
+    ],
+  })
+  .with({
+    element: '/cards[*].image',
+    preset: { preset: 'mediaImage', property: 'mediaImage' },
+  })
+  .with({
+    element: '/cards',
+    operations: [
+      { operation: 'add', path: 'type', value: 'simple', type: 'string' },
+    ],
+  })
 
-  return {
-    id,
-    heading,
-    description,
-    subheading,
-    cards,
-    action: '',
-  }
-}
+const defaultProps = {
+  heading: 'How it works?',
+  subheading: 'Get started with our guides',
+  description: null,
+  cards: [
+    {
+      type: 'simple',
+      heading: 'Discover ...',
+      description:
+        'Learn how to use Drupal as a headless CMS with our quick-start guides.',
+      image: {
+        src: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+        alt: 'Discover',
+        width: 300,
+        height: 200,
+      },
+    },
+    {
+      type: 'simple',
+      heading: 'Discover',
+      description:
+        'Learn how to use Drupal as a headless CMS with our quick-start guides.',
+      image: {
+        src: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+        alt: 'Discover',
+        width: 300,
+        height: 200,
+      },
+    },
+    {
+      type: 'simple',
+      heading: 'Discover',
+      description:
+        'Learn how to use Drupal as a headless CMS with our quick-start guides.',
+      image: {
+        src: 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+        alt: 'Discover',
+        width: 300,
+        height: 200,
+      },
+    },
+  ],
+} as CardGroupProps
 
 export const ParagraphCardGroup: Component = {
   fields: {
@@ -56,19 +88,15 @@ export const ParagraphCardGroup: Component = {
     subheadingOptional: {
       ...fieldText,
       label: 'subheading',
-      ...{
-        config: {
-          fieldName: 'subheading',
-        },
+      config: {
+        fieldName: 'subheading',
       },
     },
     descriptionOptional: {
       ...fieldTextArea,
       label: 'description',
-      ...{
-        config: {
-          fieldName: 'description',
-        },
+      config: {
+        fieldName: 'description',
       },
     },
     items: {
@@ -77,22 +105,16 @@ export const ParagraphCardGroup: Component = {
         heading: fieldText,
         description: fieldTextArea,
         image: fieldMediaExternal,
-        // type: fieldText,
       },
     },
-    action: fieldLink,
   },
+  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
   render: (props) => {
-    const { id, heading, subheading, description, cards } = resolve(props)
-    return (
-      <CardGroup
-        id={id}
-        key={id}
-        heading={heading}
-        subheading={subheading}
-        description={description}
-        cards={cards}
-      />
-    )
+    const cardGroup = parser.apply({
+      data: props,
+      target: 'ui',
+    }) as CardGroupProps
+
+    return <CardGroup {...cardGroup} />
   },
 }

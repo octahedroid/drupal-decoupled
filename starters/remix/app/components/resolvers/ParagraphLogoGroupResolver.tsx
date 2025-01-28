@@ -1,61 +1,106 @@
-import { FragmentOf, readFragment } from 'gql.tada'
 import { LogoGroup } from '~/components/ui'
 import {
-  LinkFragment,
-  ParagraphLogoGroupFragment,
-  ParagraphLogoFragment,
-} from '~/graphql/fragments'
-import { Component, fieldLink, fieldMediaExternal, fieldText } from '~/components/resolvers/types'
-import { resolveLink, resolveMediaImage } from '~/components/resolvers/helpers'
+  Component,
+  fieldLink,
+  fieldMediaExternal,
+  fieldText,
+} from '~/components/resolvers/types'
+import { Parser } from '~/components/resolvers/helpers/parser'
+import { LogoGroupProps } from '~/components/ui/LogoGroup/LogoGroup'
 
-const resolve = (paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>) => {
-  const { id, heading, items } = readFragment(
-    ParagraphLogoGroupFragment,
-    paragraph
-  )
-  const logos = items
-    ? items.map((item) => {
-        const {
-          id,
-          link,
-          image,
-        } = readFragment(
-          ParagraphLogoFragment,
-          item as FragmentOf<typeof ParagraphLogoFragment>
-        )
+const parser = new Parser()
 
-        return {
-          id,
-          image: {
-            ...resolveMediaImage(image),
-            className: 'h-12',
-          },
-          link: resolveLink(link)
-        }
-      })
-    : []
+parser
+  .with({
+    element: '/',
+    operations: [
+      { operation: 'rename', source: 'items', destination: 'logos' },
+    ],
+  })
+  .with({
+    element: '/logos[*].image',
+    preset: { preset: 'mediaImage', property: 'mediaImage' },
+  })
+  .with({
+    element: '/logos[*].image',
+    operations: [
+      { operation: 'add', path: 'className', value: 'h-12', type: 'string' },
+    ],
+  })
+  .with({
+    element: '/logos[*].link',
+    preset: { preset: 'link' },
+  })
 
-  return {
-    id,
-    heading,
-    logos,
-  }
-}
+const defaultProps = {
+  heading: "Trusted by the world's best companies",
+  logos: [
+    {
+      image: {
+        src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+        alt: 'Octahedroid',
+        className: 'h-12',
+      },
+      link: { href: 'https://octahedroid.com', internal: false },
+    },
+    {
+      image: {
+        src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+        alt: 'Composabase',
+        className: 'h-12',
+      },
+      link: { href: 'https://composabase.com', internal: false },
+    },
+    {
+      image: {
+        src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+        alt: 'Octahedroid',
+        className: 'h-12',
+      },
+      link: { href: 'https://octahedroid.com', internal: false },
+    },
+    {
+      image: {
+        src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+        alt: 'Composabase',
+      },
+      link: { href: 'https://composabase.com', internal: false },
+    },
+    {
+      image: {
+        src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+        alt: 'Octahedroid',
+      },
+      link: { href: 'https://octahedroid.com', internal: false },
+    },
+    {
+      image: {
+        src: 'https://shop.raceya.fit/wp-content/uploads/2020/11/logo-placeholder.jpg',
+        alt: 'Composabase',
+      },
+      link: { href: 'https://composabase.com', internal: false },
+    },
+  ],
+} as LogoGroupProps
 
 export const ParagraphLogoGroup: Component = {
   fields: {
     heading: fieldText,
     items: {
-      type: "array",
+      type: 'array',
       arrayFields: {
         link: fieldLink,
         image: fieldMediaExternal,
       },
     },
   },
+  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
   render: (props) => {
-    const { id, heading, logos } = resolve(props)
+    const logoGroup = parser.apply({
+      data: props,
+      target: 'ui',
+    }) as LogoGroupProps
 
-    return <LogoGroup id={id} key={id} heading={heading} logos={logos} />
+    return <LogoGroup {...logoGroup} />
   },
 }

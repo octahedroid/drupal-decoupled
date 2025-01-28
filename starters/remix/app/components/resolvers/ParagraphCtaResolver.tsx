@@ -1,4 +1,3 @@
-import { FragmentOf, readFragment } from 'gql.tada'
 import { CTA } from '~/components/ui'
 import {
   Component,
@@ -6,28 +5,20 @@ import {
   fieldTextArea,
   fieldLinks,
 } from '~/components/resolvers/types'
-import {
-  ParagraphCtaFragment,
-  LinkFragment,
-} from '~/graphql/fragments'
-import { resolveLink } from '~/components/resolvers/helpers'
+import { CTAProps } from '../ui/CTA/CTA'
 
-const resolve = (paragraph: FragmentOf<typeof ParagraphCtaFragment>) => {
-  const { id, heading, description, actions } = readFragment(
-    ParagraphCtaFragment,
-    paragraph
-  )
+import { Parser } from '~/components/resolvers/helpers/parser'
+const parser = new Parser()
 
-  return {
-    id,
-    heading,
-    description,
-    actions: actions
-      ? actions.map((action) =>
-          resolveLink(action)
-        )
-      : [],
-  }
+parser.with({
+  element: '/actions',
+  preset: { preset: 'link' },
+})
+
+const defaultProps = {
+  heading: 'Subscribe to our newsletter',
+  description: 'Stay up to date with our latest news and updates.',
+  actions: [{ text: 'Subscribe', href: '/subscribe', variant: 'default' }],
 }
 
 export const ParagraphCta: Component = {
@@ -36,17 +27,10 @@ export const ParagraphCta: Component = {
     description: fieldTextArea,
     actions: fieldLinks,
   },
-  render: (props: FragmentOf<typeof ParagraphCtaFragment>) => {
-    const { id, heading, description, actions } = resolve(props)
+  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
+  render: (props) => {
+    const cta = parser.apply({ data: props, target: 'ui' }) as CTAProps
 
-    return (
-      <CTA
-        id={id}
-        key={id}
-        heading={heading}
-        description={description}
-        actions={actions}
-      />
-    )
+    return <CTA {...cta} />
   },
 }

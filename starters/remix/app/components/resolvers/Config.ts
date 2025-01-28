@@ -1,4 +1,3 @@
-import { type Config } from '@measured/puck'
 import '@measured/puck/puck.css'
 import {
   ParagraphFaq,
@@ -10,6 +9,8 @@ import {
   ParagraphViewReference,
   ParagraphWebform,
 } from '~/components/resolvers'
+
+import { Config } from '~/components/resolvers/types'
 
 export const config: Config = {
   root: {

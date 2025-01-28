@@ -77,8 +77,7 @@ export const loader = async ({
     },
   })
 
-  const nodeRouteQuery = graphql(
-    `
+  const nodeRouteQuery = graphql(`
       query route($path: String!) {
         route(path: $path) {
           __typename

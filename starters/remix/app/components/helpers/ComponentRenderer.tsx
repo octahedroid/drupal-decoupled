@@ -9,7 +9,6 @@ export default function ComponentRenderer({
   data,
   environment,
 }: ComponentsProps) {
-
   // @todo: implement toolbar to enable editing
   if (environment === 'preview') {
     return <Editor data={data} />

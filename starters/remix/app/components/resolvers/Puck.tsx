@@ -1,27 +1,19 @@
-import type { Config } from '@measured/puck'
-import { Puck as PuckEditor, Render as PuckRender } from '@measured/puck'
+import { Data, Puck as PuckEditor, Render as PuckRender } from '@measured/puck'
 import '@measured/puck/puck.css'
 import { config } from '~/components/resolvers/Config'
-import { Component, Field } from '~/components/resolvers/types'
+import { DataToUpdate, Field, Config } from '~/components/resolvers/types'
 
-type DataToUpdate = {
-  [key: string]: [
-    {
-      originalFieldName: string
-      replaceFieldName: string
-    },
-  ]
-}
-
-// @todo: Remove this once PuckEditor is updated to handle this automatically or when when could
-//        pass the dataToUpdate to the transformProps function.
+// @todo: Remove this once PuckEditor can handle this automatically.
+//        This is a temporary solution to handle the renaming of fields in the data,
+//        so that the data can be saved correctly based on the core transformProps function.
 // data = transformProps(data, {
 //   ParagraphFaq: ({ descriptionOptional, ...props }) => ({ description: descriptionOptional, ...props }),
 // });
-function transformProps(data: any, config: Config) {
+
+function transformProps(data: Data, config: Config) {
   const dataToUpdate: DataToUpdate = {}
   Object.entries(config.components).forEach(([componentName, value]) => {
-    const { fields } = value as Component
+    const { fields } = value
     Object.entries(fields!).map(([key, value]) => {
       const { config } = value as Field
       if (config?.fieldName) {
@@ -35,7 +27,7 @@ function transformProps(data: any, config: Config) {
     })
   })
 
-  const content = data.content.map((component: any, key: number) => {
+  const content = data.content.map((component) => {
     const { type, props } = component
     if (type in dataToUpdate) {
       dataToUpdate[type as keyof typeof dataToUpdate].forEach(
@@ -58,8 +50,9 @@ function transformProps(data: any, config: Config) {
 }
 
 // @todo: Use a GraphQL mutation to save the data if possible
-const save = async (data: any) => {
+const save = async (data: Data) => {
   const transformedData = transformProps(data, config)
+  console.log('Saving data:', transformedData)
   const url = `http://drupal-decoupled.ddev.site/visual_editor/node/${data.root.props.id}/update`
   await fetch(url, {
     method: 'POST',
@@ -74,7 +67,7 @@ export function Render({ data }: { data: object }) {
 
 export function Editor({ data }: { data: object }) {
   return (
-    <div className="sticky top-0 z-50 bg-white dark:bg-gray-800">
+    <div>
       <PuckEditor config={config as Config} data={data} onPublish={save} />
     </div>
   )
