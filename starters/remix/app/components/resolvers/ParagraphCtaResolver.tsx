@@ -20,7 +20,7 @@ export const ParagraphCta: Component = {
     description: fieldTextArea,
     actions: fieldLinks,
   },
-  defaultProps: parser.apply({ data: CTA.defaultProps, target: 'data' }),
+  defaultProps: parser.apply({ data: CTA.defaults, target: 'data' }),
   render: (props) => {
     const cta = parser.apply({ data: props, target: 'ui' }) as CTAProps
 

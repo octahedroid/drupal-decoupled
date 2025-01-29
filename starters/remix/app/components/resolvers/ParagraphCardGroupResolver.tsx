@@ -63,7 +63,7 @@ export const ParagraphCardGroup: Component = {
       },
     },
   },
-  defaultProps: parser.apply({ data: CardGroup.defaultProps, target: 'data' }),
+  defaultProps: parser.apply({ data: CardGroup.defaults, target: 'data' }),
   render: (props) => {
     const cardGroup = parser.apply({
       data: props,

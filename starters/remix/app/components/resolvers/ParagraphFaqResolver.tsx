@@ -44,7 +44,7 @@ export const ParagraphFaq: Component = {
       },
     },
   },
-  defaultProps: parser.apply({ data: FAQ.defaultProps, target: 'data' }),
+  defaultProps: parser.apply({ data: FAQ.defaults, target: 'data' }),
   render: (props) => {
     const faq = parser.apply({ data: props, target: 'ui' }) as FAQProps
 

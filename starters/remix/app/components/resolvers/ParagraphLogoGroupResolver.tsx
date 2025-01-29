@@ -42,7 +42,7 @@ export const ParagraphLogoGroup: Component = {
       },
     },
   },
-  defaultProps: parser.apply({ data: LogoGroup.defaultProps, target: 'data' }),
+  defaultProps: parser.apply({ data: LogoGroup.defaults, target: 'data' }),
   render: (props) => {
     const logoGroup = parser.apply({
       data: props,

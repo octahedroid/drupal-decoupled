@@ -62,12 +62,12 @@ export const Hero = ({
   )
 }
 
-Hero.defaultProps = {
+Hero.defaults = {
   heading: 'Welcome to our Hero Section',
   description:
     'This is a default description. You can customize it to fit your needs.',
   image: {
-    src: '/placeholders/drupal-decoupled/landscape-large.png',
+    src: '/app/static/placeholders/doc-tahedroid/hero-landscape-large.png',
     alt: 'Default hero image',
   },
   actions: [

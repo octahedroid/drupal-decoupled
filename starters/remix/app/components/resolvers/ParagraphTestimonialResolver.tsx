@@ -21,7 +21,7 @@ export const ParagraphTestimonial: Component = {
     quote: fieldText,
     author: fieldAuthor,
   },
-  defaultProps: parser.apply({ data: Testimonial.defaultProps, target: 'data' }),
+  defaultProps: parser.apply({ data: Testimonial.defaults, target: 'data' }),
   render: (props) => {
     const testimonial = parser.apply({
       data: props,
