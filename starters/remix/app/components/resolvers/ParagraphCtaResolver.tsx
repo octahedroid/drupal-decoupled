@@ -6,7 +6,7 @@ import {
 } from '~/components/resolvers/types'
 import { CTA, type CTAProps } from '~/components/blocks'
 
-import { Parser } from '~/components/resolvers/helpers/parser'
+import { Parser } from '~/components/resolvers/Parser'
 const parser = new Parser()
 
 parser.with({

@@ -1,4 +1,4 @@
-import { immutableJSONPatch, JSONPatchOperation, JSONPatchOptions } from 'immutable-json-patch'
+import { immutableJSONPatch } from 'immutable-json-patch'
 import jmespath from 'jmespath'
 
 type ElementOperation = {
@@ -160,9 +160,9 @@ export class Parser {
   public presets: Record<string, PresetProps>;
   private element: string = '/';
   private preset: PresetTypes | null;
-  private hooks: JSONPatchOptions;
+  // private hooks: JSONPatchOptions;
 
-  private calculateDefaultValueFromType(type: ValueType): any {
+  private calculateDefaultValueFromType(type: ValueType): unknown {
     if (type === 'array') {
       return [];
     }
@@ -394,17 +394,17 @@ export class Parser {
       }
     } as const
 
-    this.hooks = {
-      before: (document: unknown, operation: JSONPatchOperation) => {
-        console.log('before operation', { document, operation })
-        // return document | undefined    
-      },
+    // this.hooks = {
+    //   before: (document: unknown, operation: JSONPatchOperation) => {
+    //     console.log('before operation', { document, operation })
+    //     // return document | undefined    
+    //   },
 
-      after: (document: unknown, operation: JSONPatchOperation, previousDocument: unknown) => {
-        console.log('after operation', { document, operation, previousDocument })
-        // return document | undefined
-      }
-    }
+    //   after: (document: unknown, operation: JSONPatchOperation, previousDocument: unknown) => {
+    //     console.log('after operation', { document, operation, previousDocument })
+    //     // return document | undefined
+    //   }
+    // }
   }
 
   private rename({ element, operation: { source, destination, provideInverseOperations = false } }: RenameProps): Operation {

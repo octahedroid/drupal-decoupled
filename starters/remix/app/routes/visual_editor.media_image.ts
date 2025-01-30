@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs } from "@remix-run/node"; // or cloudflare/deno
-import { json } from "@remix-run/node";
+import type { LoaderFunctionArgs } from "@remix-run/cloudflare"; // or cloudflare/deno
+import { json } from "@remix-run/cloudflare";
 import { graphql } from "gql.tada";
 import { MediaImageFragment } from "~/graphql/fragments";
 import { getClient } from '~/utils/client.server'

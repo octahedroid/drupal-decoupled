@@ -6,7 +6,7 @@ import {
   fieldTextArea,
   fieldViewReference,
 } from '~/components/resolvers/types'
-import { Parser } from '~/components/resolvers/helpers/parser'
+import { Parser } from '~/components/resolvers/Parser'
 
 const parser = new Parser()
 
@@ -192,7 +192,7 @@ export const ParagraphViewReference: Component = {
     } = viewReference
 
     if (view === 'blog' && display === 'teaser_featured' && cards.length > 0) {
-      const featured = cards[0] as any
+      const featured = cards.slice(0, 1)[0] as any
       const remainingCards = cards.splice(1)
 
       return (

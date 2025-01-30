@@ -23,13 +23,10 @@
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
-    "@react-formgen/json-schema": "^0.0.0-alpha.19",
     "@remix-run/cloudflare": "^2.8.1",
     "@remix-run/cloudflare-pages": "^2.8.1",
     "@remix-run/react": "^2.8.1",
     "@urql/core": "^4.2.3",
-    "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drupal-auth-client": "^0.4",
@@ -40,7 +37,6 @@
     "immutable-json-patch": "^6.0.1",
     "isbot": "^4.1.0",
     "jmespath": "^0.16.0",
-    "json-schema": "^0.4.0",
     "lucide-react": "^0.474.0",
     "miniflare": "^3.20231030.4",
     "react": "^18.2.0",
@@ -48,8 +44,7 @@
     "remix-flat-routes": "^0.6.5",
     "remix-utils": "^7.6.0",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vite-plugin-cjs-interop": "^2.1.6"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.12.14",

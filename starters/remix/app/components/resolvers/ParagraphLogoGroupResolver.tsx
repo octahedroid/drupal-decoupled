@@ -4,7 +4,7 @@ import {
   fieldMediaExternal,
   fieldText,
 } from '~/components/resolvers/types'
-import { Parser } from '~/components/resolvers/helpers/parser'
+import { Parser } from '~/components/resolvers/Parser'
 import { LogoGroup, type LogoGroupProps } from '~/components/blocks'
 
 const parser = new Parser()

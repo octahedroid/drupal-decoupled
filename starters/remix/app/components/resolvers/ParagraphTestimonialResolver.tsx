@@ -1,6 +1,6 @@
 import { Component, fieldAuthor, fieldText } from '~/components/resolvers/types'
 import { Testimonial, type TestimonialProps } from '~/components/blocks'
-import { Parser } from '~/components/resolvers/helpers/parser'
+import { Parser } from '~/components/resolvers/Parser'
 
 const parser = new Parser()
 
