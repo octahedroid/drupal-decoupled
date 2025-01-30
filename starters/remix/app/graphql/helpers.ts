@@ -1,10 +1,7 @@
 import { FragmentOf, readFragment } from 'gql.tada'
-import {
-  ImageFragment,
-  MediaImageFragment,
-  UserFragment,
-  LinkFragment,
-} from '~/graphql/fragments'
+import { ImageFragment, MediaImageFragment } from '~/graphql/fragments/media'
+import { LinkFragment } from '~/graphql/fragments/misc'
+import { UserFragment } from '~/graphql/fragments/user'
 
 // @todo: Import types from privitives
 type ImageProps = {
