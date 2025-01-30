@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { Article } from '~/components/blocks'
 import { NodeArticleFragment } from '~/graphql/fragments'
-import { resolveMediaImage, resolveUser } from '~/graphql/helpers'
+import { resolveMediaImage, resolveUser } from '~/components/resolvers/helpers'
 
 type NodeArticleComponentProps = {
   node: FragmentOf<typeof NodeArticleFragment>

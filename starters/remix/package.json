@@ -18,7 +18,7 @@
     "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore ."
   },
   "dependencies": {
-    "@measured/puck": "^0.18.0",
+    "@measured/puck": "^0.18.1",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-navigation-menu": "^1.2.0",

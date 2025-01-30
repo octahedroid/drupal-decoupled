@@ -1276,7 +1276,7 @@
   dependencies:
     "@types/mdx" "^2.0.0"
 
-"@measured/puck@^0.18.0":
+"@measured/puck@^0.18.1":
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/@measured/puck/-/puck-0.18.1.tgz#305af948094bec92d1265ccf4913c4f608789905"
   integrity sha512-y64RymC/J1mDdRWsx5YuxoQmmiL+s59vTZXtLHuAo7+dn6hzRMD45eh6C2E6GSRnHyCeGsosM85kcHw2j3BsPg==

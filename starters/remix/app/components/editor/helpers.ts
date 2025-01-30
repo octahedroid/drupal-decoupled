@@ -13,7 +13,7 @@ import { DataToUpdate, Field, Config } from '~/components/editor/types'
 // - mediaImage
 // - link
 // - webform
-// - other references
+// - other entity reference fields
 function transformProps(data: Data, config: Config) {
   const dataToUpdate: DataToUpdate = {}
   Object.entries(config.components).forEach(([componentName, value]) => {
