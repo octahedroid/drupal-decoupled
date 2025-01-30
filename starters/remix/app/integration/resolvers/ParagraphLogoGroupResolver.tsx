@@ -3,8 +3,8 @@ import {
   fieldLink,
   fieldMediaExternal,
   fieldText,
-} from '~/components/editor'
-import { Parser } from '~/components/resolvers/Parser'
+} from '~/integration/editor'
+import { Parser } from '~/integration/resolvers/Parser'
 import { LogoGroup, type LogoGroupProps } from '~/components/blocks'
 
 const parser = new Parser()

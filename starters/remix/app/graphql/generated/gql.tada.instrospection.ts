@@ -4832,18 +4832,6 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "form",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "heading",
             "type": {
               "kind": "NON_NULL",
@@ -4903,8 +4891,11 @@ const introspection = {
           {
             "name": "webform",
             "type": {
-              "kind": "OBJECT",
-              "name": "Webform"
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Webform"
+              }
             },
             "args": [],
             "isDeprecated": false

@@ -8,8 +8,8 @@ import {
   ParagraphLogoGroup,
   ParagraphViewReference,
   ParagraphWebform,
-} from '~/components/resolvers'
-import { Config } from '~/components/editor/types'
+} from '~/integration/resolvers'
+import { Config } from '~/integration/editor/types'
 
 export const config: Config = {
   root: {

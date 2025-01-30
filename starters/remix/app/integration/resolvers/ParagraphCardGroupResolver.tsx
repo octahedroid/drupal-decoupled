@@ -1,11 +1,11 @@
-import { Component } from '~/components/editor/types'
+import { Component } from '~/integration/editor/types'
 import {
   fieldMediaExternal,
   fieldText,
   fieldTextArea,
-} from '~/components/editor/fields'
+} from '~/integration/editor/fields'
 import { CardGroup, type CardGroupProps } from '~/components/blocks'
-import { Parser } from '~/components/resolvers/Parser'
+import { Parser } from '~/integration/resolvers/Parser'
 
 const parser = new Parser()
 

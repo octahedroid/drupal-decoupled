@@ -1,6 +1,6 @@
-import { type Component, fieldAuthor, fieldText } from '~/components/editor'
+import { type Component, fieldAuthor, fieldText } from '~/integration/editor'
 import { Testimonial, type TestimonialProps } from '~/components/blocks'
-import { Parser } from '~/components/resolvers/Parser'
+import { Parser } from '~/integration/resolvers/Parser'
 
 const parser = new Parser()
 

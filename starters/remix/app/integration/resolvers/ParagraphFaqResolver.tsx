@@ -3,9 +3,9 @@ import {
   fieldText,
   fieldTextArea,
   fieldRichText,
-} from '~/components/editor'
+} from '~/integration/editor'
 import { FAQ, type FAQProps } from '~/components/blocks'
-import { Parser } from '~/components/resolvers/Parser'
+import { Parser } from '~/integration/resolvers/Parser'
 
 const parser = new Parser()
 

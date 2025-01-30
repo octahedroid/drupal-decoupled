@@ -8,7 +8,7 @@ import {
 } from '@remix-run/react'
 import { LoaderFunctionArgs, json } from '@remix-run/cloudflare'
 
-import NavigationEvents from '~/components/helpers/NavigationEvents'
+import NavigationEvents from '~/integration/helpers/NavigationEvents'
 
 import './tailwind.css'
 import './preview.css'

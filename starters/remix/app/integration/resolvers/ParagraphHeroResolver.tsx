@@ -4,10 +4,10 @@ import {
   fieldTextArea,
   fieldMediaExternal,
   fieldLinks,
-} from '~/components/editor'
+} from '~/integration/editor'
 import { Hero, type HeroProps } from '~/components/blocks'
 
-import { Parser } from '~/components/resolvers/Parser'
+import { Parser } from '~/integration/resolvers/Parser'
 const parser = new Parser()
 
 parser

@@ -14,7 +14,6 @@ export const ParagraphWebformFragment = graphql(`
     heading
     subheadingOptional: subheading
     descriptionOptional: description
-    form
     webform  {
       id
       __typename

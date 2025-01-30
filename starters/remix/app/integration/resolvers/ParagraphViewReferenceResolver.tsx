@@ -5,8 +5,8 @@ import {
   fieldText,
   fieldTextArea,
   fieldViewReference,
-} from '~/components/editor'
-import { Parser } from '~/components/resolvers/Parser'
+} from '~/integration/editor'
+import { Parser } from '~/integration/resolvers/Parser'
 
 const parser = new Parser()
 
@@ -153,7 +153,7 @@ export const ParagraphViewReference: Component = {
       }
 
       const viewReference = (await fetch(
-        `/api/visual_editor/view_reference/${view}/${display}`
+        `/api/editor/view_reference/${view}/${display}`
       ).then((res) => res.json())) as ViewReferenceData
 
       return viewReference

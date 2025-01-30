@@ -1530,9 +1530,6 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
   """Description"""
   description: String
 
-  """Form"""
-  form: String!
-
   """Heading"""
   heading: String!
 
@@ -1546,7 +1543,7 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
   subheading: String
 
   """Webform"""
-  webform: Webform
+  webform: Webform!
 }
 
 """A webform."""

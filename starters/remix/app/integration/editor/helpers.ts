@@ -1,6 +1,6 @@
 import { Data } from '@measured/puck'
-import { config } from '~/components/editor/Config'
-import { DataToUpdate, Field, Config } from '~/components/editor/types'
+import { config } from '~/integration/editor/Config'
+import { DataToUpdate, Field, Config } from '~/integration/editor/types'
 
 // @todo: Remove this once PuckEditor can handle this automatically.
 //        This is a temporary solution to handle the renaming of fields in the data,
@@ -57,7 +57,7 @@ function transformProps(data: Data, config: Config) {
 export const postEditorData = async (data: Data) => {
   const transformedData = transformProps(data, config)
   console.log('Saving data:', transformedData)
-  const url = `http://drupal-decoupled.ddev.site/visual_editor/node/${data.root.props.id}/update`
+  const url = `http://drupal-decoupled.ddev.site/editor/node/${data.root.props.id}/update`
   await fetch(url, {
     method: 'POST',
     mode: 'no-cors',

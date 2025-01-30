@@ -12,6 +12,8 @@ export type DataToUpdate = {
 type FieldExtend = {
   config?: {
     fieldName?: string
+    // @todo: add drupal field types
+    // type: string 
   }
 }
 

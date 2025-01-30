@@ -1,4 +1,5 @@
-import { Field } from '~/components/editor/types'
+// @todo: move to drupal-decoupled package.
+import { Field } from '~/integration/editor/types'
 
 export const fieldText: Field = {
   type: 'text',
@@ -46,7 +47,7 @@ export const fieldLinks: Field = {
 export const fieldMediaExternal: Field = {
   type: 'external',
   fetchList: async () => {
-    return await fetch(`/api/visual_editor/media_image`).then((res) =>
+    return await fetch(`/api/editor/media_image`).then((res) =>
       res.json()
     )
   },

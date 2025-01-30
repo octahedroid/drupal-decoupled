@@ -3,8 +3,8 @@ import {
   fieldText,
   fieldTextArea,
   fieldWebform,
-} from '~/components/editor'
-import { Parser } from '~/components/resolvers/Parser'
+} from '~/integration/editor'
+import { Parser } from '~/integration/resolvers/Parser'
 
 const parser = new Parser()
 
@@ -88,7 +88,7 @@ export const ParagraphWebform: Component = {
       }
 
       const { elements } = (await fetch(
-        `/api/visual_editor/webform/${id}`
+        `/api/editor/webform/${id}`
       ).then((res) => res.json())) as Webform
 
       return {
