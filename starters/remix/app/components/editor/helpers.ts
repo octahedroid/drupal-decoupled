@@ -1,5 +1,4 @@
-import { Data, Puck as PuckEditor, Render as PuckRender } from '@measured/puck'
-import '@measured/puck/puck.css'
+import { Data } from '@measured/puck'
 import { config } from '~/components/editor/Config'
 import { DataToUpdate, Field, Config } from '~/components/editor/types'
 
@@ -14,7 +13,7 @@ import { DataToUpdate, Field, Config } from '~/components/editor/types'
 // - mediaImage
 // - link
 // - webform
-// - other references 
+// - other references
 function transformProps(data: Data, config: Config) {
   const dataToUpdate: DataToUpdate = {}
   Object.entries(config.components).forEach(([componentName, value]) => {
@@ -55,7 +54,7 @@ function transformProps(data: Data, config: Config) {
 }
 
 // @todo: Use a GraphQL mutation to save the data if possible
-const save = async (data: Data) => {
+export const postEditorData = async (data: Data) => {
   const transformedData = transformProps(data, config)
   console.log('Saving data:', transformedData)
   const url = `http://drupal-decoupled.ddev.site/visual_editor/node/${data.root.props.id}/update`
@@ -66,14 +65,3 @@ const save = async (data: Data) => {
   })
 }
 
-export function Render({ data }: { data: object }) {
-  return <PuckRender config={config as Config} data={data} />
-}
-
-export function Editor({ data }: { data: object }) {
-  return (
-    <div>
-      <PuckEditor config={config as Config} data={data} onPublish={save} />
-    </div>
-  )
-}
