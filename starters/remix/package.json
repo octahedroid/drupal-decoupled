@@ -18,6 +18,7 @@
     "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore ."
   },
   "dependencies": {
+    "@measured/puck": "^0.18.1",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-navigation-menu": "^1.2.0",
@@ -33,11 +34,14 @@
     "drupal-remix": "^0.4",
     "drupal-visual-editor": "^0.2",
     "gql.tada": "^1.8.7",
+    "immutable-json-patch": "^6.0.1",
     "isbot": "^4.1.0",
+    "jmespath": "^0.16.0",
     "lucide-react": "^0.474.0",
     "miniflare": "^3.20231030.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "remix-flat-routes": "^0.6.5",
     "remix-utils": "^7.6.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
@@ -45,6 +49,7 @@
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.12.14",
     "@cloudflare/workers-types": "^4.20230518.0",
+    "@types/jmespath": "^0.15.2",
     "@remix-run/dev": "^2.8.1",
     "@storybook/addon-essentials": "^8.5.1",
     "@storybook/addon-interactions": "^8.5.1",

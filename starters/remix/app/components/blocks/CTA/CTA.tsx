@@ -56,7 +56,7 @@ export const CTA = ({
   )
 }
 
-CTA.defaultProps = {
+CTA.defaults = {
   heading: 'Default CTA Heading',
   description: 'This is a default CTA description',
   actions: [

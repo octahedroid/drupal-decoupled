@@ -139,9 +139,9 @@ export const Header = ({
   )
 }
 
-Header.defaultProps = {
+Header.defaults = {
   logo: {
-    src: '/placeholders/icons/drupal-decoupled.png',
+    src: '/app/static/placeholders/icons/drupal-decoupled.png',
     alt: 'Company Logo',
   },
   navItems: [

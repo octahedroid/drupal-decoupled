@@ -1,15 +1,15 @@
 """The schema's entry-point for queries."""
 type Query {
-  """Load a MediaImage entity by id"""
-  mediaImage(
-    """The id of the MediaImage to load."""
+  """Load a TermTags entity by id"""
+  termTags(
+    """The id of the TermTags to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): MediaImage
+  ): TermTags
 
   """Load a NodeArticle entity by id"""
   nodeArticle(
@@ -33,16 +33,16 @@ type Query {
     revision: ID
   ): NodePage
 
-  """Load a TermTags entity by id"""
-  termTags(
-    """The id of the TermTags to load."""
+  """Load a MediaImage entity by id"""
+  mediaImage(
+    """The id of the MediaImage to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): TermTags
+  ): MediaImage
 
   """Load a ParagraphAuthor entity by id"""
   paragraphAuthor(
@@ -174,8 +174,8 @@ type Query {
   """Schema information."""
   info: SchemaInformation!
 
-  """List of all MediaImage on the platform."""
-  mediaImages(
+  """List of all TermTags on the platform."""
+  termTagsItems(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -193,7 +193,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): MediaImageConnection!
+  ): TermTagsConnection!
 
   """List of all NodeArticle on the platform."""
   nodeArticles(
@@ -237,8 +237,8 @@ type Query {
     sortKey: ConnectionSortKeys
   ): NodePageConnection!
 
-  """List of all TermTags on the platform."""
-  termTagsItems(
+  """List of all MediaImage on the platform."""
+  mediaImages(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -256,7 +256,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): TermTagsConnection!
+  ): MediaImageConnection!
 
   """List of all ParagraphAuthor on the platform."""
   paragraphAuthors(
@@ -489,58 +489,34 @@ type Query {
     path: String!
   ): RouteUnion
 
-  """Query for view blog display blog_featured."""
+  """Query for view blog display teaser."""
+  viewBlogTeaser: ViewBlogTeaserResult
+
+  """Query for view blog display teaser_featured."""
   viewBlogTeaserFeatured(
     """The page number to display."""
     page: Int = 0
   ): ViewBlogTeaserFeaturedResult
 
-  """Query for view blog display blog_teaser."""
-  viewBlogTeaser: ViewBlogTeaserResult
+  """Load a webform."""
+  webform(
+    """Webform ID."""
+    id: ID!
+  ): Webform
 }
 
-"""Use local images for reusable media."""
-type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
+"""Use tags to group articles on similar topics into categories."""
+type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
-  """The time the media item was last edited."""
+  """The time that the term was last edited."""
   changed: DateTime!
 
-  """The time the media item was created."""
-  created: DateTime!
+  """Description"""
+  description: Text!
 
-  """Language"""
-  langcode: Language!
-
-  """Image"""
-  mediaImage: Image!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-}
-
-"""Entity type media."""
-interface MediaInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time the media item was last edited."""
-  changed: DateTime!
-
-  """The time the media item was created."""
-  created: DateTime!
-
-  """Language"""
+  """The term language code."""
   langcode: Language!
 
   """The computed meta tags for the entity."""
@@ -549,11 +525,50 @@ interface MediaInterface {
   """Name"""
   name: String!
 
+  """The parents of this term."""
+  parent: TermUnion
+
   """URL alias"""
   path: String!
 
   """Published"""
   status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
+}
+
+"""Entity type taxonomy_term."""
+interface TermInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the term was last edited."""
+  changed: DateTime!
+
+  """Description"""
+  description: Text!
+
+  """The term language code."""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """The parents of this term."""
+  parent: TermUnion
+
+  """URL alias"""
+  path: String!
+
+  """Published"""
+  status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
 }
 
 """A DateTime object."""
@@ -586,6 +601,27 @@ scalar UtcOffset
 
 """RFC 3339 compliant time string."""
 scalar Time
+
+"""A processed text format defined by the CMS."""
+type Text {
+  """The raw text value."""
+  value: String
+
+  """The processed text value."""
+  processed: Html
+
+  """The text format used to process the text value."""
+  format: String
+}
+
+"""
+An HTML string
+
+Content of this type is deemed safe by the server for raw output given the
+origin and the context of its usage. The HTML can still contain scripts or style
+tags where the creating user had permission to input these.
+"""
+scalar Html
 
 """A language definition provided by the CMS."""
 type Language {
@@ -700,6 +736,9 @@ type MetaTagScriptAttributes {
   integrity: String
 }
 
+"""Entity type taxonomy_term."""
+union TermUnion = TermTags
+
 """This entity has meta tags enabled."""
 interface MetaTagInterface {
   """The computed meta tags for the entity."""
@@ -709,47 +748,6 @@ interface MetaTagInterface {
 """This entity is accessible over an Edge connection."""
 interface EdgeNode {
   id: ID!
-}
-
-"""A image object to represent an managed file."""
-type Image {
-  """The URL of the image."""
-  url: String!
-
-  """The width of the image."""
-  width: Int!
-
-  """The height of the image."""
-  height: Int!
-
-  """The alt text of the image."""
-  alt: String
-
-  """The title text of the image."""
-  title: String
-
-  """The size of the image in bytes."""
-  size: Int!
-
-  """The mime type of the image."""
-  mime: String
-
-  """Image variations control different sizes and formats for images."""
-  variations(styles: [ImageStyleAvailable]): [ImageStyleDerivative!]
-}
-
-"""List of image styles available to use."""
-enum ImageStyleAvailable {
-  """No image styles have been enabled."""
-  UNDEFINED
-}
-
-"""ImageStyle derivatives for an Image."""
-type ImageStyleDerivative {
-  name: String!
-  url: String!
-  width: Int!
-  height: Int!
 }
 
 """
@@ -923,6 +921,104 @@ enum UserStatus {
 """Entity type media."""
 union MediaUnion = MediaImage
 
+"""Use local images for reusable media."""
+type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time the media item was last edited."""
+  changed: DateTime!
+
+  """The time the media item was created."""
+  created: DateTime!
+
+  """Language"""
+  langcode: Language!
+
+  """Image"""
+  mediaImage: Image!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """URL alias"""
+  path: String!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""Entity type media."""
+interface MediaInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time the media item was last edited."""
+  changed: DateTime!
+
+  """The time the media item was created."""
+  created: DateTime!
+
+  """Language"""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """URL alias"""
+  path: String!
+
+  """Published"""
+  status: Boolean!
+}
+
+"""A image object to represent an managed file."""
+type Image {
+  """The URL of the image."""
+  url: String!
+
+  """The width of the image."""
+  width: Int!
+
+  """The height of the image."""
+  height: Int!
+
+  """The alt text of the image."""
+  alt: String
+
+  """The title text of the image."""
+  title: String
+
+  """The size of the image in bytes."""
+  size: Int!
+
+  """The mime type of the image."""
+  mime: String
+
+  """Image variations control different sizes and formats for images."""
+  variations(styles: [ImageStyleAvailable]): [ImageStyleDerivative!]
+}
+
+"""List of image styles available to use."""
+enum ImageStyleAvailable {
+  """No image styles have been enabled."""
+  UNDEFINED
+}
+
+"""ImageStyle derivatives for an Image."""
+type ImageStyleDerivative {
+  name: String!
+  url: String!
+  width: Int!
+  height: Int!
+}
+
 """A processed text format with summary defined by the CMS."""
 type TextSummary {
   """The raw text value."""
@@ -936,96 +1032,6 @@ type TextSummary {
 
   """The processed text summary."""
   summary: Html
-}
-
-"""
-An HTML string
-
-Content of this type is deemed safe by the server for raw output given the
-origin and the context of its usage. The HTML can still contain scripts or style
-tags where the creating user had permission to input these.
-"""
-scalar Html
-
-"""Entity type taxonomy_term."""
-union TermUnion = TermTags
-
-"""Use tags to group articles on similar topics into categories."""
-type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the term was last edited."""
-  changed: DateTime!
-
-  """Description"""
-  description: Text!
-
-  """The term language code."""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """The parents of this term."""
-  parent: TermUnion
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
-}
-
-"""Entity type taxonomy_term."""
-interface TermInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the term was last edited."""
-  changed: DateTime!
-
-  """Description"""
-  description: Text!
-
-  """The term language code."""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """The parents of this term."""
-  parent: TermUnion
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
-}
-
-"""A processed text format defined by the CMS."""
-type Text {
-  """The raw text value."""
-  value: String
-
-  """The processed text value."""
-  processed: Html
-
-  """The text format used to process the text value."""
-  format: String
 }
 
 """
@@ -1415,10 +1421,10 @@ enum SortDirection {
 }
 
 """All available view result types."""
-union ViewResultUnion = ViewBlogTeaserFeaturedResult | ViewBlogTeaserResult
+union ViewResultUnion = ViewBlogTeaserResult | ViewBlogTeaserFeaturedResult
 
-"""Result for view blog display blog_featured."""
-type ViewBlogTeaserFeaturedResult implements View {
+"""Result for view blog display teaser."""
+type ViewBlogTeaserResult implements View {
   """The ID of the view."""
   id: ID!
 
@@ -1486,8 +1492,8 @@ type ViewPageInfo {
 """Entity type node."""
 union NodeUnion = NodeArticle | NodePage
 
-"""Result for view blog display blog_teaser."""
-type ViewBlogTeaserResult implements View {
+"""Result for view blog display teaser_featured."""
+type ViewBlogTeaserFeaturedResult implements View {
   """The ID of the view."""
   id: ID!
 
@@ -1524,9 +1530,6 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
   """Description"""
   description: String
 
-  """Form"""
-  form: String!
-
   """Heading"""
   heading: String!
 
@@ -1538,6 +1541,50 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """Webform"""
+  webform: Webform!
+}
+
+"""A webform."""
+type Webform {
+  id: String
+  label: String
+  description: String
+  elements: [WebformElement]
+}
+
+"""A webform element."""
+type WebformElement {
+  admin_title: String
+  id: String
+  options: [WebformElementOption]
+  states: [WebformElementState]
+  title: String
+  type: String
+  webform_children: [String]
+  webform_composite: Boolean
+  webform_depth: Int
+  webform_id: String
+  webform_key: String
+  webform_multiple: Boolean
+  webform_parent_flexbox: String
+  webform_parents: [String]
+  webform_plugin_id: String
+  webform: String
+}
+
+"""A webform element option."""
+type WebformElementOption {
+  id: String
+  value: String
+}
+
+"""A webform element state."""
+type WebformElementState {
+  condition: String
+  element: String
+  trigger: String
 }
 
 """List of menus available to load."""
@@ -1641,7 +1688,7 @@ interface Route {
 }
 
 """A list of possible entities that can be returned by URL."""
-union RouteEntityUnion = MediaImage | NodeArticle | NodePage | TermTags
+union RouteEntityUnion = TermTags | NodeArticle | NodePage | MediaImage
 
 """Route outside of this website."""
 type RouteExternal implements Route {
@@ -1676,7 +1723,16 @@ type SchemaInformation {
   version: String
 
   """List of fragments available."""
-  fragments: [SchemaFragment!]!
+  fragments(
+    """The entity type to filter fragments for."""
+    entity: String
+
+    """The bundle type to filter fragments for."""
+    bundle: String
+
+    """Include dependencies in the result."""
+    withDependencies: Boolean
+  ): [SchemaFragment!]!
 }
 
 """A fragment representing a type within the schema."""
@@ -1692,6 +1748,15 @@ type SchemaFragment {
 
   """The fragment content."""
   content: String
+
+  """The entity type of the fragment."""
+  entity: String
+
+  """The bundle type of the fragment."""
+  bundle: String
+
+  """The list of fragments this fragment depends on."""
+  dependencies: [String]
 }
 
 """A cursor for use in pagination."""
@@ -1718,10 +1783,10 @@ enum ConnectionSortKeys {
   WEIGHT
 }
 
-"""A paginated set of results for MediaImage."""
-type MediaImageConnection implements Connection {
-  edges: [MediaImageEdge!]!
-  nodes: [MediaImage!]!
+"""A paginated set of results for TermTags."""
+type TermTagsConnection implements Connection {
+  edges: [TermTagsEdge!]!
+  nodes: [TermTags!]!
   pageInfo: ConnectionPageInfo!
 }
 
@@ -1763,10 +1828,10 @@ type ConnectionPageInfo {
   endCursor: Cursor
 }
 
-"""Edge for MediaImage."""
-type MediaImageEdge implements Edge {
+"""Edge for TermTags."""
+type TermTagsEdge implements Edge {
   cursor: Cursor!
-  node: MediaImage!
+  node: TermTags!
 }
 
 """A paginated set of results for NodeArticle."""
@@ -1795,17 +1860,17 @@ type NodePageEdge implements Edge {
   node: NodePage!
 }
 
-"""A paginated set of results for TermTags."""
-type TermTagsConnection implements Connection {
-  edges: [TermTagsEdge!]!
-  nodes: [TermTags!]!
+"""A paginated set of results for MediaImage."""
+type MediaImageConnection implements Connection {
+  edges: [MediaImageEdge!]!
+  nodes: [MediaImage!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for TermTags."""
-type TermTagsEdge implements Edge {
+"""Edge for MediaImage."""
+type MediaImageEdge implements Edge {
   cursor: Cursor!
-  node: TermTags!
+  node: MediaImage!
 }
 
 """A paginated set of results for ParagraphAuthor."""
@@ -1942,6 +2007,36 @@ type UserEdge implements Edge {
 type Mutation {
   """Placeholder for mutation extension."""
   _: Boolean!
+
+  """Add a webform submission."""
+  submitWebform(
+    """The webform ID."""
+    id: String!
+
+    """Webform submission data."""
+    data: [KeyValueInput]
+  ): WebformSubmission
+}
+
+"""A webform submission."""
+type WebformSubmission {
+  confirmation: WebformConfirmation
+  webform: Webform
+}
+
+"""A webform confirmation."""
+type WebformConfirmation {
+  confirmation_type: String
+  confirmation_url: String
+  confirmation_title: String
+  confirmation_message: String
+  confirmation_attributes: [String]
+  confirmation_back: Boolean
+  confirmation_back_label: String
+  confirmation_back_attributes: [String]
+  confirmation_exclude_query: Boolean
+  confirmation_exclude_token: Boolean
+  confirmation_update: Boolean
 }
 
 """The schema's entry-point for subscriptions."""
@@ -2057,4 +2152,25 @@ type ViewReference {
   The name of the query used to fetch the data, if the view is a GraphQL display.
   """
   query: String
+}
+
+"""Entity type webform."""
+interface WebformInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+  changed: String!
+  created: String!
+  langcode: String!
+}
+
+"""Entity type webform."""
+union WebformUnion = WebformWebform
+
+"""Entity type webform."""
+type WebformWebform implements WebformInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+  changed: String!
+  created: String!
+  langcode: String!
 }
