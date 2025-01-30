@@ -1,11 +1,33 @@
 import { FragmentOf, readFragment } from 'gql.tada'
-import { ImageProps, UserProps, ActionsProps } from '~/components/ui/types'
 import {
   ImageFragment,
   MediaImageFragment,
   UserFragment,
   LinkFragment,
 } from '~/graphql/fragments'
+
+// @todo: Import types from privitives
+type ImageProps = {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  loading?: 'lazy' | 'eager'
+}
+
+type UserProps = {
+  name: string
+  avatar: {
+    src?: string
+    name: string
+  }
+}
+
+type ActionsProps = {
+  href: string | null
+  internal?: boolean
+  text?: string | null
+}
 
 export const resolveMediaImage = (
   media: FragmentOf<typeof MediaImageFragment>

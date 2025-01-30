@@ -9,8 +9,7 @@ import {
   ParagraphViewReference,
   ParagraphWebform,
 } from '~/components/resolvers'
-
-import { Config } from '~/components/resolvers/types'
+import { Config } from '~/components/editor/types'
 
 export const config: Config = {
   root: {

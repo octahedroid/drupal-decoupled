@@ -1,11 +1,10 @@
 import {
-  Component,
+  type Component,
   fieldText,
   fieldTextArea,
   fieldLinks,
-} from '~/components/resolvers/types'
+} from '~/components/editor'
 import { CTA, type CTAProps } from '~/components/blocks'
-
 import { Parser } from '~/components/resolvers/Parser'
 const parser = new Parser()
 

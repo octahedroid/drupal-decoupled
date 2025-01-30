@@ -1,9 +1,9 @@
+import { Component } from '~/components/editor/types'
 import {
-  Component,
   fieldMediaExternal,
   fieldText,
   fieldTextArea,
-} from '~/components/resolvers/types'
+} from '~/components/editor/fields'
 import { CardGroup, type CardGroupProps } from '~/components/blocks'
 import { Parser } from '~/components/resolvers/Parser'
 

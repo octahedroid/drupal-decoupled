@@ -1,30 +1,4 @@
-import {
-  Config as PuckConfig,
-  Field as PuckField,
-} from '@measured/puck'
-
-export type DataToUpdate = {
-  [key: string]: [
-    {
-      originalFieldName: string
-      replaceFieldName: string
-    },
-  ]
-}
-
-type FieldExtend = {
-  config?: {
-    fieldName?: string
-  }
-}
-
-export type Field = PuckField & FieldExtend
-
-export type Config = Omit<PuckConfig, 'fields'> & { fields?: Record<string, Field> }
-
-export type Component = Omit<Pick<Config, 'components'>['components'][string], 'fields'> & {
-  fields?: Record<string, Field>
-}
+import { Field } from '~/components/editor/types'
 
 export const fieldText: Field = {
   type: 'text',
@@ -37,7 +11,7 @@ export const fieldTextArea: Field = {
 export const fieldRichText: Field = {
   type: 'object',
   objectFields: {
-    value: { type: 'textarea'},
+    value: { type: 'textarea' },
     // @todo: Add format field "basic_html" | "full_html".
   },
 }
@@ -45,7 +19,7 @@ export const fieldRichText: Field = {
 export const fieldWebform: Field = {
   type: 'object',
   objectFields: {
-    id: { 
+    id: {
       type: 'select',
       options: [
         { value: 'none', label: 'Select Webform' },
@@ -59,7 +33,7 @@ export const fieldWebform: Field = {
 export const fieldLink: Field = {
   type: 'object',
   objectFields: {
-    title: { type: 'text'},
+    title: { type: 'text' },
     url: { type: 'text' },
   },
 }
@@ -72,7 +46,9 @@ export const fieldLinks: Field = {
 export const fieldMediaExternal: Field = {
   type: 'external',
   fetchList: async () => {
-    return await fetch(`/visual_editor/media_image`).then((res) => res.json())
+    return await fetch(`/api/visual_editor/media_image`).then((res) =>
+      res.json()
+    )
   },
   // @ts-expect-error getItemSummary can return React elements.
   getItemSummary: (item) => {

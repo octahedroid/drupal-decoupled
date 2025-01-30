@@ -1,11 +1,11 @@
 import { CardGroup, Hero } from '~/components/blocks'
 import {
-  Component,
+  type Component,
   fieldLink,
   fieldText,
   fieldTextArea,
   fieldViewReference,
-} from '~/components/resolvers/types'
+} from '~/components/editor'
 import { Parser } from '~/components/resolvers/Parser'
 
 const parser = new Parser()
@@ -153,7 +153,7 @@ export const ParagraphViewReference: Component = {
       }
 
       const viewReference = (await fetch(
-        `/visual_editor/viewReference/${view}/${display}`
+        `/api/visual_editor/view_reference/${view}/${display}`
       ).then((res) => res.json())) as ViewReferenceData
 
       return viewReference

@@ -1,9 +1,9 @@
 import {
-  Component,
+  type Component,
   fieldLink,
   fieldMediaExternal,
   fieldText,
-} from '~/components/resolvers/types'
+} from '~/components/editor'
 import { Parser } from '~/components/resolvers/Parser'
 import { LogoGroup, type LogoGroupProps } from '~/components/blocks'
 

@@ -1,4 +1,4 @@
-import { Editor, Render } from '~/components/resolvers/Puck'
+import { Editor, Render } from '~/components/editor'
 
 interface ComponentsProps {
   data: object

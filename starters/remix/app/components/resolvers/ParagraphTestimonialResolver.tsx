@@ -1,4 +1,4 @@
-import { Component, fieldAuthor, fieldText } from '~/components/resolvers/types'
+import { type Component, fieldAuthor, fieldText } from '~/components/editor'
 import { Testimonial, type TestimonialProps } from '~/components/blocks'
 import { Parser } from '~/components/resolvers/Parser'
 

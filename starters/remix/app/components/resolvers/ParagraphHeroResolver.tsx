@@ -1,10 +1,10 @@
 import {
-  Component,
+  type Component,
   fieldText,
   fieldTextArea,
   fieldMediaExternal,
   fieldLinks,
-} from '~/components/resolvers/types'
+} from '~/components/editor'
 import { Hero, type HeroProps } from '~/components/blocks'
 
 import { Parser } from '~/components/resolvers/Parser'

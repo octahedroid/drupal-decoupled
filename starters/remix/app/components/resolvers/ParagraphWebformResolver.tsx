@@ -1,9 +1,9 @@
 import {
-  Component,
+  type Component,
   fieldText,
   fieldTextArea,
   fieldWebform,
-} from '~/components/resolvers/types'
+} from '~/components/editor'
 import { Parser } from '~/components/resolvers/Parser'
 
 const parser = new Parser()
@@ -87,9 +87,9 @@ export const ParagraphWebform: Component = {
         }
       }
 
-      const { elements } = (await fetch(`/visual_editor/webform/${id}`).then(
-        (res) => res.json()
-      )) as Webform
+      const { elements } = (await fetch(
+        `/api/visual_editor/webform/${id}`
+      ).then((res) => res.json())) as Webform
 
       return {
         id: id,

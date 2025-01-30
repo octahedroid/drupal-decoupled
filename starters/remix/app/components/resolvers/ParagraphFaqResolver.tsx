@@ -1,9 +1,9 @@
 import {
-  Component,
+  type Component,
   fieldText,
   fieldTextArea,
   fieldRichText,
-} from '~/components/resolvers/types'
+} from '~/components/editor'
 import { FAQ, type FAQProps } from '~/components/blocks'
 import { Parser } from '~/components/resolvers/Parser'
 

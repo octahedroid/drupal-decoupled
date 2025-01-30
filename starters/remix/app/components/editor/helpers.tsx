@@ -1,7 +1,7 @@
 import { Data, Puck as PuckEditor, Render as PuckRender } from '@measured/puck'
 import '@measured/puck/puck.css'
-import { config } from '~/components/resolvers/Config'
-import { DataToUpdate, Field, Config } from '~/components/resolvers/types'
+import { config } from '~/components/editor/Config'
+import { DataToUpdate, Field, Config } from '~/components/editor/types'
 
 // @todo: Remove this once PuckEditor can handle this automatically.
 //        This is a temporary solution to handle the renaming of fields in the data,
@@ -10,6 +10,11 @@ import { DataToUpdate, Field, Config } from '~/components/resolvers/types'
 //   ParagraphFaq: ({ descriptionOptional, ...props }) => ({ description: descriptionOptional, ...props }),
 // });
 
+// @todo: validate fields based on field config and data
+// - mediaImage
+// - link
+// - webform
+// - other references 
 function transformProps(data: Data, config: Config) {
   const dataToUpdate: DataToUpdate = {}
   Object.entries(config.components).forEach(([componentName, value]) => {
