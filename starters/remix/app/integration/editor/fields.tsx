@@ -1,4 +1,3 @@
-// @todo: move to drupal-decoupled/editor package.
 import type { Field } from 'drupal-decoupled/editor'
 
 export const fieldText: Field = {
@@ -35,6 +34,7 @@ export const fieldWebform: Field = {
   objectFields: {
     id: {
       type: 'select',
+      // @todo: Fetch and load webforms from Drupal.
       options: [
         { value: 'none', label: 'Select Webform' },
         { value: 'contact_form', label: 'Contact' },
@@ -108,6 +108,7 @@ export const fieldViewReference: Field = {
   objectFields: {
     view: {
       type: 'select',
+      // @todo: Fetch and load views from Drupal.
       options: [
         { value: 'none', label: 'Select View' },
         { value: 'blog', label: 'Blog' },
@@ -115,6 +116,7 @@ export const fieldViewReference: Field = {
     },
     display: {
       type: 'select',
+      // @todo: Fetch and load view-displays from Drupal.
       options: [
         { value: 'none', label: 'Select Display' },
         { value: 'teaser', label: 'Blog Teaser' },
