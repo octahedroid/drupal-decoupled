@@ -9,7 +9,8 @@ export const publishData = async (data: Data) => {
     return
   }
 
-  const url = `http://drupal-decoupled-broken.ddev.site/visual_editor/node/${data.root.props.id}/update`
+  // @todo: use DRUPAL_GRAPHQL_URI instead of hardcoding the URL
+  const url = `http://drupal-decoupled.ddev.site/visual_editor/node/${data.root.props.id}/update`
   await fetch(url, {
     method: 'POST',
     mode: 'no-cors',
