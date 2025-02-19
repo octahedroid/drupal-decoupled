@@ -1,8 +1,9 @@
-import { immutableJSONPatch } from 'immutable-json-patch'
+import { immutableJSONPatch, JSONPatchOperation } from 'immutable-json-patch'
 import jmespath from 'jmespath'
 
 type ElementOperation = {
   element: string;
+  skipOnNull?: boolean;
 }
 
 type MoveOperation = ElementOperation & {
@@ -32,12 +33,13 @@ type CopyOperation = ElementOperation & {
   path: string
 };
 
-type ProvideInverseOperations = {
+type InverseOperationsBase = {
   provideInverseOperations?: boolean;
+  inverseOperations?: PresetOperation[];
 }
 
-type ParserOperationBase = ProvideInverseOperations & {
-  skipIfEmpty?: boolean;
+type ParserOperationBase = InverseOperationsBase & {
+  skipOnNull?: boolean;
   operation: WithOperationType;
 }
 
@@ -75,7 +77,7 @@ type RemoveProps = {
 }
 
 type Copy = ParserOperationBase & {
-  operation: 'copy'; // @todo: remove this
+  operation: 'copy';
   source: string;
   destination: string;
 }
@@ -109,13 +111,13 @@ type AddProps = {
 
 type PresetTypes = 'mediaImage' | 'richText' | 'link';
 
-type Preset = {
-  skipIfEmpty?: boolean;
+export type Preset = {
+  skipOnNull?: boolean;
   preset: PresetTypes;
   property?: string;
 }
 
-type Operation = ProvideInverseOperations & (
+type Operation = InverseOperationsBase & (
   | MoveOperation
   | RemoveOperation
   | AddOperation
@@ -124,7 +126,7 @@ type Operation = ProvideInverseOperations & (
 
 type ApplyProps = {
   data: object;
-  target: 'data' | 'ui';
+  mode: 'default' | 'inverse';
 }
 
 type WithOperationType = 'move' | 'remove' | 'rename' | 'hoist' | 'add' | 'copy';
@@ -135,32 +137,30 @@ type WithOperation = ParserOperation & {
   operation: WithOperationType;
 };
 
-type WithOperationProps = {
+export type WithOperationProps = {
   element: string;
   operations: WithOperation[];
+  inverseOperations?: WithOperation[];
 };
 
-type WithPresetProps = {
+export type WithPresetProps = {
   element: string;
   preset: Preset;
 };
 
+type PresetOperation = {
+  element: string;
+  operations: WithOperation[];
+}
+
 type PresetProps = {
-  operations: {
-    element?: WithOperation[] | [];
-    property?: WithOperation[] | [];
-  };
-  inverseOperations?: {
-    element?: WithOperation[] | [];
-    property?: WithOperation[] | [];
-  }
+  operations: PresetOperation[];
+  inverseOperations?: PresetOperation[];
 }
 export class Parser {
   private operations: Operation[] = [];
   public presets: Record<string, PresetProps>;
   private element: string = '/';
-  private preset: PresetTypes | null;
-  // private hooks: JSONPatchOptions;
 
   private calculateDefaultValueFromType(type: ValueType): unknown {
     if (type === 'array') {
@@ -230,13 +230,19 @@ export class Parser {
       .slice()
       .reverse()
       .forEach(operation => {
+        // @todo: confirm if we need to validate if the operation is a preset using "preset"
+        if (operation.provideInverseOperations) {
+          const inverseOperations = operation.inverseOperations;
 
-        if (operation.provideInverseOperations && this.preset) {
-          const preset = this.preset;
-          const elementInverseOperations = this.presets[preset].inverseOperations?.element || [];
+          if (!inverseOperations || inverseOperations.length === 0) {
+            return;
+          }
 
-          elementInverseOperations.forEach(inverseOperation => {
-            operations.push(this.calculateOperation(operation.element, inverseOperation));
+          inverseOperations.forEach((inverseOperation) => {
+            inverseOperation.operations.forEach((inverseOperationElement) => {
+              operations.push(this.calculateOperation(operation.element, inverseOperationElement));
+            });
+
           });
 
           return;
@@ -285,6 +291,24 @@ export class Parser {
     let currentElement = patches[0].element;
     let currentOperations: Operation[] = [];
     let updatedData = data;
+
+    const options = {
+      before: (document: unknown, operation: JSONPatchOperation) => {
+        // @ts-expect-error expect error.
+        const { element } = operation;
+        // @ts-expect-error expect error.
+        if (operation.skipOnNull) {
+          const path = element.substring(1)
+          const isValid = jmespath.search(document, path) !== null;
+          if (!isValid) {
+            operation = { op: 'add', path: element, value: undefined };
+          }
+        }
+
+        return { document, operation };
+      }
+    }
+
     patches.forEach((operation) => {
       if (operation.element !== currentElement) {
         updatedData = immutableJSONPatch(updatedData, currentOperations)
@@ -348,70 +372,88 @@ export class Parser {
       return data;
     }
 
-    return immutableJSONPatch(updatedData, currentOperations);
+    return immutableJSONPatch(updatedData, currentOperations, options);
   }
 
   constructor() {
     this.operations = [];
     this.element = '/';
-    this.preset = null;
     this.presets = {
       mediaImage: {
-        operations: {
-          property: [
-            { operation: 'rename', source: 'url', destination: 'src' },
-            { operation: 'hoist', property: 'src' },
-            { operation: 'hoist', property: 'alt' },
-            { operation: 'hoist', property: 'height' },
-            { operation: 'hoist', property: 'width' },
-          ],
-          element: [
-            { operation: 'remove', path: 'mediaImage', type: 'object' },
-          ]
-        },
+        operations: [
+          {
+            element: '{element}.{property}',
+            operations: [
+              { operation: 'rename', source: 'url', destination: 'src' },
+              { operation: 'hoist', property: 'src' },
+              { operation: 'hoist', property: 'alt' },
+              { operation: 'hoist', property: 'height' },
+              { operation: 'hoist', property: 'width' },
+            ]
+          },
+          {
+            element: '{element}',
+            operations: [
+              // @todo: rename path: 'mediaImage' to path: "{property}"
+              { operation: 'remove', path: 'mediaImage', type: 'object' },
+            ]
+          },
+        ],
       },
       link: {
-        operations: {
-          element: [
-            { operation: 'rename', source: 'url', destination: 'href' },
-            { operation: 'rename', source: 'title', destination: 'text' },
-          ],
-        },
+        operations: [
+          {
+            element: '{element}',
+            operations: [
+              { operation: 'rename', source: 'url', destination: 'href' },
+              { operation: 'rename', source: 'title', destination: 'text' },
+            ]
+          }
+        ]
       },
       richText: {
-        operations: {
-          element: [
-            { operation: 'rename', source: 'answer.value', destination: 'answer', provideInverseOperations: true },
-          ],
-        },
-        inverseOperations: {
-          element: [
-            { operation: 'rename', source: 'answer', destination: 'answer_temp' },
-            { operation: 'add', path: 'answer', type: 'object', value: {} },
-            { operation: 'rename', source: 'answer_temp', destination: 'answer.value' },
-          ],
-        }
+        operations: [
+          {
+            element: '{element}',
+            operations: [
+              // @todo: rename: instances of 'answer' to '{property}'
+              { operation: 'rename', source: 'answer.value', destination: 'answer', provideInverseOperations: true },
+            ],
+          },
+        ],
+        inverseOperations: [
+          {
+            element: '{element}',
+            operations: [
+              // @todo: rename: instances of 'answer' to '{property}'
+              { operation: 'rename', source: 'answer', destination: 'answer_temp' },
+              { operation: 'add', path: 'answer', type: 'object', value: {} },
+              { operation: 'rename', source: 'answer_temp', destination: 'answer.value' },
+            ],
+          },
+        ],
       }
-    } as const
-
-    // this.hooks = {
-    //   before: (document: unknown, operation: JSONPatchOperation) => {
-    //     console.log('before operation', { document, operation })
-    //     // return document | undefined    
-    //   },
-
-    //   after: (document: unknown, operation: JSONPatchOperation, previousDocument: unknown) => {
-    //     console.log('after operation', { document, operation, previousDocument })
-    //     // return document | undefined
-    //   }
-    // }
+    }
   }
 
-  private rename({ element, operation: { source, destination, provideInverseOperations = false } }: RenameProps): Operation {
+  private rename(
+    {
+      element,
+      operation: {
+        source,
+        destination,
+        provideInverseOperations = false,
+        inverseOperations = [],
+        skipOnNull = false,
+      }
+    }: RenameProps
+  ): Operation {
     const calculatedElement = this.calculateElement(element);
 
     return {
       provideInverseOperations,
+      inverseOperations,
+      skipOnNull,
       element,
       op: 'move',
       from: `${calculatedElement}/${source.replaceAll('.', '/')}`,
@@ -419,14 +461,26 @@ export class Parser {
     }
   }
 
-  private move({
-    element,
-    operation: { destination, property, provideInverseOperations = false } }: MoveProps): Operation {
+  private move(
+    {
+      element,
+      operation: {
+        destination,
+        property,
+        provideInverseOperations = false,
+        inverseOperations = [],
+        skipOnNull = false
+      }
+    }:
+      MoveProps
+  ): Operation {
     const calculatedElement = this.calculateElement(element);
     const calculatedPath = this.calculatePath(calculatedElement, destination);
 
     return {
       provideInverseOperations,
+      inverseOperations,
+      skipOnNull,
       element,
       op: 'move',
       from: `${calculatedElement}/${property}`,
@@ -434,11 +488,24 @@ export class Parser {
     };
   }
 
-  private remove({ element, operation: { path, type, provideInverseOperations = false } }: RemoveProps): Operation {
+  private remove(
+    {
+      element,
+      operation: {
+        path,
+        type,
+        provideInverseOperations = false,
+        inverseOperations = [],
+        skipOnNull = false,
+      }
+    }: RemoveProps
+  ): Operation {
     const calculatedElement = this.calculateElement(element);
 
     return {
       provideInverseOperations,
+      inverseOperations,
+      skipOnNull,
       element,
       op: 'remove',
       path: this.calculatePath(calculatedElement, path),
@@ -446,11 +513,23 @@ export class Parser {
     }
   }
 
-  private copy({ element, operation: { source, destination, provideInverseOperations = false } }: CopyProps): Operation {
+  private copy(
+    {
+      element, operation: {
+        source,
+        destination,
+        provideInverseOperations = false,
+        inverseOperations = [],
+        skipOnNull = false
+      }
+    }: CopyProps
+  ): Operation {
     const calculatedElement = this.calculateElement(element);
 
     return {
       provideInverseOperations,
+      inverseOperations,
+      skipOnNull,
       element: element,
       op: 'copy',
       from: `${calculatedElement}/${source.replaceAll('.', '/')}`,
@@ -458,12 +537,22 @@ export class Parser {
     };
   }
 
-  private hoist({ element, operation: { property, provideInverseOperations = false } }: HoistProps): Operation {
+  private hoist(
+    {
+      element, operation: {
+        property,
+        provideInverseOperations = false,
+        inverseOperations = [],
+        skipOnNull = false
+      }
+    }: HoistProps
+  ): Operation {
     const calculatedElement = this.calculateElement(element);
-    // @todo: throw error if calculatedElement is empty
 
     return {
       provideInverseOperations,
+      inverseOperations,
+      skipOnNull,
       element,
       op: 'move',
       from: `${calculatedElement}/${property}`,
@@ -471,11 +560,25 @@ export class Parser {
     };
   }
 
-  private add({ element, operation: { path, value, type, provideInverseOperations = false } }: AddProps): Operation {
+  private add(
+    {
+      element,
+      operation: {
+        path,
+        value,
+        type,
+        provideInverseOperations = false,
+        inverseOperations = [],
+        skipOnNull = false,
+      }
+    }: AddProps
+  ): Operation {
     const calculatedElement = this.calculateElement(element);
 
     return {
       provideInverseOperations,
+      inverseOperations,
+      skipOnNull,
       element: element,
       op: 'add',
       path: this.calculatePath(calculatedElement, path),
@@ -485,64 +588,45 @@ export class Parser {
   }
 
   private calculateOperation(element: string, operation: WithOperation): Operation {
-    const { provideInverseOperations = false } = operation;
     if (operation.operation === 'rename') {
       return this.rename({
         element,
-        operation: {
-          ...operation,
-          provideInverseOperations,
-        }
+        operation,
       })
     }
 
     if (operation.operation === 'move') {
       return this.move({
         element,
-        operation: {
-          ...operation,
-          provideInverseOperations,
-        }
+        operation,
       })
     }
 
     if (operation.operation === 'remove') {
       return this.remove({
         element,
-        operation: {
-          ...operation,
-          provideInverseOperations,
-        }
+        operation,
       })
     }
 
     if (operation.operation === 'copy') {
       return this.copy({
         element,
-        operation: {
-          ...operation,
-          provideInverseOperations,
-        }
+        operation,
       })
     }
 
     if (operation.operation === 'hoist') {
       return this.hoist({
         element,
-        operation: {
-          ...operation,
-          provideInverseOperations,
-        }
+        operation,
       })
     }
 
     if (operation.operation === 'add') {
       return this.add({
         element: this.element,
-        operation: {
-          ...operation,
-          provideInverseOperations,
-        }
+        operation,
       })
     }
 
@@ -554,33 +638,45 @@ export class Parser {
 
   public with(args: WithOperationProps | WithPresetProps) {
     this.element = args.element;
+
     if ('operations' in args) {
       const operations = args.operations;
+
       operations.forEach(operation => {
         this.operations.push(this.calculateOperation(args.element, operation));
       });
     }
 
     if ('preset' in args) {
-      const { preset, property } = args.preset;
-      this.preset = preset;
+      const { preset, property, skipOnNull = false } = args.preset;
       const element = args.element;
-      const elementOperations = this.presets[preset].operations.element || [];
-      const propertyOperations = this.presets[preset].operations.property || [];
+      const presetOperations = this.presets[preset].operations || [];
+      const inverseOperations = this.presets[preset].inverseOperations?.map(inverseOperation => {
+        return {
+          element: inverseOperation.element.replaceAll('{element}', element).replaceAll('{property}', property || ''),
+          operations: inverseOperation.operations.map(operation => {
+            return {
+              ...operation,
+              ...{ skipOnNull },
+              ...{ inverseOperations: [] }
+            }
+          }),
+        }
+      });
 
-      // @todo: apply update of placeholder for property 
-      if (propertyOperations.length > 0 && property) {
-        this.with({
-          element: `${element}.${property}`,
-          operations: propertyOperations,
-        });
-      }
-
-      // @todo: apply update of placeholder for property 
-      if (elementOperations.length > 0) {
-        this.with({
-          element,
-          operations: elementOperations,
+      if (presetOperations.length > 0) {
+        presetOperations.forEach(presetOperation => {
+          this.with({
+            element: presetOperation.element.replaceAll('{element}', element).replaceAll('{property}', property || ''),
+            operations: presetOperation.operations.map(operation => {
+              return {
+                // @todo: apply update of placeholder for element and property 
+                ...operation,
+                ...{ skipOnNull },
+                ...{ inverseOperations },
+              }
+            }),
+          });
         });
       }
     }
@@ -588,9 +684,8 @@ export class Parser {
     return this;
   }
 
-  apply({ data, target }: ApplyProps): object {
-
-    if (!data || !target) {
+  apply({ data, mode }: ApplyProps): object {
+    if (!data || !mode) {
       return {};
     }
 
@@ -607,9 +702,9 @@ export class Parser {
         path: '/editMode',
         type: 'boolean'
       }
-    ]
+    ];
 
-    if (target === 'ui') {
+    if (mode === 'default') {
       try {
         const updatedJson = this.applyOperations(data, this.operations);
 
@@ -620,7 +715,7 @@ export class Parser {
       }
     }
 
-    if (target === 'data') {
+    if (mode === 'inverse') {
       try {
         const inverseOperations = this.calculateInverseOperations(this.operations);
         const updatedJson = this.applyOperations(
@@ -636,5 +731,9 @@ export class Parser {
     }
 
     return {}
+  }
+
+  getOperations(): Operation[] {
+    return this.operations;
   }
 }

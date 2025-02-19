@@ -11,7 +11,7 @@ export default function NodePageComponent({
   node,
   environment,
 }: NodePageComponentProps) {
-  const { id, components = [] } = readFragment(NodePageFragment, node)
+  const { id, components } = readFragment(NodePageFragment, node)
 
   return (
     <>

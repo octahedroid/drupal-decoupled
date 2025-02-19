@@ -1,75 +1,59 @@
-import { Component } from '~/integration/editor/types'
+import { type Component, config } from 'drupal-decoupled/editor'
+
 import {
-  fieldMediaExternal,
+  fieldCard,
   fieldText,
   fieldTextArea,
 } from '~/integration/editor/fields'
+
 import { CardGroup, type CardGroupProps } from '~/components/blocks'
-import { Parser } from '~/integration/resolvers/Parser'
 
-const parser = new Parser()
-
-parser
-  .with({
-    element: '/',
-    operations: [
-      {
-        operation: 'rename',
-        source: 'subheadingOptional',
-        destination: 'subheading',
-      },
-      {
-        operation: 'rename',
-        source: 'descriptionOptional',
-        destination: 'description',
-      },
-      { operation: 'rename', source: 'items', destination: 'cards' },
-    ],
-  })
-  .with({
-    element: '/cards[*].image',
-    preset: { preset: 'mediaImage', property: 'mediaImage' },
-  })
-  .with({
-    element: '/cards',
-    operations: [
-      { operation: 'add', path: 'type', value: 'simple', type: 'string' },
-    ],
-  })
-
-export const ParagraphCardGroup: Component = {
+config.set({
+  component: 'ParagraphCardGroup',
   fields: {
-    heading: fieldText,
+    heading: {
+      type: fieldText,
+    },
     subheadingOptional: {
-      ...fieldText,
-      label: 'subheading',
+      type: fieldText,
       config: {
+        uiPropName: 'subheading',
         fieldName: 'subheading',
       },
     },
     descriptionOptional: {
-      ...fieldTextArea,
-      label: 'description',
+      type: fieldTextArea,
       config: {
+        uiPropName: 'description',
         fieldName: 'description',
       },
     },
     items: {
-      type: 'array',
-      arrayFields: {
-        heading: fieldText,
-        description: fieldTextArea,
-        image: fieldMediaExternal,
+      type: fieldCard,
+      config: {
+        uiPropName: 'cards',
       },
+      transformers: [
+        {
+          element: '/{uiPropName}',
+          operations: [
+            { operation: 'add', path: 'type', value: 'simple', type: 'string' },
+          ],
+        },
+      ],
     },
   },
-  defaultProps: parser.apply({ data: CardGroup.defaults, target: 'data' }),
+  defaultProps: CardGroup.defaults,
+})
+
+const ParagraphCardGroup: Component = {
+  fields: config.getFields('ParagraphCardGroup'),
+  defaultProps: config.parseDefaultProps('ParagraphCardGroup'),
   render: (props) => {
-    const cardGroup = parser.apply({
-      data: props,
-      target: 'ui',
-    }) as CardGroupProps
+    const cardGroup = config.parseUIProps('ParagraphCardGroup', props) as CardGroupProps
 
     return <CardGroup {...cardGroup} />
   },
 }
+
+export { ParagraphCardGroup }

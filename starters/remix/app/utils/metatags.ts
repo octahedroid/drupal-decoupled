@@ -1,5 +1,5 @@
 import { FragmentOf, readFragment } from 'gql.tada'
-import { type MetaTag } from 'drupal-remix'
+import { type MetaTag } from 'drupal-decoupled/remix'
 import {
   NodePageFragment,
   NodeArticleFragment,

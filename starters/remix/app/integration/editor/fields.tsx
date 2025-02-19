@@ -1,17 +1,27 @@
-// @todo: move to drupal-decoupled package.
-import { Field } from '~/integration/editor/types'
+// @todo: move to drupal-decoupled/editor package.
+import type { Field } from 'drupal-decoupled/editor'
 
 export const fieldText: Field = {
   type: 'text',
+  config: {
+    type: 'string',
+  },
 }
 
 export const fieldTextArea: Field = {
   type: 'textarea',
+  config: {
+    type: 'string_long',
+  },
 }
 
 export const fieldRichText: Field = {
   type: 'object',
+  config: {
+    type: 'text_long',
+  },
   objectFields: {
+    // @todo: render as WYSIWYG editor.
     value: { type: 'textarea' },
     // @todo: Add format field "basic_html" | "full_html".
   },
@@ -19,20 +29,29 @@ export const fieldRichText: Field = {
 
 export const fieldWebform: Field = {
   type: 'object',
+  config: {
+    type: 'webform',
+  },
   objectFields: {
     id: {
       type: 'select',
       options: [
         { value: 'none', label: 'Select Webform' },
-        { value: 'contact', label: 'Contact' },
+        { value: 'contact_form', label: 'Contact' },
       ],
     },
-    // @todo: Add array of elements.
   },
 }
 
 export const fieldLink: Field = {
   type: 'object',
+  config: {
+    type: 'link',
+    preset: {
+      element: '/{uiPropName}',
+      type: 'link',
+    },
+  },
   objectFields: {
     title: { type: 'text' },
     url: { type: 'text' },
@@ -41,15 +60,35 @@ export const fieldLink: Field = {
 
 export const fieldLinks: Field = {
   type: 'array',
-  arrayFields: fieldLink.objectFields,
+  config: {
+    type: 'link',
+    preset: {
+      element: '/{uiPropName}',
+      type: 'link',
+    },
+  },
+  arrayFields: {
+    title: { type: 'text' },
+    url: { type: 'text' },
+  },
 }
 
-export const fieldMediaExternal: Field = {
+export const fieldMediaImageExternal: Field = {
   type: 'external',
+  config: {
+    type: 'media',
+    media: {
+      type: 'image',
+      fieldName: 'mediaImage',
+    },
+    preset: {
+      element: '/{uiPropName}',
+      type: 'mediaImage',
+      property: '{mediaFieldName}',
+    },
+  },
   fetchList: async () => {
-    return await fetch(`/api/editor/media_image`).then((res) =>
-      res.json()
-    )
+    return await fetch(`/api/editor/media_image`).then((res) => res.json())
   },
   // @ts-expect-error getItemSummary can return React elements.
   getItemSummary: (item) => {
@@ -63,6 +102,9 @@ export const fieldMediaExternal: Field = {
 
 export const fieldViewReference: Field = {
   type: 'object',
+  config: {
+    type: 'viewfield',
+  },
   objectFields: {
     view: {
       type: 'select',
@@ -84,11 +126,48 @@ export const fieldViewReference: Field = {
 
 export const fieldAuthor: Field = {
   type: 'object',
+  config: {
+    type: 'paragraph',
+  },
   objectFields: {
     name: fieldText,
     company: fieldText,
     position: fieldText,
     // @todo: Rename image field as media or avatar in Drupal.
-    image: fieldMediaExternal,
+    image: fieldMediaImageExternal,
+  },
+}
+
+export const fieldLogo: Field = {
+  type: 'array',
+  config: {
+    type: 'paragraph',
+  },
+  arrayFields: {
+    link: fieldLink,
+    image: fieldMediaImageExternal,
+  },
+}
+
+export const fieldCard: Field = {
+  type: 'array',
+  config: {
+    type: 'paragraph',
+  },
+  arrayFields: {
+    heading: fieldText,
+    description: fieldTextArea,
+    image: fieldMediaImageExternal,
+  },
+}
+
+export const fieldQuestion: Field = {
+  type: 'array',
+  config: {
+    type: 'paragraph',
+  },
+  arrayFields: {
+    question: fieldText,
+    answer: fieldRichText,
   },
 }

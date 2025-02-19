@@ -1,38 +1,41 @@
+import { type Component, config } from 'drupal-decoupled/editor'
+
 import {
-  type Component,
   fieldText,
   fieldTextArea,
-  fieldMediaExternal,
+  fieldMediaImageExternal,
   fieldLinks,
-} from '~/integration/editor'
+} from '~/integration/editor/fields'
+
 import { Hero, type HeroProps } from '~/components/blocks'
 
-import { Parser } from '~/integration/resolvers/Parser'
-const parser = new Parser()
-
-parser
-  .with({
-    element: '/image',
-    preset: { preset: 'mediaImage', property: 'mediaImage' },
-  })
-  .with({
-    element: '/actions',
-    preset: { preset: 'link' },
-  })
-
-export const ParagraphHero: Component = {
+config.set({
+  component: 'ParagraphHero',
   fields: {
-    heading: fieldText,
-    description: fieldTextArea,
-    // @todo: Rename image field as media in Drupal.
-    image: fieldMediaExternal,
-    actions: fieldLinks,
+    heading: {
+      type: fieldText,
+    },
+    description: {
+      type: fieldTextArea,
+    },
+    image: {
+      type: fieldMediaImageExternal,
+    },
+    actions: {
+      type: fieldLinks,
+    },
   },
-  
-  defaultProps: parser.apply({ data: Hero.defaults, target: 'data' }),
+  defaultProps: Hero.defaults,
+})
+
+const ParagraphHero: Component = {
+  fields: config.getFields('ParagraphHero'),
+  defaultProps: config.parseDefaultProps('ParagraphHero'),
   render: (props) => {
-    const hero = parser.apply({ data: props, target: 'ui' }) as HeroProps
+    const hero = config.parseUIProps('ParagraphHero', props) as HeroProps
 
     return <Hero {...hero} />
   },
 }
+
+export { ParagraphHero }

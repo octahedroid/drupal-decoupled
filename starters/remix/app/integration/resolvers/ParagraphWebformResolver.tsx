@@ -1,28 +1,10 @@
+import { type Component, config } from 'drupal-decoupled/editor'
+
 import {
-  type Component,
   fieldText,
   fieldTextArea,
   fieldWebform,
-} from '~/integration/editor'
-import { Parser } from '~/integration/resolvers/Parser'
-
-const parser = new Parser()
-
-parser.with({
-  element: '/',
-  operations: [
-    {
-      operation: 'rename',
-      source: 'descriptionOptional',
-      destination: 'description',
-    },
-    {
-      operation: 'rename',
-      source: 'subheadingOptional',
-      destination: 'subheading',
-    },
-  ],
-})
+} from '~/integration/editor/fields'
 
 type WebformElement = {
   webform_key: string
@@ -39,8 +21,7 @@ type WebformProps = {
   heading: string
   subheading: string
   description: string
-  form: string
-  webform: Webform
+  form: Webform
 }
 
 const defaultProps = {
@@ -48,35 +29,42 @@ const defaultProps = {
   subheading:
     'Let us know how we can help your organization or project, and we’ll get back to you soon.',
   description: 'Fill out the form below to get in touch with us.',
-  form: 'contact',
-  webform: {
+  form: {
     id: 'none',
     elements: [],
   },
 }
 
-export const ParagraphWebform: Component = {
+config.set({
+  component: 'ParagraphWebform',
   fields: {
-    heading: fieldText,
+    heading: {
+      type: fieldText,
+    },
     subheadingOptional: {
-      ...fieldText,
-      label: 'subheading',
+      type: fieldText,
       config: {
         fieldName: 'subheading',
+        uiPropName: 'subheading',
       },
     },
     descriptionOptional: {
-      ...fieldTextArea,
-      label: 'description',
+      type: fieldTextArea,
       config: {
         fieldName: 'description',
+        uiPropName: 'description',
       },
     },
-    webform: {
-      ...fieldWebform,
+    form: {
+      type: fieldWebform,
     },
   },
-  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
+  defaultProps,
+})
+
+const ParagraphWebform: Component = {
+  fields: config.getFields('ParagraphWebform'),
+  defaultProps: config.parseDefaultProps('ParagraphWebform'),
   resolveData: async (data) => {
     // @todo: Extract this to a helper function
     const getWebform = async (id: string) => {
@@ -87,9 +75,9 @@ export const ParagraphWebform: Component = {
         }
       }
 
-      const { elements } = (await fetch(
-        `/api/editor/webform/${id}`
-      ).then((res) => res.json())) as Webform
+      const { elements } = (await fetch(`/api/editor/webform/${id}`).then(
+        (res) => res.json()
+      )) as Webform
 
       return {
         id: id,
@@ -97,36 +85,34 @@ export const ParagraphWebform: Component = {
       }
     }
 
-    const { elements } = await getWebform(data.props.webform.id)
+    const { elements } = await getWebform(data.props.form.id)
 
     return {
       props: {
         heading: data.props.heading || '',
         subheadingOptional: data.props.subheadingOptional || '',
         descriptionOptional: data.props.descriptionOptional || '',
-        webform: {
-          ...data.props.webform,
+        form: {
+          ...data.props.form,
           elements,
         },
       },
     }
   },
   render: (props) => {
-    const { description, heading, subheading, webform } = parser.apply({
-      data: props,
-      target: 'ui',
-    }) as WebformProps
+    const { description, heading, subheading, form } = config.parseUIProps(
+      'ParagraphWebform',
+      props
+    ) as WebformProps
 
     return (
       <div>
         <pre>
-          {JSON.stringify(
-            { description, heading, subheading, webform },
-            null,
-            2
-          )}
+          {JSON.stringify({ description, heading, subheading, form }, null, 2)}
         </pre>
       </div>
     )
   },
 }
+
+export { ParagraphWebform }

@@ -1,24 +1,22 @@
-import '@measured/puck/puck.css'
-import {
-  ParagraphFaq,
-  ParagraphHero,
-  ParagraphCta,
-  ParagraphCardGroup,
-  ParagraphTestimonial,
-  ParagraphLogoGroup,
-  ParagraphViewReference,
-  ParagraphWebform,
-} from '~/integration/resolvers'
-import { Config } from '~/integration/editor/types'
+import { type Config } from 'drupal-decoupled/editor'
 
-export const config: Config = {
+import { ParagraphHero } from '~/integration/resolvers/ParagraphHeroResolver'
+import { ParagraphLogoGroup } from '~/integration/resolvers/ParagraphLogoGroupResolver'
+import { ParagraphCardGroup } from '~/integration/resolvers/ParagraphCardGroupResolver'
+import { ParagraphCta } from '~/integration/resolvers/ParagraphCtaResolver'
+import { ParagraphTestimonial } from '~/integration/resolvers/ParagraphTestimonialResolver'
+import { ParagraphFaq } from '~/integration/resolvers/ParagraphFaqResolver'
+import { ParagraphViewReference } from '~/integration/resolvers/ParagraphViewReferenceResolver'
+import { ParagraphWebform } from '../resolvers/ParagraphWebformResolver'
+
+export const puckConfig: Config = {
   root: {
     fields: {},
   },
   components: {
     ParagraphHero,
-    ParagraphCardGroup,
     ParagraphLogoGroup,
+    ParagraphCardGroup,
     ParagraphCta,
     ParagraphTestimonial,
     ParagraphFaq,

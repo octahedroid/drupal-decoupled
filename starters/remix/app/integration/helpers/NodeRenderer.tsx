@@ -1,5 +1,4 @@
-import { Editor, Render } from '~/integration/editor'
-
+import { Editor, Render } from '~/integration/editor/Puck'
 
 interface Parapraph {
   __typename: string
@@ -13,10 +12,7 @@ interface NodeRenderer {
   environment: string
 }
 
-export default function NodeRenderer({
-  node,
-  environment,
-}: NodeRenderer) {
+export default function NodeRenderer({ node, environment }: NodeRenderer) {
   // @todo: implement toolbar to enable editing
   const data = {
     root: {
@@ -24,14 +20,16 @@ export default function NodeRenderer({
         id: node.id,
       },
     },
-    content: node.components ? node.components.map((component) => {
-      return {
-        type: component.__typename,
-        props: {
-          ...component,
-        }
-      }
-    }) : []
+    content: node.components
+      ? node.components.map((component) => {
+          return {
+            type: component.__typename,
+            props: {
+              ...component,
+            },
+          }
+        })
+      : [],
   }
 
   if (environment === 'preview') {

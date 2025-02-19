@@ -1,53 +1,44 @@
+import { type Component, config } from 'drupal-decoupled/editor'
+
 import {
-  type Component,
   fieldText,
   fieldTextArea,
-  fieldRichText,
-} from '~/integration/editor'
+  fieldQuestion,
+} from '~/integration/editor/fields'
+
 import { FAQ, type FAQProps } from '~/components/blocks'
-import { Parser } from '~/integration/resolvers/Parser'
 
-const parser = new Parser()
-
-parser
-  .with({
-    element: '/',
-    operations: [
-      {
-        operation: 'rename',
-        source: 'descriptionOptional',
-        destination: 'description',
-      },
-      { operation: 'rename', source: 'items', destination: 'questions' },
-    ],
-  })
-  .with({
-    element: '/questions',
-    preset: { preset: 'richText', property: 'answer' },
-  })
-
-export const ParagraphFaq: Component = {
+config.set({
+  component: 'ParagraphFaq',
   fields: {
-    heading: fieldText,
+    heading: {
+      type: fieldText,
+    },
     descriptionOptional: {
-      ...fieldTextArea,
-      label: 'description',
+      type: fieldTextArea,
       config: {
         fieldName: 'description',
+        uiPropName: 'description',
       },
     },
     items: {
-      type: 'array',
-      arrayFields: {
-        question: fieldText,
-        answer: fieldRichText,
+      type: fieldQuestion,
+      config: {
+        uiPropName: 'questions',
       },
     },
   },
-  defaultProps: parser.apply({ data: FAQ.defaults, target: 'data' }),
+  defaultProps: FAQ.defaults,
+})
+
+const ParagraphFaq: Component = {
+  fields: config.getFields('ParagraphFaq'),
+  defaultProps: config.parseDefaultProps('ParagraphFaq'),
   render: (props) => {
-    const faq = parser.apply({ data: props, target: 'ui' }) as FAQProps
+    const faq = config.parseUIProps('ParagraphFaq', props) as FAQProps
 
     return <FAQ {...faq} />
   },
 }
+
+export { ParagraphFaq }

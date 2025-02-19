@@ -1,7 +1,7 @@
 {
   "name": "drupal-visual-editor",
-  "version": "0.2.0",
-  "description": "Provide delightful editorial experiences for content editors using Drupal regardless of your FE implementation.",
+  "version": "1.0.0",
+  "description": "Provide delightful editorial experiences for content editors using Drupal regardless of your FE implementation (deprecated).",
   "type": "module",
   "keywords": [
     "drupal",

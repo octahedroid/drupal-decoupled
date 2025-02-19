@@ -1,54 +1,48 @@
-import {
-  type Component,
-  fieldLink,
-  fieldMediaExternal,
-  fieldText,
-} from '~/integration/editor'
-import { Parser } from '~/integration/resolvers/Parser'
+import { type Component, config } from 'drupal-decoupled/editor'
+
+import { fieldLogo, fieldText } from '~/integration/editor/fields'
 import { LogoGroup, type LogoGroupProps } from '~/components/blocks'
 
-const parser = new Parser()
-
-parser
-  .with({
-    element: '/',
-    operations: [
-      { operation: 'rename', source: 'items', destination: 'logos' },
-    ],
-  })
-  .with({
-    element: '/logos[*].image',
-    preset: { preset: 'mediaImage', property: 'mediaImage' },
-  })
-  .with({
-    element: '/logos[*].image',
-    operations: [
-      { operation: 'add', path: 'className', value: 'h-12', type: 'string' },
-    ],
-  })
-  .with({
-    element: '/logos[*].link',
-    preset: { preset: 'link' },
-  })
-
-export const ParagraphLogoGroup: Component = {
+config.set({
+  component: 'ParagraphLogoGroup',
   fields: {
-    heading: fieldText,
+    heading: {
+      type: fieldText,
+    },
     items: {
-      type: 'array',
-      arrayFields: {
-        link: fieldLink,
-        image: fieldMediaExternal,
+      type: fieldLogo,
+      config: {
+        uiPropName: 'logos',
       },
+      transformers: [
+        {
+          element: '/{uiPropName}[*].image',
+          operations: [
+            {
+              operation: 'add',
+              path: 'className',
+              value: 'h-12',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     },
   },
-  defaultProps: parser.apply({ data: LogoGroup.defaults, target: 'data' }),
+  defaultProps: LogoGroup.defaults,
+})
+
+const ParagraphLogoGroup: Component = {
+  fields: config.getFields('ParagraphLogoGroup'),
+  defaultProps: config.parseDefaultProps('ParagraphLogoGroup'),
   render: (props) => {
-    const logoGroup = parser.apply({
-      data: props,
-      target: 'ui',
-    }) as LogoGroupProps
+    const logoGroup = config.parseUIProps(
+      'ParagraphLogoGroup',
+      props
+    ) as LogoGroupProps
 
     return <LogoGroup {...logoGroup} />
   },
 }
+
+export { ParagraphLogoGroup }
