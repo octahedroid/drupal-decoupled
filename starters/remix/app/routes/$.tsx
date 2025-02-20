@@ -6,7 +6,7 @@ import {
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import { FragmentOf, readFragment } from 'gql.tada'
-import { metaTags } from 'drupal-remix'
+import { metaTags } from 'drupal-decoupled/remix'
 
 import {
   NodePageFragment,
@@ -75,7 +75,8 @@ export const loader = async ({
     },
   })
 
-  const nodeRouteQuery = graphql(`
+  const nodeRouteQuery = graphql(
+    `
       query route($path: String!) {
         route(path: $path) {
           __typename
@@ -119,15 +120,17 @@ export const loader = async ({
   }
 
   const menuMain = readFragment(MenuFragment, data.menuMain)
-  const navItems = menuMain ? menuMain.items.map((item) => {
-    const menuItem = readFragment(MenuItemFragment, item)
+  const navItems = menuMain
+    ? menuMain.items.map((item) => {
+        const menuItem = readFragment(MenuItemFragment, item)
 
-    return {
-      label: menuItem.label,
-      href: menuItem.href || undefined,
-      expanded: menuItem.expanded,
-    }
-  }): []
+        return {
+          label: menuItem.label,
+          href: menuItem.href || undefined,
+          expanded: menuItem.expanded,
+        }
+      })
+    : []
 
   return json({
     type: data.route.entity.__typename,

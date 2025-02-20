@@ -4832,6 +4832,18 @@ const introspection = {
             "isDeprecated": false
           },
           {
+            "name": "form",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Webform"
+              }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
             "name": "heading",
             "type": {
               "kind": "NON_NULL",
@@ -4884,18 +4896,6 @@ const introspection = {
             "type": {
               "kind": "SCALAR",
               "name": "String"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "webform",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Webform"
-              }
             },
             "args": [],
             "isDeprecated": false
@@ -8398,6 +8398,15 @@ const introspection = {
                 "kind": "OBJECT",
                 "name": "WebformElementOption"
               }
+            },
+            "args": [],
+            "isDeprecated": false
+          },
+          {
+            "name": "placeholder",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
             },
             "args": [],
             "isDeprecated": false

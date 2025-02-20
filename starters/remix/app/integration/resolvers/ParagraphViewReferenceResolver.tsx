@@ -1,63 +1,12 @@
-import { CardGroup, Hero } from '~/components/blocks'
+import { type Component, config } from 'drupal-decoupled/editor'
+
+import { CardGroup, CardGroupProps, Hero } from '~/components/blocks'
 import {
-  type Component,
   fieldLink,
   fieldText,
   fieldTextArea,
   fieldViewReference,
-} from '~/integration/editor'
-import { Parser } from '~/integration/resolvers/Parser'
-
-const parser = new Parser()
-
-parser
-  .with({
-    element: '/',
-    operations: [
-      {
-        operation: 'rename',
-        source: 'headingOptional',
-        destination: 'heading',
-      },
-      {
-        operation: 'rename',
-        source: 'descriptionOptional',
-        destination: 'description',
-      },
-      {
-        operation: 'rename',
-        source: 'subheadingOptional',
-        destination: 'subheading',
-      },
-      {
-        operation: 'rename',
-        source: 'link',
-        destination: 'action',
-      },
-    ],
-  })
-  .with({
-    element: '/reference',
-    operations: [
-      {
-        operation: 'rename',
-        source: 'results',
-        destination: 'cards',
-      },
-    ],
-  })
-  .with({
-    element: '/reference.cards[*].image',
-    preset: { preset: 'mediaImage', property: 'mediaImage' },
-  })
-  .with({
-    element: '/reference.cards[*].author.picture',
-    preset: { preset: 'mediaImage', property: 'mediaImage' },
-  })
-  .with({
-    element: '/action',
-    preset: { preset: 'link', skipIfEmpty: true },
-  })
+} from '~/integration/editor/fields'
 
 type ViewReferenceData = {
   id: string
@@ -69,7 +18,7 @@ type ViewReferenceData = {
 type ViewReference = {
   view: string
   display: string
-  cards: []
+  cards: CardGroupProps['cards']
 }
 
 type ViewReferenceProps = {
@@ -95,6 +44,11 @@ const defaultCardProps = [
         mediaImage: {},
       },
     },
+    details: {
+      href: '',
+      text: '',
+      internal: true,
+    },
   },
 ]
 
@@ -114,34 +68,89 @@ const defaultProps = {
   },
 }
 
-export const ParagraphViewReference: Component = {
+config.set({
+  component: 'ParagraphViewReference',
   fields: {
     headingOptional: {
-      ...fieldText,
-      label: 'heading',
+      type: fieldText,
       config: {
         fieldName: 'heading',
+        uiPropName: 'heading',
       },
     },
     subheadingOptional: {
-      ...fieldText,
-      label: 'subheading',
+      type: fieldText,
       config: {
         fieldName: 'subheading',
+        uiPropName: 'subheading',
       },
     },
     descriptionOptional: {
-      ...fieldTextArea,
-      label: 'description',
+      type: fieldTextArea,
       config: {
         fieldName: 'description',
+        uiPropName: 'description',
       },
     },
-    // @todo: Create fieldViewReferenceExternal 'external' field type.
-    reference: fieldViewReference,
-    link: fieldLink,
+    reference: {
+      type: fieldViewReference,
+      transformers: [
+        {
+          element: '/{uiPropName}',
+          operations: [
+            {
+              operation: 'rename',
+              source: 'results',
+              destination: 'cards',
+            },
+          ],
+        },
+        {
+          element: '/{uiPropName}.cards[*].image',
+          preset: { preset: 'mediaImage', property: 'mediaImage' },
+        },
+        {
+          element: '/{uiPropName}.cards[*].author.picture',
+          preset: { preset: 'mediaImage', property: 'mediaImage' },
+        },
+        {
+          element: '/{uiPropName}.cards',
+          operations: [
+            {
+              operation: 'add',
+              path: 'details',
+              type: 'object',
+              value: {
+                href: '',
+                text: 'View post',
+                internal: true,
+              },
+            },
+            {
+              operation: 'rename',
+              source: 'path',
+              destination: 'details.href',
+            },
+          ],
+        },
+      ],
+    },
+    link: {
+      type: fieldLink,
+      config: {
+        uiPropName: 'action',
+        preset: {
+          skipOnNull: true,
+        },
+      },
+    },
   },
-  defaultProps: parser.apply({ data: defaultProps, target: 'data' }),
+  defaultProps,
+})
+
+const ParagraphViewReference: Component = {
+  fields: config.getFields('ParagraphViewReference'),
+  defaultProps: config.parseDefaultProps('ParagraphViewReference'),
   resolveData: async (data) => {
     const getViewReference = async (view: string, display: string) => {
       if (view === 'none' || display === 'none') {
@@ -168,20 +177,18 @@ export const ParagraphViewReference: Component = {
       props: {
         subheadingOptional: data.props.subheadingOptional || '',
         headingOptional: data.props.headingOptional || '',
-        descriptionOptional: data.props.headingOptional || '',
-        reference: {
-          ...data.props.reference,
-          results: reference ? reference.results : data.props.reference.results,
-        },
+        descriptionOptional: data.props.descriptionOptional || '',
+        reference,
         link: data.props.link || {},
       },
     }
   },
   render: (props) => {
-    const viewReference = parser.apply({
-      data: props,
-      target: 'ui',
-    }) as ViewReferenceProps
+    const viewReference = config.parseUIProps(
+      'ParagraphViewReference',
+      props
+    ) as ViewReferenceProps
+
     const {
       id,
       heading,
@@ -247,3 +254,5 @@ export const ParagraphViewReference: Component = {
     )
   },
 }
+
+export { ParagraphViewReference }

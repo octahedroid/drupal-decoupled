@@ -1,33 +1,40 @@
-import { type Component, fieldAuthor, fieldText } from '~/integration/editor'
+import { type Component, config } from 'drupal-decoupled/editor'
+
+import { fieldAuthor, fieldText } from '~/integration/editor/fields'
 import { Testimonial, type TestimonialProps } from '~/components/blocks'
-import { Parser } from '~/integration/resolvers/Parser'
 
-const parser = new Parser()
-
-parser
-  .with({
-    element: '/author.image',
-    preset: { preset: 'mediaImage', property: 'mediaImage' },
-  })
-  .with({
-    element: '/author',
-    operations: [
-      { operation: 'rename', source: 'image', destination: 'avatar' },
-    ],
-  })
-
-export const ParagraphTestimonial: Component = {
+config.set({
+  component: 'ParagraphTestimonial',
   fields: {
-    quote: fieldText,
-    author: fieldAuthor,
+    quote: {
+      type: fieldText,
+    },
+    author: {
+      type: fieldAuthor,
+      transformers: [
+        {
+          element: '/{uiPropName}',
+          operations: [
+            { operation: 'rename', source: 'image', destination: 'avatar' },
+          ],
+        },
+      ],
+    },
   },
-  defaultProps: parser.apply({ data: Testimonial.defaults, target: 'data' }),
+  defaultProps: Testimonial.defaults,
+})
+
+const ParagraphTestimonial: Component = {
+  fields: config.getFields('ParagraphTestimonial'),
+  defaultProps: config.parseDefaultProps('ParagraphTestimonial'),
   render: (props) => {
-    const testimonial = parser.apply({
-      data: props,
-      target: 'ui',
-    }) as TestimonialProps
+    const testimonial = config.parseUIProps(
+      'ParagraphTestimonial',
+      props
+    ) as TestimonialProps
 
     return <Testimonial {...testimonial} />
   },
 }
+
+export { ParagraphTestimonial }

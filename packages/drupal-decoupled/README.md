@@ -1,61 +1,22 @@
-# Drupal-Decoupled
+# Build Drupal Decoupled Sites Faster & Smarter
 
-A list of utilities for a Decoupled integrations.
+Using Drupal as a headless CMS with a Decoupled front-end implementation is a great way to get an enterprise-quality CMS, paired with a great modern development experience using Remix, Next.js, Astro and/or others.
 
-### Route Syncronization and comunication between FE and BE via the Iframe
+Unlock the full potential of Drupal as an API-first CMS. Our quick-start guides and ready-to-use examples help you get started in no time!
 
-Import the `syncDrupalPreviewRoutes` helper at `app/root.tsx`
+## Explore Drupal Decoupled
 
-```typescript
-import { syncDrupalPreviewRoutes } from "drupal-decoupled";
-```
+Visit the [docs](https://drupal-decoupled.octahedroid.com/) to see how to use this project.
 
-Make sure your loader returns the current `environment` value
+### Quickstart
+- [Drupal](https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart/drupal)
+- [Remix](https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart/remix)
+- [Next.js](https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart/next)
 
-```typescript
-export const loader = async ({ context }: LoaderFunctionArgs ) => {
-  // Provide a variable to define the environment
-  const environment = context.cloudflare.env.ENVIRONMENT
-  return json(
-    {
-      environment,
-    },
-    { status: 200 }
-  );
-};
-```
-
-> NOTE: This example is using Cloudflare and taking advantage of Environemt Settings to define "environment" key/value, that is why we are using the `context.cloudflare.env.ENVIRONMENT` object to obtain the value and pass it from Server to Client.
-
-Upate your `App` function
-
-```typescript
-export default function App() {
-  // read environment from loader
-  const { environment } = useLoaderData<typeof loader>();
-  // use the useNavigation hook from @remix-run/react
-  const navigation = useNavigation();
-
-  // check if environment is preview and navigation.state is loading
-  // to call syncDrupalPreviewRoutes
-  if (environment === "preview" && navigation.state === "loading") {
-    syncDrupalPreviewRoutes(navigation.location.pathname);
-  }
-
-  return (
-    <>
-      <Outlet />
-    </>
-  );
-}
-```
-
-For a fully functional example visit any of those repositories:
-- GraphQL:
-  - [Remix](https://github.com/octahedroid/drupal-remix/tree/main/examples/graphql)
-  - [Drupal]()
-
-- JSON:API (TBD)
+### Step by step
+- [Drupal](https://drupal-decoupled.octahedroid.com/docs/getting-started/step-by-step/drupal)
+- [Remix](https://drupal-decoupled.octahedroid.com/docs/getting-started/step-by-step/starters/remix)
+- [Next.js](https://drupal-decoupled.octahedroid.com/docs/getting-started/step-by-step/starters/next)
 
 ## Supporting organizations
 

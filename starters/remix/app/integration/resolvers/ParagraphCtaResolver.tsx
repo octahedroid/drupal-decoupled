@@ -1,28 +1,37 @@
+import { type Component, config } from 'drupal-decoupled/editor'
+
 import {
-  type Component,
   fieldText,
   fieldTextArea,
   fieldLinks,
-} from '~/integration/editor'
-import { CTA, type CTAProps } from '~/components/blocks'
-import { Parser } from '~/integration/resolvers/Parser'
-const parser = new Parser()
+} from '~/integration/editor/fields'
 
-parser.with({
-  element: '/actions',
-  preset: { preset: 'link' },
+import { CTA, type CTAProps } from '~/components/blocks'
+
+config.set({
+  component: 'ParagraphCta',
+  fields: {
+    heading: {
+      type: fieldText,
+    },
+    description: {
+      type: fieldTextArea,
+    },
+    actions: {
+      type: fieldLinks,
+    },
+  },
+  defaultProps: CTA.defaults,
 })
 
-export const ParagraphCta: Component = {
-  fields: {
-    heading: fieldText,
-    description: fieldTextArea,
-    actions: fieldLinks,
-  },
-  defaultProps: parser.apply({ data: CTA.defaults, target: 'data' }),
+const ParagraphCta: Component = {
+  fields: config.getFields('ParagraphCta'),
+  defaultProps: config.parseDefaultProps('ParagraphCta'),
   render: (props) => {
-    const cta = parser.apply({ data: props, target: 'ui' }) as CTAProps
+    const cta = config.parseUIProps('ParagraphCta', props) as CTAProps
 
     return <CTA {...cta} />
   },
 }
+
+export { ParagraphCta }

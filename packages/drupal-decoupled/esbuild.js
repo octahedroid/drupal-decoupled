@@ -13,7 +13,13 @@ if (!existsSync(dist)) {
     mkdirSync(dist);
 }
 
-const entryPoints = readdirSync(join(process.cwd(), "src"))
+const entryPoints = readdirSync(
+    join(
+        process.cwd(),
+        "src"
+        ),
+        { recursive: true }
+    )
     .filter(
         (file) =>
             file.endsWith(".ts") &&
