@@ -1,6 +1,6 @@
 import { isComposable, isReference, isReferenceRequired } from "./helpers";
 import { Parser, Preset, WithPresetProps, WithOperationProps } from "./parser";
-import { Data, Field, FieldConfig, FieldConfigExtends, FieldExtend, FieldPreset } from "./types";
+import type { Data, Field, FieldConfig, FieldConfigExtends, FieldExtend, FieldPreset } from "./types";
 
 type CalculatePresetProps = {
   preset: FieldPreset
@@ -49,7 +49,6 @@ type Config = {
   component: string
   fields: Record<string, FieldExtend>
   defaultProps: Record<string, unknown>
-  // transformers?: Patch[]
 }
 
 type Reference = {
@@ -175,7 +174,7 @@ export class Configurator {
         patches.push(patch)
       }
 
-      if (isReference(field.config) && isReferenceRequired(field.config) ) {
+      if (isReference(field.config) && isReferenceRequired(field.config)) {
         references[`${fieldName}`] = {
           fieldName: `${fieldName}`,
           field,
