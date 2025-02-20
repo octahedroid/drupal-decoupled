@@ -75,7 +75,7 @@ export const CardGroup = ({
   )
 }
 
-CardGroup.defaultProps = {
+CardGroup.defaults = {
   heading: 'How it works',
   subheading: 'Understand our process',
   description: 'Follow these simple steps to get started with our service.',
@@ -87,7 +87,7 @@ CardGroup.defaultProps = {
     {
       type: 'simple',
       image: {
-        src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
         alt: 'Step 1',
       },
       heading: 'Short summary of step one',
@@ -97,7 +97,7 @@ CardGroup.defaultProps = {
     {
       type: 'simple',
       image: {
-        src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
         alt: 'Step 2',
       },
       heading: 'Short summary of step two',
@@ -107,7 +107,7 @@ CardGroup.defaultProps = {
     {
       type: 'simple',
       image: {
-        src: '/placeholders/icons/drupal-decoupled-hexagon.png',
+        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
         alt: 'Step 3',
       },
       heading: 'Short summary of step three',

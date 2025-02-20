@@ -87,7 +87,7 @@ export const Article = ({
   )
 }
 
-Article.defaultProps = {
+Article.defaults = {
   title: 'How designers estimate the impact of UX?',
   summary: 'Designers wear many hats, the first one being a moderator.',
   content: `
@@ -103,14 +103,14 @@ Article.defaultProps = {
       <p>For each vertical, they keep ROI in mind, taking care to estimate and realize the impact of UX on the client's budget, goals, and wider technical framework.</p>
     `,
   image: {
-    src: '/placeholders/drupal-decoupled/landscape-large.png',
+    src: '/app/static/placeholders/drupal-decoupled/landscape-large.png',
     alt: 'A cartoon character on a beach with an ice cream',
   },
   tags: ['UX', 'Design', 'Business'],
   publishDate: 1667260800,
   author: {
     avatar: {
-      src: '/placeholders/doc-tahedroid/avatar.png',
+      src: '/app/static/placeholders/doc-tahedroid/avatar.png',
       name: 'Doc Tahedroid',
     },
     name: 'Doc Tahedroid',

@@ -17,7 +17,7 @@ export const Accordion = ({ items }: AccordionProps) => {
   return (
     <ShadcnAccordion type="multiple">
       {items.map(({ title, content }, index) => (
-        <AccordionItem value={`item-${index}`}>
+        <AccordionItem key={index} value={`item-${index}`}>
           <AccordionTrigger>{title}</AccordionTrigger>
           <AccordionContent>
             <RichText content={content} />

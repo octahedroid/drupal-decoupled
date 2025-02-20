@@ -2,23 +2,22 @@ import { FragmentOf, readFragment } from 'gql.tada'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import NodeArticleComponent from '@/components/drupal/node/NodeArticle'
-import NodePageComponent from '@/components/drupal/node/NodePage'
-import TermTagsComponent from '@/components/drupal/taxonomy/TermTags'
+import NodeArticleComponent from '@/integration/node/NodeArticle'
+import NodePageComponent from '@/integration/node/NodePage'
+import TermTagsComponent from '@/integration/taxonomy/TermTags'
 import {
   NodeArticleFragment,
   NodePageFragment,
-} from '@/graphql/drupal/fragments/node'
-import { TermTagsFragment } from '@/graphql/drupal/fragments/terms'
+} from '@/graphql/fragments/node'
+import { TermTagsFragment } from '@/graphql/fragments/terms'
 import { graphql } from '@/graphql/gql.tada'
-import { EntityFragmentType } from '@/graphql/drupal/types'
-import { getClient } from '@/utils/drupal/client'
-import { calculatePath } from '@/utils/drupal/routes'
+import { EntityFragmentType } from '@/graphql/types'
+import { getClient } from '@/utils/client'
+import { calculatePath } from '@/utils/routes'
 
-import { Header } from '@/components/ui//Header'
-import { Footer } from '@/components/ui/Footer'
-import { MenuFragment, MenuItemFragment } from '@/graphql/drupal/fragments/menu'
-import type { ButtonProps } from '@/components/ui/types'
+import { Header } from '@/components/blocks'
+import { Footer } from '@/components/blocks'
+import { MenuFragment, MenuItemFragment } from '@/graphql/fragments/menu'
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {
   const pathFromParams = params.slug?.join('/') || '/home'
@@ -103,22 +102,18 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
         src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
         alt: 'Company Logo',
       },
-      navItems: navItems || [],
+      navItems,
       sticky: true,
       actions: [
         {
           text: 'Docs',
           href: 'https://drupal-decoupled.octahedroid.com/docs',
-          variant: 'default',
-          internal: false,
         },
         {
           text: 'Quickstart',
           href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
-          variant: 'default',
-          internal: false,
         },
-      ] as ButtonProps[],
+      ],
     },
     footer: {
       logo: {

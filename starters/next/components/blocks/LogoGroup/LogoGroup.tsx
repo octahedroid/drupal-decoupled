@@ -53,26 +53,26 @@ export const LogoGroup = ({
   )
 }
 
-LogoGroup.defaultProps = {
+LogoGroup.defaults = {
   heading: 'Logo Group',
   logos: [
     {
       image: {
-        src: '/placeholders/icons/doc-tahedroid.png',
+        src: '/app/static/placeholders/icons/doc-tahedroid.png',
         alt: 'Octahedroid',
       },
       link: { href: 'https://octahedroid.com', internal: false },
     },
     {
       image: {
-        src: '/placeholders/icons/drupal-decoupled.png',
+        src: '/app/static/placeholders/icons/drupal-decoupled.png',
         alt: 'Composabase',
       },
       link: { href: 'https://composabase.com', internal: false },
     },
     {
       image: {
-        src: '/placeholders/icons/doc-tahedroid.png',
+        src: '/app/static/placeholders/icons/doc-tahedroid.png',
         alt: 'Octahedroid',
       },
       link: { href: 'https://octahedroid.com', internal: false },
