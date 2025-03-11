@@ -10,21 +10,6 @@ import {
 import { CardGroup, type CardGroupProps } from '~/components/blocks'
 import { MediaImageFragment } from '~/graphql/fragments/media'
 
-const ParagraphSimpleCardFragment = graphql(
-  `
-    fragment ParagraphSimpleCardFragment on ParagraphSimpleCard {
-      __typename
-      id
-      heading
-      description
-      image {
-        ...MediaImageFragment
-      }
-    }
-  `,
-  [MediaImageFragment]
-)
-
 export const ParagraphCardGroupFragment = graphql(
   `
     fragment ParagraphCardGroupFragment on ParagraphCardGroup {
@@ -35,11 +20,19 @@ export const ParagraphCardGroupFragment = graphql(
       descriptionOptional: description
       items {
         __typename
-        ...ParagraphSimpleCardFragment
+        ... on ParagraphSimpleCard {
+          __typename
+          id
+          heading
+          description
+          image {
+            ...MediaImageFragment
+          }
+        }
       }
     }
   `,
-  [ParagraphSimpleCardFragment]
+  [MediaImageFragment]
 )
 
 config.set({

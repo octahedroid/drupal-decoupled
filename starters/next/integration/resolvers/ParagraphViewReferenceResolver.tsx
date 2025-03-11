@@ -1,4 +1,5 @@
 import { type Component, config } from 'drupal-decoupled/editor'
+import { graphql } from '@/graphql/gql.tada'
 
 import { CardGroup, CardGroupProps, Hero } from '@/components/blocks'
 import {
@@ -7,6 +8,37 @@ import {
   fieldTextArea,
   fieldViewReference,
 } from '@/integration/editor/fields'
+
+import {
+  ViewBlogTeaserResultFragment,
+  ViewBlogTeaserFeaturedResultFragment,
+} from '@/graphql/fragments/view'
+import { LinkFragment } from '@/graphql/fragments/misc'
+
+export const ParagraphViewReferenceFragment = graphql(
+  `
+    fragment ParagraphViewReference on ParagraphViewReference {
+      __typename
+      id
+      headingOptional: heading
+      subheadingOptional: subheading
+      descriptionOptional: description
+      link {
+        ...LinkFragment
+      }
+      reference {
+        __typename
+        ...ViewBlogTeaserResultFragment
+        ...ViewBlogTeaserFeaturedResultFragment
+      }
+    }
+  `,
+  [
+    ViewBlogTeaserResultFragment,
+    ViewBlogTeaserFeaturedResultFragment,
+    LinkFragment,
+  ]
+)
 
 type ViewReferenceData = {
   id: string
@@ -217,31 +249,30 @@ const ParagraphViewReference: Component = {
             ]}
           />
           {cards && (
-            <>CardGroup</>
-            // <CardGroup
-            //   key={id}
-            //   heading={heading}
-            //   subheading={subheading}
-            //   description={description}
-            //   cards={remainingCards}
-            //   action={action}
-            // />
+            <CardGroup
+              key={id}
+              heading={heading}
+              subheading={subheading}
+              description={description}
+              cards={remainingCards}
+              action={action}
+            />
           )}
         </div>
       )
     }
 
     if (view === 'blog' && display === 'teaser') {
-      return ( <>CardGroup</>
-        // <CardGroup
-        //   id={`${view}-${display}-${id}`}
-        //   key={id}
-        //   heading={heading}
-        //   subheading={subheading}
-        //   description={description}
-        //   cards={cards}
-        //   action={action}
-        // />
+      return (
+        <CardGroup
+          id={`${view}-${display}-${id}`}
+          key={id}
+          heading={heading}
+          subheading={subheading}
+          description={description}
+          cards={cards}
+          action={action}
+        />
       )
     }
 

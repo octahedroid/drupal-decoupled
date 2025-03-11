@@ -38,7 +38,7 @@ export const resolveMediaImage = (
     return {} as ImageProps
   }
 
-  const image = readFragment(ImageFragment, mediaImage);
+  const image = readFragment(ImageFragment, mediaImage)
   if (!image) {
     return {} as ImageProps
   }
@@ -54,7 +54,11 @@ export const resolveMediaImage = (
 export const resolveLink = (
   action: FragmentOf<typeof LinkFragment>
 ): ActionsProps => {
-  const { title: text, url: href, internal } = readFragment(LinkFragment, action)
+  const {
+    title: text,
+    url: href,
+    internal,
+  } = readFragment(LinkFragment, action)
 
   return {
     text,

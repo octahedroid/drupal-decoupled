@@ -6,22 +6,6 @@ import { LogoGroup, type LogoGroupProps } from '~/components/blocks'
 import { MediaImageFragment } from '~/graphql/fragments/media'
 import { LinkFragment } from '~/graphql/fragments/misc'
 
-const ParagraphLogoFragment = graphql(
-  `
-    fragment ParagraphLogoFragment on ParagraphLogo {
-      __typename
-      id
-      image {
-        ...MediaImageFragment
-      }
-      link {
-        ...LinkFragment
-      }
-    }
-  `,
-  [MediaImageFragment, LinkFragment]
-)
-
 export const ParagraphLogoGroupFragment = graphql(
   `
     fragment ParagraphLogoGroupFragment on ParagraphLogoGroup {
@@ -29,11 +13,20 @@ export const ParagraphLogoGroupFragment = graphql(
       id
       heading
       items {
-        ...ParagraphLogoFragment
+        ... on ParagraphLogo {
+          __typename
+          id
+          image {
+            ...MediaImageFragment
+          }
+          link {
+            ...LinkFragment
+          }
+        }
       }
     }
   `,
-  [ParagraphLogoFragment]
+  [MediaImageFragment, LinkFragment]
 )
 
 config.set({

@@ -32,7 +32,7 @@ export default function NodeRenderer({ node, environment }: NodeRenderer) {
       : [],
   }
 
-  // if (environment === 'production') {
+  // if (environment === 'preview') {
   //   return <Editor data={data} />
   // }
 

@@ -1,5 +1,5 @@
 import { FragmentOf, readFragment } from 'gql.tada'
-import { NodePageFragment } from '@/graphql/fragments'
+import { NodePageFragment } from '@/graphql/fragments/node'
 import NodeRenderer from '@/integration/helpers/NodeRenderer'
 
 type NodePageComponentProps = {

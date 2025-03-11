@@ -5,22 +5,6 @@ import { fieldAuthor, fieldText } from '~/integration/editor/fields'
 import { Testimonial, type TestimonialProps } from '~/components/blocks'
 import { MediaImageFragment } from '~/graphql/fragments/media'
 
-const ParagraphAuthorFragment = graphql(
-  `
-    fragment ParagraphAuthorFragment on ParagraphAuthor {
-      __typename
-      id
-      image {
-        ...MediaImageFragment
-      }
-      name
-      company
-      position
-    }
-  `,
-  [MediaImageFragment]
-)
-
 export const ParagraphTestimonialFragment = graphql(
   `
     fragment ParagraphTestimonialFragment on ParagraphTestimonial {
@@ -28,11 +12,20 @@ export const ParagraphTestimonialFragment = graphql(
       id
       quote
       author {
-        ...ParagraphAuthorFragment
+        __typename
+        ... on ParagraphAuthor {
+          id
+          image {
+            ...MediaImageFragment
+          }
+          name
+          company
+          position
+        }
       }
     }
   `,
-  [ParagraphAuthorFragment]
+  [MediaImageFragment]
 )
 
 config.set({

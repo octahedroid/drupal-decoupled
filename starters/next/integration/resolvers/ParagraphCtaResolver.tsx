@@ -1,4 +1,5 @@
 import { type Component, config } from 'drupal-decoupled/editor'
+import { graphql } from '@/graphql/gql.tada'
 
 import {
   fieldText,
@@ -7,6 +8,23 @@ import {
 } from '@/integration/editor/fields'
 
 import { CTA, type CTAProps } from '@/components/blocks'
+import { LinkFragment } from '@/graphql/fragments/misc'
+
+export const ParagraphCtaFragment = graphql(
+  `
+    fragment ParagraphCtaFragment on ParagraphCta {
+      __typename
+      id
+      heading
+      description
+      subheading
+      actions {
+        ...LinkFragment
+      }
+    }
+  `,
+  [LinkFragment]
+)
 
 config.set({
   component: 'ParagraphCta',

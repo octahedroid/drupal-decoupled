@@ -126,7 +126,7 @@ const ParagraphWebform: Component = {
     ) as WebformProps
 
     return (
-      <div>
+      <div className="container mx-auto grid items-center gap-8 lg:grid-cols-2 pt-8 pb-8">
         <pre>
           {JSON.stringify({ description, heading, subheading, form }, null, 2)}
         </pre>

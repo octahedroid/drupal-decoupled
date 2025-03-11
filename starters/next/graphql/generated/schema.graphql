@@ -487,6 +487,11 @@ type Query {
   route(
     """Internal path to load. Eg /about"""
     path: String!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): RouteUnion
 
   """Query for view blog display teaser."""
@@ -507,8 +512,11 @@ type Query {
 
 """Use tags to group articles on similar topics into categories."""
 type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the term was last edited."""
   changed: DateTime!
@@ -529,7 +537,7 @@ type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
   parent: TermUnion
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Published"""
   status: Boolean!
@@ -540,8 +548,11 @@ type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
 
 """Entity type taxonomy_term."""
 interface TermInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the term was last edited."""
   changed: DateTime!
@@ -562,7 +573,7 @@ interface TermInterface {
   parent: TermUnion
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Published"""
   status: Boolean!
@@ -754,8 +765,11 @@ interface EdgeNode {
 Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.
 """
 type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The author of this content."""
   author: User
@@ -779,10 +793,13 @@ type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
   metatag: [MetaTagUnion!]!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Promoted to front page"""
   promote: Boolean!
+
+  """The Node revision Id."""
+  revisionId: Int!
 
   """Published"""
   status: Boolean!
@@ -804,8 +821,11 @@ type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
 
 """Entity type node."""
 interface NodeInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The author of this content."""
   author: User
@@ -823,10 +843,13 @@ interface NodeInterface {
   metatag: [MetaTagUnion!]!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Promoted to front page"""
   promote: Boolean!
+
+  """The Node revision Id."""
+  revisionId: Int!
 
   """Published"""
   status: Boolean!
@@ -840,8 +863,11 @@ interface NodeInterface {
 
 """Entity type user."""
 type User implements UserInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the user was last edited."""
   changed: DateTime!
@@ -859,7 +885,7 @@ type User implements UserInterface & MetaTagInterface & EdgeNode {
   name: String!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Picture"""
   picture: MediaUnion
@@ -873,8 +899,11 @@ type User implements UserInterface & MetaTagInterface & EdgeNode {
 
 """Entity type user."""
 interface UserInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the user was last edited."""
   changed: DateTime!
@@ -892,7 +921,7 @@ interface UserInterface {
   name: String!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """The roles the user has."""
   roles: [UserRoles!]
@@ -923,8 +952,11 @@ union MediaUnion = MediaImage
 
 """Use local images for reusable media."""
 type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time the media item was last edited."""
   changed: DateTime!
@@ -945,7 +977,7 @@ type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
   name: String!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Published"""
   status: Boolean!
@@ -953,8 +985,11 @@ type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
 
 """Entity type media."""
 interface MediaInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time the media item was last edited."""
   changed: DateTime!
@@ -972,7 +1007,7 @@ interface MediaInterface {
   name: String!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Published"""
   status: Boolean!
@@ -1038,8 +1073,11 @@ type TextSummary {
 Use <em>basic pages</em> for your static content, such as an 'About us' page.
 """
 type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The author of this content."""
   author: User
@@ -1063,10 +1101,13 @@ type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
   metatag: [MetaTagUnion!]!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Promoted to front page"""
   promote: Boolean!
+
+  """The Node revision Id."""
+  revisionId: Int!
 
   """Show Title"""
   showTitle: Boolean
@@ -1089,8 +1130,11 @@ union ParagraphUnion = ParagraphAuthor | ParagraphCardGroup | ParagraphCta | Par
 
 """Entity type paragraph."""
 type ParagraphAuthor implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Company"""
   company: String!
@@ -1112,12 +1156,18 @@ type ParagraphAuthor implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 interface ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1127,12 +1177,18 @@ interface ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1154,12 +1210,18 @@ type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphCta implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Actions"""
   actions: [Link!]
@@ -1181,6 +1243,9 @@ type ParagraphCta implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """A link."""
@@ -1197,8 +1262,11 @@ type Link {
 
 """Entity type paragraph."""
 type ParagraphFaq implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1217,12 +1285,18 @@ type ParagraphFaq implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphHero implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Actions"""
   actions: [Link!]
@@ -1244,12 +1318,18 @@ type ParagraphHero implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphLogo implements ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1265,12 +1345,18 @@ type ParagraphLogo implements ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphLogoGroup implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1286,12 +1372,18 @@ type ParagraphLogoGroup implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphQuestion implements ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Answer"""
   answer: Text!
@@ -1307,12 +1399,18 @@ type ParagraphQuestion implements ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphSimpleCard implements ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1331,12 +1429,18 @@ type ParagraphSimpleCard implements ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphTestimonial implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Author"""
   author: ParagraphUnion!
@@ -1352,12 +1456,18 @@ type ParagraphTestimonial implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphViewReference implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1403,6 +1513,9 @@ type ParagraphViewReference implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Generic input for key-value pairs."""
@@ -1521,8 +1634,11 @@ type ViewBlogTeaserFeaturedResult implements View {
 
 """Entity type paragraph."""
 type ParagraphWebform implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1544,6 +1660,9 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """A webform."""
@@ -1599,8 +1718,11 @@ enum MenuAvailable {
 
 """Entity type menu."""
 type Menu implements MenuInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The menu items."""
   items: [MenuItem!]!
@@ -1611,8 +1733,11 @@ type Menu implements MenuInterface {
 
 """Entity type menu."""
 interface MenuInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The menu items."""
   items: [MenuItem!]!
@@ -1658,6 +1783,7 @@ type MenuItem {
 
 """Menu item options set within the CMS."""
 type MenuItemAttributes {
+  """Menu item attribute class."""
   class: String
 }
 
@@ -1717,6 +1843,8 @@ type RouteRedirect implements Route {
 
 """Schema information provided by the system."""
 type SchemaInformation {
+  custom: String!
+
   """The schema description."""
   description: String
 
@@ -2046,6 +2174,24 @@ type Subscription {
   _: Boolean!
 }
 
+"""Input for filter exposed with operator "between"."""
+input BetweenFloatInput {
+  """The minimum value of the range."""
+  min: Float
+
+  """The maximum value of the range."""
+  max: Float
+}
+
+"""Input for filter exposed with operator "between"."""
+input BetweenStringInput {
+  """The minimum value of the range."""
+  min: String
+
+  """The maximum value of the range."""
+  max: String
+}
+
 """A file object to represent an managed file."""
 type File {
   """The name of the file."""
@@ -2066,16 +2212,20 @@ type File {
 
 """Entity type image_style."""
 type ImageStyle implements ImageStyleInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
-  name: String!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 }
 
 """Entity type image_style."""
 interface ImageStyleInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
-  name: String!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 }
 
 """Entity type image_style."""
@@ -2110,8 +2260,11 @@ type ViewFilter {
   """The filter plugin type."""
   plugin: String!
 
-  """The filter field type."""
+  """The filter element type."""
   type: String!
+
+  """The filter operator."""
+  operator: String!
 
   """The filter element label."""
   label: String
@@ -2157,8 +2310,11 @@ type ViewReference {
 
 """Entity type webform."""
 interface WebformInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
   changed: String!
   created: String!
   langcode: String!
@@ -2169,8 +2325,11 @@ union WebformUnion = WebformWebform
 
 """Entity type webform."""
 type WebformWebform implements WebformInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
   changed: String!
   created: String!
   langcode: String!

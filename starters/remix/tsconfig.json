@@ -32,7 +32,7 @@
         "tadaOutputLocation": "./app/graphql/generated/gql.tada.instrospection.ts",
         "tadaTurboLocation": "./app/graphql/generated/gql.tada.cache.ts",
         "trackFieldUsage": false,
-        "shouldCheckForColocatedFragments": false
+        "shouldCheckForColocatedFragments": false,
       }
     ],
     "noEmit": true
