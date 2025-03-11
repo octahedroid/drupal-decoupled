@@ -1,12 +1,10 @@
-import type { LoaderFunctionArgs } from "@remix-run/cloudflare"; // or cloudflare/deno
-import { json } from "@remix-run/cloudflare";
-import { graphql } from "gql.tada";
-import { MediaImageFragment } from "~/graphql/fragments";
+import type { LoaderFunctionArgs } from '@remix-run/cloudflare' // or cloudflare/deno
+import { json } from '@remix-run/cloudflare'
+import { graphql } from 'gql.tada'
+import { MediaImageFragment } from '~/graphql/fragments/media'
 import { getClient } from '~/utils/client.server'
 
-export const loader = async ({
-  context,
-}: LoaderFunctionArgs) => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   const client = await getClient({
     url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
     auth: {
@@ -16,18 +14,18 @@ export const loader = async ({
     },
   })
 
-  const mediaImages = graphql(`
-    query mediaImages {
-      mediaImages (first:100, sortKey: TITLE) {
-        nodes {
-          ...MediaImageFragment
+  const mediaImages = graphql(
+    `
+      query mediaImages {
+        mediaImages(first: 100, sortKey: TITLE) {
+          nodes {
+            ...MediaImageFragment
+          }
         }
       }
-    }
-  `,
-    [
-      MediaImageFragment
-    ])
+    `,
+    [MediaImageFragment]
+  )
 
   const { data, error } = await client.query(mediaImages, {})
 
@@ -35,5 +33,5 @@ export const loader = async ({
     throw error
   }
 
-  return json(data.mediaImages.nodes, 200);
-};
+  return json(data.mediaImages.nodes, 200)
+}

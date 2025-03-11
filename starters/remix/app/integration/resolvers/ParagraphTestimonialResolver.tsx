@@ -1,7 +1,39 @@
 import { type Component, config } from 'drupal-decoupled/editor'
+import { graphql } from '~/graphql/gql.tada'
 
 import { fieldAuthor, fieldText } from '~/integration/editor/fields'
 import { Testimonial, type TestimonialProps } from '~/components/blocks'
+import { MediaImageFragment } from '~/graphql/fragments/media'
+
+const ParagraphAuthorFragment = graphql(
+  `
+    fragment ParagraphAuthorFragment on ParagraphAuthor {
+      __typename
+      id
+      image {
+        ...MediaImageFragment
+      }
+      name
+      company
+      position
+    }
+  `,
+  [MediaImageFragment]
+)
+
+export const ParagraphTestimonialFragment = graphql(
+  `
+    fragment ParagraphTestimonialFragment on ParagraphTestimonial {
+      __typename
+      id
+      quote
+      author {
+        ...ParagraphAuthorFragment
+      }
+    }
+  `,
+  [ParagraphAuthorFragment]
+)
 
 config.set({
   component: 'ParagraphTestimonial',

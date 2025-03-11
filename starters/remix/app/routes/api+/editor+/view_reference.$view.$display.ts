@@ -1,25 +1,20 @@
-import type { LoaderFunctionArgs } from "@remix-run/cloudflare";
-import { json } from "@remix-run/cloudflare";
-import { graphql } from "gql.tada";
-import { NodeArticleTeaserFragment } from "~/graphql/fragments";
+import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
+import { json } from '@remix-run/cloudflare'
+import { graphql } from 'gql.tada'
+import { NodeArticleTeaserFragment } from '~/graphql/fragments/node'
 import { getClient } from '~/utils/client.server'
 
 function makeCamelCase(str: string) {
   return str
     .split(' ')
-    .map((e, i) => i
-      ? e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()
-      : e.toLowerCase()
+    .map((e, i) =>
+      i ? e.charAt(0).toUpperCase() + e.slice(1).toLowerCase() : e.toLowerCase()
     )
     .join('')
 }
 
-export const loader = async ({
-  params,
-  context,
-}: LoaderFunctionArgs) => {
-
-  const { view, display } = params;
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
+  const { view, display } = params
 
   if (!view || !display) {
     throw new Error('Missing view or display parameter')
@@ -33,9 +28,12 @@ export const loader = async ({
     },
   })
 
-  const queryName = makeCamelCase(`view ${view.replace('_', ' ')} ${display.replace('_', ' ')}`);
+  const queryName = makeCamelCase(
+    `view ${view.replace('_', ' ')} ${display.replace('_', ' ')}`
+  )
 
-  const viewReference = graphql(`
+  const viewReference = graphql(
+    `
     query viewReference {
       ${queryName} {
         id
@@ -47,9 +45,7 @@ export const loader = async ({
       }
     }
   `,
-    [
-      NodeArticleTeaserFragment,
-    ]
+    [NodeArticleTeaserFragment]
   )
 
   const { data, error } = await client.query(viewReference, { view, display })
@@ -58,7 +54,7 @@ export const loader = async ({
     throw error
   }
 
-  const viewReferenceData = data[queryName];
+  const viewReferenceData = data[queryName]
 
-  return json({ ...viewReferenceData  }, 200);
-};
+  return json({ ...viewReferenceData }, 200)
+}

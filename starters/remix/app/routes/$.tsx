@@ -8,13 +8,6 @@ import { useLoaderData } from '@remix-run/react'
 import { FragmentOf, readFragment } from 'gql.tada'
 import { metaTags } from 'drupal-decoupled/remix'
 
-import {
-  NodePageFragment,
-  NodeArticleFragment,
-  TermTagsFragment,
-  MenuFragment,
-  MenuItemFragment,
-} from '~/graphql/fragments'
 import { graphql } from '~/graphql/gql.tada'
 import { EntityFragmentType } from '~/graphql/types'
 import NodeArticleComponent from '~/integration/node/NodeArticle'
@@ -25,6 +18,9 @@ import { calculatePath } from '~/utils/routes'
 import { calculateMetaTags } from '~/utils/metatags'
 
 import { Header, Footer } from '~/components/blocks'
+import { NodeArticleFragment, NodePageFragment } from '~/graphql/fragments/node'
+import { TermTagsFragment } from '~/graphql/fragments/terms'
+import { MenuFragment, MenuItemFragment } from '~/graphql/fragments/menu'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
@@ -78,7 +74,7 @@ export const loader = async ({
   const nodeRouteQuery = graphql(
     `
       query route($path: String!) {
-        route(path: $path) {
+        route(path: $path, revision: "CURRENT") {
           __typename
           ... on RouteInternal {
             entity {

@@ -14,6 +14,12 @@ export function Editor({ data }: { data: object }) {
   return (
     <div>
       <PuckEditor
+        ui={{
+          previewMode: 'edit',
+          leftSideBarVisible: false,
+          rightSideBarVisible: false,
+          isDragging: false,
+        }}
         config={puckConfig as Config}
         data={data}
         onPublish={publishData}

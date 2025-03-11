@@ -1,4 +1,5 @@
 import { type Component, config } from 'drupal-decoupled/editor'
+import { graphql } from '~/graphql/gql.tada'
 
 import { CardGroup, CardGroupProps, Hero } from '~/components/blocks'
 import {
@@ -7,6 +8,37 @@ import {
   fieldTextArea,
   fieldViewReference,
 } from '~/integration/editor/fields'
+
+import {
+  ViewBlogTeaserResultFragment,
+  ViewBlogTeaserFeaturedResultFragment,
+} from '~/graphql/fragments/view'
+import { LinkFragment } from '~/graphql/fragments/misc'
+
+export const ParagraphViewReferenceFragment = graphql(
+  `
+    fragment ParagraphViewReference on ParagraphViewReference {
+      __typename
+      id
+      headingOptional: heading
+      subheadingOptional: subheading
+      descriptionOptional: description
+      link {
+        ...LinkFragment
+      }
+      reference {
+        __typename
+        ...ViewBlogTeaserResultFragment
+        ...ViewBlogTeaserFeaturedResultFragment
+      }
+    }
+  `,
+  [
+    ViewBlogTeaserResultFragment,
+    ViewBlogTeaserFeaturedResultFragment,
+    LinkFragment,
+  ]
+)
 
 type ViewReferenceData = {
   id: string
