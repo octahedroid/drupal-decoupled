@@ -1,7 +1,33 @@
 import { type Component, config } from 'drupal-decoupled/editor'
+import { graphql } from '~/graphql/gql.tada'
 
 import { fieldLogo, fieldText } from '~/integration/editor/fields'
 import { LogoGroup, type LogoGroupProps } from '~/components/blocks'
+import { MediaImageFragment } from '~/graphql/fragments/media'
+import { LinkFragment } from '~/graphql/fragments/misc'
+
+export const ParagraphLogoGroupFragment = graphql(
+  `
+    fragment ParagraphLogoGroupFragment on ParagraphLogoGroup {
+      __typename
+      id
+      heading
+      items {
+        ... on ParagraphLogo {
+          __typename
+          id
+          image {
+            ...MediaImageFragment
+          }
+          link {
+            ...LinkFragment
+          }
+        }
+      }
+    }
+  `,
+  [MediaImageFragment, LinkFragment]
+)
 
 config.set({
   component: 'ParagraphLogoGroup',

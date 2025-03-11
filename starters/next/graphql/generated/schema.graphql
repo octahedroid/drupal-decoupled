@@ -1,15 +1,15 @@
 """The schema's entry-point for queries."""
 type Query {
-  """Load a MediaImage entity by id"""
-  mediaImage(
-    """The id of the MediaImage to load."""
+  """Load a TermTags entity by id"""
+  termTags(
+    """The id of the TermTags to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): MediaImage
+  ): TermTags
 
   """Load a NodeArticle entity by id"""
   nodeArticle(
@@ -33,16 +33,16 @@ type Query {
     revision: ID
   ): NodePage
 
-  """Load a TermTags entity by id"""
-  termTags(
-    """The id of the TermTags to load."""
+  """Load a MediaImage entity by id"""
+  mediaImage(
+    """The id of the MediaImage to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): TermTags
+  ): MediaImage
 
   """Load a ParagraphAuthor entity by id"""
   paragraphAuthor(
@@ -174,8 +174,8 @@ type Query {
   """Schema information."""
   info: SchemaInformation!
 
-  """List of all MediaImage on the platform."""
-  mediaImages(
+  """List of all TermTags on the platform."""
+  termTagsItems(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -193,7 +193,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): MediaImageConnection!
+  ): TermTagsConnection!
 
   """List of all NodeArticle on the platform."""
   nodeArticles(
@@ -237,8 +237,8 @@ type Query {
     sortKey: ConnectionSortKeys
   ): NodePageConnection!
 
-  """List of all TermTags on the platform."""
-  termTagsItems(
+  """List of all MediaImage on the platform."""
+  mediaImages(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -256,7 +256,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): TermTagsConnection!
+  ): MediaImageConnection!
 
   """List of all ParagraphAuthor on the platform."""
   paragraphAuthors(
@@ -487,60 +487,44 @@ type Query {
   route(
     """Internal path to load. Eg /about"""
     path: String!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
   ): RouteUnion
 
-  """Query for view blog display blog_featured."""
+  """Query for view blog display teaser."""
+  viewBlogTeaser: ViewBlogTeaserResult
+
+  """Query for view blog display teaser_featured."""
   viewBlogTeaserFeatured(
     """The page number to display."""
     page: Int = 0
   ): ViewBlogTeaserFeaturedResult
 
-  """Query for view blog display blog_teaser."""
-  viewBlogTeaser: ViewBlogTeaserResult
+  """Load a webform."""
+  webform(
+    """Webform ID."""
+    id: ID!
+  ): Webform
 }
 
-"""Use local images for reusable media."""
-type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+"""Use tags to group articles on similar topics into categories."""
+type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
+  """The entity ID."""
   id: ID!
 
-  """The time the media item was last edited."""
-  changed: DateTime!
-
-  """The time the media item was created."""
-  created: DateTime!
-
-  """Language"""
-  langcode: Language!
-
-  """Image"""
-  mediaImage: Image!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-}
-
-"""Entity type media."""
-interface MediaInterface {
   """The Universally Unique IDentifier (UUID)."""
-  id: ID!
+  uuid: ID!
 
-  """The time the media item was last edited."""
+  """The time that the term was last edited."""
   changed: DateTime!
 
-  """The time the media item was created."""
-  created: DateTime!
+  """Description"""
+  description: Text!
 
-  """Language"""
+  """The term language code."""
   langcode: Language!
 
   """The computed meta tags for the entity."""
@@ -549,11 +533,53 @@ interface MediaInterface {
   """Name"""
   name: String!
 
+  """The parents of this term."""
+  parent: TermUnion
+
   """URL alias"""
-  path: String!
+  path: String
 
   """Published"""
   status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
+}
+
+"""Entity type taxonomy_term."""
+interface TermInterface {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The time that the term was last edited."""
+  changed: DateTime!
+
+  """Description"""
+  description: Text!
+
+  """The term language code."""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """The parents of this term."""
+  parent: TermUnion
+
+  """URL alias"""
+  path: String
+
+  """Published"""
+  status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
 }
 
 """A DateTime object."""
@@ -586,6 +612,27 @@ scalar UtcOffset
 
 """RFC 3339 compliant time string."""
 scalar Time
+
+"""A processed text format defined by the CMS."""
+type Text {
+  """The raw text value."""
+  value: String
+
+  """The processed text value."""
+  processed: Html
+
+  """The text format used to process the text value."""
+  format: String
+}
+
+"""
+An HTML string
+
+Content of this type is deemed safe by the server for raw output given the
+origin and the context of its usage. The HTML can still contain scripts or style
+tags where the creating user had permission to input these.
+"""
+scalar Html
 
 """A language definition provided by the CMS."""
 type Language {
@@ -700,6 +747,9 @@ type MetaTagScriptAttributes {
   integrity: String
 }
 
+"""Entity type taxonomy_term."""
+union TermUnion = TermTags
+
 """This entity has meta tags enabled."""
 interface MetaTagInterface {
   """The computed meta tags for the entity."""
@@ -709,6 +759,258 @@ interface MetaTagInterface {
 """This entity is accessible over an Edge connection."""
 interface EdgeNode {
   id: ID!
+}
+
+"""
+Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.
+"""
+type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The author of this content."""
+  author: User
+
+  """Body"""
+  body: TextSummary!
+
+  """The time that the node was last edited."""
+  changed: DateTime!
+
+  """The date and time that the content was created."""
+  created: DateTime!
+
+  """Image"""
+  image: MediaUnion!
+
+  """Language"""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """URL alias"""
+  path: String
+
+  """Promoted to front page"""
+  promote: Boolean!
+
+  """The Node revision Id."""
+  revisionId: Int!
+
+  """Published"""
+  status: Boolean!
+
+  """Sticky at top of lists"""
+  sticky: Boolean!
+
+  """Summary"""
+  summary: String!
+
+  """
+  Enter a comma-separated list. For example: Amsterdam, Mexico City, "Cleveland, Ohio"
+  """
+  tags: [TermUnion!]
+
+  """Title"""
+  title: String!
+}
+
+"""Entity type node."""
+interface NodeInterface {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The author of this content."""
+  author: User
+
+  """The time that the node was last edited."""
+  changed: DateTime!
+
+  """The date and time that the content was created."""
+  created: DateTime!
+
+  """Language"""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """URL alias"""
+  path: String
+
+  """Promoted to front page"""
+  promote: Boolean!
+
+  """The Node revision Id."""
+  revisionId: Int!
+
+  """Published"""
+  status: Boolean!
+
+  """Sticky at top of lists"""
+  sticky: Boolean!
+
+  """Title"""
+  title: String!
+}
+
+"""Entity type user."""
+type User implements UserInterface & MetaTagInterface & EdgeNode {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The time that the user was last edited."""
+  changed: DateTime!
+
+  """The time that the user was created."""
+  created: DateTime!
+
+  """The email of this user."""
+  mail: Email
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """The name of this user."""
+  name: String!
+
+  """URL alias"""
+  path: String
+
+  """Picture"""
+  picture: MediaUnion
+
+  """The roles the user has."""
+  roles: [UserRoles!]
+
+  """Whether the user is active or blocked."""
+  status: UserStatus!
+}
+
+"""Entity type user."""
+interface UserInterface {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The time that the user was last edited."""
+  changed: DateTime!
+
+  """The time that the user was created."""
+  created: DateTime!
+
+  """The email of this user."""
+  mail: Email
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """The name of this user."""
+  name: String!
+
+  """URL alias"""
+  path: String
+
+  """The roles the user has."""
+  roles: [UserRoles!]
+
+  """Whether the user is active or blocked."""
+  status: UserStatus!
+}
+
+"""An email address."""
+scalar Email
+
+"""User roles."""
+scalar UserRoles
+
+"""Whether the user is active or blocked."""
+enum UserStatus {
+  """An active user is able to login on the platform and view content"""
+  ACTIVE
+
+  """
+  A blocked user is unable to access the platform, although their content will still be visible until it's deleted.
+  """
+  BLOCKED
+}
+
+"""Entity type media."""
+union MediaUnion = MediaImage
+
+"""Use local images for reusable media."""
+type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The time the media item was last edited."""
+  changed: DateTime!
+
+  """The time the media item was created."""
+  created: DateTime!
+
+  """Language"""
+  langcode: Language!
+
+  """Image"""
+  mediaImage: Image!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """URL alias"""
+  path: String
+
+  """Published"""
+  status: Boolean!
+}
+
+"""Entity type media."""
+interface MediaInterface {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+
+  """The time the media item was last edited."""
+  changed: DateTime!
+
+  """The time the media item was created."""
+  created: DateTime!
+
+  """Language"""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """URL alias"""
+  path: String
+
+  """Published"""
+  status: Boolean!
 }
 
 """A image object to represent an managed file."""
@@ -752,177 +1054,6 @@ type ImageStyleDerivative {
   height: Int!
 }
 
-"""
-Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.
-"""
-type NodeArticle implements NodeInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The author of this content."""
-  author: User
-
-  """Body"""
-  body: TextSummary!
-
-  """The time that the node was last edited."""
-  changed: DateTime!
-
-  """The date and time that the content was created."""
-  created: DateTime!
-
-  """Image"""
-  image: MediaUnion!
-
-  """Language"""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """URL alias"""
-  path: String!
-
-  """Promoted to front page"""
-  promote: Boolean!
-
-  """Published"""
-  status: Boolean!
-
-  """Sticky at top of lists"""
-  sticky: Boolean!
-
-  """Summary"""
-  summary: String!
-
-  """
-  Enter a comma-separated list. For example: Amsterdam, Mexico City, "Cleveland, Ohio"
-  """
-  tags: [TermUnion!]
-
-  """Title"""
-  title: String!
-}
-
-"""Entity type node."""
-interface NodeInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The author of this content."""
-  author: User
-
-  """The time that the node was last edited."""
-  changed: DateTime!
-
-  """The date and time that the content was created."""
-  created: DateTime!
-
-  """Language"""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """URL alias"""
-  path: String!
-
-  """Promoted to front page"""
-  promote: Boolean!
-
-  """Published"""
-  status: Boolean!
-
-  """Sticky at top of lists"""
-  sticky: Boolean!
-
-  """Title"""
-  title: String!
-}
-
-"""Entity type user."""
-type User implements UserInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the user was last edited."""
-  changed: DateTime!
-
-  """The time that the user was created."""
-  created: DateTime!
-
-  """The email of this user."""
-  mail: Email
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """The name of this user."""
-  name: String!
-
-  """URL alias"""
-  path: String!
-
-  """Picture"""
-  picture: MediaUnion
-
-  """The roles the user has."""
-  roles: [UserRoles!]
-
-  """Whether the user is active or blocked."""
-  status: UserStatus!
-}
-
-"""Entity type user."""
-interface UserInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the user was last edited."""
-  changed: DateTime!
-
-  """The time that the user was created."""
-  created: DateTime!
-
-  """The email of this user."""
-  mail: Email
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """The name of this user."""
-  name: String!
-
-  """URL alias"""
-  path: String!
-
-  """The roles the user has."""
-  roles: [UserRoles!]
-
-  """Whether the user is active or blocked."""
-  status: UserStatus!
-}
-
-"""An email address."""
-scalar Email
-
-"""User roles."""
-scalar UserRoles
-
-"""Whether the user is active or blocked."""
-enum UserStatus {
-  """An active user is able to login on the platform and view content"""
-  ACTIVE
-
-  """
-  A blocked user is unable to access the platform, although their content will still be visible until it's deleted.
-  """
-  BLOCKED
-}
-
-"""Entity type media."""
-union MediaUnion = MediaImage
-
 """A processed text format with summary defined by the CMS."""
 type TextSummary {
   """The raw text value."""
@@ -939,101 +1070,14 @@ type TextSummary {
 }
 
 """
-An HTML string
-
-Content of this type is deemed safe by the server for raw output given the
-origin and the context of its usage. The HTML can still contain scripts or style
-tags where the creating user had permission to input these.
-"""
-scalar Html
-
-"""Entity type taxonomy_term."""
-union TermUnion = TermTags
-
-"""Use tags to group articles on similar topics into categories."""
-type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the term was last edited."""
-  changed: DateTime!
-
-  """Description"""
-  description: Text!
-
-  """The term language code."""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """The parents of this term."""
-  parent: TermUnion
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
-}
-
-"""Entity type taxonomy_term."""
-interface TermInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time that the term was last edited."""
-  changed: DateTime!
-
-  """Description"""
-  description: Text!
-
-  """The term language code."""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """The parents of this term."""
-  parent: TermUnion
-
-  """URL alias"""
-  path: String!
-
-  """Published"""
-  status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
-}
-
-"""A processed text format defined by the CMS."""
-type Text {
-  """The raw text value."""
-  value: String
-
-  """The processed text value."""
-  processed: Html
-
-  """The text format used to process the text value."""
-  format: String
-}
-
-"""
 Use <em>basic pages</em> for your static content, such as an 'About us' page.
 """
 type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The author of this content."""
   author: User
@@ -1057,10 +1101,13 @@ type NodePage implements NodeInterface & MetaTagInterface & EdgeNode {
   metatag: [MetaTagUnion!]!
 
   """URL alias"""
-  path: String!
+  path: String
 
   """Promoted to front page"""
   promote: Boolean!
+
+  """The Node revision Id."""
+  revisionId: Int!
 
   """Show Title"""
   showTitle: Boolean
@@ -1083,8 +1130,11 @@ union ParagraphUnion = ParagraphAuthor | ParagraphCardGroup | ParagraphCta | Par
 
 """Entity type paragraph."""
 type ParagraphAuthor implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Company"""
   company: String!
@@ -1106,12 +1156,18 @@ type ParagraphAuthor implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 interface ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1121,12 +1177,18 @@ interface ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1148,12 +1210,18 @@ type ParagraphCardGroup implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphCta implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Actions"""
   actions: [Link!]
@@ -1175,6 +1243,9 @@ type ParagraphCta implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """A link."""
@@ -1191,8 +1262,11 @@ type Link {
 
 """Entity type paragraph."""
 type ParagraphFaq implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1211,12 +1285,18 @@ type ParagraphFaq implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphHero implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Actions"""
   actions: [Link!]
@@ -1238,12 +1318,18 @@ type ParagraphHero implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphLogo implements ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1259,12 +1345,18 @@ type ParagraphLogo implements ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphLogoGroup implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1280,12 +1372,18 @@ type ParagraphLogoGroup implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphQuestion implements ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Answer"""
   answer: Text!
@@ -1301,12 +1399,18 @@ type ParagraphQuestion implements ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphSimpleCard implements ParagraphInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1325,12 +1429,18 @@ type ParagraphSimpleCard implements ParagraphInterface {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphTestimonial implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """Author"""
   author: ParagraphUnion!
@@ -1346,12 +1456,18 @@ type ParagraphTestimonial implements ParagraphInterface & EdgeNode {
 
   """Published"""
   status: Boolean!
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Entity type paragraph."""
 type ParagraphViewReference implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1397,6 +1513,9 @@ type ParagraphViewReference implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
 }
 
 """Generic input for key-value pairs."""
@@ -1415,10 +1534,10 @@ enum SortDirection {
 }
 
 """All available view result types."""
-union ViewResultUnion = ViewBlogTeaserFeaturedResult | ViewBlogTeaserResult
+union ViewResultUnion = ViewBlogTeaserResult | ViewBlogTeaserFeaturedResult
 
-"""Result for view blog display blog_featured."""
-type ViewBlogTeaserFeaturedResult implements View {
+"""Result for view blog display teaser."""
+type ViewBlogTeaserResult implements View {
   """The ID of the view."""
   id: ID!
 
@@ -1486,8 +1605,8 @@ type ViewPageInfo {
 """Entity type node."""
 union NodeUnion = NodeArticle | NodePage
 
-"""Result for view blog display blog_teaser."""
-type ViewBlogTeaserResult implements View {
+"""Result for view blog display teaser_featured."""
+type ViewBlogTeaserFeaturedResult implements View {
   """The ID of the view."""
   id: ID!
 
@@ -1515,8 +1634,11 @@ type ViewBlogTeaserResult implements View {
 
 """Entity type paragraph."""
 type ParagraphWebform implements ParagraphInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The time that the Paragraph was created."""
   created: DateTime!
@@ -1525,7 +1647,7 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
   description: String
 
   """Form"""
-  form: String!
+  form: Webform!
 
   """Heading"""
   heading: String!
@@ -1538,6 +1660,51 @@ type ParagraphWebform implements ParagraphInterface & EdgeNode {
 
   """Subheading"""
   subheading: String
+
+  """The delta weight of this paragraph within a fielded context."""
+  weight: Int!
+}
+
+"""A webform."""
+type Webform {
+  id: String
+  label: String
+  description: String
+  elements: [WebformElement]
+}
+
+"""A webform element."""
+type WebformElement {
+  admin_title: String
+  id: String
+  options: [WebformElementOption]
+  placeholder: String
+  states: [WebformElementState]
+  title: String
+  type: String
+  webform_children: [String]
+  webform_composite: Boolean
+  webform_depth: Int
+  webform_id: String
+  webform_key: String
+  webform_multiple: Boolean
+  webform_parent_flexbox: String
+  webform_parents: [String]
+  webform_plugin_id: String
+  webform: String
+}
+
+"""A webform element option."""
+type WebformElementOption {
+  id: String
+  value: String
+}
+
+"""A webform element state."""
+type WebformElementState {
+  condition: String
+  element: String
+  trigger: String
 }
 
 """List of menus available to load."""
@@ -1551,8 +1718,11 @@ enum MenuAvailable {
 
 """Entity type menu."""
 type Menu implements MenuInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The menu items."""
   items: [MenuItem!]!
@@ -1563,8 +1733,11 @@ type Menu implements MenuInterface {
 
 """Entity type menu."""
 interface MenuInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 
   """The menu items."""
   items: [MenuItem!]!
@@ -1610,6 +1783,7 @@ type MenuItem {
 
 """Menu item options set within the CMS."""
 type MenuItemAttributes {
+  """Menu item attribute class."""
   class: String
 }
 
@@ -1641,7 +1815,7 @@ interface Route {
 }
 
 """A list of possible entities that can be returned by URL."""
-union RouteEntityUnion = MediaImage | NodeArticle | NodePage | TermTags
+union RouteEntityUnion = TermTags | NodeArticle | NodePage | MediaImage
 
 """Route outside of this website."""
 type RouteExternal implements Route {
@@ -1669,6 +1843,8 @@ type RouteRedirect implements Route {
 
 """Schema information provided by the system."""
 type SchemaInformation {
+  custom: String!
+
   """The schema description."""
   description: String
 
@@ -1676,7 +1852,16 @@ type SchemaInformation {
   version: String
 
   """List of fragments available."""
-  fragments: [SchemaFragment!]!
+  fragments(
+    """The entity type to filter fragments for."""
+    entity: String
+
+    """The bundle type to filter fragments for."""
+    bundle: String
+
+    """Include dependencies in the result."""
+    withDependencies: Boolean
+  ): [SchemaFragment!]!
 }
 
 """A fragment representing a type within the schema."""
@@ -1692,6 +1877,15 @@ type SchemaFragment {
 
   """The fragment content."""
   content: String
+
+  """The entity type of the fragment."""
+  entity: String
+
+  """The bundle type of the fragment."""
+  bundle: String
+
+  """The list of fragments this fragment depends on."""
+  dependencies: [String]
 }
 
 """A cursor for use in pagination."""
@@ -1718,10 +1912,10 @@ enum ConnectionSortKeys {
   WEIGHT
 }
 
-"""A paginated set of results for MediaImage."""
-type MediaImageConnection implements Connection {
-  edges: [MediaImageEdge!]!
-  nodes: [MediaImage!]!
+"""A paginated set of results for TermTags."""
+type TermTagsConnection implements Connection {
+  edges: [TermTagsEdge!]!
+  nodes: [TermTags!]!
   pageInfo: ConnectionPageInfo!
 }
 
@@ -1763,10 +1957,10 @@ type ConnectionPageInfo {
   endCursor: Cursor
 }
 
-"""Edge for MediaImage."""
-type MediaImageEdge implements Edge {
+"""Edge for TermTags."""
+type TermTagsEdge implements Edge {
   cursor: Cursor!
-  node: MediaImage!
+  node: TermTags!
 }
 
 """A paginated set of results for NodeArticle."""
@@ -1795,17 +1989,17 @@ type NodePageEdge implements Edge {
   node: NodePage!
 }
 
-"""A paginated set of results for TermTags."""
-type TermTagsConnection implements Connection {
-  edges: [TermTagsEdge!]!
-  nodes: [TermTags!]!
+"""A paginated set of results for MediaImage."""
+type MediaImageConnection implements Connection {
+  edges: [MediaImageEdge!]!
+  nodes: [MediaImage!]!
   pageInfo: ConnectionPageInfo!
 }
 
-"""Edge for TermTags."""
-type TermTagsEdge implements Edge {
+"""Edge for MediaImage."""
+type MediaImageEdge implements Edge {
   cursor: Cursor!
-  node: TermTags!
+  node: MediaImage!
 }
 
 """A paginated set of results for ParagraphAuthor."""
@@ -1942,12 +2136,60 @@ type UserEdge implements Edge {
 type Mutation {
   """Placeholder for mutation extension."""
   _: Boolean!
+
+  """Add a webform submission."""
+  submitWebform(
+    """The webform ID."""
+    id: String!
+
+    """Webform submission data."""
+    data: [KeyValueInput]
+  ): WebformSubmission
+}
+
+"""A webform submission."""
+type WebformSubmission {
+  confirmation: WebformConfirmation
+  webform: Webform
+}
+
+"""A webform confirmation."""
+type WebformConfirmation {
+  confirmation_type: String
+  confirmation_url: String
+  confirmation_title: String
+  confirmation_message: String
+  confirmation_attributes: [String]
+  confirmation_back: Boolean
+  confirmation_back_label: String
+  confirmation_back_attributes: [String]
+  confirmation_exclude_query: Boolean
+  confirmation_exclude_token: Boolean
+  confirmation_update: Boolean
 }
 
 """The schema's entry-point for subscriptions."""
 type Subscription {
   """Placeholder for subscription extension."""
   _: Boolean!
+}
+
+"""Input for filter exposed with operator "between"."""
+input BetweenFloatInput {
+  """The minimum value of the range."""
+  min: Float
+
+  """The maximum value of the range."""
+  max: Float
+}
+
+"""Input for filter exposed with operator "between"."""
+input BetweenStringInput {
+  """The minimum value of the range."""
+  min: String
+
+  """The maximum value of the range."""
+  max: String
 }
 
 """A file object to represent an managed file."""
@@ -1970,16 +2212,20 @@ type File {
 
 """Entity type image_style."""
 type ImageStyle implements ImageStyleInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
-  name: String!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 }
 
 """Entity type image_style."""
 interface ImageStyleInterface {
-  """The Universally Unique IDentifier (UUID)."""
+  """The entity ID."""
   id: ID!
-  name: String!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
 }
 
 """Entity type image_style."""
@@ -2014,8 +2260,11 @@ type ViewFilter {
   """The filter plugin type."""
   plugin: String!
 
-  """The filter field type."""
+  """The filter element type."""
   type: String!
+
+  """The filter operator."""
+  operator: String!
 
   """The filter element label."""
   label: String
@@ -2057,4 +2306,31 @@ type ViewReference {
   The name of the query used to fetch the data, if the view is a GraphQL display.
   """
   query: String
+}
+
+"""Entity type webform."""
+interface WebformInterface {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+  changed: String!
+  created: String!
+  langcode: String!
+}
+
+"""Entity type webform."""
+union WebformUnion = WebformWebform
+
+"""Entity type webform."""
+type WebformWebform implements WebformInterface {
+  """The entity ID."""
+  id: ID!
+
+  """The Universally Unique IDentifier (UUID)."""
+  uuid: ID!
+  changed: String!
+  created: String!
+  langcode: String!
 }

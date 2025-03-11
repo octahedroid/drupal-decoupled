@@ -63,7 +63,7 @@ export const Footer = ({
   )
 }
 
-Footer.defaultProps = {
+Footer.defaults = {
   columns: [
     {
       title: 'Column One',
@@ -87,7 +87,7 @@ Footer.defaultProps = {
     },
   ],
   logo: {
-    src: '/placeholders/icons/doc-tahedroid.png',
+    src: '/app/static/placeholders/icons/doc-tahedroid.png',
     alt: 'Company Logo',
   },
   copyrightText: '© 2023 Drupal Decoupled. All rights reserved.',

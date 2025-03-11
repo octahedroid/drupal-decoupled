@@ -51,7 +51,7 @@ export const FAQ = ({
   )
 }
 
-FAQ.defaultProps = {
+FAQ.defaults = {
   heading: 'Frequently asked questions',
   description:
     'Frequently asked questions ordered by popularity. Remember that if the visitor has not committed to the call to action, they may still have questions (doubts) that can be answered.',

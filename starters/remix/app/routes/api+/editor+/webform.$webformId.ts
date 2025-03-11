@@ -1,15 +1,11 @@
-import type { LoaderFunctionArgs } from "@remix-run/cloudflare"; // or cloudflare/deno
-import { json } from "@remix-run/cloudflare";
-import { graphql } from "gql.tada";
-import { WebformFragment } from "~/graphql/fragments";
+import type { LoaderFunctionArgs } from '@remix-run/cloudflare' // or cloudflare/deno
+import { json } from '@remix-run/cloudflare'
+import { graphql } from 'gql.tada'
+import { WebformFragment } from '~/graphql/fragments/webform'
 import { getClient } from '~/utils/client.server'
 
-export const loader = async ({
-  params,
-  context,
-}: LoaderFunctionArgs) => {
-
-  const { webformId } = params;
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
+  const { webformId } = params
 
   const client = await getClient({
     url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
@@ -20,22 +16,22 @@ export const loader = async ({
     },
   })
 
-  const webform = graphql(`
-    query webform($webformId: ID!) {
-      webform (id: $webformId) {
-        ...WebformFragment
+  const webform = graphql(
+    `
+      query webform($webformId: ID!) {
+        webform(id: $webformId) {
+          ...WebformFragment
+        }
       }
-    }
-  `,
-    [
-      WebformFragment
-    ])
+    `,
+    [WebformFragment]
+  )
 
-  const { data, error } = await client.query(webform, {webformId})
+  const { data, error } = await client.query(webform, { webformId })
 
   if (error) {
     throw error
   }
 
-  return json(data.webform, 200);
-};
+  return json(data.webform, 200)
+}

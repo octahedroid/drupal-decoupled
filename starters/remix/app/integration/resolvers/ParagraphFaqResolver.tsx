@@ -7,6 +7,32 @@ import {
 } from '~/integration/editor/fields'
 
 import { FAQ, type FAQProps } from '~/components/blocks'
+import { graphql } from '~/graphql/gql.tada'
+
+export const ParagraphFaqFragment = graphql(
+  `
+    fragment ParagraphFaqFragment on ParagraphFaq {
+      __typename
+      id
+      heading
+      descriptionOptional: description
+      items {
+        __typename
+        ... on ParagraphQuestion {
+          __typename
+          id
+          question
+          answer {
+            __typename
+            value
+            processed
+          }
+        }
+      }
+    }
+  `,
+  []
+)
 
 config.set({
   component: 'ParagraphFaq',

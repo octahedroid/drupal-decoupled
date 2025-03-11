@@ -1,10 +1,30 @@
 import { type Component, config } from 'drupal-decoupled/editor'
+import { WebformFragment } from '~/graphql/fragments/webform'
+import { graphql } from '~/graphql/gql.tada'
 
 import {
   fieldText,
   fieldTextArea,
   fieldWebform,
 } from '~/integration/editor/fields'
+
+export const ParagraphWebformFragment = graphql(
+  `
+    fragment ParagraphWebformFragment on ParagraphWebform {
+      __typename
+      id
+      heading
+      subheadingOptional: subheading
+      descriptionOptional: description
+      form {
+        id
+        __typename
+        ...WebformFragment
+      }
+    }
+  `,
+  [WebformFragment]
+)
 
 type WebformElement = {
   webform_key: string
@@ -106,7 +126,7 @@ const ParagraphWebform: Component = {
     ) as WebformProps
 
     return (
-      <div>
+      <div className="container mx-auto grid items-center gap-8 lg:grid-cols-2 pt-8 pb-8">
         <pre>
           {JSON.stringify({ description, heading, subheading, form }, null, 2)}
         </pre>

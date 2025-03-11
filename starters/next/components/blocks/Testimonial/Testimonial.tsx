@@ -49,12 +49,12 @@ export const Testimonial = ({
   )
 }
 
-Testimonial.defaultProps = {
+Testimonial.defaults = {
   quote:
     "This product has completely transformed our workflow. It's intuitive, powerful, and addresses all the pain points we were experiencing with our previous solution.",
   author: {
     avatar: {
-      src: 'placeholders/doc-tahedroid/avatar.png',
+      src: '/app/static/placeholders/doc-tahedroid/avatar.png',
       name: 'Doc Tahedroid',
     },
     name: 'Doc Tahedroid',

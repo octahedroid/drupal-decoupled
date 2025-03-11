@@ -1,6 +1,6 @@
 import { FragmentOf, readFragment } from 'gql.tada'
 import { Article } from '~/components/blocks'
-import { NodeArticleFragment } from '~/graphql/fragments'
+import { NodeArticleFragment } from '~/graphql/fragments/node'
 import { resolveMediaImage, resolveUser } from '~/integration/resolvers/helpers'
 
 type NodeArticleComponentProps = {
@@ -11,13 +11,10 @@ type NodeArticleComponentProps = {
 export default function NodeArticleComponent({
   node,
 }: NodeArticleComponentProps) {
-  const {
-    title,
-    body,
-    image,
-    author,
-    changed,
-  } = readFragment(NodeArticleFragment, node)
+  const { title, body, image, author, changed } = readFragment(
+    NodeArticleFragment,
+    node
+  )
 
   if (!image) {
     throw new Error('NodeArticleComponent: image is required')
