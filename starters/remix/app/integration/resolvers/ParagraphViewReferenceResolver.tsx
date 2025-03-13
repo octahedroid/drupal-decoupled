@@ -1,19 +1,42 @@
-import { type Component, config } from 'drupal-decoupled/editor'
 import { graphql } from '~/graphql/gql.tada'
 
-import { CardGroup, CardGroupProps, Hero } from '~/components/blocks'
-import {
-  fieldLink,
-  fieldText,
-  fieldTextArea,
-  fieldViewReference,
-} from '~/integration/editor/fields'
+import { CardGroup, Hero } from '~/components/blocks'
 
 import {
   ViewBlogTeaserResultFragment,
   ViewBlogTeaserFeaturedResultFragment,
 } from '~/graphql/fragments/view'
 import { LinkFragment } from '~/graphql/fragments/misc'
+import { FragmentOf, readFragment } from 'gql.tada'
+import { NodeArticleTeaserFragment } from '~/graphql/fragments/node'
+import { resolveMediaImage } from './helpers'
+
+interface ParagraphViewReferenceProps {
+  paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>
+}
+
+type ReferenceFragment = (
+  | FragmentOf<typeof ViewBlogTeaserResultFragment>
+  | FragmentOf<typeof ViewBlogTeaserFeaturedResultFragment>
+) & { __typename: string }
+
+const calculateReference = (referenceFragment: ReferenceFragment) => {
+  if (referenceFragment.__typename === 'ViewBlogTeaserResult') {
+    return readFragment(
+      ViewBlogTeaserResultFragment,
+      referenceFragment as FragmentOf<typeof ViewBlogTeaserResultFragment>
+    )
+  }
+
+  if (referenceFragment.__typename === 'ViewBlogTeaserFeaturedResult') {
+    return readFragment(
+      ViewBlogTeaserFeaturedResultFragment,
+      referenceFragment as FragmentOf<
+        typeof ViewBlogTeaserFeaturedResultFragment
+      >
+    )
+  }
+}
 
 export const ParagraphViewReferenceFragment = graphql(
   `
@@ -40,251 +63,94 @@ export const ParagraphViewReferenceFragment = graphql(
   ]
 )
 
-type ViewReferenceData = {
-  id: string
-  view: string
-  display: string
-  results: []
-}
+export const ParagraphViewReferenceResolver = ({
+  paragraph,
+}: ParagraphViewReferenceProps) => {
+  const {
+    id,
+    headingOptional,
+    descriptionOptional,
+    subheadingOptional,
+    link: linkFragment,
+    reference: referenceFragment,
+  } = readFragment(ParagraphViewReferenceFragment, paragraph)
 
-type ViewReference = {
-  view: string
-  display: string
-  cards: CardGroupProps['cards']
-}
-
-type ViewReferenceProps = {
-  id: string
-  heading: string
-  subheading: string
-  description: string
-  reference: ViewReference
-  action: {
-    href: string
-    internal: boolean
-    text: string
-  }
-}
-
-const defaultCardProps = [
-  {
-    image: {
-      mediaImage: {},
-    },
-    author: {
-      picture: {
-        mediaImage: {},
-      },
-    },
-    details: {
-      href: '',
-      text: '',
-      internal: true,
-    },
-  },
-]
-
-const defaultProps = {
-  heading: '',
-  subheading: '',
-  description: '',
-  reference: {
-    view: 'none',
-    display: 'none',
-    cards: defaultCardProps,
-  },
-  action: {
-    href: '/blog',
-    text: 'Blog',
-    internal: true,
-  },
-}
-
-config.set({
-  component: 'ParagraphViewReference',
-  fields: {
-    headingOptional: {
-      type: fieldText,
-      config: {
-        fieldName: 'heading',
-        uiPropName: 'heading',
-      },
-    },
-    subheadingOptional: {
-      type: fieldText,
-      config: {
-        fieldName: 'subheading',
-        uiPropName: 'subheading',
-      },
-    },
-    descriptionOptional: {
-      type: fieldTextArea,
-      config: {
-        fieldName: 'description',
-        uiPropName: 'description',
-      },
-    },
-    reference: {
-      type: fieldViewReference,
-      transformers: [
-        {
-          element: '/{uiPropName}',
-          operations: [
-            {
-              operation: 'rename',
-              source: 'results',
-              destination: 'cards',
-            },
-          ],
-        },
-        {
-          element: '/{uiPropName}.cards[*].image',
-          preset: { preset: 'mediaImage', property: 'mediaImage' },
-        },
-        {
-          element: '/{uiPropName}.cards[*].author.picture',
-          preset: { preset: 'mediaImage', property: 'mediaImage' },
-        },
-        {
-          element: '/{uiPropName}.cards',
-          operations: [
-            {
-              operation: 'add',
-              path: 'details',
-              type: 'object',
-              value: {
-                href: '',
-                text: 'View post',
-                internal: true,
-              },
-            },
-            {
-              operation: 'rename',
-              source: 'path',
-              destination: 'details.href',
-            },
-          ],
-        },
-      ],
-    },
-    link: {
-      type: fieldLink,
-      config: {
-        uiPropName: 'action',
-        preset: {
-          skipOnNull: true,
-        },
-      },
-    },
-  },
-  defaultProps,
-})
-
-const ParagraphViewReference: Component = {
-  fields: config.getFields('ParagraphViewReference'),
-  defaultProps: config.parseDefaultProps('ParagraphViewReference'),
-  resolveData: async (data) => {
-    const getViewReference = async (view: string, display: string) => {
-      if (view === 'none' || display === 'none') {
-        return {
-          view,
-          display,
-          results: defaultCardProps,
+  const action = !linkFragment
+    ? readFragment(LinkFragment, linkFragment)
+    : undefined
+  const reference = calculateReference(referenceFragment)
+  const { view, display, results } = reference
+    ? reference
+    : { view: undefined, display: undefined, results: undefined }
+  const cards = results
+    ? results.map((item) => {
+        const type = 'teaser'
+        const { image, path, summary, title } = readFragment(
+          NodeArticleTeaserFragment,
+          item as FragmentOf<typeof NodeArticleTeaserFragment>
+        )
+        const link = {
+          href: path,
+          text: 'Read post',
         }
-      }
 
-      const viewReference = (await fetch(
-        `/api/editor/view_reference/${view}/${display}`
-      ).then((res) => res.json())) as ViewReferenceData
+        if (!image) {
+          return { heading: title, summary, type, link }
+        }
 
-      return viewReference
-    }
+        return {
+          heading: title,
+          summary,
+          type,
+          link,
+          image: resolveMediaImage(image),
+        }
+      })
+    : []
 
-    const reference = await getViewReference(
-      data.props.reference.view,
-      data.props.reference.display
-    )
-
-    return {
-      props: {
-        subheadingOptional: data.props.subheadingOptional || '',
-        headingOptional: data.props.headingOptional || '',
-        descriptionOptional: data.props.descriptionOptional || '',
-        reference,
-        link: data.props.link || {},
-      },
-    }
-  },
-  render: (props) => {
-    const viewReference = config.parseUIProps(
-      'ParagraphViewReference',
-      props
-    ) as ViewReferenceProps
-
-    const {
-      id,
-      heading,
-      subheading,
-      description,
-      reference: { view, display, cards },
-      action,
-    } = viewReference
-
-    if (view === 'blog' && display === 'teaser_featured' && cards.length > 0) {
-      const featured = cards.slice(0, 1)[0] as any
-      const remainingCards = cards.splice(1)
-
-      return (
-        <div id={`${view}-${display}-${id}`}>
-          <Hero
-            heading={featured.heading}
-            image={featured.image}
-            description={featured.summary}
-            actions={[
-              {
-                href: featured.path,
-                text: featured.title,
-                internal: true,
-              },
-            ]}
-          />
-          {cards && (
-            <CardGroup
-              key={id}
-              heading={heading}
-              subheading={subheading}
-              description={description}
-              cards={remainingCards}
-              action={action}
-            />
-          )}
-        </div>
-      )
-    }
-
-    if (view === 'blog' && display === 'teaser') {
-      return (
-        <CardGroup
-          id={`${view}-${display}-${id}`}
-          key={id}
-          heading={heading}
-          subheading={subheading}
-          description={description}
-          cards={cards}
-          action={action}
-        />
-      )
-    }
+  if (view === 'blog' && display === 'teaser_featured') {
+    const featured = cards[0]
+    const remainingCards = cards.splice(1)
 
     return (
-      <>
-        <p>
-          View Reference: <strong>{view}</strong> and Display:{' '}
-          <strong>{display}</strong> not yet implemented.
-        </p>
-      </>
+      <div id={id}>
+        <Hero
+          heading={featured.heading}
+          image={featured.image}
+          description={featured.summary}
+          actions={[
+            {
+              href: featured.link.href,
+              text: featured.link.text,
+              internal: true,
+            },
+          ]}
+        />
+        {cards && (
+          <CardGroup
+            key={id}
+            heading={headingOptional || ''}
+            subheading={subheadingOptional || ''}
+            description={descriptionOptional || ''}
+            cards={remainingCards}
+            action={action}
+          />
+        )}
+      </div>
     )
-  },
-}
+  }
 
-export { ParagraphViewReference }
+  if (view === 'blog' && display === 'teaser') {
+    return (
+      <CardGroup
+        id={id}
+        key={id}
+        heading={headingOptional || ''}
+        subheading={subheadingOptional || ''}
+        description={descriptionOptional || ''}
+        cards={cards}
+        action={action}
+      />
+    )
+  }
+}

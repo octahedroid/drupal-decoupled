@@ -1,14 +1,28 @@
-import { type Component, config } from 'drupal-decoupled/editor'
+import { FragmentOf, readFragment } from 'gql.tada'
+
 import { graphql } from '@/graphql/gql.tada'
-
-import {
-  fieldCard,
-  fieldText,
-  fieldTextArea,
-} from '@/integration/editor/fields'
-
-import { CardGroup, type CardGroupProps } from '@/components/blocks'
 import { MediaImageFragment } from '@/graphql/fragments/media'
+import { resolveMediaImage } from '@/integration/resolvers/helpers'
+import { CardGroup } from '@/components/blocks'
+
+interface ParagraphCardGroupProps {
+  paragraph: FragmentOf<typeof ParagraphCardGroupFragment>
+}
+
+const ParagraphSimpleCardFragment = graphql(
+  `
+    fragment ParagraphSimpleCardFragment on ParagraphSimpleCard {
+      __typename
+      id
+      heading
+      description
+      image {
+        ...MediaImageFragment
+      }
+    }
+  `,
+  [MediaImageFragment]
+)
 
 export const ParagraphCardGroupFragment = graphql(
   `
@@ -20,70 +34,44 @@ export const ParagraphCardGroupFragment = graphql(
       descriptionOptional: description
       items {
         __typename
-        ... on ParagraphSimpleCard {
-          __typename
-          id
-          heading
-          description
-          image {
-            ...MediaImageFragment
-          }
-        }
+        ...ParagraphSimpleCardFragment
       }
     }
   `,
-  [MediaImageFragment]
+  [ParagraphSimpleCardFragment]
 )
 
-config.set({
-  component: 'ParagraphCardGroup',
-  fields: {
-    heading: {
-      type: fieldText,
-    },
-    subheadingOptional: {
-      type: fieldText,
-      config: {
-        uiPropName: 'subheading',
-        fieldName: 'subheading',
-      },
-    },
-    descriptionOptional: {
-      type: fieldTextArea,
-      config: {
-        uiPropName: 'description',
-        fieldName: 'description',
-      },
-    },
-    items: {
-      type: fieldCard,
-      config: {
-        uiPropName: 'cards',
-      },
-      transformers: [
-        {
-          element: '/{uiPropName}',
-          operations: [
-            { operation: 'add', path: 'type', value: 'simple', type: 'string' },
-          ],
-        },
-      ],
-    },
-  },
-  defaultProps: CardGroup.defaults,
-})
+export const ParagraphCardGroupResolver = ({
+  paragraph,
+}: ParagraphCardGroupProps) => {
+  const { id, heading, subheadingOptional, items, descriptionOptional } =
+    readFragment(ParagraphCardGroupFragment, paragraph)
 
-const ParagraphCardGroup: Component = {
-  fields: config.getFields('ParagraphCardGroup'),
-  defaultProps: config.parseDefaultProps('ParagraphCardGroup'),
-  render: (props) => {
-    const cardGroup = config.parseUIProps(
-      'ParagraphCardGroup',
-      props
-    ) as CardGroupProps
+  const cards = items
+    ? items.map((item) => {
+        const type = 'simple'
+        const { heading, description, image } = readFragment(
+          ParagraphSimpleCardFragment,
+          item as FragmentOf<typeof ParagraphSimpleCardFragment>
+        )
 
-    return <CardGroup {...cardGroup} />
-  },
+        return {
+          heading,
+          description,
+          image: resolveMediaImage(image),
+          type,
+        }
+      })
+    : []
+
+  return (
+    <CardGroup
+      id={id}
+      key={id}
+      heading={heading}
+      subheading={subheadingOptional || ''}
+      description={descriptionOptional || ''}
+      cards={cards}
+    />
+  )
 }
-
-export { ParagraphCardGroup }

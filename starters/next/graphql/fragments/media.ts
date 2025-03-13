@@ -11,14 +11,15 @@ export const ImageFragment = graphql(`
   }
 `)
 
-export const MediaImageFragment = graphql(`
-  fragment MediaImageFragment on MediaImage {
-    __typename
-    id
-    mediaImage {
-      ...ImageFragment
+export const MediaImageFragment = graphql(
+  `
+    fragment MediaImageFragment on MediaImage {
+      __typename
+      id
+      mediaImage {
+        ...ImageFragment
+      }
     }
-  }
   `,
   [ImageFragment]
 )

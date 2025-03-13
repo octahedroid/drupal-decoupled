@@ -1,16 +1,14 @@
-import { type Component, config } from 'drupal-decoupled/editor'
+import { FragmentOf, readFragment } from 'gql.tada'
 
-import {
-  fieldText,
-  fieldTextArea,
-  fieldMediaImageExternal,
-  fieldLinks,
-} from '~/integration/editor/fields'
-
-import { Hero, type HeroProps } from '~/components/blocks'
+import { Hero } from '~/components/blocks'
 import { MediaImageFragment } from '~/graphql/fragments/media'
 import { LinkFragment } from '~/graphql/fragments/misc'
 import { graphql } from '~/graphql/gql.tada'
+import { resolveLink, resolveMediaImage } from '~/integration/resolvers/helpers'
+
+interface ParagraphHeroProps {
+  paragraph: FragmentOf<typeof ParagraphHeroFragment>
+}
 
 export const ParagraphHeroFragment = graphql(
   `
@@ -33,33 +31,27 @@ export const ParagraphHeroFragment = graphql(
   [MediaImageFragment, LinkFragment]
 )
 
-config.set({
-  component: 'ParagraphHero',
-  fields: {
-    heading: {
-      type: fieldText,
-    },
-    description: {
-      type: fieldTextArea,
-    },
-    image: {
-      type: fieldMediaImageExternal,
-    },
-    actions: {
-      type: fieldLinks,
-    },
-  },
-  defaultProps: Hero.defaults,
-})
+export const ParagraphHeroResolver = ({ paragraph }: ParagraphHeroProps) => {
+  const {
+    id,
+    heading,
+    description,
+    image: mediaImageFragment,
+    actions: linkFragment,
+  } = readFragment(ParagraphHeroFragment, paragraph)
+  const image = resolveMediaImage(mediaImageFragment)
+  const actions = linkFragment
+    ? linkFragment.map((link) => resolveLink(link))
+    : []
 
-const ParagraphHero: Component = {
-  // fields: config.getFields('ParagraphHero'),
-  // defaultProps: config.parseDefaultProps('ParagraphHero'),
-  render: (props) => {
-    const hero = config.parseUIProps('ParagraphHero', props) as HeroProps
-
-    return <Hero {...hero} />
-  },
+  return (
+    <Hero
+      id={id}
+      key={id}
+      heading={heading}
+      description={description}
+      image={image}
+      actions={actions}
+    />
+  )
 }
-
-export { ParagraphHero }

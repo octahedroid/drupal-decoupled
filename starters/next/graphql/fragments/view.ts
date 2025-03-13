@@ -3,8 +3,9 @@ import { MediaImageFragment } from '@/graphql/fragments/media'
 import { UserFragment } from '@/graphql/fragments/user'
 
 // @todo fix importing NodeArticleTeaserFragment from node.ts
-// import { NodeArticleTeaserFragment } from "@/graphql/fragments/node";
-const NodeArticleTeaserFragment = graphql(`
+// import { NodeArticleTeaserFragment } from "~/graphql/fragments/node";
+const NodeArticleTeaserFragment = graphql(
+  `
     fragment NodeArticleTeaserFragment on NodeArticle {
       __typename
       id
@@ -22,30 +23,32 @@ const NodeArticleTeaserFragment = graphql(`
   [MediaImageFragment, UserFragment]
 )
 
-export const ViewBlogTeaserResultFragment = graphql(`
-  fragment ViewBlogTeaserResultFragment on ViewBlogTeaserResult {
-    __typename
-    id
-    view
-    display
-    results {
-      ...NodeArticleTeaserFragment
+export const ViewBlogTeaserResultFragment = graphql(
+  `
+    fragment ViewBlogTeaserResultFragment on ViewBlogTeaserResult {
+      __typename
+      id
+      view
+      display
+      results {
+        ...NodeArticleTeaserFragment
+      }
     }
-  }
-`,
+  `,
   [NodeArticleTeaserFragment]
 )
 
-export const ViewBlogTeaserFeaturedResultFragment = graphql(`
-  fragment ViewBlogTeaserFeaturedResultFragment on ViewBlogTeaserFeaturedResult {
-    __typename
-    id
-    view
-    display
-    results {
-      ...NodeArticleTeaserFragment
+export const ViewBlogTeaserFeaturedResultFragment = graphql(
+  `
+    fragment ViewBlogTeaserFeaturedResultFragment on ViewBlogTeaserFeaturedResult {
+      __typename
+      id
+      view
+      display
+      results {
+        ...NodeArticleTeaserFragment
+      }
     }
-  }
-`,
+  `,
   [NodeArticleTeaserFragment]
 )

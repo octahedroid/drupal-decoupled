@@ -1,9 +1,29 @@
-import { type Component, config } from 'drupal-decoupled/editor'
-import { graphql } from '~/graphql/gql.tada'
+import { FragmentOf, readFragment } from 'gql.tada'
 
-import { fieldAuthor, fieldText } from '~/integration/editor/fields'
-import { Testimonial, type TestimonialProps } from '~/components/blocks'
+import { graphql } from '~/graphql/gql.tada'
 import { MediaImageFragment } from '~/graphql/fragments/media'
+import { resolveMediaImage } from '~/integration/resolvers/helpers'
+import { Testimonial } from '~/components/blocks'
+
+interface ParagraphTestimonialProps {
+  paragraph: FragmentOf<typeof ParagraphTestimonialFragment>
+}
+
+const ParagraphAuthorFragment = graphql(
+  `
+    fragment ParagraphAuthorFragment on ParagraphAuthor {
+      __typename
+      id
+      image {
+        ...MediaImageFragment
+      }
+      name
+      company
+      position
+    }
+  `,
+  [MediaImageFragment]
+)
 
 export const ParagraphTestimonialFragment = graphql(
   `
@@ -13,53 +33,43 @@ export const ParagraphTestimonialFragment = graphql(
       quote
       author {
         __typename
-        ... on ParagraphAuthor {
-          id
-          image {
-            ...MediaImageFragment
-          }
-          name
-          company
-          position
-        }
+        ...ParagraphAuthorFragment
       }
     }
   `,
-  [MediaImageFragment]
+  [ParagraphAuthorFragment]
 )
 
-config.set({
-  component: 'ParagraphTestimonial',
-  fields: {
-    quote: {
-      type: fieldText,
-    },
-    author: {
-      type: fieldAuthor,
-      transformers: [
-        {
-          element: '/{uiPropName}',
-          operations: [
-            { operation: 'rename', source: 'image', destination: 'avatar' },
-          ],
-        },
-      ],
-    },
-  },
-  defaultProps: Testimonial.defaults,
-})
+export const ParagraphTestimonialResolver = ({
+  paragraph,
+}: ParagraphTestimonialProps) => {
+  const {
+    id,
+    quote,
+    author: authorFragment,
+  } = readFragment(ParagraphTestimonialFragment, paragraph)
+  const {
+    name,
+    position,
+    company,
+    image: imageFragment,
+  } = readFragment(
+    ParagraphAuthorFragment,
+    authorFragment as FragmentOf<typeof ParagraphAuthorFragment>
+  )
+  const image = resolveMediaImage(imageFragment)
 
-const ParagraphTestimonial: Component = {
-  fields: config.getFields('ParagraphTestimonial'),
-  defaultProps: config.parseDefaultProps('ParagraphTestimonial'),
-  render: (props) => {
-    const testimonial = config.parseUIProps(
-      'ParagraphTestimonial',
-      props
-    ) as TestimonialProps
-
-    return <Testimonial {...testimonial} />
-  },
+  return (
+    <Testimonial
+      id={id}
+      key={id}
+      quote={quote}
+      author={{
+        name,
+        position,
+        company,
+        avatar: image,
+      }}
+    />
+  )
 }
-
-export { ParagraphTestimonial }
