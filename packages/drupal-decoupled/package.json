@@ -1,6 +1,6 @@
 {
   "name": "drupal-decoupled",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Drupal utils for Decoupled integrations",
   "type": "module",
   "keywords": [
@@ -31,7 +31,6 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./editor": "./dist/editor/index.js",
     "./remix": "./dist/remix/index.js"
   },
   "license": "MIT",

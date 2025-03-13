@@ -1522,7 +1522,7 @@
   dependencies:
     "@types/mdx" "^2.0.0"
 
-"@measured/puck@^0.18.2":
+"@measured/puck@^0.18.1", "@measured/puck@^0.18.2":
   version "0.18.2"
   resolved "https://registry.yarnpkg.com/@measured/puck/-/puck-0.18.2.tgz#2d85aaa791715b7af164c2774d3b58da52ee30a3"
   integrity sha512-WI8AQ9V6MnxbEjnaB9fd2p8RGwrQ44jriJNDwoDKgKxIsHIk1IEdz8cK7Qf30yepJ4iKqr9ug6lLZJcutFPgMA==
@@ -3750,6 +3750,17 @@ drupal-auth-client@^0.4:
   resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.4.0.tgz#1ecec93b3404744546291e6e4f25ddb7b536b536"
   integrity sha512-isCGyIQazg9Mi+zF/b96wSZ4R4U9mxayHPejvNQqkp/GolxkJ/vkrvxTcU3ShLrk3CkspPYPfr6uGEzyW2F5Rw==
 
+drupal-decoupled@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/drupal-decoupled/-/drupal-decoupled-0.2.2.tgz#c52293598deb9a287dc85a0ba51e6b62bf34ac75"
+  integrity sha512-psxZHEwR1+fa9RExiUW8CHXUzYbYhZvSR+DG6ktaUrlsmlbFqWGhDEdF85XTGPX/sb37uO0Vczp4iIfPfHABlQ==
+  dependencies:
+    "@measured/puck" "^0.18.1"
+    immutable-json-patch "^6.0.1"
+    jmespath "^0.16.0"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
 dunder-proto@^1.0.0, dunder-proto@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/dunder-proto/-/dunder-proto-1.0.1.tgz#d7ae667e1dc83482f8b70fd0f6eefc50da30f58a"
@@ -5067,6 +5078,11 @@ ignore@^5.2.0, ignore@^5.2.4:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.3.2.tgz#3cd40e729f3643fd87cb04e50bf0eb722bc596f5"
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
 
+immutable-json-patch@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/immutable-json-patch/-/immutable-json-patch-6.0.1.tgz#b60b609633e97bb2bc7c74726ff607729e61fd5b"
+  integrity sha512-BHL/cXMjwFZlTOffiWNdY8ZTvNyYLrutCnWxrcKPHr5FqpAb6vsO6WWSPnVSys3+DruFN6lhHJJPHi8uELQL5g==
+
 import-fresh@^3.2.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.1.tgz#9cecb56503c0ada1f2741dbbd6546e4b13b57ccf"
@@ -5463,6 +5479,11 @@ jiti@^1.21.6:
   version "1.21.7"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.7.tgz#9dd81043424a3d28458b193d965f0d18a2300ba9"
   integrity sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==
+
+jmespath@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.16.0.tgz#b15b0a85dfd4d930d43e69ed605943c802785076"
+  integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
