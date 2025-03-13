@@ -2,28 +2,15 @@ import { FragmentOf, readFragment } from 'gql.tada'
 import { ImageFragment, MediaImageFragment } from '@/graphql/fragments/media'
 import { LinkFragment } from '@/graphql/fragments/misc'
 import { UserFragment } from '@/graphql/fragments/user'
+import { type ImageProps, type ButtonProps } from '@/components/primitives'
 
 // @todo: Import types from privitives
-type ImageProps = {
-  src: string
-  alt: string
-  width?: number
-  height?: number
-  loading?: 'lazy' | 'eager'
-}
-
 type UserProps = {
   name: string
   avatar: {
     src?: string
     name: string
   }
-}
-
-type ActionsProps = {
-  href: string | null
-  internal?: boolean
-  text?: string | null
 }
 
 export const resolveMediaImage = (
@@ -52,13 +39,13 @@ export const resolveMediaImage = (
 }
 
 export const resolveLink = (
-  action: FragmentOf<typeof LinkFragment>
-): ActionsProps => {
-  const {
-    title: text,
-    url: href,
-    internal,
-  } = readFragment(LinkFragment, action)
+  link: FragmentOf<typeof LinkFragment>
+): ButtonProps => {
+  const { title: text, url: href, internal } = readFragment(LinkFragment, link)
+
+  if (!text || !href) {
+    return {} as ButtonProps
+  }
 
   return {
     text,
@@ -77,8 +64,8 @@ export const resolveUser = (
   const { name, picture } = readFragment(UserFragment, user)
 
   if (!picture) {
-    return { name, avatar: {} as ImageProps }
+    return { name, avatar: {} } as UserProps
   }
 
-  return { name, avatar: resolveMediaImage(picture) }
+  return { name, avatar: resolveMediaImage(picture) } as UserProps
 }

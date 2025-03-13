@@ -1,14 +1,13 @@
-import { type Component, config } from 'drupal-decoupled/editor'
+import { FragmentOf, readFragment } from 'gql.tada'
+
 import { graphql } from '@/graphql/gql.tada'
-
-import {
-  fieldText,
-  fieldTextArea,
-  fieldLinks,
-} from '@/integration/editor/fields'
-
-import { CTA, type CTAProps } from '@/components/blocks'
 import { LinkFragment } from '@/graphql/fragments/misc'
+import { CTA } from '@/components/blocks'
+import { resolveLink } from './helpers'
+
+interface ParagraphCtaProps {
+  paragraph: FragmentOf<typeof ParagraphCtaFragment>
+}
 
 export const ParagraphCtaFragment = graphql(
   `
@@ -26,30 +25,24 @@ export const ParagraphCtaFragment = graphql(
   [LinkFragment]
 )
 
-config.set({
-  component: 'ParagraphCta',
-  fields: {
-    heading: {
-      type: fieldText,
-    },
-    description: {
-      type: fieldTextArea,
-    },
-    actions: {
-      type: fieldLinks,
-    },
-  },
-  defaultProps: CTA.defaults,
-})
+export const ParagraphCtaResolver = ({ paragraph }: ParagraphCtaProps) => {
+  const {
+    id,
+    heading,
+    description,
+    actions: linkFragment,
+  } = readFragment(ParagraphCtaFragment, paragraph)
+  const actions = linkFragment
+    ? linkFragment.map((link) => resolveLink(link))
+    : []
 
-const ParagraphCta: Component = {
-  fields: config.getFields('ParagraphCta'),
-  defaultProps: config.parseDefaultProps('ParagraphCta'),
-  render: (props) => {
-    const cta = config.parseUIProps('ParagraphCta', props) as CTAProps
-
-    return <CTA {...cta} />
-  },
+  return (
+    <CTA
+      id={id}
+      key={id}
+      heading={heading}
+      description={description}
+      actions={actions}
+    />
+  )
 }
-
-export { ParagraphCta }

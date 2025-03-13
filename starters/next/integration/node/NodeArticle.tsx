@@ -11,24 +11,20 @@ type NodeArticleComponentProps = {
 export default function NodeArticleComponent({
   node,
 }: NodeArticleComponentProps) {
-  const {
-    title,
-    body,
-    image: nodeArticleImage,
-    author: nodeArticleAuthor,
-    changed,
-  } = readFragment(NodeArticleFragment, node)
-  const image = resolveMediaImage(nodeArticleImage)
+  const { title, body, image, author, changed } = readFragment(
+    NodeArticleFragment,
+    node
+  )
+
   if (!image) {
     throw new Error('NodeArticleComponent: image is required')
   }
-  if (!nodeArticleAuthor) {
+  if (!author) {
     throw new Error('NodeArticleComponent: author is required')
   }
   if (!body || !body.processed) {
     throw new Error('NodeArticleComponent: body is required')
   }
-  const author = resolveUser(nodeArticleAuthor)
 
   return (
     <>
@@ -36,8 +32,8 @@ export default function NodeArticleComponent({
       <Article
         title={title}
         content={body.processed.toString()}
-        author={author}
-        image={image}
+        author={resolveUser(author)}
+        image={resolveMediaImage(image)}
         publishDate={Number(changed.timestamp)}
       />
     </>

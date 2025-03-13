@@ -1,10 +1,29 @@
-import { type Component, config } from 'drupal-decoupled/editor'
-import { graphql } from '@/graphql/gql.tada'
+import { FragmentOf, readFragment } from 'gql.tada'
 
-import { fieldLogo, fieldText } from '@/integration/editor/fields'
-import { LogoGroup, type LogoGroupProps } from '@/components/blocks'
+import { graphql } from '@/graphql/gql.tada'
 import { MediaImageFragment } from '@/graphql/fragments/media'
 import { LinkFragment } from '@/graphql/fragments/misc'
+import { LogoGroup } from '@/components/blocks'
+import { resolveLink, resolveMediaImage } from '@/integration/resolvers/helpers'
+interface ParagraphLogoGroupProps {
+  paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>
+}
+
+export const ParagraphLogoFragment = graphql(
+  `
+    fragment ParagraphLogoFragment on ParagraphLogo {
+      __typename
+      id
+      image {
+        ...MediaImageFragment
+      }
+      link {
+        ...LinkFragment
+      }
+    }
+  `,
+  [MediaImageFragment, LinkFragment]
+)
 
 export const ParagraphLogoGroupFragment = graphql(
   `
@@ -13,62 +32,42 @@ export const ParagraphLogoGroupFragment = graphql(
       id
       heading
       items {
-        ... on ParagraphLogo {
-          __typename
-          id
-          image {
-            ...MediaImageFragment
-          }
-          link {
-            ...LinkFragment
-          }
-        }
+        ...ParagraphLogoFragment
       }
     }
   `,
-  [MediaImageFragment, LinkFragment]
+  [ParagraphLogoFragment]
 )
 
-config.set({
-  component: 'ParagraphLogoGroup',
-  fields: {
-    heading: {
-      type: fieldText,
-    },
-    items: {
-      type: fieldLogo,
-      config: {
-        uiPropName: 'logos',
-      },
-      transformers: [
-        {
-          element: '/{uiPropName}[*].image',
-          operations: [
-            {
-              operation: 'add',
-              path: 'className',
-              value: 'h-12',
-              type: 'string',
-            },
-          ],
-        },
-      ],
-    },
-  },
-  defaultProps: LogoGroup.defaults,
-})
+export const ParagraphLogoGroupResolver = ({
+  paragraph,
+}: ParagraphLogoGroupProps) => {
+  const { id, heading, items } = readFragment(
+    ParagraphLogoGroupFragment,
+    paragraph
+  )
+  const logos = items
+    ? items.map((item) => {
+        const {
+          id,
+          link: linkFragment,
+          image,
+        } = readFragment(
+          ParagraphLogoFragment,
+          item as FragmentOf<typeof ParagraphLogoFragment>
+        )
+        const link = linkFragment ? resolveLink(linkFragment) : null
 
-const ParagraphLogoGroup: Component = {
-  fields: config.getFields('ParagraphLogoGroup'),
-  defaultProps: config.parseDefaultProps('ParagraphLogoGroup'),
-  render: (props) => {
-    const logoGroup = config.parseUIProps(
-      'ParagraphLogoGroup',
-      props
-    ) as LogoGroupProps
+        return {
+          id,
+          image: {
+            ...resolveMediaImage(image),
+            className: 'h-12',
+          },
+          link,
+        }
+      })
+    : []
 
-    return <LogoGroup {...logoGroup} />
-  },
+  return <LogoGroup id={id} heading={heading} logos={logos} />
 }
-
-export { ParagraphLogoGroup }

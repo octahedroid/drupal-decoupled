@@ -696,12 +696,12 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "uuid",
+            "name": "name",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "ID"
+                "name": "String"
               }
             },
             "args": [],
@@ -797,12 +797,12 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "uuid",
+            "name": "name",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "ID"
+                "name": "String"
               }
             },
             "args": [],
@@ -1040,18 +1040,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -1267,18 +1255,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [],
@@ -1340,18 +1316,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -1420,18 +1384,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -2174,18 +2126,6 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "revisionId",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
@@ -2243,18 +2183,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -2473,18 +2401,6 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "revisionId",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "status",
             "type": {
               "kind": "NON_NULL",
@@ -2515,18 +2431,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -2673,18 +2577,6 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "revisionId",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "showTitle",
             "type": {
               "kind": "SCALAR",
@@ -2736,18 +2628,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -2978,30 +2858,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -3207,30 +3063,6 @@ const introspection = {
             "type": {
               "kind": "SCALAR",
               "name": "String"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
             },
             "args": [],
             "isDeprecated": false
@@ -3442,30 +3274,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -3661,30 +3469,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
               }
             },
             "args": [],
@@ -3900,30 +3684,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -4084,30 +3844,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [],
@@ -4237,30 +3973,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -4347,30 +4059,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
               }
             },
             "args": [],
@@ -4559,30 +4247,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -4679,30 +4343,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -4783,30 +4423,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
               }
             },
             "args": [],
@@ -5112,30 +4728,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -5335,30 +4927,6 @@ const introspection = {
             "type": {
               "kind": "SCALAR",
               "name": "String"
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "weight",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int"
-              }
             },
             "args": [],
             "isDeprecated": false
@@ -7141,18 +6709,6 @@ const introspection = {
         "name": "SchemaInformation",
         "fields": [
           {
-            "name": "custom",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "description",
             "type": {
               "kind": "SCALAR",
@@ -7363,18 +6919,6 @@ const introspection = {
             "isDeprecated": false
           },
           {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
             "name": "weight",
             "type": {
               "kind": "NON_NULL",
@@ -7502,18 +7046,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -7885,18 +7417,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [
@@ -8120,18 +7640,6 @@ const introspection = {
               "ofType": {
                 "kind": "ENUM",
                 "name": "UserStatus"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],
@@ -9180,18 +8688,6 @@ const introspection = {
             },
             "args": [],
             "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
           }
         ],
         "interfaces": [],
@@ -9284,18 +8780,6 @@ const introspection = {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
-              }
-            },
-            "args": [],
-            "isDeprecated": false
-          },
-          {
-            "name": "uuid",
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID"
               }
             },
             "args": [],

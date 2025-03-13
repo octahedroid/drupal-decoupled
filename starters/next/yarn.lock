@@ -913,69 +913,6 @@
     "@babel/helper-string-parser" "^7.25.9"
     "@babel/helper-validator-identifier" "^7.25.9"
 
-"@dnd-kit/abstract@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/abstract/-/abstract-0.0.7-beta-20250130032138.tgz#3d888a741e7861faebcc0cb7f559a4459c58178c"
-  integrity sha512-CFprqfJTtvSqq6ST7AEu41M1CIMk3lko5JNggTsx9seuqodJ0kCqBDul92BBWoAxPiRuQPm+TrK5vijj1tO7rg==
-  dependencies:
-    "@dnd-kit/geometry" "0.0.7-beta-20250130032138"
-    "@dnd-kit/state" "0.0.7-beta-20250130032138"
-    tslib "^2.6.2"
-
-"@dnd-kit/collision@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/collision/-/collision-0.0.7-beta-20250130032138.tgz#46986adec7f61a3b08c06176d11679854e2f9f52"
-  integrity sha512-IlR3Qi1Fwc+DFDIdxHCcuolv7+l+M/0KAXdW5gd8m4y5sfW1do1pogAcRA6qNHcUvlUtbsdINf/CzFoztMJ5Bw==
-  dependencies:
-    "@dnd-kit/abstract" "0.0.7-beta-20250130032138"
-    "@dnd-kit/geometry" "0.0.7-beta-20250130032138"
-    tslib "^2.6.2"
-
-"@dnd-kit/dom@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/dom/-/dom-0.0.7-beta-20250130032138.tgz#46897d1b96ee1be32adb36fea36e5628c8d12045"
-  integrity sha512-LuySH+UkuvlNgMGDfRPe00cSbRMxyE9PbVNfUEmsnXUmltSW9ht5jVZrkQYAI8kZB3y7ry8h1fZtK/dOI3QFBg==
-  dependencies:
-    "@dnd-kit/abstract" "0.0.7-beta-20250130032138"
-    "@dnd-kit/collision" "0.0.7-beta-20250130032138"
-    "@dnd-kit/geometry" "0.0.7-beta-20250130032138"
-    "@dnd-kit/state" "0.0.7-beta-20250130032138"
-    tslib "^2.6.2"
-
-"@dnd-kit/geometry@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/geometry/-/geometry-0.0.7-beta-20250130032138.tgz#67ce0f2ff0245deee8bbdf1bacc37565f26eddc8"
-  integrity sha512-XfXqVq+LdMt5VKTjiyhvCcc68xRvD9xZilA52mdODN1qM3wh5ezpe17MyjlqefqH+sratpjmZwifHk2CONRWeg==
-  dependencies:
-    "@dnd-kit/state" "0.0.7-beta-20250130032138"
-    tslib "^2.6.2"
-
-"@dnd-kit/helpers@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/helpers/-/helpers-0.0.7-beta-20250130032138.tgz#2b92aa5ba003b6d5cafc6ff1eac5be198dc8b149"
-  integrity sha512-KzZhgi3zoSJMSEwSL+6d/8GS2FfvY1s5wpIUPxEAgJM9ati+iU8uFL4T5qgxeTt8LVxobyFRzI5rVisUGgSICA==
-  dependencies:
-    "@dnd-kit/abstract" "0.0.7-beta-20250130032138"
-    tslib "^2.6.2"
-
-"@dnd-kit/react@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/react/-/react-0.0.7-beta-20250130032138.tgz#b74839fd64b5688aa7f4fd20d766e478fd97701f"
-  integrity sha512-JsBHxVGoJlmFMt0mo6/7mwasrvq09Iz/uFUXcX/M7ob8UjdthNjL5y9vk8VGnJlka7yMHQxEGHJvQs6yh+FWow==
-  dependencies:
-    "@dnd-kit/abstract" "0.0.7-beta-20250130032138"
-    "@dnd-kit/dom" "0.0.7-beta-20250130032138"
-    "@dnd-kit/state" "0.0.7-beta-20250130032138"
-    tslib "^2.6.2"
-
-"@dnd-kit/state@0.0.7-beta-20250130032138":
-  version "0.0.7-beta-20250130032138"
-  resolved "https://registry.yarnpkg.com/@dnd-kit/state/-/state-0.0.7-beta-20250130032138.tgz#16d947a2468a5e8fe668c4bfa276b55b2d6a60a6"
-  integrity sha512-xBW0LTG+jzXbdeha35uAlvZhO4M6F81fq7vpA54nodIu/RkBIB38NhnReMv/UrVRHxaZlwILDpW/3oHGu5h2jg==
-  dependencies:
-    "@preact/signals-core" "^1.6.0"
-    tslib "^2.6.2"
-
 "@emnapi/runtime@^1.2.0":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-1.3.1.tgz#0fcaa575afc31f455fd33534c19381cfce6c6f60"
@@ -1356,20 +1293,6 @@
   dependencies:
     "@types/mdx" "^2.0.0"
 
-"@measured/puck@^0.18.1", "@measured/puck@^0.18.2":
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/@measured/puck/-/puck-0.18.2.tgz#2d85aaa791715b7af164c2774d3b58da52ee30a3"
-  integrity sha512-WI8AQ9V6MnxbEjnaB9fd2p8RGwrQ44jriJNDwoDKgKxIsHIk1IEdz8cK7Qf30yepJ4iKqr9ug6lLZJcutFPgMA==
-  dependencies:
-    "@dnd-kit/helpers" "0.0.7-beta-20250130032138"
-    "@dnd-kit/react" "0.0.7-beta-20250130032138"
-    deep-diff "^1.0.2"
-    object-hash "^3.0.0"
-    react-hotkeys-hook "^4.6.1"
-    use-debounce "^9.0.4"
-    uuid "^9.0.1"
-    zustand "^5.0.2"
-
 "@next/env@14.2.8":
   version "14.2.8"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-14.2.8.tgz#a9f28d74f96770cd9337e113c25fc90b1cf5313f"
@@ -1470,11 +1393,6 @@
     loader-utils "^2.0.4"
     schema-utils "^4.2.0"
     source-map "^0.7.3"
-
-"@preact/signals-core@^1.6.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@preact/signals-core/-/signals-core-1.8.0.tgz#45ffadb81b48a298a4accd26b3f6c0140cd6dacc"
-  integrity sha512-OBvUsRZqNmjzCZXWLxkZfhcgT+Fk8DDcT/8vD6a1xhDemodyy87UJRJfASMuSD8FaAIeGgGm85ydXhm7lr4fyA==
 
 "@radix-ui/primitive@1.1.1":
   version "1.1.1"
@@ -3469,11 +3387,6 @@ dedent@^0.7.0:
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==
 
-deep-diff@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-1.0.2.tgz#afd3d1f749115be965e89c63edc7abb1506b9c26"
-  integrity sha512-aWS3UIVH+NPGCD1kki+DCU9Dua032iSsO43LqQpcs4R3+dVv7tX0qBGjiVHJHjplsoUM2XRO/KB92glqc68awg==
-
 deep-eql@^5.0.1:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/deep-eql/-/deep-eql-5.0.2.tgz#4b756d8d770a9257300825d52a2c2cff99c3a341"
@@ -3639,15 +3552,6 @@ drupal-auth-client@^0.4:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.4.0.tgz#1ecec93b3404744546291e6e4f25ddb7b536b536"
   integrity sha512-isCGyIQazg9Mi+zF/b96wSZ4R4U9mxayHPejvNQqkp/GolxkJ/vkrvxTcU3ShLrk3CkspPYPfr6uGEzyW2F5Rw==
-
-"drupal-decoupled@file:.yalc/drupal-decoupled":
-  version "0.2.0-local"
-  dependencies:
-    "@measured/puck" "^0.18.1"
-    immutable-json-patch "^6.0.1"
-    jmespath "^0.16.0"
-    react "^18.2.0"
-    react-dom "^18.2.0"
 
 dunder-proto@^1.0.0, dunder-proto@^1.0.1:
   version "1.0.1"
@@ -4699,11 +4603,6 @@ image-size@^1.0.0:
   dependencies:
     queue "6.0.2"
 
-immutable-json-patch@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/immutable-json-patch/-/immutable-json-patch-6.0.1.tgz#b60b609633e97bb2bc7c74726ff607729e61fd5b"
-  integrity sha512-BHL/cXMjwFZlTOffiWNdY8ZTvNyYLrutCnWxrcKPHr5FqpAb6vsO6WWSPnVSys3+DruFN6lhHJJPHi8uELQL5g==
-
 import-fresh@^3.2.1, import-fresh@^3.3.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.1.tgz#9cecb56503c0ada1f2741dbbd6546e4b13b57ccf"
@@ -5041,11 +4940,6 @@ jiti@^1.20.0, jiti@^1.21.6:
   version "1.21.7"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.7.tgz#9dd81043424a3d28458b193d965f0d18a2300ba9"
   integrity sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==
-
-jmespath@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.16.0.tgz#b15b0a85dfd4d930d43e69ed605943c802785076"
-  integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -6123,18 +6017,13 @@ react-docgen@^7.0.0:
   dependencies:
     scheduler "^0.25.0"
 
-react-dom@^18, react-dom@^18.2.0:
+react-dom@^18:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
-
-react-hotkeys-hook@^4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/react-hotkeys-hook/-/react-hotkeys-hook-4.6.1.tgz#db9066c07377a1c8be067a238ab16e328266345a"
-  integrity sha512-XlZpbKUj9tkfgPgT9gA+1p7Ey6vFIZHttUjPqpTdyT5nqQ8mHL7elxvSbaC+dpSiHUSmr21Ya1mDxBZG3aje4Q==
 
 react-is@^16.13.1:
   version "16.13.1"
@@ -6156,7 +6045,7 @@ react-refresh@^0.14.0:
   resolved "https://registry.yarnpkg.com/react/-/react-19.0.0.tgz#6e1969251b9f108870aa4bff37a0ce9ddfaaabdd"
   integrity sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==
 
-react@^18, react@^18.2.0:
+react@^18:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
@@ -7072,7 +6961,7 @@ tsconfig-paths@^4.0.0, tsconfig-paths@^4.1.2, tsconfig-paths@^4.2.0:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.4.0, tslib@^2.6.2:
+tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.4.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
@@ -7238,11 +7127,6 @@ url@^0.11.0:
     punycode "^1.4.1"
     qs "^6.12.3"
 
-use-debounce@^9.0.4:
-  version "9.0.4"
-  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-9.0.4.tgz#51d25d856fbdfeb537553972ce3943b897f1ac85"
-  integrity sha512-6X8H/mikbrt0XE8e+JXRtZ8yYVvKkdYRfmIhWZYsP8rcNs9hk3APV8Ua2mFkKRLcJKVdnX2/Vwrmg2GWKUQEaQ==
-
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -7264,7 +7148,7 @@ utila@~0.4:
   resolved "https://registry.yarnpkg.com/utila/-/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha512-Z0DbgELS9/L/75wZbro8xAnT50pBVFQZ+hUEueGDU5FN51YSCYM+jdxsfCiHjwNP/4LCDD0i/graKpeBnOXKRA==
 
-uuid@^9.0.0, uuid@^9.0.1:
+uuid@^9.0.0:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
   integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
@@ -7467,8 +7351,3 @@ yocto-queue@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-1.1.1.tgz#fef65ce3ac9f8a32ceac5a634f74e17e5b232110"
   integrity sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==
-
-zustand@^5.0.2:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.3.tgz#b323435b73d06b2512e93c77239634374b0e407f"
-  integrity sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==
