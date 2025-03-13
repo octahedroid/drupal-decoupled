@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "drupal-decoupled": {
-      "signature": "52b4418a3486e59f492c1fb78e112cb6",
-      "file": true
-    }
-  }
-}
