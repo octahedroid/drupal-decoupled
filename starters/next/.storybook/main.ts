@@ -11,20 +11,19 @@ function getAbsolutePath(value: string): any {
 }
 const config: StorybookConfig = {
   stories: [
-    '../components/ui/**/*.mdx',
-    '../components/ui/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../components/**/*.mdx',
+    '../components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/nextjs'),
     options: {},
   },
-  staticDirs: ['../components/ui/static'],
+  staticDirs: ['../static'],
 }
 export default config

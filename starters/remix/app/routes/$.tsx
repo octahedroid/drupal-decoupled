@@ -6,26 +6,21 @@ import {
 } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import { FragmentOf, readFragment } from 'gql.tada'
-import { metaTags } from 'drupal-remix'
+import { metaTags } from 'drupal-decoupled/remix'
 
-import {
-  NodePageFragment,
-  NodeArticleFragment,
-} from '~/graphql/drupal/fragments/node'
-import { TermTagsFragment } from '~/graphql/drupal/fragments/terms'
-import { EntityFragmentType } from '~/graphql/drupal/types'
 import { graphql } from '~/graphql/gql.tada'
-import NodeArticleComponent from '~/components/drupal/node/NodeArticle'
-import NodePageComponent from '~/components/drupal/node/NodePage'
-import TermTagsComponent from '~/components/drupal/taxonomy/TermTags'
-import { getClient } from '~/utils/drupal/client.server'
-import { calculatePath } from '~/utils/drupal/routes'
-import { calculateMetaTags } from '~/utils/drupal/metatags'
+import { EntityFragmentType } from '~/graphql/types'
+import NodeArticleComponent from '~/integration/node/NodeArticle'
+import NodePageComponent from '~/integration/node/NodePage'
+import TermTagsComponent from '~/integration/taxonomy/TermTags'
+import { getClient } from '~/utils/client.server'
+import { calculatePath } from '~/utils/routes'
+import { calculateMetaTags } from '~/utils/metatags'
 
-import { Header } from '~/components/ui//Header'
-import { Footer } from '~/components/ui/Footer'
-import { MenuFragment, MenuItemFragment } from '~/graphql/drupal/fragments/menu'
-import type { ButtonProps } from '~/components/ui/types'
+import { Header, Footer } from '~/components/blocks'
+import { NodeArticleFragment, NodePageFragment } from '~/graphql/fragments/node'
+import { TermTagsFragment } from '~/graphql/fragments/terms'
+import { MenuFragment, MenuItemFragment } from '~/graphql/fragments/menu'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
@@ -79,7 +74,7 @@ export const loader = async ({
   const nodeRouteQuery = graphql(
     `
       query route($path: String!) {
-        route(path: $path) {
+        route(path: $path, revision: "CURRENT") {
           __typename
           ... on RouteInternal {
             entity {
@@ -121,15 +116,17 @@ export const loader = async ({
   }
 
   const menuMain = readFragment(MenuFragment, data.menuMain)
-  const navItems = menuMain?.items.map((item) => {
-    const menuItem = readFragment(MenuItemFragment, item)
+  const navItems = menuMain
+    ? menuMain.items.map((item) => {
+        const menuItem = readFragment(MenuItemFragment, item)
 
-    return {
-      label: menuItem.label,
-      href: menuItem.href,
-      expanded: menuItem.expanded,
-    }
-  })
+        return {
+          label: menuItem.label,
+          href: menuItem.href || undefined,
+          expanded: menuItem.expanded,
+        }
+      })
+    : []
 
   return json({
     type: data.route.entity.__typename,
@@ -145,16 +142,12 @@ export const loader = async ({
         {
           text: 'Docs',
           href: 'https://drupal-decoupled.octahedroid.com/docs',
-          variant: 'default',
-          internal: false,
         },
         {
           text: 'Quickstart',
           href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
-          variant: 'default',
-          internal: false,
         },
-      ] as ButtonProps[],
+      ],
     },
     footer: {
       logo: {
