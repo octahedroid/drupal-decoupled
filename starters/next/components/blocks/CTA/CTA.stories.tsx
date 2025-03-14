@@ -45,6 +45,6 @@ export const NoActions: Story = {
   args: {
     heading: 'Welcome to our platform',
     description: 'Discover amazing features and boost your productivity.',
-    actions: null,
+    actions: undefined,
   },
 }

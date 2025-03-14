@@ -70,6 +70,6 @@ export const SingleAction: Story = {
 export const WithoutActions: Story = {
   args: {
     heading: 'Hero Without Actions',
-    actions: null,
+    actions: undefined,
   },
 }

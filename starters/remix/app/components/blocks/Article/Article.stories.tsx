@@ -55,13 +55,13 @@ export const Default: Story = {}
 
 export const WithoutSummary: Story = {
   args: {
-    summary: null,
+    summary: undefined,
   },
 }
 
 export const WithoutTags: Story = {
   args: {
-    tags: null,
+    tags: undefined,
   },
 }
 

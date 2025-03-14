@@ -84,15 +84,17 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
   }
 
   const menuMain = readFragment(MenuFragment, data.menuMain)
-  const navItems = menuMain?.items.map((item) => {
-    const menuItem = readFragment(MenuItemFragment, item)
+  const navItems = menuMain
+    ? menuMain.items.map((item) => {
+        const menuItem = readFragment(MenuItemFragment, item)
 
-    return {
-      label: menuItem.label,
-      href: menuItem.href,
-      expanded: menuItem.expanded,
-    }
-  })
+        return {
+          label: menuItem.label,
+          href: menuItem.href || undefined,
+          expanded: menuItem.expanded,
+        }
+      })
+    : []
 
   return {
     type: data.route.entity.__typename,

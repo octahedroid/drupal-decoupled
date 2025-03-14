@@ -75,8 +75,8 @@ export const Article = ({
         </div>
         {tags && (
           <div className="mb-8 flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Badge text={tag} variant="secondary" />
+            {tags.map((tag, index) => (
+              <Badge text={tag} variant="secondary" key={index} />
             ))}
           </div>
         )}

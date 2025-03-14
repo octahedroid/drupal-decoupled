@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CardGroup } from '@/components/blocks'
+import { CardGroup } from '~/components/blocks'
 
 const meta: Meta<typeof CardGroup> = {
   title: 'Blocks/Card Group - Teaser Card',
@@ -68,14 +68,14 @@ export const Default: Story = {}
 
 export const WithoutSubheading: Story = {
   args: {
-    subheading: null,
+    subheading: undefined,
   },
 }
 
 export const WithoutDescriptionAndSubheading: Story = {
   args: {
-    subheading: null,
-    description: null,
+    subheading: undefined,
+    description: undefined,
   },
 }
 
@@ -91,7 +91,7 @@ export const WithoutCategories: Story = {
           src: '/placeholders/doc-tahedroid/landscape-small.png',
           alt: 'Blog post 1',
         },
-        tags: null,
+        tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
@@ -103,7 +103,7 @@ export const WithoutCategories: Story = {
           src: '/placeholders/drupal-decoupled/landscape-small.png',
           alt: 'Blog post 2',
         },
-        tags: null,
+        tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
@@ -115,7 +115,7 @@ export const WithoutCategories: Story = {
           src: '/placeholders/doc-tahedroid/landscape-small.png',
           alt: 'Blog post 3',
         },
-        tags: null,
+        tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
@@ -149,7 +149,7 @@ export const MixedEmptyCategories: Story = {
           src: '/placeholders/drupal-decoupled/landscape-small.png',
           alt: 'Blog post 1',
         },
-        tags: null,
+        tags: undefined,
         heading: 'Blog title heading will go here',
         summary:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
@@ -173,7 +173,7 @@ export const MixedEmptyCategories: Story = {
 
 export const WithoutAction: Story = {
   args: {
-    action: null,
+    action: undefined,
     cards: [
       {
         type: 'teaser',

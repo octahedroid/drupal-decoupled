@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import {
   CTA,
+  CTAProps,
   CardGroup,
   type CardGroupProps,
   FAQ,
@@ -45,7 +46,7 @@ export const Default: Story = {
         <Header {...(HeaderStories.default.args as HeaderProps)} />
         <Hero {...(HeroStories.default.args as HeroProps)} />
         <CardGroup {...(SimpleCardStories.default.args as CardGroupProps)} />
-        <CTA {...CTAStories.default.args} />
+        <CTA {...(CTAStories.default.args as CTAProps)} />
         <Testimonial
           {...(TestimonialStories.default.args as TestimonialProps)}
         />

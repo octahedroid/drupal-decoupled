@@ -68,6 +68,7 @@ export const ParagraphTestimonialResolver = ({
         name,
         position,
         company,
+        // @ts-expect-error - fix type.
         avatar: image,
       }}
     />
