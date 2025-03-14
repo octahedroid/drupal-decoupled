@@ -35,7 +35,7 @@ export const WithoutAvatarImage: Story = {
       "This solution has revolutionized how we manage our projects. It's a game-changer for our team's productivity.",
     author: {
       avatar: {
-        src: null,
+        src: undefined,
         name: 'Doc Tahedroid',
       },
       name: 'Doc Tahedroid',

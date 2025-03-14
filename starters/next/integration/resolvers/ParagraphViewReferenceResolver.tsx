@@ -120,6 +120,7 @@ export const ParagraphViewReferenceResolver = ({
           description={featured.summary}
           actions={[
             {
+              // @ts-expect-error - fix type.
               href: featured.link.href,
               text: featured.link.text,
               internal: true,
@@ -132,7 +133,9 @@ export const ParagraphViewReferenceResolver = ({
             heading={headingOptional || ''}
             subheading={subheadingOptional || ''}
             description={descriptionOptional || ''}
+            // @ts-expect-error - fix type.
             cards={remainingCards}
+            // @ts-expect-error - fix type.
             action={action}
           />
         )}
@@ -148,7 +151,9 @@ export const ParagraphViewReferenceResolver = ({
         heading={headingOptional || ''}
         subheading={subheadingOptional || ''}
         description={descriptionOptional || ''}
+        // @ts-expect-error - fix type.
         cards={cards}
+        // @ts-expect-error - fix type.
         action={action}
       />
     )

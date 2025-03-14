@@ -45,6 +45,7 @@ export const CTA = ({
         <div className="flex flex-wrap justify-center gap-4">
           {actions.slice(0, 2).map(({ internal, ...actionProps }, index) => (
             <Button
+              internal={internal}
               variant={index === 1 ? 'outline' : 'default'}
               {...actionProps}
               key={index}
