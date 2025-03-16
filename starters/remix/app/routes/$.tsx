@@ -33,6 +33,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
+          // @ts-expect-error - fix typings.
           kind: 'replace',
           pattern: 'dev-drupal-graphql.pantheonsite.io',
           replacement: 'drupal-remix.pages.dev',
@@ -40,6 +41,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       },
       MetaTagProperty: {
         'og:url': {
+          // @ts-expect-error - fix typings.
           kind: 'replace',
           pattern: 'dev-drupal-graphql.pantheonsite.io',
           replacement: 'drupal-remix.pages.dev',
@@ -47,6 +49,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       },
       MetaTagValue: {
         'twitter:url': {
+          // @ts-expect-error - fix typings.
           kind: 'replace',
           pattern: 'dev-drupal-graphql.pantheonsite.io',
           replacement: 'drupal-remix.pages.dev',

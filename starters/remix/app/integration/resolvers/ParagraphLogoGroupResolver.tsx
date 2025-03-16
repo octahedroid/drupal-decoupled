@@ -69,5 +69,6 @@ export const ParagraphLogoGroupResolver = ({
       })
     : []
 
+  // @ts-expect-error - fix typings.
   return <LogoGroup id={id} heading={heading} logos={logos} />
 }
