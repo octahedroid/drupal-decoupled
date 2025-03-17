@@ -61,13 +61,9 @@ export const TeaserCard = ({
         <p className="flex-grow text-sm text-muted-foreground">{summary}</p>
         {details && (
           <div className="pt-2">
-            <Button
-              variant="link"
-              className="p-0"
-              icon={ChevronRight}
-              internal
-              {...details}
-            />
+            <Button variant="link" className="p-0" internal {...details}>
+              <ChevronRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         )}
       </div>

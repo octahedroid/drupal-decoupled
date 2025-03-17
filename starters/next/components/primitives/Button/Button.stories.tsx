@@ -8,9 +8,9 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   args: {
     text: 'Default',
-    icon: undefined,
     variant: 'default',
     size: 'default',
+    children: undefined,
   },
   argTypes: {
     variant: {
@@ -27,11 +27,6 @@ const meta: Meta<typeof Button> = {
     size: {
       control: 'select',
       options: ['default', 'sm', 'lg', 'icon'],
-    },
-    icon: {
-      table: {
-        disable: true,
-      },
     },
   },
 }
@@ -78,13 +73,14 @@ export const Large: Story = {
 
 export const WithIcon: Story = {
   args: {
-    icon: ChevronRight,
+    text: 'With Icon',
+    children: <ChevronRight />,
   },
 }
 
 export const IconOnly: Story = {
   args: {
     text: '',
-    icon: ChevronRight,
+    children: <ChevronRight />,
   },
 }
