@@ -44,9 +44,9 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
           >
             {item.label}
             {isOpen ? (
-              <ChevronUp className="h-4 w-4" />
+              <ChevronUp className="size-4" />
             ) : (
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="size-4" />
             )}
           </button>
           {isOpen && (
@@ -108,9 +108,9 @@ export const Header = ({
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="size-6" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="size-6" />
             )}
           </MobileMenuButton>
         </div>
