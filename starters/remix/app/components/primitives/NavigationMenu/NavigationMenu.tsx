@@ -33,9 +33,9 @@ export const NavigationMenu = ({
                       <li key={childIndex}>
                         <NavigationMenuLink
                           href={child.href || '#'}
-                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
                         >
-                          <div className="text-sm font-medium leading-none">
+                          <div className="text-sm leading-none font-medium">
                             {child.label}
                           </div>
                         </NavigationMenuLink>
@@ -47,7 +47,7 @@ export const NavigationMenu = ({
             ) : (
               <NavigationMenuLink
                 href={item.href || '#'}
-                className="px-3 py-2 text-sm font-medium text-foreground hover:text-primary"
+                className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium"
               >
                 {item.label}
               </NavigationMenuLink>

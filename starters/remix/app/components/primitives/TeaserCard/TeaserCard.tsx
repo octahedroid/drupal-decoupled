@@ -55,10 +55,10 @@ export const TeaserCard = ({
             ))}
           </div>
         )}
-        <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100 sm:text-3xl md:text-4xl">
+        <h3 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl dark:text-gray-100">
           {heading}
         </h3>
-        <p className="grow text-sm text-muted-foreground">{summary}</p>
+        <p className="text-muted-foreground grow text-sm">{summary}</p>
         {details && (
           <div className="pt-2">
             <Button variant="link" className="p-0" internal {...details}>

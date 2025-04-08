@@ -1,7 +1,9 @@
-import { ComponentProps } from 'react'
-import { Badge as ShadcnBadge } from '~/components/ui/badge'
+import {
+  Badge as ShadcnBadge,
+  BadgeProps as ShadcnBadgeProps,
+} from '~/components/ui/badge'
 
-export interface BadgeProps extends ComponentProps<typeof ShadcnBadge> {
+export interface BadgeProps extends ShadcnBadgeProps {
   text: string
 }
 

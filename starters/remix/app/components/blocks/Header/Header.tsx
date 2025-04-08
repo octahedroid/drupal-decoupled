@@ -40,7 +40,7 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
         <div>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex w-full items-center justify-between px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+            className="text-foreground hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-4 py-2 text-sm font-medium"
           >
             {item.label}
             {isOpen ? (
@@ -50,7 +50,7 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
             )}
           </button>
           {isOpen && (
-            <ul className="ml-4 border-l border-border">
+            <ul className="border-border ml-4 border-l">
               {item.children.map((child, index) => (
                 <MobileNavItem key={index} item={child} />
               ))}
@@ -60,7 +60,7 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
       ) : (
         <a
           href={item.href ?? undefined}
-          className="block w-full px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+          className="text-foreground hover:bg-accent hover:text-accent-foreground block w-full px-4 py-2 text-sm font-medium"
         >
           {item.label}
         </a>

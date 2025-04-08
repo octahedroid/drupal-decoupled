@@ -6,11 +6,13 @@ import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getLoadContext } from './load-context'
 import { flatRoutes } from 'remix-flat-routes'
+import tailwind from "@tailwindcss/vite"
 
 const isStorybook = process.argv[1]?.includes('storybook')
 export default defineConfig({
   plugins: [
     remixCloudflareDevProxy({ getLoadContext }),
+    tailwind(),
     !isStorybook &&
       remix({
         future: {
