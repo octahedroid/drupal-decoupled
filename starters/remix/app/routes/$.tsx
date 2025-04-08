@@ -1,5 +1,4 @@
 import {
-  json,
   redirect,
   type LoaderFunctionArgs,
   type MetaFunction,
@@ -131,7 +130,7 @@ export const loader = async ({
       })
     : []
 
-  return json({
+  return {
     type: data.route.entity.__typename,
     header: {
       logo: {
@@ -163,7 +162,7 @@ export const loader = async ({
     },
     entity: data.route.entity as EntityFragmentType,
     environment: context.cloudflare.env.ENVIRONMENT,
-  })
+  }
 }
 
 export default function Index() {

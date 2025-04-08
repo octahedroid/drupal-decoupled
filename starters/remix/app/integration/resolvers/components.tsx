@@ -152,7 +152,10 @@ export const resolveComponents = ({
     }
 
     return (
-      <div className="container flex flex-row justify-center items-center p-4" key={index}>
+      <div
+        className="container flex flex-row items-center justify-center p-4"
+        key={index}
+      >
         {`No Resolver found for component '${type}'.`}
       </div>
     )

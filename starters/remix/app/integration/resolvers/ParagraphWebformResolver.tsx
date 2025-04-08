@@ -32,7 +32,7 @@ export const ParagraphWebformResolver = ({
     readFragment(ParagraphWebformFragment, paragraph)
 
   return (
-    <div className="container mx-auto grid items-center gap-8 pb-8 pt-8 lg:grid-cols-2">
+    <div className="container mx-auto grid items-center gap-8 pt-8 pb-8 lg:grid-cols-2">
       <pre>
         {JSON.stringify(
           { id, descriptionOptional, heading, subheadingOptional, form },
