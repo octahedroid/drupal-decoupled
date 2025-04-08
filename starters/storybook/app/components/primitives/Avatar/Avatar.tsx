@@ -12,14 +12,14 @@ export interface AvatarProps {
 export const Avatar = ({ src, name }: AvatarProps) => {
   if (src) {
     return (
-      <ShadcnAvatar className="mb-4 h-16 w-16">
+      <ShadcnAvatar className="mb-4 size-16">
         <AvatarImage src={src} alt={name} />
         <AvatarFallback>{name.charAt(0)}</AvatarFallback>
       </ShadcnAvatar>
     )
   }
   return (
-    <ShadcnAvatar className="mb-4 h-16 w-16">
+    <ShadcnAvatar className="mb-4 size-16">
       <AvatarFallback>{name.charAt(0)}</AvatarFallback>
     </ShadcnAvatar>
   )

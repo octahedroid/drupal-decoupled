@@ -63,7 +63,7 @@ export const Article = ({
         />
       </div>
       <div className="mx-auto mb-8 max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h1 className="mb-6 text-4xl font-bold text-gray-900 dark:text-gray-100 sm:text-5xl md:text-6xl">
+        <h1 className="mb-6 text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl dark:text-gray-100">
           {title}
         </h1>
         <div className="mb-8 flex items-center justify-between">
@@ -80,7 +80,7 @@ export const Article = ({
             ))}
           </div>
         )}
-        {summary && <p className="mb-8 italic text-gray-400">{summary}</p>}
+        {summary && <p className="mb-8 text-gray-400 italic">{summary}</p>}
         <RichText content={content} />
       </div>
     </article>
