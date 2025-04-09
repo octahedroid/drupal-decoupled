@@ -6,7 +6,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Tokens', 'Primitives', 'Blocks', 'Pages'],
+        order: ['Tokens', 'Primitives', 'Blocks', 'Pages', 'Form', ['*', 'Form - Contact Form']],
       },
     },
     controls: {
