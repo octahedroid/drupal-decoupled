@@ -15,13 +15,15 @@ import {
   CardContent,
   CardFooter,
 } from '~/components/ui/card'
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+} from '~/components/ui/alert'
+import { CheckCircle2 } from 'lucide-react'
 
 const meta: Meta = {
   title: 'Form/Form - Contact Form',
-  parameters: {
-    layout: 'centered',
-  },
-
 }
 
 export default meta
@@ -70,7 +72,7 @@ export const Default: Story = {
     }
 
     return (
-      <Card>
+      <Card className="w-full max-w-lg mx-auto">
         <CardHeader>
           <CardTitle>Contact Us</CardTitle>
           <CardDescription>
@@ -81,18 +83,13 @@ export const Default: Story = {
         <CardContent>
           {submitted ? (
             <div className="space-y-4">
-              <div className="rounded-md bg-green-50 p-4">
-                <div className="flex">
-                  <div className="ml-3">
-                    <h3 className="text-sm font-medium text-green-800">
-                      Form submitted successfully!
-                    </h3>
-                    <div className="mt-2 text-sm text-green-700">
-                      <p>Thank you for your message. We'll get back to you soon.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Alert>
+                <CheckCircle2 className="text-green-500" />
+                <AlertTitle>Form submitted successfully!</AlertTitle>
+                <AlertDescription>
+                  Thank you for your message. We'll get back to you soon.
+                </AlertDescription>
+              </Alert>
 
               {formValues && (
                 <div className="rounded-md border p-4">
@@ -159,7 +156,7 @@ export const Default: Story = {
             </div>
 
             <CardFooter className="flex justify-end px-0 pt-4">
-              <Button type="submit">
+              <Button type="submit" className="w-full">
                 Submit
               </Button>
             </CardFooter>
