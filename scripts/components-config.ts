@@ -26,6 +26,11 @@ export const componentsConfig = {
       type: "components",
     },
     {
+      name: "form",
+      path: "components/form",
+      type: "components",
+    },
+    {
       name: "static",
       path: "static",
       type: "assets",
