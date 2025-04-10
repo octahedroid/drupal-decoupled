@@ -4,7 +4,11 @@ import { Label } from '~/components/ui/label'
 import type { FieldMetadata } from '@conform-to/react'
 
 // Create a mock field metadata that conforms to the expected shape
-const createMockFieldMeta = (name: string, value = '', error?: string): FieldMetadata<string> => {
+const createMockFieldMeta = (
+  name: string,
+  value = '',
+  error?: string
+): FieldMetadata<string> => {
   // Cast to unknown first to avoid TypeScript errors
   return {
     id: name,

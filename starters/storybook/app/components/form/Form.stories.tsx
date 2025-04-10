@@ -1,113 +1,81 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useForm } from '@conform-to/react'
 import { parseWithZod } from '@conform-to/zod'
+import type { Meta, StoryObj } from '@storybook/react'
+import { CheckCircle2 } from 'lucide-react'
+import { useState } from 'react'
 import { z } from 'zod'
-import { Input } from '~/components/form'
-import { Textarea } from '~/components/form'
-import { Label } from '~/components/ui/label'
+import { Input, Textarea } from '~/components/form'
+import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
 import { Button } from '~/components/ui/button'
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from '~/components/ui/card'
-import {
-  Alert,
-  AlertTitle,
-  AlertDescription,
-} from '~/components/ui/alert'
-import { CheckCircle2 } from 'lucide-react'
+import { Label } from '~/components/ui/label'
 
-const meta: Meta = {
-  title: 'Form/Form - Contact Form',
-}
+// Define the DemoForm component
+const DemoForm = () => {
+  // This is the main component that will be used as the default story
+  const [submitted, setSubmitted] = useState(false)
+  const [formValues, setFormValues] = useState<ContactFormValues | null>(null)
 
-export default meta
+  const [form, fields] = useForm({
+    id: 'contact-form',
+    onValidate({ formData }) {
+      return parseWithZod(formData, { schema: contactFormSchema })
+    },
+    shouldValidate: 'onBlur',
+    onSubmit(event, { submission }) {
+      if (submission?.status === 'success') {
+        setFormValues(submission.value)
+        setSubmitted(true)
+      }
+    },
+  })
 
-type Story = StoryObj
+  const handleReset = () => {
+    setSubmitted(false)
+    setFormValues(null)
+  }
 
-const contactFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name cannot exceed 50 characters'),
-  email: z
-    .string()
-    .email('Please enter a valid email address')
-    .min(1, 'Email is required'),
-  message: z
-    .string()
-    .min(20, 'Message must be at least 20 characters')
-    .max(500, 'Message cannot exceed 500 characters'),
-})
+  return (
+    <Card className="mx-auto w-full max-w-lg">
+      <CardHeader>
+        <CardTitle>Contact Us</CardTitle>
+        <CardDescription>
+          Fill out the form below to send us a message
+        </CardDescription>
+      </CardHeader>
 
-type ContactFormValues = z.infer<typeof contactFormSchema>
+      <CardContent>
+        {submitted ? (
+          <div className="space-y-4">
+            <Alert>
+              <CheckCircle2 className="text-green-500" />
+              <AlertTitle>Form submitted successfully!</AlertTitle>
+              <AlertDescription>
+                Thank you for your message. We&apos;ll get back to you soon.
+              </AlertDescription>
+            </Alert>
 
-export const Default: Story = {
-  render: () => {
-    const [submitted, setSubmitted] = useState(false)
-    const [formValues, setFormValues] = useState<ContactFormValues | null>(null)
+            {formValues && (
+              <div className="rounded-md border p-4">
+                <h4 className="mb-2 font-medium">Submitted Values:</h4>
+                <pre className="text-xs whitespace-pre-wrap">
+                  {JSON.stringify(formValues, null, 2)}
+                </pre>
+              </div>
+            )}
 
-    const [form, fields] = useForm({
-      id: 'contact-form',
-      onValidate({ formData }) {
-        return parseWithZod(formData, { schema: contactFormSchema })
-      },
-      shouldValidate: 'onBlur',
-      onSubmit(event, { submission }) {
-        if (submission.status === 'success') {
-          setFormValues(submission.value)
-          setSubmitted(true)
-        }
-      },
-    })
-
-    const handleReset = () => {
-      setSubmitted(false)
-      setFormValues(null)
-    }
-
-    return (
-      <Card className="w-full max-w-lg mx-auto">
-        <CardHeader>
-          <CardTitle>Contact Us</CardTitle>
-          <CardDescription>
-            Fill out the form below to send us a message
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent>
-          {submitted ? (
-            <div className="space-y-4">
-              <Alert>
-                <CheckCircle2 className="text-green-500" />
-                <AlertTitle>Form submitted successfully!</AlertTitle>
-                <AlertDescription>
-                  Thank you for your message. We'll get back to you soon.
-                </AlertDescription>
-              </Alert>
-
-              {formValues && (
-                <div className="rounded-md border p-4">
-                  <h4 className="mb-2 font-medium">Submitted Values:</h4>
-                  <pre className="whitespace-pre-wrap text-xs">
-                    {JSON.stringify(formValues, null, 2)}
-                  </pre>
-                </div>
-              )}
-
-              <Button
-                onClick={handleReset}
-                variant="outline"
-                className="w-full"
-              >
-                Reset Form
-              </Button>
-            </div>
+            <Button onClick={handleReset} variant="outline" className="w-full">
+              Reset Form
+            </Button>
+          </div>
         ) : (
           <form
             id={form.id}
@@ -162,8 +130,37 @@ export const Default: Story = {
             </CardFooter>
           </form>
         )}
-        </CardContent>
-      </Card>
-    )
-  },
+      </CardContent>
+    </Card>
+  )
+}
+
+const meta = {
+  title: 'Form/Form - Demo',
+} satisfies Meta<typeof DemoForm>
+
+export default meta
+
+type Story = StoryObj<typeof DemoForm>
+
+const contactFormSchema = z.object({
+  name: z
+    .string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(50, 'Name cannot exceed 50 characters'),
+  email: z
+    .string()
+    .email('Please enter a valid email address')
+    .min(1, 'Email is required'),
+  message: z
+    .string()
+    .min(20, 'Message must be at least 20 characters')
+    .max(500, 'Message cannot exceed 500 characters'),
+})
+
+type ContactFormValues = z.infer<typeof contactFormSchema>
+
+// Define DemoForm as the default story
+export const Default: Story = {
+  render: () => <DemoForm />,
 }
