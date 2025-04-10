@@ -2,23 +2,23 @@ import { FragmentOf, readFragment } from 'gql.tada'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import NodeArticleComponent from '@/integration/node/NodeArticle'
-import NodePageComponent from '@/integration/node/NodePage'
-import TermTagsComponent from '@/integration/taxonomy/TermTags'
 import { NodeArticleFragment, NodePageFragment } from '@/graphql/fragments/node'
 import { TermTagsFragment } from '@/graphql/fragments/terms'
 import { graphql } from '@/graphql/gql.tada'
 import { EntityFragmentType } from '@/graphql/types'
+import NodeArticleComponent from '@/integration/node/NodeArticle'
+import NodePageComponent from '@/integration/node/NodePage'
+import TermTagsComponent from '@/integration/taxonomy/TermTags'
 import { getClient } from '@/utils/client'
 import { calculatePath } from '@/utils/routes'
 
-import { Header } from '@/components/blocks'
-import { Footer } from '@/components/blocks'
+import { PageProps } from '@/.next/types/app/layout'
+import { Footer, Header } from '@/components/blocks'
 import { MenuFragment, MenuItemFragment } from '@/graphql/fragments/menu'
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {
   const pathFromParams = params.slug?.join('/') || '/home'
-  const requestUrl = headers().get('x-url')
+  const requestUrl = (await headers()).get('x-url')
   const path = calculatePath({
     path: pathFromParams,
     url: requestUrl!,
@@ -128,9 +128,9 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
   }
 }
 
-export default async function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page({ params }: PageProps) {
   const { type, entity, environment, header, footer } = await getDrupalData({
-    params,
+    params: await params,
   })
   if (!type || !entity) {
     return null

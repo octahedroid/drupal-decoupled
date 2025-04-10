@@ -1,9 +1,8 @@
 import { ReactNode } from 'react'
 import { Link } from '~/components/primitives'
-import {
-  Button as ShadcnButton,
-  ButtonProps as ShadcnButtonProps,
-} from '~/components/ui/button'
+import { Button as ShadcnButton } from '~/components/ui/button'
+
+type ShadcnButtonProps = React.ComponentPropsWithoutRef<typeof ShadcnButton>
 
 export interface ButtonProps extends Omit<ShadcnButtonProps, 'asChild'> {
   href: string
