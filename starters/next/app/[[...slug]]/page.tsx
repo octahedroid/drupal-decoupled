@@ -5,10 +5,7 @@ import { redirect } from 'next/navigation'
 import NodeArticleComponent from '@/integration/node/NodeArticle'
 import NodePageComponent from '@/integration/node/NodePage'
 import TermTagsComponent from '@/integration/taxonomy/TermTags'
-import {
-  NodeArticleFragment,
-  NodePageFragment,
-} from '@/graphql/fragments/node'
+import { NodeArticleFragment, NodePageFragment } from '@/graphql/fragments/node'
 import { TermTagsFragment } from '@/graphql/fragments/terms'
 import { graphql } from '@/graphql/gql.tada'
 import { EntityFragmentType } from '@/graphql/types'

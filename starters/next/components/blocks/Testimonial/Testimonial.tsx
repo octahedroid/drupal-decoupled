@@ -40,7 +40,7 @@ export const Testimonial = ({
         <Avatar src={author.avatar.src} name={author.name} />
         <div className="text-center">
           <p className="font-semibold">{author.name}</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {author.position}, {author.company}
           </p>
         </div>

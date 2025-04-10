@@ -19,7 +19,17 @@ export const Button = ({
   children,
   ...props
 }: ButtonProps) => {
-  const content = children ? (text ? <>{text} {children}</> : children) : (text && <>{text}</>)
+  const content = children ? (
+    text ? (
+      <>
+        {text} {children}
+      </>
+    ) : (
+      children
+    )
+  ) : (
+    text && <>{text}</>
+  )
   if (href) {
     return (
       <Link internal={internal} href={href}>
