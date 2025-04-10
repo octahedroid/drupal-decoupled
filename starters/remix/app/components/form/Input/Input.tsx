@@ -11,7 +11,7 @@ export const Input = ({
 }: {
   meta: FieldMetadata<string>
   type: Parameters<typeof getInputProps>[1]['type']
-} & ComponentProps<typeof Input>) => {
+} & ComponentProps<typeof InputShadcn>) => {
   return (
     <InputShadcn
       {...getInputProps(meta, { type, ariaAttributes: true })}
