@@ -52,11 +52,11 @@ export const Footer = ({
             <FooterColumn key={index} {...column} />
           ))}
         </div>
-        <div className="mt-12 flex flex-col items-center justify-between border-t border-border pt-8 md:flex-row">
+        <div className="border-border mt-12 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
           <div className="mb-4 md:mb-0">
             <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
           </div>
-          <div className="text-sm text-muted-foreground">{copyrightText}</div>
+          <div className="text-muted-foreground text-sm">{copyrightText}</div>
         </div>
       </div>
     </footer>

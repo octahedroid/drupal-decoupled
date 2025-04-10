@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ESNext",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,7 +23,7 @@
         "tadaOutputLocation": "./graphql/generated/gql.tada.instrospection.ts",
         "tadaTurboLocation": "./graphql/generated/gql.tada.cache.ts",
         "trackFieldUsage": false,
-        "shouldCheckForColocatedFragments": false,
+        "shouldCheckForColocatedFragments": false
       }
     ],
     "paths": {

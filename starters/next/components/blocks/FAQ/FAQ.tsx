@@ -33,11 +33,11 @@ export const FAQ = ({
 }: FAQProps) => {
   return (
     <div className={cn(faqVariants(), className)} {...props}>
-      <h2 className="mb-5 text-center text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl md:text-5xl">
+      <h2 className="mb-5 text-center text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl dark:text-gray-100">
         {heading}
       </h2>
       {description && (
-        <p className="mb-8 text-center text-lg text-muted-foreground">
+        <p className="text-muted-foreground mb-8 text-center text-lg">
           {description}
         </p>
       )}

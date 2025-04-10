@@ -34,10 +34,10 @@ export const Hero = ({
     <div className={cn(heroVariants(), className)} {...props}>
       <div className="container mx-auto grid items-center gap-8 lg:grid-cols-2">
         <div className="space-y-4 text-center lg:text-left">
-          <h1 className="mb-6 text-4xl font-bold text-gray-900 dark:text-gray-100 sm:text-5xl md:text-6xl">
+          <h1 className="mb-6 text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl dark:text-gray-100">
             {heading}
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground lg:mx-0">
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg lg:mx-0">
             {description}
           </p>
           {actions && actions.length > 0 && (
