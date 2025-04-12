@@ -1,4 +1,5 @@
 import { FragmentOf, readFragment } from 'gql.tada'
+import { ContactForm } from '~/integration/forms/ContactForm/ContactForm'
 
 import { WebformFragment } from '~/graphql/fragments/webform'
 import { graphql } from '~/graphql/gql.tada'
@@ -33,6 +34,10 @@ export const ParagraphWebformResolver = ({
 
   return (
     <div className="container mx-auto grid items-center gap-8 pt-8 pb-8 lg:grid-cols-2">
+      <div>
+        <h1>{heading}</h1>
+      </div>
+      <ContactForm />
       <pre>
         {JSON.stringify(
           { id, descriptionOptional, heading, subheadingOptional, form },

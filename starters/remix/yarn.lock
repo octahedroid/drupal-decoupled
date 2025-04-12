@@ -3564,6 +3564,11 @@ comma-separated-tokens@^2.0.0:
   resolved "https://registry.npmjs.org/comma-separated-tokens/-/comma-separated-tokens-2.0.3.tgz"
   integrity sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==
 
+composable-functions@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/composable-functions/-/composable-functions-5.0.0.tgz#1dbe89a20779ec24fc7d8e2bdcea0b9644948b72"
+  integrity sha512-CV5r9eXpnombeKTHFP895n++aYIJkmpHrlDXqloF0OUYdrXr7CU008R8tcBjaDBcZHrSwB03W1Lv8T8Ly8C37A==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
