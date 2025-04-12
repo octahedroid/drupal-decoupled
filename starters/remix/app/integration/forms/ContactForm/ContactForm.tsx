@@ -23,6 +23,8 @@ import { action } from '~/routes/contact_form'
 export const ContactForm = () => {
   const fetcher = useFetcher<typeof action>()
 
+  console.log('fetcher', fetcher.formData)
+
 
   const [form, fields] = useForm({
     id: 'contact-form',
@@ -51,6 +53,7 @@ export const ContactForm = () => {
               <AlertTitle>Form submitted successfully!</AlertTitle>
               <AlertDescription>
                 {JSON.stringify(fetcher.data?.fields)}
+                {JSON.stringify(fetcher.data?.payload!)}
               </AlertDescription>
             </Alert>
           </div>

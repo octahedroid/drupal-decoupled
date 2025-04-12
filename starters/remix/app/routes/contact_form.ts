@@ -18,14 +18,19 @@ export async function action({request, context}: ActionFunctionArgs ) {
   if (!result.success) {
     throw new Error("Failed to submit contact form")
 
-    // return submission.reply({
-    //   formErrors: ["Failed to submit contact form"],
-    // })
   }
 
   console.log("Data being added to payload:", result.data); // <-- Add this log
 
-  return submission.reply()
+
+  const returnData = {
+   ...submission.reply(),
+   ...{
+    payload: result.data
+   }
+  }
+
+  return returnData
 
 }
   
