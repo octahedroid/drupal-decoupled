@@ -6,8 +6,16 @@
 /.react-router/
 /build/
 
+# yalc
+.yalc
+
+
 # Cloudflare
 .mf
 .wrangler
 .dev.vars*
+!.dev.vars.example
 
+app/graphql/fragments/generated
+*storybook.log
+storybook-static
