@@ -17,6 +17,10 @@
 			"path": "../starters/next"
 		},
 		{
+			"name": "react-router - starter",
+			"path": "../starters/react-router"
+		},
+		{
 			"name": "remix - starter",
 			"path": "../starters/remix"
 		},
