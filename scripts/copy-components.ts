@@ -7,6 +7,7 @@ const STARTERS = {
   STORYBOOK: "starters/storybook/app",
   REMIX: "starters/remix/app",
   NEXT: "starters/next",
+  REACT_ROUTER: "starters/react-router",
 } as const;
 
 const NEXT_CLIENT_COMPONENTS = ["Header"];
