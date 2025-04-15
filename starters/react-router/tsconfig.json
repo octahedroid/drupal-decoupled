@@ -6,9 +6,21 @@
   ],
   "compilerOptions": {
     "checkJs": true,
-    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "plugins": [
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./schema.graphql",
+        "tadaOutputLocation": "./src/graphql-env.d.ts",
+        "trackFieldUsage": false,
+        "shouldCheckForColocatedFragments": false
+      }
+    ]
   }
 }
