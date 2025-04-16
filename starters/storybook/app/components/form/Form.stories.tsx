@@ -8,14 +8,6 @@ import { z } from 'zod'
 import { Input, Textarea } from '~/components/form'
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
 import { Button } from '~/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '~/components/ui/card'
 import { Label } from '~/components/ui/label'
 
 // Define the DemoForm component
@@ -44,15 +36,8 @@ const DemoForm = () => {
   }
 
   return (
-    <Card className="mx-auto w-full max-w-lg">
-      <CardHeader>
-        <CardTitle>Contact Us</CardTitle>
-        <CardDescription>
-          Fill out the form below to send us a message
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent>
+    <div className="flex items-center justify-center">
+      <div className="container mx-auto max-w-xl">
         {submitted ? (
           <div className="space-y-4">
             <Alert>
@@ -122,16 +107,13 @@ const DemoForm = () => {
                 </p>
               )}
             </div>
-
-            <CardFooter className="flex justify-end px-0 pt-4">
-              <Button type="submit" className="w-full">
-                Submit
-              </Button>
-            </CardFooter>
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
           </form>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
 
