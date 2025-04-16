@@ -1,4 +1,4 @@
-import { Meta, Typeset, Canvas, Story } from '@storybook/blocks'
+import { Meta, Typeset, Canvas, Story } from '@storybook/blocks';
 
 <Meta title="Tokens/Typography" />
 
@@ -10,7 +10,7 @@ This page showcases the typography styles used in our design system, based on Ta
 
 Tailwind CSS uses a "native font stack" by default. This means it will use the best-looking default system font for each operating system.
 
-export const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
+export const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
 
 <p style={{ fontFamily }}>
   This text is using the default Tailwind font stack.
@@ -37,18 +37,15 @@ export const fontSizes = {
 }
 
 {Object.entries(fontSizes).map(([name, size]) => (
-
-<div key={name}>
-  <h3 className="h3">
-    Text {name} ({size}px)
-  </h3>
-  <Typeset
-    fontSizes={[size]}
-    fontWeight={400}
-    sampleText="The quick brown fox jumps over the lazy dog"
-    fontFamily={fontFamily}
-  />
-</div>
+  <div key={name}>
+    <h3 className="h3">Text {name} ({size}px)</h3>
+    <Typeset
+      fontSizes={[size]}
+      fontWeight={400}
+      sampleText="The quick brown fox jumps over the lazy dog"
+      fontFamily={fontFamily}
+    />
+  </div>
 ))}
 
 ## Font Weights
@@ -68,16 +65,13 @@ export const fontWeights = {
 }
 
 {Object.entries(fontWeights).map(([name, weight]) => (
-
-<div key={name}>
-  <h3 className="h3">
-    Font {name} ({weight})
-  </h3>
-  <Typeset
-    fontSizes={[16]}
-    fontWeight={weight}
-    sampleText={`This is ${name} (${weight}) text`}
-    fontFamily={fontFamily}
-  />
-</div>
+  <div key={name}>
+    <h3 className="h3">Font {name} ({weight})</h3>
+    <Typeset
+      fontSizes={[16]}
+      fontWeight={weight}
+      sampleText={`This is ${name} (${weight}) text`}
+      fontFamily={fontFamily}
+    />
+  </div>
 ))}

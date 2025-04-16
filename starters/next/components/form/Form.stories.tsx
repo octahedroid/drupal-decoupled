@@ -5,10 +5,10 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
 import { z } from 'zod'
-import { Input, Textarea } from '~/components/form'
-import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
-import { Button } from '~/components/ui/button'
-import { Label } from '~/components/ui/label'
+import { Input, Textarea } from '@/components/form'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
+import { Label } from '@/components/ui/label'
 
 // Define the DemoForm component
 const DemoForm = () => {
