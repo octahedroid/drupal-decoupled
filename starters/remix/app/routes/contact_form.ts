@@ -28,8 +28,6 @@ export async function action({ request, context }: ActionFunctionArgs) {
     }
   }
 
-  console.log('Data being added to payload:', result.data) // <-- Add this log
-
   return {
     reply: submission.reply(),
     data: result.data,

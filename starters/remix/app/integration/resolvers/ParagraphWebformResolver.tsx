@@ -33,29 +33,26 @@ export const ParagraphWebformResolver = ({
     readFragment(ParagraphWebformFragment, paragraph)
 
   return (
-    <div className="container mx-auto grid items-center gap-8 pt-8 pb-8 lg:grid-cols-2">
+    <div className="container mx-auto py-8 md:py-16 lg:py-24">
       <div>
-        <h2>{heading}</h2>
-        {subheadingOptional && <h3>{subheadingOptional}</h3>}
+        <h2 className="mb-5 text-3xl font-bold sm:text-4xl md:text-5xl">
+          {heading}
+        </h2>
+        {subheadingOptional && (
+          <h3 className="mb-3 text-xl">{subheadingOptional}</h3>
+        )}
         {descriptionOptional && (
-          <div
-            className="prose"
+          <p
+            className="text-muted-foreground mb-5 text-lg"
             dangerouslySetInnerHTML={{ __html: descriptionOptional }}
           />
         )}
         {form && (
-          <div className="pt-8">
+          <div className="py-8 md:py-16 lg:py-24">
             <ContactForm />
           </div>
         )}
       </div>
-      {/* <pre>
-        {JSON.stringify(
-          { id, descriptionOptional, heading, subheadingOptional, form },
-          null,
-          2
-        )}
-      </pre> */}
     </div>
   )
 }

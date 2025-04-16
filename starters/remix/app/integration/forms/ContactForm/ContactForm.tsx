@@ -1,20 +1,16 @@
 import { getFormProps, useForm } from '@conform-to/react'
 import { getZodConstraint, parseWithZod } from '@conform-to/zod'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, CircleAlert } from 'lucide-react'
 import { Input, Textarea } from '~/components/form'
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
 import { Button } from '~/components/ui/button'
-import { CardFooter } from '~/components/ui/card'
 import { Label } from '~/components/ui/label'
 import { contactFormSchema } from '~/integration/forms/ContactForm/schema'
 import { useFetcher } from '@remix-run/react'
 import { action } from '~/routes/contact_form'
 
-// Define the ContactForm component
 export const ContactForm = () => {
   const fetcher = useFetcher<typeof action>()
-
-  console.log('fetcher', fetcher.formData)
 
   const [form, fields] = useForm({
     id: 'contact-form',
@@ -27,13 +23,14 @@ export const ContactForm = () => {
   })
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="container mx-auto w-xl max-w-xl">
+    <div className="flex items-center justify-center">
+      <div className="container mx-auto max-w-xl">
         {fetcher.data?.reply.status === 'success' ? (
           <div className="space-y-4">
             <Alert>
-              <CheckCircle2 className="text-green-500" />
+              <CheckCircle2 className="stroke-green-500" />
               <AlertTitle
+                className="text-lg"
                 dangerouslySetInnerHTML={{
                   __html:
                     fetcher.data?.data?.submitWebform?.confirmation
@@ -59,8 +56,8 @@ export const ContactForm = () => {
             {form.errors && (
               <div className="space-y-4">
                 <Alert>
-                  <CheckCircle2 className="text-red-500" />
-                  <AlertTitle>Form Error!</AlertTitle>
+                  <CircleAlert className="stroke-red-500" />
+                  <AlertTitle className="text-lg">Form Error!</AlertTitle>
                   <AlertDescription
                     dangerouslySetInnerHTML={{
                       __html: form.errors,
@@ -100,20 +97,13 @@ export const ContactForm = () => {
                 placeholder="Enter your message"
                 className="min-h-[120px]"
               />
-              {fields.message.errors ? (
+              {fields.message.errors && (
                 <p className="text-sm text-red-500">{fields.message.errors}</p>
-              ) : (
-                <p className="text-xs text-gray-500">
-                  {fields.message.value?.length || 0}/20-500 characters
-                </p>
               )}
             </div>
-
-            <CardFooter className="flex justify-end px-0 pt-4">
-              <Button type="submit" className="w-full">
-                Submit
-              </Button>
-            </CardFooter>
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
           </fetcher.Form>
         )}
       </div>
