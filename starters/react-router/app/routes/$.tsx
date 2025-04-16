@@ -52,15 +52,15 @@ export function meta({ data }: Route.MetaArgs) {
   })
 }
 
-export async function loader({ params, context, request }: Route.LoaderArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
   const path = calculatePath({ path: params['*'], url: request.url })
 
   const client = await getClient({
-    url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
+    url: process.env.DRUPAL_GRAPHQL_URI as string,
     auth: {
-      uri: context.cloudflare.env.DRUPAL_AUTH_URI,
-      clientId: context.cloudflare.env.DRUPAL_CLIENT_ID,
-      clientSecret: context.cloudflare.env.DRUPAL_CLIENT_SECRET,
+      uri: process.env.DRUPAL_AUTH_URI as string,
+      clientId: process.env.DRUPAL_CLIENT_ID as string,
+      clientSecret: process.env.DRUPAL_CLIENT_SECRET as string,
     },
   })
 
@@ -126,7 +126,7 @@ export async function loader({ params, context, request }: Route.LoaderArgs) {
     header: {
       logo: {
         // add DRUPAL URI as env variable
-        src: `${context.cloudflare.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
+        src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
         alt: 'Company Logo',
       },
       navItems,
@@ -145,14 +145,14 @@ export async function loader({ params, context, request }: Route.LoaderArgs) {
     footer: {
       logo: {
         // add DRUPAL URI as env variable
-        src: `${context.cloudflare.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
+        src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
         alt: 'Company Logo',
       },
       copyrightText: `© ${new Date().getFullYear()} Drupal Decoupled`,
       navItems: [],
     },
     entity: data.route.entity as EntityFragmentType,
-    environment: context.cloudflare.env.ENVIRONMENT,
+    environment: process.env.ENVIRONMENT as string,
   }
 }
 

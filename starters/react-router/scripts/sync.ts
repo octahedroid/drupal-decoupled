@@ -7,7 +7,7 @@ import {
   generateTurbo,
 } from '@gql.tada/cli-utils'
 ;(async () => {
-  const envPath = path.join(process.cwd(), '.dev.vars')
+  const envPath = path.join(process.cwd(), '.env')
   dotenv.config({ path: envPath })
 
   const authClient = await drupalAuthClient(
