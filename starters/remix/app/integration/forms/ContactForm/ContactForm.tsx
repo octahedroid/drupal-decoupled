@@ -4,20 +4,11 @@ import { CheckCircle2 } from 'lucide-react'
 import { Input, Textarea } from '~/components/form'
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
 import { Button } from '~/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '~/components/ui/card'
+import { CardFooter } from '~/components/ui/card'
 import { Label } from '~/components/ui/label'
 import { contactFormSchema } from '~/integration/forms/ContactForm/schema'
 import { useFetcher } from '@remix-run/react'
 import { action } from '~/routes/contact_form'
-
-
 
 // Define the ContactForm component
 export const ContactForm = () => {
@@ -25,10 +16,9 @@ export const ContactForm = () => {
 
   console.log('fetcher', fetcher.formData)
 
-
   const [form, fields] = useForm({
     id: 'contact-form',
-    lastResult: fetcher.data,
+    lastResult: fetcher.data?.reply,
     constraint: getZodConstraint(contactFormSchema),
     onValidate({ formData }) {
       return parseWithZod(formData, { schema: contactFormSchema })
@@ -37,24 +27,26 @@ export const ContactForm = () => {
   })
 
   return (
-    <Card className="mx-auto w-full max-w-lg">
-      <CardHeader>
-        <CardTitle>Contact Us</CardTitle>
-        <CardDescription>
-          Fill out the form below to send us a message
-        </CardDescription>
-      </CardHeader>
-
-      <CardContent>
-        {fetcher.data?.status === 'success' ? (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="container mx-auto w-xl max-w-xl">
+        {fetcher.data?.reply.status === 'success' ? (
           <div className="space-y-4">
             <Alert>
               <CheckCircle2 className="text-green-500" />
-              <AlertTitle>Form submitted successfully!</AlertTitle>
-              <AlertDescription>
-                {JSON.stringify(fetcher.data?.fields)}
-                {JSON.stringify(fetcher.data?.payload!)}
-              </AlertDescription>
+              <AlertTitle
+                dangerouslySetInnerHTML={{
+                  __html:
+                    fetcher.data?.data?.submitWebform?.confirmation
+                      ?.confirmation_title || '',
+                }}
+              ></AlertTitle>
+              <AlertDescription
+                dangerouslySetInnerHTML={{
+                  __html:
+                    fetcher.data?.data?.submitWebform?.confirmation
+                      ?.confirmation_message || '',
+                }}
+              ></AlertDescription>
             </Alert>
           </div>
         ) : (
@@ -64,6 +56,19 @@ export const ContactForm = () => {
             action="/contact_form"
             className="space-y-4"
           >
+            {form.errors && (
+              <div className="space-y-4">
+                <Alert>
+                  <CheckCircle2 className="text-red-500" />
+                  <AlertTitle>Form Error!</AlertTitle>
+                  <AlertDescription
+                    dangerouslySetInnerHTML={{
+                      __html: form.errors,
+                    }}
+                  ></AlertDescription>
+                </Alert>
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor={fields.name.id}>Name</Label>
               <Input
@@ -111,7 +116,7 @@ export const ContactForm = () => {
             </CardFooter>
           </fetcher.Form>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }

@@ -7,21 +7,21 @@ import { AppLoadContext } from '@remix-run/cloudflare'
 // Define your GraphQL mutation
 const contactMutation = graphql(`
   mutation SubmitContactForm($input: [KeyValueInput]) {
-  submitWebform(
-    id: "contact_form"
-    data: $input
-  )
-  {
-    confirmation{
-      confirmation_message
+    submitWebform(id: "contact_form", data: $input) {
+      confirmation {
+        confirmation_title
+        confirmation_message
+      }
     }
   }
-}
-
 `)
 
-async function submitContactForm(input: ContactFormSchema, context: AppLoadContext) {
-   const client = await getClient({
+async function submitContactForm(
+  input: ContactFormSchema,
+  context: AppLoadContext
+) {
+  // throw new Error('Not implemented')
+  const client = await getClient({
     url: context.cloudflare.env.DRUPAL_GRAPHQL_URI,
     auth: {
       uri: context.cloudflare.env.DRUPAL_AUTH_URI,
@@ -30,11 +30,12 @@ async function submitContactForm(input: ContactFormSchema, context: AppLoadConte
     },
   })
 
-  const inputArray = Object.entries(input).map(([key, value]) => ({ key, value }))
+  const inputArray = Object.entries(input).map(([key, value]) => ({
+    key,
+    value,
+  }))
   const result = await client.mutation(contactMutation, { input: inputArray })
   return result.data
 }
 
 export const submitContactFormFunction = composable(submitContactForm)
-
-

@@ -29,22 +29,33 @@ export const ParagraphWebformFragment = graphql(
 export const ParagraphWebformResolver = ({
   paragraph,
 }: ParagraphWebformProps) => {
-  const { id, heading, subheadingOptional, descriptionOptional, form } =
+  const { heading, subheadingOptional, descriptionOptional, form } =
     readFragment(ParagraphWebformFragment, paragraph)
 
   return (
     <div className="container mx-auto grid items-center gap-8 pt-8 pb-8 lg:grid-cols-2">
       <div>
-        <h1>{heading}</h1>
+        <h2>{heading}</h2>
+        {subheadingOptional && <h3>{subheadingOptional}</h3>}
+        {descriptionOptional && (
+          <div
+            className="prose"
+            dangerouslySetInnerHTML={{ __html: descriptionOptional }}
+          />
+        )}
+        {form && (
+          <div className="pt-8">
+            <ContactForm />
+          </div>
+        )}
       </div>
-      <ContactForm />
-      <pre>
+      {/* <pre>
         {JSON.stringify(
           { id, descriptionOptional, heading, subheadingOptional, form },
           null,
           2
         )}
-      </pre>
+      </pre> */}
     </div>
   )
 }
