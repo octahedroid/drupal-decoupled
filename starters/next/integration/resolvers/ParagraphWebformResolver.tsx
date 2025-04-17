@@ -1,4 +1,5 @@
 import { FragmentOf, readFragment } from 'gql.tada'
+import { ContactForm } from '@/integration/forms/ContactForm/ContactForm'
 
 import { WebformFragment } from '@/graphql/fragments/webform'
 import { graphql } from '@/graphql/gql.tada'
@@ -28,18 +29,30 @@ export const ParagraphWebformFragment = graphql(
 export const ParagraphWebformResolver = ({
   paragraph,
 }: ParagraphWebformProps) => {
-  const { id, heading, subheadingOptional, descriptionOptional, form } =
+  const { heading, subheadingOptional, descriptionOptional, form } =
     readFragment(ParagraphWebformFragment, paragraph)
 
   return (
-    <div className="container mx-auto grid items-center gap-8 pt-8 pb-8 lg:grid-cols-2">
-      <pre>
-        {JSON.stringify(
-          { id, descriptionOptional, heading, subheadingOptional, form },
-          null,
-          2
+    <div className="container mx-auto py-8 md:py-16 lg:py-24">
+      <div>
+        <h2 className="mb-5 text-3xl font-bold sm:text-4xl md:text-5xl">
+          {heading}
+        </h2>
+        {subheadingOptional && (
+          <h3 className="mb-3 text-xl">{subheadingOptional}</h3>
         )}
-      </pre>
+        {descriptionOptional && (
+          <p
+            className="text-muted-foreground mb-5 text-lg"
+            dangerouslySetInnerHTML={{ __html: descriptionOptional }}
+          />
+        )}
+        {form && (
+          <div className="py-8 md:py-16 lg:py-24">
+            <ContactForm />
+          </div>
+        )}
+      </div>
     </div>
   )
 }
