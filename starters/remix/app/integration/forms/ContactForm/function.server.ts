@@ -33,7 +33,14 @@ async function submitContactForm(
     value,
   }))
   const result = await client.mutation(contactMutation, { input: inputArray })
-  return result.data
+
+  if (!result.data?.submitWebform?.confirmation) {
+    throw new Error('Error submitting contact form')
+  }
+
+
+  return result.data.submitWebform.confirmation 
+  
 }
 
 export const submitContactFormFunction = composable(submitContactForm)

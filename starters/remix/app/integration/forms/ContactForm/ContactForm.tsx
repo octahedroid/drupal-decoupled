@@ -32,16 +32,12 @@ export const ContactForm = () => {
               <AlertTitle
                 className="text-lg"
                 dangerouslySetInnerHTML={{
-                  __html:
-                    fetcher.data?.data?.submitWebform?.confirmation
-                      ?.confirmation_title || '',
+                  __html: fetcher.data.data?.confirmation_title || '',
                 }}
               ></AlertTitle>
               <AlertDescription
                 dangerouslySetInnerHTML={{
-                  __html:
-                    fetcher.data?.data?.submitWebform?.confirmation
-                      ?.confirmation_message || '',
+                  __html: fetcher.data.data?.confirmation_message || '',
                 }}
               ></AlertDescription>
             </Alert>
@@ -58,11 +54,7 @@ export const ContactForm = () => {
                 <Alert>
                   <CircleAlert className="stroke-red-500" />
                   <AlertTitle className="text-lg">Form Error!</AlertTitle>
-                  <AlertDescription
-                    dangerouslySetInnerHTML={{
-                      __html: form.errors,
-                    }}
-                  ></AlertDescription>
+                  <AlertDescription>{form.errors}</AlertDescription>
                 </Alert>
               </div>
             )}

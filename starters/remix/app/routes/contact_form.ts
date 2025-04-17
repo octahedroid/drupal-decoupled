@@ -11,7 +11,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
   if (submission.status !== 'success') {
     return {
       reply: submission.reply(),
-      data: undefined,
+      data: null,
     }
   }
 
@@ -24,7 +24,7 @@ export async function action({ request, context }: ActionFunctionArgs) {
           'There was an error submitting the form. Please try again later.',
         ],
       }),
-      data: undefined,
+      data: null,
     }
   }
 
