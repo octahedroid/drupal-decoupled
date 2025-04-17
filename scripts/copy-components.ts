@@ -7,7 +7,7 @@ const STARTERS = {
   STORYBOOK: "starters/storybook/app",
   REMIX: "starters/remix/app",
   NEXT: "starters/next",
-  REACT_ROUTER: "starters/react-router",
+  REACT_ROUTER: "starters/react-router/app",
 } as const;
 
 const NEXT_CLIENT_COMPONENTS = ["Header"];
@@ -194,6 +194,9 @@ class ComponentSync {
 
     console.log("\n=== Copying components for Remix ===");
     sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.REMIX);
+
+    console.log("\n=== Copying components for React Router ===");
+    sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.REACT_ROUTER);
 
     console.log("\n=== Copying components for Next.js ===");
     sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.NEXT);

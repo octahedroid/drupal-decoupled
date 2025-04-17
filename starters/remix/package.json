@@ -18,9 +18,12 @@
     "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore ."
   },
   "dependencies": {
+    "@conform-to/react": "^1.3.0",
+    "@conform-to/zod": "^1.3.0",
     "@measured/puck": "^0.18.2",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-avatar": "^1.1.3",
+    "@radix-ui/react-label": "^2.1.3",
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-slot": "^1.1.2",
     "@remix-run/cloudflare": "^2.16.4",
@@ -30,6 +33,7 @@
     "@urql/core": "^5.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "composable-functions": "^5.0.0",
     "drupal-auth-client": "^0.4",
     "drupal-decoupled": "^0.2.2",
     "gql.tada": "^1.8.10",
@@ -40,7 +44,8 @@
     "react-dom": "^19.1.0",
     "remix-flat-routes": "^0.8.5",
     "remix-utils": "^7.6.0",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@0no-co/graphqlsp": "^1.12.14",

@@ -4,6 +4,18 @@ import '../app/globals.css'
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: [
+          'Tokens',
+          'Primitives',
+          'Blocks',
+          'Pages',
+          'Form',
+          ['*', 'Form - Demo'],
+        ],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
