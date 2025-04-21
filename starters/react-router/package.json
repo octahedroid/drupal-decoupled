@@ -27,6 +27,7 @@
     "@urql/core": "^5.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "composable-functions": "^5.0.0",
     "drupal-auth-client": "^0.4",
     "drupal-decoupled": "^0.2.2",
     "gql.tada": "^1.8.10",

@@ -25,8 +25,9 @@
     "plugins": [
       {
         "name": "gql.tada/ts-plugin",
-        "schema": "./schema.graphql",
-        "tadaOutputLocation": "./src/graphql-env.d.ts",
+        "schema": "./app/graphql/generated/schema.graphql",
+        "tadaOutputLocation": "./app/graphql/generated/gql.tada.instrospection.ts",
+        "tadaTurboLocation": "./app/graphql/generated/gql.tada.cache.ts",
         "trackFieldUsage": false,
         "shouldCheckForColocatedFragments": false
       }

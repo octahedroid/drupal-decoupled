@@ -1,15 +1,15 @@
 """The schema's entry-point for queries."""
 type Query {
-  """Load a TermTags entity by id"""
-  termTags(
-    """The id of the TermTags to load."""
+  """Load a MediaImage entity by id"""
+  mediaImage(
+    """The id of the MediaImage to load."""
     id: ID!
 
     """
     Optionally set the revision of the entity. Eg current, latest, or an ID.
     """
     revision: ID
-  ): TermTags
+  ): MediaImage
 
   """Load a NodeArticle entity by id"""
   nodeArticle(
@@ -32,17 +32,6 @@ type Query {
     """
     revision: ID
   ): NodePage
-
-  """Load a MediaImage entity by id"""
-  mediaImage(
-    """The id of the MediaImage to load."""
-    id: ID!
-
-    """
-    Optionally set the revision of the entity. Eg current, latest, or an ID.
-    """
-    revision: ID
-  ): MediaImage
 
   """Load a ParagraphAuthor entity by id"""
   paragraphAuthor(
@@ -154,6 +143,17 @@ type Query {
     revision: ID
   ): ParagraphWebform
 
+  """Load a TermTags entity by id"""
+  termTags(
+    """The id of the TermTags to load."""
+    id: ID!
+
+    """
+    Optionally set the revision of the entity. Eg current, latest, or an ID.
+    """
+    revision: ID
+  ): TermTags
+
   """Load a Menu by name."""
   menu(
     """Internal menu name. Eg MAIN"""
@@ -174,8 +174,8 @@ type Query {
   """Schema information."""
   info: SchemaInformation!
 
-  """List of all TermTags on the platform."""
-  termTagsItems(
+  """List of all MediaImage on the platform."""
+  mediaImages(
     """Returns the elements that come after the specified cursor."""
     after: Cursor
 
@@ -193,7 +193,7 @@ type Query {
 
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
-  ): TermTagsConnection!
+  ): MediaImageConnection!
 
   """List of all NodeArticle on the platform."""
   nodeArticles(
@@ -236,27 +236,6 @@ type Query {
     """Sort the underlying list by the given key."""
     sortKey: ConnectionSortKeys
   ): NodePageConnection!
-
-  """List of all MediaImage on the platform."""
-  mediaImages(
-    """Returns the elements that come after the specified cursor."""
-    after: Cursor
-
-    """Returns the elements that come before the specified cursor."""
-    before: Cursor
-
-    """Returns up to the first n elements from the list."""
-    first: Int
-
-    """Returns up to the last n elements from the list."""
-    last: Int
-
-    """Reverse the order of the underlying list."""
-    reverse: Boolean = false
-
-    """Sort the underlying list by the given key."""
-    sortKey: ConnectionSortKeys
-  ): MediaImageConnection!
 
   """List of all ParagraphAuthor on the platform."""
   paragraphAuthors(
@@ -447,6 +426,27 @@ type Query {
     sortKey: ConnectionSortKeys
   ): ParagraphWebformConnection!
 
+  """List of all TermTags on the platform."""
+  termTagsItems(
+    """Returns the elements that come after the specified cursor."""
+    after: Cursor
+
+    """Returns the elements that come before the specified cursor."""
+    before: Cursor
+
+    """Returns up to the first n elements from the list."""
+    first: Int
+
+    """Returns up to the last n elements from the list."""
+    last: Int
+
+    """Reverse the order of the underlying list."""
+    reverse: Boolean = false
+
+    """Sort the underlying list by the given key."""
+    sortKey: ConnectionSortKeys
+  ): TermTagsConnection!
+
   """List of all User on the platform."""
   users(
     """Returns the elements that come after the specified cursor."""
@@ -510,19 +510,22 @@ type Query {
   ): Webform
 }
 
-"""Use tags to group articles on similar topics into categories."""
-type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
+"""Use local images for reusable media."""
+type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
-  """The time that the term was last edited."""
+  """The time the media item was last edited."""
   changed: DateTime!
 
-  """Description"""
-  description: Text!
+  """The time the media item was created."""
+  created: DateTime!
 
-  """The term language code."""
+  """Language"""
   langcode: Language!
+
+  """Image"""
+  mediaImage: Image!
 
   """The computed meta tags for the entity."""
   metatag: [MetaTagUnion!]!
@@ -530,31 +533,25 @@ type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
   """Name"""
   name: String!
 
-  """The parents of this term."""
-  parent: TermUnion
-
   """URL alias"""
   path: String
 
   """Published"""
   status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
 }
 
-"""Entity type taxonomy_term."""
-interface TermInterface {
+"""Entity type media."""
+interface MediaInterface {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
 
-  """The time that the term was last edited."""
+  """The time the media item was last edited."""
   changed: DateTime!
 
-  """Description"""
-  description: Text!
+  """The time the media item was created."""
+  created: DateTime!
 
-  """The term language code."""
+  """Language"""
   langcode: Language!
 
   """The computed meta tags for the entity."""
@@ -563,17 +560,11 @@ interface TermInterface {
   """Name"""
   name: String!
 
-  """The parents of this term."""
-  parent: TermUnion
-
   """URL alias"""
   path: String
 
   """Published"""
   status: Boolean!
-
-  """The weight of this term in relation to other terms."""
-  weight: Int!
 }
 
 """A DateTime object."""
@@ -606,27 +597,6 @@ scalar UtcOffset
 
 """RFC 3339 compliant time string."""
 scalar Time
-
-"""A processed text format defined by the CMS."""
-type Text {
-  """The raw text value."""
-  value: String
-
-  """The processed text value."""
-  processed: Html
-
-  """The text format used to process the text value."""
-  format: String
-}
-
-"""
-An HTML string
-
-Content of this type is deemed safe by the server for raw output given the
-origin and the context of its usage. The HTML can still contain scripts or style
-tags where the creating user had permission to input these.
-"""
-scalar Html
 
 """A language definition provided by the CMS."""
 type Language {
@@ -741,9 +711,6 @@ type MetaTagScriptAttributes {
   integrity: String
 }
 
-"""Entity type taxonomy_term."""
-union TermUnion = TermTags
-
 """This entity has meta tags enabled."""
 interface MetaTagInterface {
   """The computed meta tags for the entity."""
@@ -753,6 +720,47 @@ interface MetaTagInterface {
 """This entity is accessible over an Edge connection."""
 interface EdgeNode {
   id: ID!
+}
+
+"""A image object to represent an managed file."""
+type Image {
+  """The URL of the image."""
+  url: String!
+
+  """The width of the image."""
+  width: Int!
+
+  """The height of the image."""
+  height: Int!
+
+  """The alt text of the image."""
+  alt: String
+
+  """The title text of the image."""
+  title: String
+
+  """The size of the image in bytes."""
+  size: Int!
+
+  """The mime type of the image."""
+  mime: String
+
+  """Image variations control different sizes and formats for images."""
+  variations(styles: [ImageStyleAvailable]): [ImageStyleDerivative!]
+}
+
+"""List of image styles available to use."""
+enum ImageStyleAvailable {
+  """No image styles have been enabled."""
+  UNDEFINED
+}
+
+"""ImageStyle derivatives for an Image."""
+type ImageStyleDerivative {
+  name: String!
+  url: String!
+  width: Int!
+  height: Int!
 }
 
 """
@@ -926,104 +934,6 @@ enum UserStatus {
 """Entity type media."""
 union MediaUnion = MediaImage
 
-"""Use local images for reusable media."""
-type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time the media item was last edited."""
-  changed: DateTime!
-
-  """The time the media item was created."""
-  created: DateTime!
-
-  """Language"""
-  langcode: Language!
-
-  """Image"""
-  mediaImage: Image!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """URL alias"""
-  path: String
-
-  """Published"""
-  status: Boolean!
-}
-
-"""Entity type media."""
-interface MediaInterface {
-  """The Universally Unique IDentifier (UUID)."""
-  id: ID!
-
-  """The time the media item was last edited."""
-  changed: DateTime!
-
-  """The time the media item was created."""
-  created: DateTime!
-
-  """Language"""
-  langcode: Language!
-
-  """The computed meta tags for the entity."""
-  metatag: [MetaTagUnion!]!
-
-  """Name"""
-  name: String!
-
-  """URL alias"""
-  path: String
-
-  """Published"""
-  status: Boolean!
-}
-
-"""A image object to represent an managed file."""
-type Image {
-  """The URL of the image."""
-  url: String!
-
-  """The width of the image."""
-  width: Int!
-
-  """The height of the image."""
-  height: Int!
-
-  """The alt text of the image."""
-  alt: String
-
-  """The title text of the image."""
-  title: String
-
-  """The size of the image in bytes."""
-  size: Int!
-
-  """The mime type of the image."""
-  mime: String
-
-  """Image variations control different sizes and formats for images."""
-  variations(styles: [ImageStyleAvailable]): [ImageStyleDerivative!]
-}
-
-"""List of image styles available to use."""
-enum ImageStyleAvailable {
-  """No image styles have been enabled."""
-  UNDEFINED
-}
-
-"""ImageStyle derivatives for an Image."""
-type ImageStyleDerivative {
-  name: String!
-  url: String!
-  width: Int!
-  height: Int!
-}
-
 """A processed text format with summary defined by the CMS."""
 type TextSummary {
   """The raw text value."""
@@ -1037,6 +947,96 @@ type TextSummary {
 
   """The processed text summary."""
   summary: Html
+}
+
+"""
+An HTML string
+
+Content of this type is deemed safe by the server for raw output given the
+origin and the context of its usage. The HTML can still contain scripts or style
+tags where the creating user had permission to input these.
+"""
+scalar Html
+
+"""Entity type taxonomy_term."""
+union TermUnion = TermTags
+
+"""Use tags to group articles on similar topics into categories."""
+type TermTags implements TermInterface & MetaTagInterface & EdgeNode {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the term was last edited."""
+  changed: DateTime!
+
+  """Description"""
+  description: Text!
+
+  """The term language code."""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """The parents of this term."""
+  parent: TermUnion
+
+  """URL alias"""
+  path: String
+
+  """Published"""
+  status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
+}
+
+"""Entity type taxonomy_term."""
+interface TermInterface {
+  """The Universally Unique IDentifier (UUID)."""
+  id: ID!
+
+  """The time that the term was last edited."""
+  changed: DateTime!
+
+  """Description"""
+  description: Text!
+
+  """The term language code."""
+  langcode: Language!
+
+  """The computed meta tags for the entity."""
+  metatag: [MetaTagUnion!]!
+
+  """Name"""
+  name: String!
+
+  """The parents of this term."""
+  parent: TermUnion
+
+  """URL alias"""
+  path: String
+
+  """Published"""
+  status: Boolean!
+
+  """The weight of this term in relation to other terms."""
+  weight: Int!
+}
+
+"""A processed text format defined by the CMS."""
+type Text {
+  """The raw text value."""
+  value: String
+
+  """The processed text value."""
+  processed: Html
+
+  """The text format used to process the text value."""
+  format: String
 }
 
 """
@@ -1695,7 +1695,7 @@ interface Route {
 }
 
 """A list of possible entities that can be returned by URL."""
-union RouteEntityUnion = TermTags | NodeArticle | NodePage | MediaImage
+union RouteEntityUnion = MediaImage | NodeArticle | NodePage | TermTags
 
 """Route outside of this website."""
 type RouteExternal implements Route {
@@ -1790,10 +1790,10 @@ enum ConnectionSortKeys {
   WEIGHT
 }
 
-"""A paginated set of results for TermTags."""
-type TermTagsConnection implements Connection {
-  edges: [TermTagsEdge!]!
-  nodes: [TermTags!]!
+"""A paginated set of results for MediaImage."""
+type MediaImageConnection implements Connection {
+  edges: [MediaImageEdge!]!
+  nodes: [MediaImage!]!
   pageInfo: ConnectionPageInfo!
 }
 
@@ -1835,10 +1835,10 @@ type ConnectionPageInfo {
   endCursor: Cursor
 }
 
-"""Edge for TermTags."""
-type TermTagsEdge implements Edge {
+"""Edge for MediaImage."""
+type MediaImageEdge implements Edge {
   cursor: Cursor!
-  node: TermTags!
+  node: MediaImage!
 }
 
 """A paginated set of results for NodeArticle."""
@@ -1865,19 +1865,6 @@ type NodePageConnection implements Connection {
 type NodePageEdge implements Edge {
   cursor: Cursor!
   node: NodePage!
-}
-
-"""A paginated set of results for MediaImage."""
-type MediaImageConnection implements Connection {
-  edges: [MediaImageEdge!]!
-  nodes: [MediaImage!]!
-  pageInfo: ConnectionPageInfo!
-}
-
-"""Edge for MediaImage."""
-type MediaImageEdge implements Edge {
-  cursor: Cursor!
-  node: MediaImage!
 }
 
 """A paginated set of results for ParagraphAuthor."""
@@ -1995,6 +1982,19 @@ type ParagraphWebformConnection implements Connection {
 type ParagraphWebformEdge implements Edge {
   cursor: Cursor!
   node: ParagraphWebform!
+}
+
+"""A paginated set of results for TermTags."""
+type TermTagsConnection implements Connection {
+  edges: [TermTagsEdge!]!
+  nodes: [TermTags!]!
+  pageInfo: ConnectionPageInfo!
+}
+
+"""Edge for TermTags."""
+type TermTagsEdge implements Edge {
+  cursor: Cursor!
+  node: TermTags!
 }
 
 """A paginated set of results for User."""
