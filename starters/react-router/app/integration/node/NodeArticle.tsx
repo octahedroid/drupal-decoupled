@@ -28,7 +28,6 @@ export default function NodeArticleComponent({
 
   return (
     <>
-      {}
       <Article
         title={title}
         content={body.processed.toString()}
