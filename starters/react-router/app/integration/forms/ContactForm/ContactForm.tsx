@@ -7,13 +7,13 @@ import { Button } from '~/components/ui/button'
 import { Label } from '~/components/ui/label'
 import { contactFormSchema } from '~/integration/forms/ContactForm/schema'
 import { useFetcher } from 'react-router'
-import { action } from '~/routes/contact_form'
+import { action } from '~/routes/forms/contact_form'
 
-export const ContactForm = () => {
+export const ContactForm = ({ id }: { id: string }) => {
   const fetcher = useFetcher<typeof action>()
 
   const [form, fields] = useForm({
-    id: 'contact-form',
+    id,
     lastResult: fetcher.data?.reply,
     constraint: getZodConstraint(contactFormSchema),
     onValidate({ formData }) {
@@ -46,7 +46,7 @@ export const ContactForm = () => {
           <fetcher.Form
             {...getFormProps(form)}
             method="post"
-            action="/contact_form"
+            action="/form/contact_form"
             className="space-y-4"
           >
             {form.errors && (
