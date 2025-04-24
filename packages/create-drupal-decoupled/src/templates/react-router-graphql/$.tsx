@@ -1,20 +1,53 @@
-import { redirect } from "next/navigation";
-
-import { getClient } from "@/utils/client";
 import { gql } from "urql";
-import { calculatePath } from "@/utils/calculate-path";
 
-async function getDrupalData({
-  params,
-  searchParams,
-}: {
-  params: { slug: string[] };
-  searchParams: Record<string, string>;
-}) {
-  const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
+import { getClient } from "~/utils/client.server";
+import { calculatePath } from "~/utils/routes";
+import type { Route } from "./+types/$";
+import { isRouteErrorResponse, redirect, useRouteError } from "react-router";
+import { metaTags } from "drupal-decoupled/remix";
+import { calculateMetaTags } from "~/utils/metatags";
 
-  const pathFromParams = params.slug?.join("/");
+const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 
+export function meta({ data }: Route.MetaArgs) {
+  if (!data) {
+    return [];
+  }
+  const { type, entity } = data;
+
+  return metaTags({
+    tags: calculateMetaTags(type, entity),
+    metaTagOverrides: {
+      MetaTagLink: {
+        canonical: {
+          // @ts-expect-error - fix typings.
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagProperty: {
+        "og:url": {
+          // @ts-expect-error - fix typings.
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+      MetaTagValue: {
+        "twitter:url": {
+          // @ts-expect-error - fix typings.
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
+        },
+      },
+    },
+  });
+}
+
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
+  const path = params["*"];
   const drupalClient = await getClient({
     auth: {
       uri: process.env.DRUPAL_AUTH_URI!,
@@ -103,8 +136,8 @@ async function getDrupalData({
     `,
     {
       path: calculatePath({
-        path: pathFromParams,
-        token: searchParams?.token,
+        path,
+        url: request.url,
       }),
     }
   );
@@ -114,22 +147,15 @@ async function getDrupalData({
   }
 
   if (data.route.__typename === "RouteRedirect") {
-    return redirect(data.route.url);
+    return redirect(data.route.url, {
+      status: data.route.status || 302,
+    });
   }
 
-  return { node: data.route.entity };
-}
+  return { node: data.route.entity, type: data.route.entity.__typename, entity: data.route.entity };
+};
 
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: { slug: string[] };
-  searchParams: Promise<Record<string, string>>;
-}) {
-  
-  const { node } = await getDrupalData({ params, searchParams: await searchParams });
-
+export default function Index({ loaderData: { node } }: Route.ComponentProps) {
   return (
     <div className="container mx-auto">
       <h1 className="text-6xl font-bold tracking-tighter leading-none mb-6 text-left">
@@ -139,8 +165,6 @@ export default async function Page({
         <img
           src={node.image.url}
           alt={node.image.alt}
-          width={node.image.width}
-          height={node.image.height}
           className="mb-6 mx-auto max-w-lg"
         />
       )}
@@ -150,4 +174,23 @@ export default async function Page({
       />
     </div>
   );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    if (error.data === GET_DRUPAL_CONTENT_ERROR) {
+      return (
+        <div className="p-4 text-center">
+          <p>There was an error fetching the Drupal content</p>
+          <p>
+            Hint: Make sure that the query in the loader function is correct and
+            the fields are enabled in the GraphQL Compose module
+          </p>
+        </div>
+      );
+    }
+    return <p>Uh oh, something went wrong</p>;
+  }
+  return <p>Uh oh, something went wrong</p>;
 }
