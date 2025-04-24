@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 import packageJson from '../package.json'
-import { isJavascriptProject, scaffoldFrontend } from './helpers/scaffolding'
+import {
+  isJavascriptProject,
+  isValidFramework,
+  scaffoldFrontend,
+  updateGitignore,
+} from './helpers/scaffolding'
 import {
   getFrontendReadableName,
   isSupportedFrontend,
@@ -58,18 +63,30 @@ async function main() {
     console.error('Exiting...')
     process.exit(1)
   }
-
   const frontendReadableName = getFrontendReadableName(frontendFramework)
+
+  if (!isValidFramework(projectDirectoryRoute, frontendFramework)) {
+    console.error(
+      `Double check that the project is using ${frontendReadableName} framework`
+    )
+    console.error('Exiting...')
+    process.exit(1)
+  }
 
   console.log(`Scaffolding integration for ${frontendReadableName}\n`)
   const createdFiles = scaffoldFrontend(
     frontendFramework,
     projectDirectoryRoute
   )
+  updateGitignore(frontendFramework, projectDirectoryRoute)
 
-  createdFiles.forEach((file) => {
-    console.log(`Created ${file}`)
+  createdFiles.forEach((fileLog) => {
+    console.log(fileLog)
   })
+
+  console.log(
+    `\nIntegration for ${frontendReadableName} scaffolded successfully!`
+  )
 }
 
 main()

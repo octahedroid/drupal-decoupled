@@ -8,8 +8,8 @@ import { LoaderFunctionArgs, redirect } from '@remix-run/node'
 import { gql } from 'urql'
 import { metaTags } from 'drupal-remix'
 
-import { getDrupalClient } from '~/utils/drupal/client.server'
-import { calculatePath } from '~/utils/drupal/calculate-path.server'
+import { getClient } from '~/utils/client.server'
+import { calculatePath } from '~/utils/calculate-path.server'
 
 const GET_DRUPAL_CONTENT_ERROR = 'Error fetching data from Drupal'
 
@@ -25,7 +25,14 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   const path = params['*']
-  const drupalClient = await getDrupalClient()
+  const drupalClient = await getDrupalClient({
+    auth: {
+      uri: process.env.DRUPAL_AUTH_URI!,
+      clientId: process.env.DRUPAL_CLIENT_ID!,
+      clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
+    },
+    url: process.env.DRUPAL_GRAPHQL_URI!,
+  })
   const { data, error } = await drupalClient.query(
     gql`
       query getNodeArticleByPath($path: String!) {
