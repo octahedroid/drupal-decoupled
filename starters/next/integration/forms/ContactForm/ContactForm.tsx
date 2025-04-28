@@ -8,10 +8,10 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { contactFormSchema } from '@/integration/forms/ContactForm/schema'
 import { useActionState } from 'react'
-import { subitContactFormAction } from '@/integration/forms/ContactForm/action'
+import { submitContactFormAction } from '@/integration/forms/ContactForm/action'
 
 export const ContactForm = () => {
-  const [state, action] = useActionState(subitContactFormAction, undefined)
+  const [state, action] = useActionState(submitContactFormAction, undefined)
   const [form, fields] = useForm({
     id: 'contact-form',
     lastResult: state?.reply,
