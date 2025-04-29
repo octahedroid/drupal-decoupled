@@ -10,10 +10,10 @@ import { contactFormSchema } from '@/integration/forms/ContactForm/schema'
 import { useActionState } from 'react'
 import { submitContactFormAction } from '@/integration/forms/ContactForm/action'
 
-export const ContactForm = () => {
+export const ContactForm = ({ id }: { id: string }) => {
   const [state, action] = useActionState(submitContactFormAction, undefined)
   const [form, fields] = useForm({
-    id: 'contact-form',
+    id,
     lastResult: state?.reply,
     constraint: getZodConstraint(contactFormSchema),
     onValidate({ formData }) {

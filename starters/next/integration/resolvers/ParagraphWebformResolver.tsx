@@ -26,12 +26,23 @@ export const ParagraphWebformFragment = graphql(
   [WebformFragment]
 )
 
+type FormComponents = React.FC<{ id: string }>
+
+const WebformComponentResolver: Record<string, FormComponents> = {
+  contact_form: ContactForm,
+}
+
 export const ParagraphWebformResolver = ({
   paragraph,
 }: ParagraphWebformProps) => {
   const { heading, subheadingOptional, descriptionOptional, form } =
     readFragment(ParagraphWebformFragment, paragraph)
 
+  if (!form || !form.id) {
+    return null
+  }
+
+  const Webform = WebformComponentResolver[form.id]
   return (
     <div className="container mx-auto py-8 md:py-16 lg:py-24">
       <div>
@@ -47,11 +58,9 @@ export const ParagraphWebformResolver = ({
             dangerouslySetInnerHTML={{ __html: descriptionOptional }}
           />
         )}
-        {form && (
-          <div className="py-8 md:py-16 lg:py-24">
-            <ContactForm />
-          </div>
-        )}
+        <div className="py-8 md:py-16 lg:py-24">
+          <Webform id={form.id} />
+        </div>
       </div>
     </div>
   )
