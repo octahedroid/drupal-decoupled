@@ -1,30 +1,16 @@
-type ClientOptions = {
+export type Options = {
   clientId: string;
   clientSecret: string;
 };
 
 type ClientCredentialsOAuth = {
-  token_type: "client_credentials";
-  options: ClientOptions;
+  options: Options;
 };
 
-type PasswordOAuth = {
-  token_type: "password";
-  options: {
-    username: string;
-    password: string;
-  } & ClientOptions;
-};
-
-export type Auth = ClientCredentialsOAuth | PasswordOAuth;
-
-export type Options<TConfig extends Auth["token_type"]> = Extract<
-  Auth,
-  { token_type: TConfig }
->["options"];
+export type Auth = ClientCredentialsOAuth;
 
 export type Config = {
-  fetcher: any;
+  fetcher: typeof fetch;
   authURI?: string;
 };
 
