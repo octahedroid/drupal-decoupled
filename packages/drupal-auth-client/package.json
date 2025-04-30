@@ -1,6 +1,6 @@
 {
   "name": "drupal-auth-client",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Drupal Auth Client",
   "keywords": [
     "auth",
@@ -8,8 +8,7 @@
   ],
   "main": "dist/index.js",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "bundlesize": [
     {

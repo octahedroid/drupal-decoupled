@@ -1,51 +1,27 @@
-import { clientCredentialsHeader, passwordHeader } from "./authHandlers";
-import type { Auth, Config, Options } from "./types";
+import { clientCredentialsHeader } from "./authHandlers";
+import type { Config, Options } from "./types";
 
-const calculateAuthHeader = async <TAuth extends Auth["token_type"]>(
+const calculateAuthHeader = async (
   uri: string,
-  type: TAuth,
-  options: Options<TAuth>,
+  options: Options,
   fetcher: Config["fetcher"]
 ) => {
-  if (type === "client_credentials") {
-    const { clientId, clientSecret} =
-      options as Options<"client_credentials">;
-    const header = await clientCredentialsHeader(
-      uri,
-      clientId,
-      clientSecret,
-      fetcher,
-    );
+  const { clientId, clientSecret } = options;
+  const header = await clientCredentialsHeader(
+    uri,
+    clientId,
+    clientSecret,
+    fetcher
+  );
 
-    if (header) {
-      return header;
-    }
+  if (header) {
+    return header;
   }
-
-  if (type === "password") {
-    const { username, password, clientId, clientSecret } =
-      options as Options<"password">;
-    const header = await passwordHeader(
-      uri,
-      username,
-      password,
-      clientId,
-      clientSecret,
-      fetcher,
-    );
-
-    if (header) {
-      return header;
-    }
-  }
-
-  return null;
 };
 
 /**
  * Return headers based on the given auth and config
  * @param uri The uri of the drupal site
- * @param auth The auth strategy to use
  * @param options {Config} The auth options
  * @param config The config for the client
  *
@@ -53,35 +29,15 @@ const calculateAuthHeader = async <TAuth extends Auth["token_type"]>(
  * @example
  * const client = drupalAuthClient(
  *  "https://drupal.site",
- * "client_credentials",
  *  {
  *    clientId: "client_id",
  *    clientSecret: "client_secret",
  *  },
  * );
- *
- * In the above example, you only need to provide the clientId and clientSecret
- * because the auth type is "client_credentials" but if you set the auth type to
- * "password" you would need to provide the username and password as well.
- *
- * @example
- * const client = drupalAuthClient(
- *  "https://drupal.site",
- *  "password",
- *  {
- *    username: "username",
- *    password: "password",
- *    clientId: "client_id",
- *    clientSecret: "client_secret",
- *   }
- * );
- *
- *
  **/
-const drupalAuthClient = async <TAuth extends Auth["token_type"]>(
+const drupalAuthClient = async (
   uri: string,
-  type: TAuth,
-  options: Options<TAuth>,
+  options: Options,
   config: Config = {
     fetcher: fetch,
   }
@@ -91,12 +47,7 @@ const drupalAuthClient = async <TAuth extends Auth["token_type"]>(
   const url = new URL(uri);
   const formattedAuthURI = authURI ? authURI : `${url.origin}/oauth/token`;
 
-  const header = await calculateAuthHeader(
-    formattedAuthURI,
-    type,
-    options,
-    fetcher
-  )
+  const header = await calculateAuthHeader(formattedAuthURI, options, fetcher);
 
   if (!header) {
     throw new Error("Unable to fetch auth header");
@@ -106,8 +57,3 @@ const drupalAuthClient = async <TAuth extends Auth["token_type"]>(
 };
 
 export { drupalAuthClient };
-
-/**
- * @deprecated
- */
-export default drupalAuthClient;
