@@ -7,7 +7,7 @@ interface TokenArgs {
 }
 
 export const getToken = async ({ uri, clientId, clientSecret }: TokenArgs) => {
-  const client = await drupalAuthClient(uri, 'client_credentials', {
+  const client = await drupalAuthClient(uri, {
     clientId,
     clientSecret,
   })

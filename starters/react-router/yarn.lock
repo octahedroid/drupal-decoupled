@@ -2397,10 +2397,10 @@ dom-accessibility-api@^0.6.3:
   resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.6.3.tgz#993e925cc1d73f2c662e7d75dd5a5445259a8fd8"
   integrity sha512-7ZgogeTnjuHbo+ct10G9Ffp0mif17idi0IyWNVA/wcwcm7NPOD/WEHVP3n7n3MhXqxoIYm8d6MuZohYWIZ4T3w==
 
-drupal-auth-client@^0.4:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.4.0.tgz#1ecec93b3404744546291e6e4f25ddb7b536b536"
-  integrity sha512-isCGyIQazg9Mi+zF/b96wSZ4R4U9mxayHPejvNQqkp/GolxkJ/vkrvxTcU3ShLrk3CkspPYPfr6uGEzyW2F5Rw==
+drupal-auth-client@^1.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-1.0.0.tgz#792d00c1c38ff0cab8987e408632cecb5f5c1ed3"
+  integrity sha512-RLsh0J5sCGbgMbkOwpUkGreM6StIgfTUcYtsnbIIV2r/0Y8HlrXPRY1e9x7SKnHH5hwDmpzhJ1YZen4cOHGdlw==
 
 drupal-decoupled@^0.2.2:
   version "0.2.2"
