@@ -10,14 +10,10 @@ import {
   const envPath = path.join(process.cwd(), '.env')
   dotenv.config({ path: envPath })
 
-  const authClient = await drupalAuthClient(
-    process.env.DRUPAL_AUTH_URI!,
-    'client_credentials',
-    {
-      clientId: process.env.DRUPAL_CLIENT_ID!,
-      clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
-    }
-  )
+  const authClient = await drupalAuthClient(process.env.DRUPAL_AUTH_URI!, {
+    clientId: process.env.DRUPAL_CLIENT_ID!,
+    clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
+  })
 
   console.log('\n🚀 Generating GraphQL Schema')
   await generateSchema({
