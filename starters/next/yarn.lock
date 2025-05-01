@@ -3932,10 +3932,10 @@ dotenv@^16.4.5:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.7.tgz#0e20c5b82950140aa99be360a8a5f52335f53c26"
   integrity sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==
 
-drupal-auth-client@^0.4:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-0.4.0.tgz#1ecec93b3404744546291e6e4f25ddb7b536b536"
-  integrity sha512-isCGyIQazg9Mi+zF/b96wSZ4R4U9mxayHPejvNQqkp/GolxkJ/vkrvxTcU3ShLrk3CkspPYPfr6uGEzyW2F5Rw==
+drupal-auth-client@^1.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/drupal-auth-client/-/drupal-auth-client-1.0.0.tgz#792d00c1c38ff0cab8987e408632cecb5f5c1ed3"
+  integrity sha512-RLsh0J5sCGbgMbkOwpUkGreM6StIgfTUcYtsnbIIV2r/0Y8HlrXPRY1e9x7SKnHH5hwDmpzhJ1YZen4cOHGdlw==
 
 drupal-decoupled@^0.2.2:
   version "0.2.2"
