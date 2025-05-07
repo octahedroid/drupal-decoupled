@@ -147,7 +147,7 @@ export const loader = async ({
         },
         {
           text: 'Quickstart',
-          href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
+          href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quick-start/drupal',
         },
       ],
     },
