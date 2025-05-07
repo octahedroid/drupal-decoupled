@@ -1,0 +1,54 @@
+{
+  "name": "drupal-vite",
+  "version": "0.0.0",
+  "description": "Vite plugin for Drupal integration",
+  "module": "build/index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/index.js",
+      "types": "./build/index.d.ts"
+    },
+    "./client": {
+      "types": "./build/client.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "client": ["./build/client.d.ts"]
+    }
+  },
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./build --format esm --target node",
+    "build:types": "tsc --emitDeclarationOnly --declaration --outDir build",
+    "copy:dts": "cp client.d.ts build/client.d.ts",
+    "build:all": "bun run build && bun run build:types && bun run copy:dts",
+    "prepublishOnly": "bun run build:all",
+    "yalc:publish": "bun run build:all && yalc publish"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "vite": "^6.3.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5",
+    "vite": "^6.0.0",
+    "@urql/core": "^5.1.1"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "drupal-auth-client": "^1.0.2",
+    "fs-extra": "^11.3.0"
+  },
+  "keywords": [
+    "vite-plugin",
+    "drupal",
+    "decoupled"
+  ]
+}
