@@ -138,7 +138,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
         },
         {
           text: 'Quickstart',
-          href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart',
+          href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quick-start/drupal',
         },
       ],
     },
