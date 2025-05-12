@@ -1,31 +1,8 @@
-import { loadEnv, type Plugin, type ResolvedConfig } from "vite";
-import * as path from "node:path";
-import * as fs from "node:fs";
-
-/**
- * Configuration options for the Drupal Vite plugin
- * @interface DrupalPluginOptions
- */
-export interface DrupalPluginOptions {
-  /** Client ID for Drupal OAuth authentication */
-  clientID?: string;
-  /** Client secret for Drupal OAuth authentication */
-  clientSecret?: string;
-  /** Base URL of the Drupal instance */
-  drupalUrl?: string;
-  /** Environment variable key for client ID (defaults to DRUPAL_CLIENT_ID) */
-  clientIDKey?: string;
-  /** Environment variable key for Drupal URL (defaults to DRUPAL_AUTH_URI) */
-  drupalUrlKey?: string;
-  /** Environment variable key for client secret (defaults to DRUPAL_CLIENT_SECRET) */
-  clientSecretKey?: string;
-  /** GraphQL endpoint path (defaults to /graphql) */
-  graphqlEndpoint?: string;
-  /** Output directory for generated files (defaults to .drupal) */
-  outputDir?: string;
-  /** Array of component paths to be processed */
-  components?: string[];
-}
+import path from "path";
+import { type Plugin } from "vite";
+import fs from "fs";
+import { resolveValue } from "./utils";
+import type { DrupalPluginOptions } from "./types";
 
 const VIRTUAL_MODULE_ID = "drupal-vite/client";
 
@@ -37,7 +14,7 @@ const VIRTUAL_MODULE_ID = "drupal-vite/client";
  * - Setting up authentication with Drupal using OAuth
  * - Configuring a GraphQL client for Drupal queries
  * - Managing environment variables and configuration
- * - Generating necessary helper files
+ * - Exposing helper functions for auth and GraphQL operations
  *
  * @example
  * ```ts
@@ -54,7 +31,7 @@ const VIRTUAL_MODULE_ID = "drupal-vite/client";
  *
  * @example
  * ```ts
- * // vite.config.ts
+ * // vite.config.ts with direct configuration
  * import { defineConfig } from 'vite';
  * import { drupal } from 'drupal-vite';
  *
@@ -62,84 +39,72 @@ const VIRTUAL_MODULE_ID = "drupal-vite/client";
  *   plugins: [
  *     drupal({
  *       drupalUrl: 'https://your-drupal-site.com',
- *       clientID: 'your-client-id',
- *       clientSecret: 'your-client-secret'
+ *       simple_oauth: {
+ *         clientID: 'your-client-id',
+ *         clientSecret: 'your-client-secret'
+ *       },
+ *       graphql: {
+ *         endpoint: '/graphql'
+ *       }
  *     })
  *   ]
  * });
  * ```
  *
- * @abstraction
- * This plugin abstracts the complexity of setting up a Drupal client and
- * managing authentication, allowing developers to focus on building
+ * @example
+ * ```ts
+ * // vite.config.ts with environment variable references
+ * import { defineConfig } from 'vite';
+ * import { drupal } from 'drupal-vite';
+ *
+ * export default defineConfig({
+ *   plugins: [
+ *     drupal({
+ *       drupalUrl: 'DRUPAL_URL', // Will use process.env.DRUPAL_URL
+ *       simple_oauth: {
+ *         clientID: 'DRUPAL_CLIENT_ID', // Will use process.env.DRUPAL_CLIENT_ID
+ *         clientSecret: 'DRUPAL_CLIENT_SECRET' // Will use process.env.DRUPAL_CLIENT_SECRET
+ *       }
+ *     })
+ *   ]
+ * });
+ * ```
  *
  * @param {DrupalPluginOptions} options - Configuration options for the plugin
  * @returns {Plugin} A Vite plugin instance
  */
-export function drupal(options: DrupalPluginOptions = {}): Plugin {
-  const {
-    clientID,
-    clientSecret,
-    drupalUrl,
-    clientIDKey,
-    drupalUrlKey,
-    clientSecretKey,
-    graphqlEndpoint = "/graphql",
-    outputDir = ".drupal",
-  } = options;
+export function drupal(options?: DrupalPluginOptions): Plugin {
+  const { simple_oauth, graphql, drupalUrl } = options || {};
+
+  const { clientID, clientSecret } = simple_oauth || {};
+  const { endpoint = "/graphql" } = graphql || {};
+
   const resolvedVirtualModuleId = `\0${VIRTUAL_MODULE_ID}`;
   let resolvedClientID: string | undefined;
   let resolvedClientSecret: string | undefined;
   let resolvedDrupalUrl: string | undefined;
 
-  let config: ResolvedConfig;
-
-  // Function to generate helper files
-  const generateFiles = () => {
-    const projectRoot = config.root;
-    const genOutputDir = path.resolve(projectRoot, outputDir);
-    if (!fs.existsSync(genOutputDir)) {
-      fs.mkdirSync(genOutputDir, { recursive: true });
-    }
-  };
-
   return {
     name: "vite-plugin-drupal-init",
     configResolved(resolvedConfig) {
-      // const env = loadEnv(resolvedConfig.mode, process.cwd(), "");
+      const defaultClientId = "DRUPAL_CLIENT_ID";
+      const defaultClientSecret = "DRUPAL_CLIENT_SECRET";
+      const defaultDrupalUrl = "DRUPAL_URL";
 
-      const clientIDEnvKey = clientIDKey || "DRUPAL_CLIENT_ID";
-      const clientSecretEnvKey = clientSecretKey || "DRUPAL_CLIENT_SECRET";
-      // @TODO: Should we rename this to DRUPAL_URI | DRUPAL_URL?
-      const drupalUrlEnvKey = drupalUrlKey || "DRUPAL_AUTH_URI";
-
-      resolvedClientID = clientID ?? process.env[clientIDEnvKey];
-      resolvedClientSecret = clientSecret ?? process.env[clientSecretEnvKey];
-      resolvedDrupalUrl = drupalUrl ?? process.env[drupalUrlEnvKey];
+      resolvedClientID = resolveValue(clientID, defaultClientId);
+      resolvedClientSecret = resolveValue(clientSecret, defaultClientSecret);
+      resolvedDrupalUrl = resolveValue(drupalUrl, defaultDrupalUrl);
 
       if (!resolvedClientID) {
-        console.error(
-          `[drupal-vite] Client ID is not configured. Searched for option 'clientID' or env var '${clientIDKey}'.`
-        );
+        console.error(`[drupal-vite] Client ID is not configured.`);
       }
       if (!resolvedClientSecret) {
-        console.error(
-          `[drupal-vite] Client Secret is not configured. Searched for option 'clientSecret' or env var '${clientSecretKey}'.`
-        );
+        console.error(`[drupal-vite] Client Secret is not configured. `);
       }
       if (!resolvedDrupalUrl) {
-        console.error(
-          `[drupal-vite] Drupal URL is not configured. Searched for option 'drupalUrl' or env var '${drupalUrlKey}'.`
-        );
-      }
-      config = resolvedConfig;
-    },
-    buildStart() {
-      if (!fs.existsSync(path.resolve(config.root, outputDir))) {
-        generateFiles();
+        console.error(`[drupal-vite] Drupal URL is not configured. '.`);
       }
     },
-
     resolveId(id) {
       if (
         id === VIRTUAL_MODULE_ID ||
@@ -159,12 +124,17 @@ export function drupal(options: DrupalPluginOptions = {}): Plugin {
       }
 
       const sanitizedDrupalUrl = resolvedDrupalUrl.replace(/\/$/, "");
-      const fullGraphqlEndpoint = `${sanitizedDrupalUrl}${graphqlEndpoint}`;
+      const fullGraphqlEndpoint = `${sanitizedDrupalUrl}${endpoint}`;
 
       if (id === resolvedVirtualModuleId || id.includes(VIRTUAL_MODULE_ID)) {
-        return `
+        const hasCustomConfig = fs.existsSync(
+          path.resolve(process.cwd(), "drupal-decoupled.config.ts")
+        );
+
+        const module = `
 import { drupalAuthClient } from "drupal-auth-client";
-import { Client, cacheExchange, fetchExchange } from "@urql/core";
+import { Client, fetchExchange } from "@urql/core";
+${hasCustomConfig ? `import customConfig from "./drupal-decoupled.config.ts";` : ""}
 
 export async function getDrupalAuth() {
   return await drupalAuthClient("${sanitizedDrupalUrl}", {
@@ -177,15 +147,16 @@ export async function getDrupalClient() {
   const auth = await getDrupalAuth();
   return new Client({
     url: "${fullGraphqlEndpoint}",
-    exchanges: [cacheExchange, fetchExchange],
+    exchanges: ${hasCustomConfig ? "customConfig.exchanges ?? [fetchExchange]" : "[fetchExchange]"},
     fetchOptions: {
       headers: {
         Authorization: \`\${auth.token_type} \${auth.access_token}\`,
       },
     },
   });
-}
-          `;
+}`;
+
+        return module;
       }
       return null;
     },
