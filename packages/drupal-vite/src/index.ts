@@ -131,10 +131,18 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
           path.resolve(process.cwd(), "drupal-decoupled.config.ts")
         );
 
+        const importLine = hasCustomConfig
+          ? `import customConfig from "./drupal-decoupled.config.ts";`
+          : "";
+
+        const exchanges = hasCustomConfig
+          ? "customConfig.exchanges ?? [fetchExchange]"
+          : "[fetchExchange]";
+
         const module = `
 import { drupalAuthClient } from "drupal-auth-client";
 import { Client, fetchExchange } from "@urql/core";
-${hasCustomConfig ? `import customConfig from "./drupal-decoupled.config.ts";` : ""}
+${importLine}
 
 export async function getDrupalAuth() {
   return await drupalAuthClient("${sanitizedDrupalUrl}", {
@@ -147,7 +155,7 @@ export async function getDrupalClient() {
   const auth = await getDrupalAuth();
   return new Client({
     url: "${fullGraphqlEndpoint}",
-    exchanges: ${hasCustomConfig ? "customConfig.exchanges ?? [fetchExchange]" : "[fetchExchange]"},
+    exchanges: ${exchanges},
     fetchOptions: {
       headers: {
         Authorization: \`\${auth.token_type} \${auth.access_token}\`,
@@ -162,3 +170,5 @@ export async function getDrupalClient() {
     },
   };
 }
+
+export type { DrupalViteConfig } from "./types";
