@@ -1,6 +1,6 @@
 import type { Exchange } from "@urql/core";
 
-export interface DrupalDecoupledConfig {
+export interface DrupalViteConfig {
   /** Custom exchanges for the GraphQL client */
   exchanges?: Exchange[];
 }
