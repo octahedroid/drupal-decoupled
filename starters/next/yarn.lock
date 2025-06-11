@@ -6840,6 +6840,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+shadcn-prose@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/shadcn-prose/-/shadcn-prose-1.0.8.tgz#4a49988a877098490fa95fccf2a0f7be29cf66cd"
+  integrity sha512-Llpz/dC+ZTqLzh8qrIZM5p5ggbHQ4MKP90NkfXvV1CF5Hdg8uFO+IAiF1P5mSqMHqnPW0XT9ZkqqgXR7fNSVig==
+
 sharp@^0.33.3:
   version "0.33.5"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.33.5.tgz#13e0e4130cc309d6a9497596715240b2ec0c594e"
