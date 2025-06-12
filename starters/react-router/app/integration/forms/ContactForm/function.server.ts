@@ -1,5 +1,5 @@
 import { graphql } from '~/graphql/gql.tada'
-import { getClient } from '~/utils/client.server'
+import { getDrupalClient } from 'drupal-vite/client'
 import { ContactFormSchema } from './schema'
 import { composable } from 'composable-functions'
 
@@ -17,14 +17,7 @@ const contactMutation = graphql(`
 async function submitContactForm(
   input: ContactFormSchema,
 ) {
-  const client = await getClient({
-    url: process.env.DRUPAL_GRAPHQL_URI as string,
-    auth: {
-      uri: process.env.DRUPAL_AUTH_URI as string,
-      clientId: process.env.DRUPAL_CLIENT_ID as string,
-      clientSecret: process.env.DRUPAL_CLIENT_SECRET as string,
-    },
-  })
+  const client = await getDrupalClient()
 
   const inputArray = Object.entries(input).map(([key, value]) => ({
     key,
