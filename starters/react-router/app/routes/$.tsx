@@ -6,7 +6,6 @@ import type { EntityFragmentType } from '~/graphql/types'
 import NodeArticleComponent from '~/integration/node/NodeArticle'
 import NodePageComponent from '~/integration/node/NodePage'
 import TermTagsComponent from '~/integration/taxonomy/TermTags'
-import { getClient } from '~/utils/client.server'
 import { calculatePath } from '~/utils/routes'
 import { calculateMetaTags } from '~/utils/metatags'
 import { Header, Footer } from '~/components/blocks'
@@ -14,6 +13,7 @@ import { NodeArticleFragment, NodePageFragment } from '~/graphql/fragments/node'
 import { TermTagsFragment } from '~/graphql/fragments/terms'
 import { MenuFragment, MenuItemFragment } from '~/graphql/fragments/menu'
 import { redirect } from 'react-router'
+import { getDrupalClient } from 'drupal-vite/client'
 
 export function meta({ data }: Route.MetaArgs) {
   if (!data) {
@@ -55,14 +55,7 @@ export function meta({ data }: Route.MetaArgs) {
 export async function loader({ params, request }: Route.LoaderArgs) {
   const path = calculatePath({ path: params['*'], url: request.url })
 
-  const client = await getClient({
-    url: process.env.DRUPAL_GRAPHQL_URI as string,
-    auth: {
-      uri: process.env.DRUPAL_AUTH_URI as string,
-      clientId: process.env.DRUPAL_CLIENT_ID as string,
-      clientSecret: process.env.DRUPAL_CLIENT_SECRET as string,
-    },
-  })
+  const client = await getDrupalClient()
 
   const nodeRouteQuery = graphql(
     `
