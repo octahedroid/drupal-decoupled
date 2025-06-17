@@ -1,6 +1,8 @@
 {
   "name": "drupal-vite",
-  "version": "0.0.0",
+  "author": "Octahedroid <opensource@octahedroid.com>",
+  "version": "0.0.3",
+  "license": "MIT",
   "description": "Vite plugin for Drupal integration",
   "module": "build/index.js",
   "main": "build/index.js",
@@ -17,15 +19,20 @@
   },
   "typesVersions": {
     "*": {
-      "client": ["./build/client.d.ts"]
+      "client": [
+        "./build/client.d.ts"
+      ]
     }
+  },
+  "repository": {
+    "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-vite"
   },
   "files": [
     "build",
     "README.md"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./build --format esm --target node",
+    "build": "bun build ./src/index.ts --outdir ./build --format esm --target node --external wrangler",
     "build:types": "tsc --emitDeclarationOnly --declaration --outDir build",
     "copy:dts": "cp client.d.ts build/client.d.ts",
     "build:all": "bun run build && bun run build:types && bun run copy:dts",
@@ -33,7 +40,6 @@
     "yalc:publish": "bun run build:all && yalc publish"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "vite": "^6.3.5"
   },
   "peerDependencies": {
