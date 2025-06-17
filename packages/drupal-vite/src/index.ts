@@ -1,8 +1,8 @@
-import path from "path";
 import { type Plugin } from "vite";
-import fs from "fs";
 import { resolveValue } from "./utils";
 import type { DrupalPluginOptions } from "./types";
+
+export type { DrupalDecoupledConfig } from "./types";
 
 const VIRTUAL_MODULE_ID = "drupal-vite/client";
 
@@ -86,14 +86,17 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
 
   return {
     name: "vite-plugin-drupal-init",
-    configResolved(resolvedConfig) {
+    async configResolved(resolvedConfig) {
       const defaultClientId = "DRUPAL_CLIENT_ID";
       const defaultClientSecret = "DRUPAL_CLIENT_SECRET";
       const defaultDrupalUrl = "DRUPAL_URL";
 
-      resolvedClientID = resolveValue(clientID, defaultClientId);
-      resolvedClientSecret = resolveValue(clientSecret, defaultClientSecret);
-      resolvedDrupalUrl = resolveValue(drupalUrl, defaultDrupalUrl);
+      resolvedClientID = await resolveValue(clientID, defaultClientId);
+      resolvedClientSecret = await resolveValue(
+        clientSecret,
+        defaultClientSecret
+      );
+      resolvedDrupalUrl = await resolveValue(drupalUrl, defaultDrupalUrl);
 
       if (!resolvedClientID) {
         console.error(`[drupal-vite] Client ID is not configured.`);
@@ -127,14 +130,10 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
       const fullGraphqlEndpoint = `${sanitizedDrupalUrl}${endpoint}`;
 
       if (id === resolvedVirtualModuleId || id.includes(VIRTUAL_MODULE_ID)) {
-        const hasCustomConfig = fs.existsSync(
-          path.resolve(process.cwd(), "drupal-decoupled.config.ts")
-        );
-
         const module = `
 import { drupalAuthClient } from "drupal-auth-client";
 import { Client, fetchExchange } from "@urql/core";
-${hasCustomConfig ? `import customConfig from "./drupal-decoupled.config.ts";` : ""}
+import customConfig from "./drupal-decoupled.config.ts"
 
 export async function getDrupalAuth() {
   return await drupalAuthClient("${sanitizedDrupalUrl}", {
@@ -147,7 +146,7 @@ export async function getDrupalClient() {
   const auth = await getDrupalAuth();
   return new Client({
     url: "${fullGraphqlEndpoint}",
-    exchanges: ${hasCustomConfig ? "customConfig.exchanges ?? [fetchExchange]" : "[fetchExchange]"},
+    exchanges: customConfig.exchanges ?? [fetchExchange],
     fetchOptions: {
       headers: {
         Authorization: \`\${auth.token_type} \${auth.access_token}\`,
