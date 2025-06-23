@@ -38,8 +38,8 @@
   },
   "peerDependencies": {
     "typescript": "^5",
-    "vite": "^6.0.0",
-    "@urql/core": "^5.1.1"
+    "vite": ">=6",
+    "@urql/core": ">=5"
   },
   "dependencies": {
     "@types/fs-extra": "^11.0.4",
