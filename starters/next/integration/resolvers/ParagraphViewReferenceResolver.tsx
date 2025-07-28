@@ -9,15 +9,8 @@ import {
 import { LinkFragment } from '@/graphql/fragments/misc'
 import { NodeArticleTeaserFragment } from '@/graphql/fragments/node'
 import { resolveMediaImage } from '@/integration/resolvers/helpers'
+import { ParagraphViewReferenceProps, ReferenceFragment } from '@/types/component-resolver'
 
-interface ParagraphViewReferenceProps {
-  paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>
-}
-
-type ReferenceFragment = (
-  | FragmentOf<typeof ViewBlogTeaserResultFragment>
-  | FragmentOf<typeof ViewBlogTeaserFeaturedResultFragment>
-) & { __typename: string }
 
 const calculateReference = (referenceFragment: ReferenceFragment) => {
   if (referenceFragment.__typename === 'ViewBlogTeaserResult') {

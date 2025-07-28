@@ -1,14 +1,12 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import { readFragment } from 'gql.tada'
 
 import { Hero } from '@/components/blocks'
 import { MediaImageFragment } from '@/graphql/fragments/media'
 import { LinkFragment } from '@/graphql/fragments/misc'
 import { graphql } from '@/graphql/gql.tada'
 import { resolveLink, resolveMediaImage } from '@/integration/resolvers/helpers'
+import { ParagraphHeroProps } from '@/types/component-resolver'
 
-interface ParagraphHeroProps {
-  paragraph: FragmentOf<typeof ParagraphHeroFragment>
-}
 
 export const ParagraphHeroFragment = graphql(
   `

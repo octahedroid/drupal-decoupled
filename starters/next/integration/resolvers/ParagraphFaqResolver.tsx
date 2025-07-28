@@ -2,10 +2,8 @@ import { FragmentOf, readFragment } from 'gql.tada'
 
 import { FAQ } from '@/components/blocks'
 import { graphql } from '@/graphql/gql.tada'
+import { ParagraphFaqProps } from '@/types/component-resolver'
 
-interface ParagraphFaqProps {
-  paragraph: FragmentOf<typeof ParagraphFaqFragment>
-}
 
 const ParagraphQuestionFragment = graphql(`
   fragment ParagraphQuestionFragment on ParagraphQuestion {
