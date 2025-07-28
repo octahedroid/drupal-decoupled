@@ -4,10 +4,7 @@ import { graphql } from '@/graphql/gql.tada'
 import { MediaImageFragment } from '@/graphql/fragments/media'
 import { resolveMediaImage } from '@/integration/resolvers/helpers'
 import { CardGroup } from '@/components/blocks'
-
-interface ParagraphCardGroupProps {
-  paragraph: FragmentOf<typeof ParagraphCardGroupFragment>
-}
+import { ParagraphCardGroupProps } from '@/types/component-resolver'
 
 const ParagraphSimpleCardFragment = graphql(
   `

@@ -5,9 +5,7 @@ import { MediaImageFragment } from '@/graphql/fragments/media'
 import { LinkFragment } from '@/graphql/fragments/misc'
 import { LogoGroup } from '@/components/blocks'
 import { resolveLink, resolveMediaImage } from '@/integration/resolvers/helpers'
-interface ParagraphLogoGroupProps {
-  paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>
-}
+import { ParagraphLogoGroupProps } from '@/types/component-resolver'
 
 export const ParagraphLogoFragment = graphql(
   `
