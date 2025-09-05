@@ -30,6 +30,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["src/**/*", "client.d.ts"],
+  "include": ["src/**/*", "client.d.ts", "config.d.ts"],
   "exclude": ["node_modules", "build"]
 }
