@@ -1,77 +1,16 @@
 import { type Plugin } from "vite";
 import { resolveValue } from "./utils";
 import type { DrupalPluginOptions } from "./types";
+import { resolve } from "path";
+import { existsSync } from "fs";
 
 export type { DrupalDecoupledConfig } from "./types";
 
 const VIRTUAL_MODULE_ID = "drupal-vite/client";
+const VIRTUAL_CONFIG_MODULE_ID = "drupal-vite/config";
 
 /**
  * Creates a Vite plugin for Drupal integration
- *
- * @description
- * This plugin provides seamless integration between Vite and Drupal by:
- * - Setting up authentication with Drupal using OAuth
- * - Configuring a GraphQL client for Drupal queries
- * - Managing environment variables and configuration
- * - Exposing helper functions for auth and GraphQL operations
- *
- * @example
- * ```ts
- * // vite.config.ts
- * import { defineConfig } from 'vite';
- * import { drupal } from 'drupal-vite';
- *
- * export default defineConfig({
- *   plugins: [
- *     drupal()
- *   ]
- * });
- * ```
- *
- * @example
- * ```ts
- * // vite.config.ts with direct configuration
- * import { defineConfig } from 'vite';
- * import { drupal } from 'drupal-vite';
- *
- * export default defineConfig({
- *   plugins: [
- *     drupal({
- *       drupalUrl: 'https://your-drupal-site.com',
- *       simple_oauth: {
- *         clientID: 'your-client-id',
- *         clientSecret: 'your-client-secret'
- *       },
- *       graphql: {
- *         endpoint: '/graphql'
- *       }
- *     })
- *   ]
- * });
- * ```
- *
- * @example
- * ```ts
- * // vite.config.ts with environment variable references
- * import { defineConfig } from 'vite';
- * import { drupal } from 'drupal-vite';
- *
- * export default defineConfig({
- *   plugins: [
- *     drupal({
- *       drupalUrl: 'DRUPAL_URL', // Will use process.env.DRUPAL_URL
- *       simple_oauth: {
- *         clientID: 'DRUPAL_CLIENT_ID', // Will use process.env.DRUPAL_CLIENT_ID
- *         clientSecret: 'DRUPAL_CLIENT_SECRET' // Will use process.env.DRUPAL_CLIENT_SECRET
- *       }
- *     })
- *   ]
- * });
- * ```
- *
- * @param {DrupalPluginOptions} options - Configuration options for the plugin
- * @returns {Plugin} A Vite plugin instance
  */
 export function drupal(options?: DrupalPluginOptions): Plugin {
   const { simple_oauth, graphql, drupalUrl } = options || {};
@@ -80,13 +19,16 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
   const { endpoint = "/graphql" } = graphql || {};
 
   const resolvedVirtualModuleId = `\0${VIRTUAL_MODULE_ID}`;
+  const resolvedVirtualConfigModuleId = `\0${VIRTUAL_CONFIG_MODULE_ID}`;
+
   let resolvedClientID: string | undefined;
   let resolvedClientSecret: string | undefined;
   let resolvedDrupalUrl: string | undefined;
 
   return {
     name: "vite-plugin-drupal-init",
-    async configResolved(resolvedConfig) {
+
+    async configResolved() {
       const defaultClientId = "DRUPAL_CLIENT_ID";
       const defaultClientSecret = "DRUPAL_CLIENT_SECRET";
       const defaultDrupalUrl = "DRUPAL_URL";
@@ -102,13 +44,22 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
         console.error(`[drupal-vite] Client ID is not configured.`);
       }
       if (!resolvedClientSecret) {
-        console.error(`[drupal-vite] Client Secret is not configured. `);
+        console.error(`[drupal-vite] Client Secret is not configured.`);
       }
       if (!resolvedDrupalUrl) {
-        console.error(`[drupal-vite] Drupal URL is not configured. '.`);
+        console.error(`[drupal-vite] Drupal URL is not configured.`);
       }
     },
+
     resolveId(id) {
+      if (
+        id === VIRTUAL_CONFIG_MODULE_ID ||
+        id === resolvedVirtualConfigModuleId ||
+        id.endsWith(VIRTUAL_CONFIG_MODULE_ID)
+      ) {
+        return resolvedVirtualConfigModuleId;
+      }
+
       if (
         id === VIRTUAL_MODULE_ID ||
         id === resolvedVirtualModuleId ||
@@ -116,6 +67,7 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
       ) {
         return resolvedVirtualModuleId;
       }
+
       return null;
     },
 
@@ -129,11 +81,22 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
       const sanitizedDrupalUrl = resolvedDrupalUrl.replace(/\/$/, "");
       const fullGraphqlEndpoint = `${sanitizedDrupalUrl}${endpoint}`;
 
-      if (id === resolvedVirtualModuleId || id.includes(VIRTUAL_MODULE_ID)) {
-        const module = `
+      // ---- user config virtual module
+      if (id === resolvedVirtualConfigModuleId) {
+        const configPath = resolve(process.cwd(), "drupal-decoupled.config.ts");
+        if (existsSync(configPath)) {
+          return `import userConfig from ${JSON.stringify(configPath)};
+                  export default userConfig;`;
+        }
+        return `export default {};`;
+      }
+
+      // ---- client virtual module
+      if (id === resolvedVirtualModuleId) {
+        return `
 import { drupalAuthClient } from "drupal-auth-client";
 import { Client, fetchExchange } from "@urql/core";
-import customConfig from "./drupal-decoupled.config.ts"
+import { default as config } from "${resolvedVirtualConfigModuleId}";
 
 export async function getDrupalAuth() {
   return await drupalAuthClient("${sanitizedDrupalUrl}", {
@@ -146,7 +109,7 @@ export async function getDrupalClient() {
   const auth = await getDrupalAuth();
   return new Client({
     url: "${fullGraphqlEndpoint}",
-    exchanges: customConfig.exchanges ?? [fetchExchange],
+    exchanges: config.exchanges ? config.exchanges : [fetchExchange],
     fetchOptions: {
       headers: {
         Authorization: \`\${auth.token_type} \${auth.access_token}\`,
@@ -154,8 +117,6 @@ export async function getDrupalClient() {
     },
   });
 }`;
-
-        return module;
       }
       return null;
     },
