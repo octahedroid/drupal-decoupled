@@ -1,13 +1,10 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import {  readFragment } from 'gql.tada'
 
 import { graphql } from '@/graphql/gql.tada'
 import { LinkFragment } from '@/graphql/fragments/misc'
 import { CTA } from '@/components/blocks'
 import { resolveLink } from './helpers'
-
-interface ParagraphCtaProps {
-  paragraph: FragmentOf<typeof ParagraphCtaFragment>
-}
+import { ParagraphCtaProps } from '@/types/component-resolver'
 
 export const ParagraphCtaFragment = graphql(
   `

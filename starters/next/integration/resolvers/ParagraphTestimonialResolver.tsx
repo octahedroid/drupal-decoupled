@@ -4,10 +4,7 @@ import { graphql } from '@/graphql/gql.tada'
 import { MediaImageFragment } from '@/graphql/fragments/media'
 import { resolveMediaImage } from '@/integration/resolvers/helpers'
 import { Testimonial } from '@/components/blocks'
-
-interface ParagraphTestimonialProps {
-  paragraph: FragmentOf<typeof ParagraphTestimonialFragment>
-}
+import { ParagraphTestimonialProps } from '@/types/component-resolver'
 
 const ParagraphAuthorFragment = graphql(
   `

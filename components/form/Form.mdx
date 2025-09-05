@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Form/Docs" />
+
+# Forms
+
+## Overview
+
+Our form components provide a robust foundation for building accessible, validated forms across your application. These components are designed to work seamlessly with modern form validation libraries and follow best practices for user experience.
+
+## Recommended Implementation
+
+### Libraries
+
+We recommend using the following libraries for form implementation:
+
+- **[Zod](https://zod.dev/)**: A TypeScript-first schema validation library that enables you to define the shape and validation rules for your form data.
+- **[Conform](https://conform.guide/)**: A form validation library designed to work with native HTML form elements, providing a great developer experience without sacrificing user experience.
+
+### Components
+
+The form components in this library are wrapper components built on top of [shadcn/ui](https://ui.shadcn.com/) components, specifically designed to work with Conform. These include:
+
+- `Input`: A text input component with validation support
+- `Textarea`: A multi-line text input component with validation support
+- Additional form components like checkboxes, radio buttons, and select inputs
+
+Each component is pre-configured to work with Conform's field metadata, making it simple to implement form validation.
+
+## Client-Side vs. Server-Side Validation
+
+The form stories in Storybook demonstrate client-side validation implementations. However, in production applications, **server-side validation is essential** for security and data integrity.
+
+### Full Stack Components
+
+We recommend implementing forms as full stack components, following the approach described in [Epic Web's Full Stack Components](https://www.epicweb.dev/full-stack-components). This approach ensures:
+
+1. Consistent validation logic between client and server
+2. Progressive enhancement for users without JavaScript
+3. Better security by not relying solely on client-side validation
+
+## Framework-Specific Implementation
+
+Forms should be implemented according to the recommendations of each framework:
+
+## Best Practices
+
+1. **Progressive Enhancement**: Ensure forms work without JavaScript
+2. **Accessibility**: Use proper labels, error messages, and ARIA attributes
+3. **Validation Feedback**: Provide clear, immediate feedback for validation errors
+4. **Security**: Always validate data on the server, regardless of client-side validation
+5. **Type Safety**: Leverage TypeScript and Zod to ensure type safety throughout your form handling
+
+## Example Implementation
+
+See the Form.stories.tsx file for a complete example of a contact form implementation using Zod and Conform.

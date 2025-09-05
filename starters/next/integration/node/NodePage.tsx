@@ -1,8 +1,7 @@
-import { Fragment } from 'react'
 
 import { FragmentOf, readFragment } from 'gql.tada'
 import { NodePageFragment } from '@/graphql/fragments/node'
-import { resolveComponents } from '@/integration/resolvers/components'
+import ComponentResolver from '../resolvers/ComponentResolver'
 
 type NodePageComponentProps = {
   node: FragmentOf<typeof NodePageFragment>
@@ -12,9 +11,6 @@ type NodePageComponentProps = {
 export default function NodePageComponent({ node }: NodePageComponentProps) {
   const { title, showTitle, components } = readFragment(NodePageFragment, node)
 
-  // @ts-expect-error skip validation.
-  const resolvedComponents = resolveComponents({ components })
-
   return (
     <>
       {showTitle && (
@@ -22,9 +18,8 @@ export default function NodePageComponent({ node }: NodePageComponentProps) {
           {title}
         </h1>
       )}
-      {resolvedComponents.map((component, index: number) => {
-        return <Fragment key={index}>{component}</Fragment>
-      })}
+      
+      <ComponentResolver components={components as any} /> 
     </>
   )
 }
