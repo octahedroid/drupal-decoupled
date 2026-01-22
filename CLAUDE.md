@@ -25,6 +25,30 @@ starters/
 └── storybook/                 # Shared component library (source of truth)
 ```
 
+### Packages vs Starters
+
+**`packages/` - Publishable npm packages:**
+- Published to npm registry
+- Installed via `npm install` / `pnpm add`
+- Version-managed independently
+- Examples: `drupal-decoupled`, `drupal-auth-client`, `create-drupal-decoupled`
+
+**`starters/` - Project templates:**
+- Not published to npm
+- Copied directly to create new projects (via framework CLIs like `create-next-app`, `create-remix`)
+- Each starter is a complete, runnable application template
+- Examples: `next`, `remix`, `react-router`, `storybook`
+
+**Special case: `create-drupal-decoupled`**
+
+Unlike typical scaffolding tools that create new projects from scratch, `create-drupal-decoupled` is a CLI tool that **adds Drupal integration to existing projects**:
+
+- Published as `@octahedroid/create-drupal-decoupled` on npm
+- Run via `npx @octahedroid/create-drupal-decoupled`
+- Injects Drupal GraphQL integration files into an existing Next.js/Remix/React Router project
+- Does NOT copy entire starters - it adds specific integration files to your project
+- The tool itself uses `catalog:` for dev dependencies (safe, as these aren't exposed to end users)
+
 ### Component Syncing System
 
 The `starters/storybook/` directory is the **source of truth** for all UI components. Components are synced to other starters via `scripts/copy-components.ts`:
@@ -86,6 +110,33 @@ This ensures starters always test against the local package code. When packages 
 **Important distinction:**
 - **Packages** (publishable): `drupal-decoupled`, `drupal-auth-client`, `create-drupal-decoupled`
 - **Starters** (scaffoldable): Private templates for project scaffolding
+
+### Catalog Versions
+
+The monorepo uses pnpm's `catalog:` feature in `pnpm-workspace.yaml` to centralize version management for **publishable packages only**.
+
+**Why packages use catalog:**
+- Packages (`packages/*`) are published to npm
+- DevDependencies (TypeScript, esbuild, type definitions) aren't included in published packages
+- Catalog ensures consistent build tooling across all packages during development
+- Version updates happen in one place (pnpm-workspace.yaml)
+
+**Why starters DON'T use catalog:**
+- Starters are scaffolded into standalone projects (via `create-next-app`, `create-remix`, etc.)
+- When scaffolded, they become regular projects outside any workspace
+- `catalog:` references only work inside pnpm workspaces
+- Starters' `package.json` files must contain actual version strings for scaffolded projects to work
+
+**Catalog entries:**
+```yaml
+catalog:
+  typescript: ^5.7.2
+  esbuild: ^0.23.0
+  '@types/node': ^20.14.11
+```
+
+**Managing starter dependencies:**
+Starters require manual version synchronization or scripted checks. Version drift is acceptable as long as starters remain functional. Each starter can have its own dependency versions since they're independent templates.
 
 ## Architecture Highlights
 
