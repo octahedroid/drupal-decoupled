@@ -36,12 +36,12 @@
   "devDependencies": {
     "@eslint/js": "^8.57.0",
     "@total-typescript/ts-reset": "^0.5.1",
-    "@types/node": "^20.14.11",
-    "esbuild": "^0.23.0",
+    "@types/node": "catalog:",
+    "esbuild": "catalog:",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.3",
+    "typescript": "catalog:",
     "typescript-eslint": "^7.16.1"
   },
   "engines": {
