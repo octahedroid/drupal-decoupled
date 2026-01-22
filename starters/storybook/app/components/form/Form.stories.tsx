@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useForm } from '@conform-to/react'
 import { parseWithZod } from '@conform-to/zod'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
 import { z } from 'zod'
