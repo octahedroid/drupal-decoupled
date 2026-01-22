@@ -22,27 +22,40 @@ jobs:
           node-version-file: package.json
           registry-url: https://registry.npmjs.org
 
-      - name: Enable Corepack
-        id: enable-corepack
-        run: corepack enable
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install Dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - uses: benjlevesque/short-sha@v3.0
         id: short-sha
 
       - name: Check for Changesets
         id: check-changesets
-        run: yarn changeset status --since=origin/main
+        run: pnpm changeset status --since=origin/main
 
       - name: Build Packages
-        run: yarn build
+        run: pnpm build
 
       - name: Calculate Preview Version
         id: snapshot-version
         run: |
-          yarn changeset version --snapshot preview-${{ steps.short-sha.outputs.sha }}
+          pnpm changeset version --snapshot preview-${{ steps.short-sha.outputs.sha }}
           git diff --name-only --diff-filter=u | grep package.json | xargs -n 1 jq '. as $root | {name: ("`"+$root.name+"`"), version: ("`"+$root.version+"`"), registry: ("[NPM](https://www.npmjs.com/package/"+$root.name+"/v/"+$root.version+")")}' | jq -s -c > changesets.json
           echo "publishedPackages=$(cat changesets.json)" >> $GITHUB_OUTPUT
         env:
@@ -54,7 +67,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          yarn changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }}
+          pnpm changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }}
 
       - uses: buildingcash/json-to-markdown-table-action@v1
         id: table

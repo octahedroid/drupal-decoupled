@@ -2,3 +2,9 @@ node_modules/
 
 # system
 .DS_Store
+
+# pnpm
+.pnpm-store/
+
+# turbo
+.turbo/

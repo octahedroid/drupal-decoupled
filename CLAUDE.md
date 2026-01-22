@@ -33,6 +33,60 @@ The `starters/storybook/` directory is the **source of truth** for all UI compon
 - Storybook components → Next.js (with `'use client'` directives and path alias updates)
 - Path aliases: `~/` (Remix/React Router) → `@/` (Next.js)
 
+## Monorepo Tooling
+
+### Package Manager: pnpm
+
+The repository uses **pnpm** with a single lock file at the root. All packages and starters are part of the pnpm workspace defined in `pnpm-workspace.yaml`.
+
+**Installation:**
+```bash
+pnpm install
+```
+
+**Key pnpm features:**
+- Single `pnpm-lock.yaml` at root (no individual lock files)
+- Content-addressed storage saves disk space
+- Strict dependency resolution prevents phantom dependencies
+
+### Build System: Turborepo
+
+**Turborepo** handles all build orchestration with intelligent caching and parallel execution.
+
+**Common commands:**
+```bash
+pnpm build              # Build all packages and starters (cached)
+pnpm dev                # Run all dev servers in parallel
+pnpm lint               # Lint all packages
+pnpm typecheck          # Type-check all packages
+pnpm copy:components    # Sync storybook components to starters
+```
+
+**Turborepo features:**
+- Automatic build ordering based on dependencies (packages build before starters)
+- Local caching in `.turbo/cache/` for instant rebuilds
+- Parallel execution when possible
+- Incremental builds
+
+### Workspace Protocol
+
+Starters use `workspace:*` to reference internal packages during development:
+
+```json
+{
+  "dependencies": {
+    "drupal-decoupled": "workspace:*",
+    "drupal-auth-client": "workspace:*"
+  }
+}
+```
+
+This ensures starters always test against the local package code. When packages are published to npm, these resolve to actual version ranges.
+
+**Important distinction:**
+- **Packages** (publishable): `drupal-decoupled`, `drupal-auth-client`, `create-drupal-decoupled`
+- **Starters** (scaffoldable): Private templates for project scaffolding
+
 ## Architecture Highlights
 
 ### GraphQL Integration

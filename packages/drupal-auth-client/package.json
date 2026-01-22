@@ -16,8 +16,8 @@
     }
   ],
   "scripts": {
-    "prepublish": "yarn build",
-    "build": "rm -rf dist && tsc -d"
+    "prepublish": "pnpm build",
+    "build": "tsc -d"
   },
   "author": "Octahedroid <opensource@octahedroid.com>",
   "repository": {
