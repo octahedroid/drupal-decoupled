@@ -4,8 +4,7 @@ import { componentsConfig } from "./components-config";
 
 // === Constants ===
 const STARTERS = {
-  STORYBOOK: "starters/storybook/app",
-  REMIX: "starters/remix/app",
+  STORYBOOK: "apps/storybook/app",
   NEXT: "starters/next",
   REACT_ROUTER: "starters/react-router/app",
 } as const;
@@ -191,9 +190,6 @@ class ComponentSync {
 (async () => {
   try {
     const sync = new ComponentSync();
-
-    console.log("\n=== Copying components for Remix ===");
-    sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.REMIX);
 
     console.log("\n=== Copying components for React Router ===");
     sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.REACT_ROUTER);

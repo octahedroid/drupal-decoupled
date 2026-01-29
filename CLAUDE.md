@@ -20,9 +20,10 @@ packages/
 
 starters/
 ├── next/                      # Next.js starter with GraphQL
-├── remix/                     # Remix starter with GraphQL (Cloudflare Pages)
-├── react-router/              # React Router starter with GraphQL
-└── storybook/                 # Shared component library (source of truth)
+└── react-router/              # React Router starter with GraphQL
+
+apps/
+└── storybook/                 # Component development environment (source of truth)
 ```
 
 ### Packages vs Starters
@@ -37,7 +38,12 @@ starters/
 - Not published to npm
 - Copied directly to create new projects (via framework CLIs like `create-next-app`, `create-remix`)
 - Each starter is a complete, runnable application template
-- Examples: `next`, `remix`, `react-router`, `storybook`
+- Examples: `next`, `react-router`
+
+**`apps/` - Development applications:**
+- Not published to npm
+- Runnable applications used during development (not scaffolded as templates)
+- Examples: `storybook` (component development environment)
 
 **Special case: `create-drupal-decoupled`**
 
@@ -51,11 +57,11 @@ Unlike typical scaffolding tools that create new projects from scratch, `create-
 
 ### Component Syncing System
 
-The `starters/storybook/` directory is the **source of truth** for all UI components. Components are synced to other starters via `scripts/copy-components.ts`:
+The `apps/storybook/` directory is the **source of truth** for all UI components. Components are synced to starters via `scripts/copy-components.ts`:
 
-- Storybook components → Remix/React Router (no modifications)
+- Storybook components → React Router (no modifications)
 - Storybook components → Next.js (with `'use client'` directives and path alias updates)
-- Path aliases: `~/` (Remix/React Router) → `@/` (Next.js)
+- Path aliases: `~/` (React Router) → `@/` (Next.js)
 
 ## Monorepo Tooling
 
@@ -174,8 +180,8 @@ The `drupal-decoupled` package exports `syncDrupalPreviewRoutes` for handling dr
 
 ### Working with Components
 
-1. **Always edit components in `starters/storybook/app/components/`**
-2. Components are synced to other starters via `scripts/copy-components.ts`
+1. **Always edit components in `apps/storybook/app/components/`**
+2. Components are synced to starters via `scripts/copy-components.ts`
 3. Next.js adaptations (client directives) are applied automatically during sync
 
 ### Environment Variables

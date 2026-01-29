@@ -9,3 +9,4 @@ catalog:
 packages:
   - 'packages/*'
   - 'starters/*'
+  - 'apps/*'
