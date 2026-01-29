@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useForm } from '@conform-to/react'
-import { parseWithZod } from '@conform-to/zod'
+import { parseWithZod } from '@conform-to/zod/v4'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 import { Input, Textarea } from '~/components/form'
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
 import { Button } from '~/components/ui/button'

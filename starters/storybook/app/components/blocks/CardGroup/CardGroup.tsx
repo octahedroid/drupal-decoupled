@@ -2,11 +2,11 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { ComponentPropsWithoutRef } from 'react'
 import {
   Button,
-  ButtonProps,
+  type ButtonProps,
   SimpleCard,
-  SimpleCardProps,
+  type SimpleCardProps,
   TeaserCard,
-  TeaserCardProps,
+  type TeaserCardProps,
 } from '~/components/primitives'
 import { cn } from '~/lib/utils'
 
@@ -19,7 +19,7 @@ type CardItem = SimpleCardProps | TeaserCardProps
 
 export interface CardGroupProps
   extends ComponentPropsWithoutRef<'div'>,
-    VariantProps<typeof cardGroupVariants> {
+  VariantProps<typeof cardGroupVariants> {
   heading?: string
   subheading?: string
   description?: string

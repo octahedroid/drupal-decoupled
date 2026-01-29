@@ -15,7 +15,7 @@ export interface AccordionProps {
 
 export const Accordion = ({ items }: AccordionProps) => {
   return (
-    <ShadcnAccordion type="multiple">
+    <ShadcnAccordion defaultValue={["item-0"]}>
       {items.map(({ title, content }, index) => (
         <AccordionItem key={index} value={`item-${index}`}>
           <AccordionTrigger>{title}</AccordionTrigger>

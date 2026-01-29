@@ -1,15 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
+  "style": "base-vega",
   "rsc": false,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.ts",
-    "css": "app/tailwind.css",
+    "config": "",
+    "css": "app/app.css",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
   },
+  "iconLibrary": "lucide",
   "aliases": {
     "components": "~/components",
     "utils": "~/lib/utils",
@@ -17,5 +18,5 @@
     "lib": "~/lib",
     "hooks": "~/hooks"
   },
-  "iconLibrary": "lucide"
+  "registries": {}
 }
