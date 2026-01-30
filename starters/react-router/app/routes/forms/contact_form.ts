@@ -1,5 +1,5 @@
-import { ActionFunctionArgs } from 'react-router'
-import { parseWithZod } from '@conform-to/zod'
+import type { ActionFunctionArgs } from 'react-router'
+import { parseWithZod } from '@conform-to/zod/v4'
 import { contactFormSchema } from '~/integration/forms/ContactForm/schema'
 import { submitContactFormFunction } from '~/integration/forms/ContactForm/function.server'
 

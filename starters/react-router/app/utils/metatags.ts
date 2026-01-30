@@ -1,7 +1,8 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import type { FragmentOf } from 'gql.tada'
+import { readFragment } from 'gql.tada'
 import { type MetaTag } from 'drupal-decoupled/remix'
 import { NodePageFragment, NodeArticleFragment } from '~/graphql/fragments/node'
-import { EntityFragmentType } from '~/graphql/types'
+import type { EntityFragmentType } from '~/graphql/types'
 
 export const calculateMetaTags = (
   type: string,

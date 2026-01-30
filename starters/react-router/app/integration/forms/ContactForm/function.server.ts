@@ -1,6 +1,6 @@
 import { graphql } from '~/graphql/gql.tada'
 import { getClient } from '~/utils/client.server'
-import { ContactFormSchema } from './schema'
+import type { ContactFormSchema } from './schema'
 import { composable } from 'composable-functions'
 
 const contactMutation = graphql(`
@@ -37,8 +37,8 @@ async function submitContactForm(
   }
 
 
-  return result.data.submitWebform.confirmation 
-  
+  return result.data.submitWebform.confirmation
+
 }
 
 export const submitContactFormFunction = composable(submitContactForm)

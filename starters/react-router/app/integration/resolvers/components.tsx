@@ -1,4 +1,5 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import type { FragmentOf } from 'gql.tada'
+import { readFragment } from 'gql.tada'
 
 import { ParagraphUnionFragment } from '~/graphql/fragments/paragraph'
 

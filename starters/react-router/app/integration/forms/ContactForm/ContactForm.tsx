@@ -1,5 +1,5 @@
 import { getFormProps, useForm } from '@conform-to/react'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod/v4'
 import { CheckCircle2, CircleAlert } from 'lucide-react'
 import { Input, Textarea } from '~/components/form'
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
@@ -7,7 +7,7 @@ import { Button } from '~/components/ui/button'
 import { Label } from '~/components/ui/label'
 import { contactFormSchema } from '~/integration/forms/ContactForm/schema'
 import { useFetcher } from 'react-router'
-import { action } from '~/routes/forms/contact_form'
+import type { action } from '~/routes/forms/contact_form'
 
 export const ContactForm = ({ id }: { id: string }) => {
   const fetcher = useFetcher<typeof action>()

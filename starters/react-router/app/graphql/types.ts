@@ -1,4 +1,4 @@
-import { FragmentOf } from 'gql.tada'
+import type { FragmentOf } from 'gql.tada'
 import { NodeArticleFragment, NodePageFragment } from '~/graphql/fragments/node'
 import { TermTagsFragment } from '~/graphql/fragments/terms'
 

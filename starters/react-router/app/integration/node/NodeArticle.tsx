@@ -1,4 +1,5 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import type { FragmentOf } from 'gql.tada'
+import { readFragment } from 'gql.tada'
 import { Article } from '~/components/blocks'
 import { NodeArticleFragment } from '~/graphql/fragments/node'
 import { resolveMediaImage, resolveUser } from '~/integration/resolvers/helpers'

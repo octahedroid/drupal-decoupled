@@ -1,4 +1,5 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import type { FragmentOf } from 'gql.tada'
+import { readFragment } from 'gql.tada'
 import { ImageFragment, MediaImageFragment } from '~/graphql/fragments/media'
 import { LinkFragment } from '~/graphql/fragments/misc'
 import { UserFragment } from '~/graphql/fragments/user'
