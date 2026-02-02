@@ -20,12 +20,5 @@
 			"name": "react-router - starter",
 			"path": "../starters/react-router"
 		},
-		{
-			"name": "remix - starter",
-			"path": "../starters/remix"
-		},
 	],
-	"settings": {
-		"typescript.tsdk": "remix - starter/node_modules/typescript/lib"
-	}
 }
