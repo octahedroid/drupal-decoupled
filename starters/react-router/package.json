@@ -6,10 +6,11 @@
     "build": "react-router build",
     "dev": "react-router dev --port 8080",
     "start": "react-router-serve ./build/server/index.js",
+    "preview": "npm run build && vite preview",
+    "typecheck": "react-router typegen && tsc",
     "gql:sync": "npx tsx scripts/sync.ts",
     "storybook": "storybook dev -p 6006",
-    "preview": "npm run build && vite preview",
-    "typecheck": "react-router typegen && tsc"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",

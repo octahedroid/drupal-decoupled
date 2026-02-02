@@ -99,23 +99,22 @@ class ComponentSync {
    * @param componentSet - A set of component names that require 'use client'.
    */
   private processDirectory(dirPath: string, componentSet: Set<string>): void {
-    const files = fs.readdirSync(dirPath, {
-      withFileTypes: true,
-      recursive: true,
-    });
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
-    for (const file of files) {
-      if (!file.isFile()) continue;
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name);
 
-      const filePath = path.join(file.path, file.name);
-      const fileName = path.basename(filePath);
+      if (entry.isDirectory()) {
+        this.processDirectory(fullPath, componentSet);
+        continue;
+      }
 
-      if (!this.isTypeScriptFile(fileName)) continue;
+      if (!entry.isFile() || !this.isTypeScriptFile(entry.name)) continue;
 
       try {
-        this.processFile(filePath, fileName, componentSet);
+        this.processFile(fullPath, entry.name, componentSet);
       } catch (error) {
-        this.handleError(`Error processing file ${filePath}`, error);
+        this.handleError(`Error processing file ${fullPath}`, error);
       }
     }
   }
