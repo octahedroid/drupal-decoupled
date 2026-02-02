@@ -5,7 +5,6 @@ import { Inter } from 'next/font/google'
 import NavigationEvents from '@/integration/helpers/NavigationEvents'
 
 import './globals.css'
-import './preview.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
