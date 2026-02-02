@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CTA } from '@/components/blocks'
 
 const meta: Meta<typeof CTA> = {

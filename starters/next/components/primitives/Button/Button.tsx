@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Link } from '@/components/primitives'
 import { Button as ShadcnButton } from '@/components/ui/button'
 

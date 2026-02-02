@@ -2,9 +2,9 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { ComponentPropsWithoutRef } from 'react'
 import {
   Avatar,
-  AvatarProps,
+  type AvatarProps,
   Badge,
-  ImageProps,
+  type ImageProps,
   RichText,
 } from '@/components/primitives'
 import { cn } from '@/lib/utils'
@@ -21,7 +21,7 @@ type AuthorProps = {
 
 export interface ArticleProps
   extends ComponentPropsWithoutRef<'article'>,
-    VariantProps<typeof articleVariants> {
+  VariantProps<typeof articleVariants> {
   title: string
   summary?: string
   content: string
@@ -55,7 +55,7 @@ export const Article = ({
 }: ArticleProps) => {
   return (
     <article className={cn(articleVariants(), className)} {...props}>
-      <div className="md:md-16 container mb-12">
+      <div className="container mx-auto mb-12 md:mb-16">
         <img
           {...image}
           alt={image.alt}

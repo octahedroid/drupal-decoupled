@@ -1,29 +1,24 @@
-import type { StorybookConfig } from '@storybook/nextjs'
+import type { StorybookConfig } from '@storybook/nextjs-vite';
 
-import { join, dirname } from 'path'
+import { dirname } from "path"
+
+import { fileURLToPath } from "url"
 
 /**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- */
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, 'package.json')))
+* This function is used to resolve the absolute path of a package.
+* It is needed in projects that use Yarn PnP or are set up within a monorepo.
+*/
+function getAbsolutePath(value: string) {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)))
 }
 const config: StorybookConfig = {
-  stories: [
-    '../components/**/*.mdx',
-    '../components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  "stories": [
+    "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-  addons: [
-    getAbsolutePath('@storybook/addon-onboarding'),
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-interactions'),
-  ],
-  framework: {
-    name: getAbsolutePath('@storybook/nextjs'),
-    options: {},
-  },
-  staticDirs: ['../static'],
-}
-export default config
+  "addons": [],
+  "framework": getAbsolutePath('@storybook/nextjs-vite'),
+  "staticDirs": [
+    "../static"
+  ]
+};
+export default config;
