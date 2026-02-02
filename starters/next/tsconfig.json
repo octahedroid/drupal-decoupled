@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,10 +20,20 @@
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./app/graphql/generated/schema.graphql",
+        "tadaOutputLocation": "./app/graphql/generated/gql.tada.instrospection.ts",
+        "tadaTurboLocation": "./app/graphql/generated/gql.tada.cache.ts",
+        "trackFieldUsage": false,
+        "shouldCheckForColocatedFragments": false
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -30,5 +44,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
