@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 8080",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port 8080",
     "gql:sync": "npx tsx scripts/sync.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

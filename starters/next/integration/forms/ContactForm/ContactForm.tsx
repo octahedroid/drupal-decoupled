@@ -1,6 +1,6 @@
 'use client'
 import { getFormProps, useForm } from '@conform-to/react'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod/v4'
 import { CheckCircle2, CircleAlert } from 'lucide-react'
 import { Input, Textarea } from '@/components/form'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'

@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { FragmentOf, readFragment } from 'gql.tada'
 
 import { ParagraphUnionFragment } from '@/graphql/fragments/paragraph'
