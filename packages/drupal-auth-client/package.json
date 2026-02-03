@@ -10,13 +10,8 @@
   "files": [
     "dist"
   ],
-  "bundlesize": [
-    {
-      "path": "./dist/index.js"
-    }
-  ],
   "scripts": {
-    "prepublish": "pnpm build",
+    "prepublishOnly": "pnpm build",
     "build": "tsc -d"
   },
   "author": "Octahedroid <opensource@octahedroid.com>",

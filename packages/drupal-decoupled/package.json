@@ -15,13 +15,8 @@
   "files": [
     "dist"
   ],
-  "bundlesize": [
-    {
-      "path": "./dist/index.js"
-    }
-  ],
   "scripts": {
-    "prepublish": "pnpm build",
+    "prepublishOnly": "pnpm build",
     "ts-types": "tsc --emitDeclarationOnly --outDir dist",
     "build": "node ./esbuild.js && pnpm ts-types"
   },

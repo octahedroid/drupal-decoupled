@@ -1,7 +1,6 @@
 {
   "name": "@octahedroid/create-drupal-decoupled",
   "version": "0.5.1",
-  "packageManager": "pnpm@9.15.4",
   "description": "Scaffold the integration with Drupal in a decoupled frontend",
   "keywords": [
     "drupal",
@@ -17,12 +16,7 @@
   "bin": {
     "create-drupal-decoupled": "dist/index.js"
   },
-  "bundlesize": [
-    {
-      "path": "./dist/index.js"
-    }
-  ],
-  "author": "Octahedroid <opensource@octahedroid.com>",
+  "author":"Octahedroid <opensource@octahedroid.com>",
   "license": "MIT",
   "scripts": {
     "build": "node ./esbuild.mjs && cp -r src/templates dist"
@@ -36,10 +30,6 @@
     "@types/node": "catalog:",
     "esbuild": "catalog:",
     "typescript": "catalog:"
-  },
-  "engines": {
-    "node": ">=20.15.1",
-    "pnpm": ">=9.0.0"
   },
   "publishConfig": {
     "access": "public"
