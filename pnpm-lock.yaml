@@ -7,13 +7,13 @@ settings:
 catalogs:
   default:
     '@types/node':
-      specifier: ^20.14.11
-      version: 20.19.30
+      specifier: ^22.10.10
+      version: 22.19.7
     esbuild:
       specifier: ^0.23.0
       version: 0.23.1
     typescript:
-      specifier: ^5.7.2
+      specifier: ^5.7.3
       version: 5.9.3
 
 importers:
@@ -117,7 +117,7 @@ importers:
         version: 0.5.1
       '@types/node':
         specifier: 'catalog:'
-        version: 20.19.30
+        version: 22.19.7
       esbuild:
         specifier: 'catalog:'
         version: 0.23.1
@@ -129,7 +129,7 @@ importers:
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
-        version: 20.19.30
+        version: 22.19.7
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -138,7 +138,7 @@ importers:
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
-        version: 20.19.30
+        version: 22.19.7
       esbuild:
         specifier: 'catalog:'
         version: 0.23.1
@@ -3616,8 +3616,8 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
-  zustand@5.0.10:
-    resolution: {integrity: sha512-U1AiltS1O9hSy3rul+Ub82ut2fqIAefiSuwECWt6jlMVUGejvf+5omLcRBSzqbRagSM3hQZbtzdeRc6QVScXTg==}
+  zustand@5.0.11:
+    resolution: {integrity: sha512-fdZY+dk7zn/vbWNCYmzZULHRrss0jx5pPFiOuMZ/5HJN6Yv3u+1Wswy/4MpZEkEGhtNH+pwxZB8OKgUBPzYAGg==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=18.0.0'
@@ -4480,7 +4480,7 @@ snapshots:
       react-hotkeys-hook: 4.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       use-debounce: 9.0.4(react@18.3.1)
       uuid: 9.0.1
-      zustand: 5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3))
+      zustand: 5.0.11(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3))
     transitivePeerDependencies:
       - '@types/react'
       - immer
@@ -4497,7 +4497,7 @@ snapshots:
       react-hotkeys-hook: 4.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       use-debounce: 9.0.4(react@18.3.1)
       uuid: 9.0.1
-      zustand: 5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4))
+      zustand: 5.0.11(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4))
     transitivePeerDependencies:
       - '@types/react'
       - immer
@@ -7029,13 +7029,13 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zustand@5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3)):
+  zustand@5.0.11(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3)):
     optionalDependencies:
       '@types/react': 19.2.9
       react: 18.3.1
       use-sync-external-store: 1.6.0(react@19.2.3)
 
-  zustand@5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4)):
+  zustand@5.0.11(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4)):
     optionalDependencies:
       '@types/react': 19.2.9
       react: 18.3.1
