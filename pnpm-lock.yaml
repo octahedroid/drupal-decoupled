@@ -135,35 +135,10 @@ importers:
         version: 5.9.3
 
   packages/drupal-decoupled:
-    dependencies:
-      '@measured/puck':
-        specifier: ^0.18.1
-        version: 0.18.3(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
-      immutable-json-patch:
-        specifier: ^6.0.1
-        version: 6.0.2
-      jmespath:
-        specifier: ^0.16.0
-        version: 0.16.0
-      react:
-        specifier: ^18.2.0
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@types/jmespath':
-        specifier: ^0.15.2
-        version: 0.15.2
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.30
-      '@types/react':
-        specifier: ^18.2.20
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.2.7
-        version: 18.3.7(@types/react@18.3.27)
       esbuild:
         specifier: 'catalog:'
         version: 0.23.1
@@ -199,7 +174,7 @@ importers:
         version: 1.0.2
       drupal-decoupled:
         specifier: ^0.2.2
-        version: 0.2.2(@types/react@19.2.9)
+        version: 0.2.2(@types/react@19.2.9)(use-sync-external-store@1.6.0(react@19.2.3))
       gql.tada:
         specifier: ^1.8.10
         version: 1.9.0(graphql@16.12.0)(typescript@5.9.3)
@@ -296,7 +271,7 @@ importers:
         version: 1.0.2
       drupal-decoupled:
         specifier: ^0.2.2
-        version: 0.2.2(@types/react@19.2.9)
+        version: 0.2.2(@types/react@19.2.9)(use-sync-external-store@1.6.0(react@19.2.4))
       gql.tada:
         specifier: ^1.8.10
         version: 1.9.0(graphql@16.12.0)(typescript@5.9.3)
@@ -1812,9 +1787,6 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
-  '@types/jmespath@0.15.2':
-    resolution: {integrity: sha512-pegh49FtNsC389Flyo9y8AfkVIZn9MMPE9yJrO9svhq6Fks2MwymULWjZqySuxmctd3ZH4/n7Mr98D+1Qo5vGA==}
-
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
@@ -1827,21 +1799,10 @@ packages:
   '@types/node@22.19.7':
     resolution: {integrity: sha512-MciR4AKGHWl7xwxkBa6xUGxQJ4VBOmPTF7sL+iGzuahOFaO0jHCsuEfS80pan1ef4gWId1oWOweIhrDEYLuaOw==}
 
-  '@types/prop-types@15.7.15':
-    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
-
-  '@types/react-dom@18.3.7':
-    resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
-    peerDependencies:
-      '@types/react': ^18.0.0
-
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
       '@types/react': ^19.2.0
-
-  '@types/react@18.3.27':
-    resolution: {integrity: sha512-cisd7gxkzjBKU2GgdYrTdtQx1SORymWyaAFhaxQPK9bYO9ot3Y5OikQRvY0VYQtvwjeQnizCINJAenh/V7MK2w==}
 
   '@types/react@19.2.9':
     resolution: {integrity: sha512-Lpo8kgb/igvMIPeNV2rsYKTgaORYdO1XGVZ4Qz3akwOj0ySGYMPlQWa8BaLn0G63D1aSaAQ5ldR06wCpChQCjA==}
@@ -4509,7 +4470,7 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@measured/puck@0.18.3(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))':
+  '@measured/puck@0.18.3(@types/react@19.2.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3))':
     dependencies:
       '@dnd-kit/helpers': 0.0.7-beta-20250130032138
       '@dnd-kit/react': 0.0.7-beta-20250130032138(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4519,14 +4480,14 @@ snapshots:
       react-hotkeys-hook: 4.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       use-debounce: 9.0.4(react@18.3.1)
       uuid: 9.0.1
-      zustand: 5.0.10(@types/react@18.3.27)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1))
+      zustand: 5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3))
     transitivePeerDependencies:
       - '@types/react'
       - immer
       - react-dom
       - use-sync-external-store
 
-  '@measured/puck@0.18.3(@types/react@19.2.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@measured/puck@0.18.3(@types/react@19.2.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4))':
     dependencies:
       '@dnd-kit/helpers': 0.0.7-beta-20250130032138
       '@dnd-kit/react': 0.0.7-beta-20250130032138(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4536,7 +4497,7 @@ snapshots:
       react-hotkeys-hook: 4.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       use-debounce: 9.0.4(react@18.3.1)
       uuid: 9.0.1
-      zustand: 5.0.10(@types/react@19.2.9)(react@18.3.1)
+      zustand: 5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4))
     transitivePeerDependencies:
       - '@types/react'
       - immer
@@ -5134,8 +5095,6 @@ snapshots:
 
   '@types/estree@1.0.8': {}
 
-  '@types/jmespath@0.15.2': {}
-
   '@types/json-schema@7.0.15':
     optional: true
 
@@ -5149,20 +5108,9 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/prop-types@15.7.15': {}
-
-  '@types/react-dom@18.3.7(@types/react@18.3.27)':
-    dependencies:
-      '@types/react': 18.3.27
-
   '@types/react-dom@19.2.3(@types/react@19.2.9)':
     dependencies:
       '@types/react': 19.2.9
-
-  '@types/react@18.3.27':
-    dependencies:
-      '@types/prop-types': 15.7.15
-      csstype: 3.2.3
 
   '@types/react@19.2.9':
     dependencies:
@@ -5602,9 +5550,21 @@ snapshots:
 
   drupal-auth-client@1.0.2: {}
 
-  drupal-decoupled@0.2.2(@types/react@19.2.9):
+  drupal-decoupled@0.2.2(@types/react@19.2.9)(use-sync-external-store@1.6.0(react@19.2.3)):
     dependencies:
-      '@measured/puck': 0.18.3(@types/react@19.2.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@measured/puck': 0.18.3(@types/react@19.2.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3))
+      immutable-json-patch: 6.0.2
+      jmespath: 0.16.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+      - immer
+      - use-sync-external-store
+
+  drupal-decoupled@0.2.2(@types/react@19.2.9)(use-sync-external-store@1.6.0(react@19.2.4)):
+    dependencies:
+      '@measured/puck': 0.18.3(@types/react@19.2.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4))
       immutable-json-patch: 6.0.2
       jmespath: 0.16.0
       react: 18.3.1
@@ -6887,11 +6847,6 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  use-sync-external-store@1.6.0(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-    optional: true
-
   use-sync-external-store@1.6.0(react@19.2.3):
     dependencies:
       react: 19.2.3
@@ -7074,13 +7029,14 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zustand@5.0.10(@types/react@18.3.27)(react@18.3.1)(use-sync-external-store@1.6.0(react@18.3.1)):
-    optionalDependencies:
-      '@types/react': 18.3.27
-      react: 18.3.1
-      use-sync-external-store: 1.6.0(react@18.3.1)
-
-  zustand@5.0.10(@types/react@19.2.9)(react@18.3.1):
+  zustand@5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.3)):
     optionalDependencies:
       '@types/react': 19.2.9
       react: 18.3.1
+      use-sync-external-store: 1.6.0(react@19.2.3)
+
+  zustand@5.0.10(@types/react@19.2.9)(react@18.3.1)(use-sync-external-store@1.6.0(react@19.2.4)):
+    optionalDependencies:
+      '@types/react': 19.2.9
+      react: 18.3.1
+      use-sync-external-store: 1.6.0(react@19.2.4)
