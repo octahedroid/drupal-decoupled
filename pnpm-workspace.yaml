@@ -1,10 +1,10 @@
 catalog:
   # Build tooling - shared across publishable packages
-  typescript: ^5.7.3
-  esbuild: ^0.23.0
+  typescript: ^5
+  esbuild: ^0.27.0
 
   # Type definitions
-  '@types/node': ^22.10.10
+  '@types/node': ^22
 
 packages:
   - 'packages/*'

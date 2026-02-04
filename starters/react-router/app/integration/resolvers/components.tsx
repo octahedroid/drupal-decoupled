@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import type { FragmentOf } from 'gql.tada'
 import { readFragment } from 'gql.tada'
 
