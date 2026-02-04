@@ -2,16 +2,23 @@
   "name": "drupal-auth-client",
   "version": "1.0.0",
   "description": "Drupal Auth Client",
+  "type": "module",
   "keywords": [
     "auth",
     "drupal"
   ],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "prepublishOnly": "pnpm build",
     "build": "tsc -d"
   },
   "author": "Octahedroid <opensource@octahedroid.com>",

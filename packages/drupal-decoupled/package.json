@@ -16,7 +16,6 @@
     "dist"
   ],
   "scripts": {
-    "prepublishOnly": "pnpm build",
     "ts-types": "tsc --emitDeclarationOnly --outDir dist",
     "build": "node ./esbuild.js && pnpm ts-types"
   },
@@ -25,8 +24,14 @@
     "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-decoupled"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./remix": "./dist/remix/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./remix": {
+      "types": "./dist/remix/index.d.ts",
+      "import": "./dist/remix/index.js"
+    }
   },
   "license": "MIT",
   "devDependencies": {
