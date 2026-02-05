@@ -1,30 +1,30 @@
 // Keep in sync with the types in Remix MetaTags
 type MetaDescriptor =
   | {
-    charSet: "utf-8";
-  }
+      charSet: "utf-8";
+    }
   | {
-    title: string;
-  }
+      title: string;
+    }
   | {
-    name: string;
-    content: string;
-  }
+      name: string;
+      content: string;
+    }
   | {
-    property: string;
-    content: string;
-  }
+      property: string;
+      content: string;
+    }
   | {
-    httpEquiv: string;
-    content: string;
-  }
+      httpEquiv: string;
+      content: string;
+    }
   | {
-    [name: string]: string;
-    tagName: "meta" | "link";
-  }
+      [name: string]: string;
+      tagName: "meta" | "link";
+    }
   | {
-    [name: string]: unknown;
-  };
+      [name: string]: unknown;
+    };
 
 type MetaTagUnion = (MetaTagLink | MetaTagValue | MetaTagProperty) & {
   __isUnion?: true;
@@ -83,19 +83,19 @@ const DEFAULT_TAGS = [
 
 const applyOverrides = (
   overrides: OverrideOptions,
-  initial: string | null | undefined
+  initial: string | null | undefined,
 ) => {
   if (typeof overrides === "string") {
     return overrides;
   }
 
   if (!Array.isArray(overrides)) {
-    overrides = [overrides]
+    overrides = [overrides];
   }
 
   return overrides.reduce(
     (acc, { pattern, replacement }) => acc?.replace(pattern, replacement),
-    initial
+    initial,
   );
 };
 
@@ -110,7 +110,7 @@ export const metaTags = ({
 }): Array<MetaDescriptor> => {
   const title = tags.find(
     (tag: MetaTagUnion) =>
-      tag.__typename === "MetaTagValue" && tag.attributes.name === "title"
+      tag.__typename === "MetaTagValue" && tag.attributes.name === "title",
   ) as MetaTagValue;
 
   const meta = tags.map((tag: MetaTagUnion) => {

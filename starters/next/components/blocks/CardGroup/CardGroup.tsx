@@ -1,5 +1,5 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
 import {
   Button,
   type ButtonProps,
@@ -7,24 +7,24 @@ import {
   type SimpleCardProps,
   TeaserCard,
   type TeaserCardProps,
-} from '@/components/primitives'
-import { cn } from '@/lib/utils'
+} from "@/components/primitives";
+import { cn } from "@/lib/utils";
 
-const cardGroupVariants = cva('w-full py-12 md:py-16', {
+const cardGroupVariants = cva("w-full py-12 md:py-16", {
   variants: {},
   defaultVariants: {},
-})
+});
 
-type CardItem = SimpleCardProps | TeaserCardProps
+type CardItem = SimpleCardProps | TeaserCardProps;
 
 export interface CardGroupProps
-  extends ComponentPropsWithoutRef<'div'>,
-  VariantProps<typeof cardGroupVariants> {
-  heading?: string
-  subheading?: string
-  description?: string
-  action?: ButtonProps
-  cards: CardItem[]
+  extends ComponentPropsWithoutRef<"div">,
+    VariantProps<typeof cardGroupVariants> {
+  heading?: string;
+  subheading?: string;
+  description?: string;
+  action?: ButtonProps;
+  cards: CardItem[];
 }
 
 export const CardGroup = ({
@@ -58,11 +58,11 @@ export const CardGroup = ({
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {cards.map((card, index) => {
-            return card && card.type === 'simple' ? (
+            return card && card.type === "simple" ? (
               <SimpleCard key={index} {...(card as SimpleCardProps)} />
             ) : (
               <TeaserCard key={index} {...(card as TeaserCardProps)} />
-            )
+            );
           })}
         </div>
         {action && (
@@ -72,47 +72,47 @@ export const CardGroup = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 CardGroup.defaults = {
-  heading: 'How it works',
-  subheading: 'Understand our process',
-  description: 'Follow these simple steps to get started with our service.',
+  heading: "How it works",
+  subheading: "Understand our process",
+  description: "Follow these simple steps to get started with our service.",
   action: {
-    text: 'Get Started',
-    href: '#',
+    text: "Get Started",
+    href: "#",
   },
   cards: [
     {
-      type: 'simple',
+      type: "simple",
       image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
-        alt: 'Step 1',
+        src: "/app/static/placeholders/icons/drupal-decoupled-hexagon.png",
+        alt: "Step 1",
       },
-      heading: 'Short summary of step one',
+      heading: "Short summary of step one",
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
     },
     {
-      type: 'simple',
+      type: "simple",
       image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
-        alt: 'Step 2',
+        src: "/app/static/placeholders/icons/drupal-decoupled-hexagon.png",
+        alt: "Step 2",
       },
-      heading: 'Short summary of step two',
+      heading: "Short summary of step two",
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
     },
     {
-      type: 'simple',
+      type: "simple",
       image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
-        alt: 'Step 3',
+        src: "/app/static/placeholders/icons/drupal-decoupled-hexagon.png",
+        alt: "Step 3",
       },
-      heading: 'Short summary of step three',
+      heading: "Short summary of step three",
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
     },
   ],
-} satisfies CardGroupProps
+} satisfies CardGroupProps;

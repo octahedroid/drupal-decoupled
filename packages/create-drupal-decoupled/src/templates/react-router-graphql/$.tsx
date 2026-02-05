@@ -139,7 +139,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
         path,
         url: request.url,
       }),
-    }
+    },
   );
 
   if (error) {
@@ -152,7 +152,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     });
   }
 
-  return { node: data.route.entity, type: data.route.entity.__typename, entity: data.route.entity };
+  return {
+    node: data.route.entity,
+    type: data.route.entity.__typename,
+    entity: data.route.entity,
+  };
 };
 
 export default function Index({ loaderData: { node } }: Route.ComponentProps) {

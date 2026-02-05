@@ -1,13 +1,16 @@
-import type { FragmentOf } from 'gql.tada'
-import { readFragment } from 'gql.tada'
+import type { FragmentOf } from "gql.tada";
+import { readFragment } from "gql.tada";
 
-import { graphql } from '~/graphql/gql.tada'
-import { MediaImageFragment } from '~/graphql/fragments/media'
-import { LinkFragment } from '~/graphql/fragments/misc'
-import { LogoGroup } from '~/components/blocks'
-import { resolveLink, resolveMediaImage } from '~/integration/resolvers/helpers'
+import { graphql } from "~/graphql/gql.tada";
+import { MediaImageFragment } from "~/graphql/fragments/media";
+import { LinkFragment } from "~/graphql/fragments/misc";
+import { LogoGroup } from "~/components/blocks";
+import {
+  resolveLink,
+  resolveMediaImage,
+} from "~/integration/resolvers/helpers";
 interface ParagraphLogoGroupProps {
-  paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>
+  paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>;
 }
 
 export const ParagraphLogoFragment = graphql(
@@ -23,8 +26,8 @@ export const ParagraphLogoFragment = graphql(
       }
     }
   `,
-  [MediaImageFragment, LinkFragment]
-)
+  [MediaImageFragment, LinkFragment],
+);
 
 export const ParagraphLogoGroupFragment = graphql(
   `
@@ -37,16 +40,16 @@ export const ParagraphLogoGroupFragment = graphql(
       }
     }
   `,
-  [ParagraphLogoFragment]
-)
+  [ParagraphLogoFragment],
+);
 
 export const ParagraphLogoGroupResolver = ({
   paragraph,
 }: ParagraphLogoGroupProps) => {
   const { id, heading, items } = readFragment(
     ParagraphLogoGroupFragment,
-    paragraph
-  )
+    paragraph,
+  );
   const logos = items
     ? items.map((item) => {
         const {
@@ -55,21 +58,21 @@ export const ParagraphLogoGroupResolver = ({
           image,
         } = readFragment(
           ParagraphLogoFragment,
-          item as FragmentOf<typeof ParagraphLogoFragment>
-        )
-        const link = linkFragment ? resolveLink(linkFragment) : null
+          item as FragmentOf<typeof ParagraphLogoFragment>,
+        );
+        const link = linkFragment ? resolveLink(linkFragment) : null;
 
         return {
           id,
           image: {
             ...resolveMediaImage(image),
-            className: 'h-12',
+            className: "h-12",
           },
           link,
-        }
+        };
       })
-    : []
+    : [];
 
   // @ts-expect-error - fix typings.
-  return <LogoGroup id={id} heading={heading} logos={logos} />
-}
+  return <LogoGroup id={id} heading={heading} logos={logos} />;
+};

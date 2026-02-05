@@ -1,28 +1,28 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
-import { Avatar, type AvatarProps } from '@/components/primitives'
-import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
+import { Avatar, type AvatarProps } from "@/components/primitives";
+import { cn } from "@/lib/utils";
 
 const testimonialVariants = cva(
-  'w-full max-w-3xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16',
+  "w-full max-w-3xl mx-auto text-center px-4 py-8 md:py-12 lg:py-16",
   {
     variants: {},
     defaultVariants: {},
-  }
-)
+  },
+);
 
 type AuthorProps = {
-  avatar: AvatarProps
-  name: string
-  position: string
-  company: string
-}
+  avatar: AvatarProps;
+  name: string;
+  position: string;
+  company: string;
+};
 
 export interface TestimonialProps
-  extends ComponentPropsWithoutRef<'div'>,
+  extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof testimonialVariants> {
-  quote: string
-  author: AuthorProps
+  quote: string;
+  author: AuthorProps;
 }
 
 export const Testimonial = ({
@@ -46,19 +46,19 @@ export const Testimonial = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Testimonial.defaults = {
   quote:
     "This product has completely transformed our workflow. It's intuitive, powerful, and addresses all the pain points we were experiencing with our previous solution.",
   author: {
     avatar: {
-      src: '/app/static/placeholders/doc-tahedroid/avatar.png',
-      name: 'Doc Tahedroid',
+      src: "/app/static/placeholders/doc-tahedroid/avatar.png",
+      name: "Doc Tahedroid",
     },
-    name: 'Doc Tahedroid',
-    position: 'CEO',
-    company: 'Tech Innovators Inc.',
+    name: "Doc Tahedroid",
+    position: "CEO",
+    company: "Tech Innovators Inc.",
   },
-} satisfies TestimonialProps
+} satisfies TestimonialProps;

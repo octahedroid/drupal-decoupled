@@ -4,14 +4,14 @@ import type { Config, Options } from "./types";
 const calculateAuthHeader = async (
   uri: string,
   options: Options,
-  fetcher: Config["fetcher"]
+  fetcher: Config["fetcher"],
 ) => {
   const { clientId, clientSecret } = options;
   const header = await clientCredentialsHeader(
     uri,
     clientId,
     clientSecret,
-    fetcher
+    fetcher,
   );
 
   if (header) {
@@ -40,7 +40,7 @@ const drupalAuthClient = async (
   options: Options,
   config: Config = {
     fetcher: fetch,
-  }
+  },
 ) => {
   const { fetcher, authURI } = config;
 

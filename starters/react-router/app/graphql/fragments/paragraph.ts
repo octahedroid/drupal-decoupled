@@ -1,13 +1,13 @@
-import { graphql } from '~/graphql/gql.tada'
+import { graphql } from "~/graphql/gql.tada";
 
-import { ParagraphHeroFragment } from '~/integration/resolvers/ParagraphHeroResolver'
-import { ParagraphWebformFragment } from '~/integration/resolvers/ParagraphWebformResolver'
-import { ParagraphViewReferenceFragment } from '~/integration/resolvers/ParagraphViewReferenceResolver'
-import { ParagraphCtaFragment } from '~/integration/resolvers/ParagraphCtaResolver'
-import { ParagraphTestimonialFragment } from '~/integration/resolvers/ParagraphTestimonialResolver'
-import { ParagraphLogoGroupFragment } from '~/integration/resolvers/ParagraphLogoGroupResolver'
-import { ParagraphFaqFragment } from '~/integration/resolvers/ParagraphFaqResolver'
-import { ParagraphCardGroupFragment } from '~/integration/resolvers/ParagraphCardGroupResolver'
+import { ParagraphHeroFragment } from "~/integration/resolvers/ParagraphHeroResolver";
+import { ParagraphWebformFragment } from "~/integration/resolvers/ParagraphWebformResolver";
+import { ParagraphViewReferenceFragment } from "~/integration/resolvers/ParagraphViewReferenceResolver";
+import { ParagraphCtaFragment } from "~/integration/resolvers/ParagraphCtaResolver";
+import { ParagraphTestimonialFragment } from "~/integration/resolvers/ParagraphTestimonialResolver";
+import { ParagraphLogoGroupFragment } from "~/integration/resolvers/ParagraphLogoGroupResolver";
+import { ParagraphFaqFragment } from "~/integration/resolvers/ParagraphFaqResolver";
+import { ParagraphCardGroupFragment } from "~/integration/resolvers/ParagraphCardGroupResolver";
 
 export const ParagraphUnionFragment = graphql(
   `
@@ -35,5 +35,5 @@ export const ParagraphUnionFragment = graphql(
     ParagraphFaqFragment,
     ParagraphLogoGroupFragment,
     ParagraphTestimonialFragment,
-  ]
-)
+  ],
+);

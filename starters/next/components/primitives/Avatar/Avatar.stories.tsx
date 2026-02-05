@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Avatar } from '@/components/primitives'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Avatar } from "@/components/primitives";
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Primitives/Avatar',
+  title: "Primitives/Avatar",
   component: Avatar,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
-    src: '/placeholders/doc-tahedroid/avatar.png',
-    name: 'Doc Tahedroid',
+    src: "/placeholders/doc-tahedroid/avatar.png",
+    name: "Doc Tahedroid",
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof Avatar>
+export default meta;
+type Story = StoryObj<typeof Avatar>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const Fallback: Story = {
   args: {
     src: undefined,
   },
-}
+};

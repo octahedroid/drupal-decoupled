@@ -1,25 +1,25 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
 import {
   Button,
   type ButtonProps,
   Image,
   type ImageProps,
-} from '~/components/primitives'
-import { cn } from '~/lib/utils'
+} from "~/components/primitives";
+import { cn } from "~/lib/utils";
 
-const heroVariants = cva('w-full px-4 py-8 md:py-16 lg:py-24', {
+const heroVariants = cva("w-full px-4 py-8 md:py-16 lg:py-24", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 export interface HeroProps
-  extends ComponentPropsWithoutRef<'div'>,
+  extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof heroVariants> {
-  heading: string
-  description: string
-  image?: ImageProps
-  actions?: ButtonProps[]
+  heading: string;
+  description: string;
+  image?: ImageProps;
+  actions?: ButtonProps[];
 }
 
 export const Hero = ({
@@ -44,7 +44,7 @@ export const Hero = ({
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
               {actions.slice(0, 2).map(({ variant, ...actionProps }, index) => (
                 <Button
-                  variant={index === 1 ? 'outline' : variant || 'default'}
+                  variant={index === 1 ? "outline" : variant || "default"}
                   {...actionProps}
                   key={index}
                 />
@@ -54,24 +54,24 @@ export const Hero = ({
         </div>
         <div className="order-first mx-auto w-full max-w-lg lg:order-last lg:max-w-none">
           {image && (
-            <Image {...image} className={cn('h-auto w-full object-cover')} />
+            <Image {...image} className={cn("h-auto w-full object-cover")} />
           )}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Hero.defaults = {
-  heading: 'Welcome to our Hero Section',
+  heading: "Welcome to our Hero Section",
   description:
-    'This is a default description. You can customize it to fit your needs.',
+    "This is a default description. You can customize it to fit your needs.",
   image: {
-    src: '/app/static/placeholders/doc-tahedroid/hero-landscape-large.png',
-    alt: 'Default hero image',
+    src: "/app/static/placeholders/doc-tahedroid/hero-landscape-large.png",
+    alt: "Default hero image",
   },
   actions: [
-    { text: 'Get Started', href: '#', variant: 'default', internal: true },
-    { text: 'Learn More', href: '#', variant: 'outline' },
+    { text: "Get Started", href: "#", variant: "default", internal: true },
+    { text: "Learn More", href: "#", variant: "outline" },
   ],
-} satisfies HeroProps
+} satisfies HeroProps;

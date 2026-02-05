@@ -106,7 +106,7 @@ async function getDrupalData({
         path: pathFromParams,
         token: searchParams?.token,
       }),
-    }
+    },
   );
 
   if (error) {
@@ -127,8 +127,10 @@ export default async function Page({
   params: { slug: string[] };
   searchParams: Promise<Record<string, string>>;
 }) {
-  
-  const { node } = await getDrupalData({ params, searchParams: await searchParams });
+  const { node } = await getDrupalData({
+    params,
+    searchParams: await searchParams,
+  });
 
   return (
     <div className="container mx-auto">

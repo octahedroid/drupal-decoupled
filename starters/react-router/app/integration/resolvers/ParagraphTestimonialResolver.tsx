@@ -1,13 +1,13 @@
-import type { FragmentOf } from 'gql.tada'
-import { readFragment } from 'gql.tada'
+import type { FragmentOf } from "gql.tada";
+import { readFragment } from "gql.tada";
 
-import { graphql } from '~/graphql/gql.tada'
-import { MediaImageFragment } from '~/graphql/fragments/media'
-import { resolveMediaImage } from '~/integration/resolvers/helpers'
-import { Testimonial } from '~/components/blocks'
+import { graphql } from "~/graphql/gql.tada";
+import { MediaImageFragment } from "~/graphql/fragments/media";
+import { resolveMediaImage } from "~/integration/resolvers/helpers";
+import { Testimonial } from "~/components/blocks";
 
 interface ParagraphTestimonialProps {
-  paragraph: FragmentOf<typeof ParagraphTestimonialFragment>
+  paragraph: FragmentOf<typeof ParagraphTestimonialFragment>;
 }
 
 const ParagraphAuthorFragment = graphql(
@@ -23,8 +23,8 @@ const ParagraphAuthorFragment = graphql(
       position
     }
   `,
-  [MediaImageFragment]
-)
+  [MediaImageFragment],
+);
 
 export const ParagraphTestimonialFragment = graphql(
   `
@@ -38,8 +38,8 @@ export const ParagraphTestimonialFragment = graphql(
       }
     }
   `,
-  [ParagraphAuthorFragment]
-)
+  [ParagraphAuthorFragment],
+);
 
 export const ParagraphTestimonialResolver = ({
   paragraph,
@@ -48,7 +48,7 @@ export const ParagraphTestimonialResolver = ({
     id,
     quote,
     author: authorFragment,
-  } = readFragment(ParagraphTestimonialFragment, paragraph)
+  } = readFragment(ParagraphTestimonialFragment, paragraph);
   const {
     name,
     position,
@@ -56,9 +56,9 @@ export const ParagraphTestimonialResolver = ({
     image: imageFragment,
   } = readFragment(
     ParagraphAuthorFragment,
-    authorFragment as FragmentOf<typeof ParagraphAuthorFragment>
-  )
-  const image = resolveMediaImage(imageFragment)
+    authorFragment as FragmentOf<typeof ParagraphAuthorFragment>,
+  );
+  const image = resolveMediaImage(imageFragment);
 
   return (
     <Testimonial
@@ -73,5 +73,5 @@ export const ParagraphTestimonialResolver = ({
         avatar: image,
       }}
     />
-  )
-}
+  );
+};

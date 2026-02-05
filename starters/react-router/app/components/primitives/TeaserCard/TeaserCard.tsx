@@ -1,32 +1,32 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import { ChevronRight } from 'lucide-react'
-import type { ComponentPropsWithoutRef } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import { ChevronRight } from "lucide-react";
+import type { ComponentPropsWithoutRef } from "react";
 import {
   Badge,
   Button,
   type ButtonProps,
   Image,
   type ImageProps,
-} from '~/components/primitives'
-import { cn } from '~/lib/utils'
+} from "~/components/primitives";
+import { cn } from "~/lib/utils";
 
 const teaserCardVariants = cva(
-  'w-full overflow-hidden rounded-lg shadow-md flex flex-col',
+  "w-full overflow-hidden rounded-lg shadow-md flex flex-col",
   {
     variants: {},
     defaultVariants: {},
-  }
-)
+  },
+);
 
 export interface TeaserCardProps
-  extends ComponentPropsWithoutRef<'div'>,
+  extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof teaserCardVariants> {
-  image: ImageProps
-  tags?: string[]
-  heading: string
-  summary: string
-  details: ButtonProps
-  type: string
+  image: ImageProps;
+  tags?: string[];
+  heading: string;
+  summary: string;
+  details: ButtonProps;
+  type: string;
 }
 
 export const TeaserCard = ({
@@ -44,7 +44,7 @@ export const TeaserCard = ({
         <Image
           {...image}
           alt={image?.alt}
-          className={cn('h-auto w-full object-cover')}
+          className={cn("h-auto w-full object-cover")}
         />
       </div>
       <div className="flex grow flex-col space-y-2 p-4">
@@ -68,5 +68,5 @@ export const TeaserCard = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};

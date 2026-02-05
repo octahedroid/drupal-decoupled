@@ -1,39 +1,39 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useForm } from '@conform-to/react'
-import { parseWithZod } from '@conform-to/zod/v4'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { CheckCircle2 } from 'lucide-react'
-import { useState } from 'react'
-import { z } from 'zod/v4'
-import { Input, Textarea } from '@/components/form'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
+import { useForm } from "@conform-to/react";
+import { parseWithZod } from "@conform-to/zod/v4";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { z } from "zod/v4";
+import { Input, Textarea } from "@/components/form";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 
 // Define the DemoForm component
 const DemoForm = () => {
   // This is the main component that will be used as the default story
-  const [submitted, setSubmitted] = useState(false)
-  const [formValues, setFormValues] = useState<ContactFormValues | null>(null)
+  const [submitted, setSubmitted] = useState(false);
+  const [formValues, setFormValues] = useState<ContactFormValues | null>(null);
 
   const [form, fields] = useForm({
-    id: 'contact-form',
+    id: "contact-form",
     onValidate({ formData }) {
-      return parseWithZod(formData, { schema: contactFormSchema })
+      return parseWithZod(formData, { schema: contactFormSchema });
     },
-    shouldValidate: 'onBlur',
+    shouldValidate: "onBlur",
     onSubmit(event, { submission }) {
-      if (submission?.status === 'success') {
-        setFormValues(submission.value)
-        setSubmitted(true)
+      if (submission?.status === "success") {
+        setFormValues(submission.value);
+        setSubmitted(true);
       }
     },
-  })
+  });
 
   const handleReset = () => {
-    setSubmitted(false)
-    setFormValues(null)
-  }
+    setSubmitted(false);
+    setFormValues(null);
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -114,35 +114,35 @@ const DemoForm = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const meta = {
-  title: 'Form/Form - Demo',
-} satisfies Meta<typeof DemoForm>
+  title: "Form/Form - Demo",
+} satisfies Meta<typeof DemoForm>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof DemoForm>
+type Story = StoryObj<typeof DemoForm>;
 
 const contactFormSchema = z.object({
   name: z
     .string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name cannot exceed 50 characters'),
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name cannot exceed 50 characters"),
   email: z
     .string()
-    .email('Please enter a valid email address')
-    .min(1, 'Email is required'),
+    .email("Please enter a valid email address")
+    .min(1, "Email is required"),
   message: z
     .string()
-    .min(20, 'Message must be at least 20 characters')
-    .max(500, 'Message cannot exceed 500 characters'),
-})
+    .min(20, "Message must be at least 20 characters")
+    .max(500, "Message cannot exceed 500 characters"),
+});
 
-type ContactFormValues = z.infer<typeof contactFormSchema>
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 // Define DemoForm as the default story
 export const Default: Story = {
   render: () => <DemoForm />,
-}
+};

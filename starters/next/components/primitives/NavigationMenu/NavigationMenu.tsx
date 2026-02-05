@@ -5,19 +5,19 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenu as ShadcnNavigationMenu,
-} from '@/components/ui/navigation-menu'
+} from "@/components/ui/navigation-menu";
 
 export interface NavigationMenuItemProps {
-  label: string
-  href?: string
-  expanded?: boolean
-  children?: NavigationMenuItemProps[]
+  label: string;
+  href?: string;
+  expanded?: boolean;
+  children?: NavigationMenuItemProps[];
 }
 
 export const NavigationMenu = ({
   navItems,
 }: {
-  navItems: NavigationMenuItemProps[]
+  navItems: NavigationMenuItemProps[];
 }) => {
   return (
     <ShadcnNavigationMenu>
@@ -32,7 +32,7 @@ export const NavigationMenu = ({
                     {item.children.map((child, childIndex) => (
                       <li key={childIndex}>
                         <NavigationMenuLink
-                          href={child.href || '#'}
+                          href={child.href || "#"}
                           className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
                         >
                           <div className="text-sm leading-none font-medium">
@@ -46,7 +46,7 @@ export const NavigationMenu = ({
               </>
             ) : (
               <NavigationMenuLink
-                href={item.href || '#'}
+                href={item.href || "#"}
                 className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium"
               >
                 {item.label}
@@ -56,5 +56,5 @@ export const NavigationMenu = ({
         ))}
       </NavigationMenuList>
     </ShadcnNavigationMenu>
-  )
-}
+  );
+};

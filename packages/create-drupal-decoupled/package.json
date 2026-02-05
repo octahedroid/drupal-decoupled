@@ -15,7 +15,7 @@
   "bin": {
     "create-drupal-decoupled": "dist/index.js"
   },
-  "author":"Octahedroid <opensource@octahedroid.com>",
+  "author": "Octahedroid <opensource@octahedroid.com>",
   "license": "MIT",
   "scripts": {
     "build": "node ./esbuild.mjs && cp -r src/templates dist"

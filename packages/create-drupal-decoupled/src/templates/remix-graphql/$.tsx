@@ -3,28 +3,28 @@ import {
   useRouteError,
   useLoaderData,
   MetaFunction,
-} from '@remix-run/react'
-import { LoaderFunctionArgs, redirect } from '@remix-run/node'
-import { gql } from 'urql'
-import { metaTags } from 'drupal-remix'
+} from "@remix-run/react";
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { gql } from "urql";
+import { metaTags } from "drupal-remix";
 
-import { getClient } from '~/utils/client.server'
-import { calculatePath } from '~/utils/calculate-path.server'
+import { getClient } from "~/utils/client.server";
+import { calculatePath } from "~/utils/calculate-path.server";
 
-const GET_DRUPAL_CONTENT_ERROR = 'Error fetching data from Drupal'
+const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {
-    return []
+    return [];
   }
 
   return metaTags({
     tags: data.node.metatag,
-  })
-}
+  });
+};
 
 export const loader = async ({ params, request }: LoaderFunctionArgs) => {
-  const path = params['*']
+  const path = params["*"];
   const drupalClient = await getDrupalClient({
     auth: {
       uri: process.env.DRUPAL_AUTH_URI!,
@@ -32,7 +32,7 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
       clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
     },
     url: process.env.DRUPAL_GRAPHQL_URI!,
-  })
+  });
   const { data, error } = await drupalClient.query(
     gql`
       query getNodeArticleByPath($path: String!) {
@@ -116,24 +116,24 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
         path,
         url: request.url,
       }),
-    }
-  )
+    },
+  );
 
   if (error) {
-    throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 })
+    throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 });
   }
 
-  if (data.route.__typename === 'RouteRedirect') {
+  if (data.route.__typename === "RouteRedirect") {
     return redirect(data.route.url, {
       status: data.route.status || 302,
-    })
+    });
   }
 
-  return { node: data.route.entity }
-}
+  return { node: data.route.entity };
+};
 
 export default function Index() {
-  const { node } = useLoaderData<typeof loader>()
+  const { node } = useLoaderData<typeof loader>();
   return (
     <div className="container mx-auto">
       <h1 className="text-6xl font-bold tracking-tighter leading-none mb-6 text-left">
@@ -151,11 +151,11 @@ export default function Index() {
         dangerouslySetInnerHTML={{ __html: node.body.value }}
       />
     </div>
-  )
+  );
 }
 
 export function ErrorBoundary() {
-  const error = useRouteError()
+  const error = useRouteError();
   if (isRouteErrorResponse(error)) {
     if (error.data === GET_DRUPAL_CONTENT_ERROR) {
       return (
@@ -166,9 +166,9 @@ export function ErrorBoundary() {
             the fields are enabled in the GraphQL Compose module
           </p>
         </div>
-      )
+      );
     }
-    return <p>Uh oh, something went wrong</p>
+    return <p>Uh oh, something went wrong</p>;
   }
-  return <p>Uh oh, something went wrong</p>
+  return <p>Uh oh, something went wrong</p>;
 }

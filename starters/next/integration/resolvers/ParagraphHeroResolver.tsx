@@ -1,13 +1,16 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import { FragmentOf, readFragment } from "gql.tada";
 
-import { Hero } from '@/components/blocks'
-import { MediaImageFragment } from '@/graphql/fragments/media'
-import { LinkFragment } from '@/graphql/fragments/misc'
-import { graphql } from '@/graphql/gql.tada'
-import { resolveLink, resolveMediaImage } from '@/integration/resolvers/helpers'
+import { Hero } from "@/components/blocks";
+import { MediaImageFragment } from "@/graphql/fragments/media";
+import { LinkFragment } from "@/graphql/fragments/misc";
+import { graphql } from "@/graphql/gql.tada";
+import {
+  resolveLink,
+  resolveMediaImage,
+} from "@/integration/resolvers/helpers";
 
 interface ParagraphHeroProps {
-  paragraph: FragmentOf<typeof ParagraphHeroFragment>
+  paragraph: FragmentOf<typeof ParagraphHeroFragment>;
 }
 
 export const ParagraphHeroFragment = graphql(
@@ -28,8 +31,8 @@ export const ParagraphHeroFragment = graphql(
       }
     }
   `,
-  [MediaImageFragment, LinkFragment]
-)
+  [MediaImageFragment, LinkFragment],
+);
 
 export const ParagraphHeroResolver = ({ paragraph }: ParagraphHeroProps) => {
   const {
@@ -38,11 +41,11 @@ export const ParagraphHeroResolver = ({ paragraph }: ParagraphHeroProps) => {
     description,
     image: mediaImageFragment,
     actions: linkFragment,
-  } = readFragment(ParagraphHeroFragment, paragraph)
-  const image = resolveMediaImage(mediaImageFragment)
+  } = readFragment(ParagraphHeroFragment, paragraph);
+  const image = resolveMediaImage(mediaImageFragment);
   const actions = linkFragment
     ? linkFragment.map((link) => resolveLink(link))
-    : []
+    : [];
 
   return (
     <Hero
@@ -53,5 +56,5 @@ export const ParagraphHeroResolver = ({ paragraph }: ParagraphHeroProps) => {
       image={image}
       actions={actions}
     />
-  )
-}
+  );
+};

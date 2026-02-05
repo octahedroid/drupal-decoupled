@@ -1,22 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { RichText } from '~/components/primitives'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { RichText } from "~/components/primitives";
 
 const meta: Meta<typeof RichText> = {
-  title: 'Primitives/RichText',
+  title: "Primitives/RichText",
   component: RichText,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    content: { control: 'text' },
+    content: { control: "text" },
   },
   args: {
-    content: '<p>Default rich text content</p>',
+    content: "<p>Default rich text content</p>",
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof RichText>
+export default meta;
+type Story = StoryObj<typeof RichText>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const AllElements: Story = {
   args: {
@@ -72,7 +72,7 @@ function helloWorld() {
       </code></pre>
     `,
   },
-}
+};
 
 export const Headings: Story = {
   args: {
@@ -84,7 +84,7 @@ export const Headings: Story = {
       <h6>Heading 6</h6>
     `,
   },
-}
+};
 
 export const TextFormatting: Story = {
   args: {
@@ -95,7 +95,7 @@ export const TextFormatting: Story = {
       <p>Text with <sup>superscript</sup> and <sub>subscript</sub></p>
     `,
   },
-}
+};
 
 export const Lists: Story = {
   args: {
@@ -112,7 +112,7 @@ export const Lists: Story = {
       </ol>
     `,
   },
-}
+};
 
 export const BlockquoteAndImage: Story = {
   args: {
@@ -126,7 +126,7 @@ export const BlockquoteAndImage: Story = {
       </figure>
     `,
   },
-}
+};
 
 export const Table: Story = {
   args: {
@@ -154,7 +154,7 @@ export const Table: Story = {
       </table>
     `,
   },
-}
+};
 
 export const CodeBlock: Story = {
   args: {
@@ -168,7 +168,7 @@ function exampleFunction() {
       </code></pre>
     `,
   },
-}
+};
 
 export const RealWorldExample: Story = {
   args: {
@@ -200,4 +200,4 @@ print(results.summary())
       </code></pre>
     `,
   },
-}
+};

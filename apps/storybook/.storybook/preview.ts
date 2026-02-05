@@ -1,12 +1,12 @@
-import type { Preview } from '@storybook/react-vite'
-import '~/app.css'
+import type { Preview } from "@storybook/react-vite";
+import "~/app.css";
 
 const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
   },

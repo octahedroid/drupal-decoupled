@@ -4,7 +4,7 @@ export const clientCredentialsHeader = async (
   authUri: string,
   clientId: string,
   clientSecret: string,
-  fetcher: Config["fetcher"]
+  fetcher: Config["fetcher"],
 ) => {
   const formData = new FormData();
   formData.append("grant_type", "client_credentials");

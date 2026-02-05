@@ -1,6 +1,6 @@
-import { graphql } from '~/graphql/gql.tada'
-import { MediaImageFragment } from '~/graphql/fragments/media'
-import { UserFragment } from '~/graphql/fragments/user'
+import { graphql } from "~/graphql/gql.tada";
+import { MediaImageFragment } from "~/graphql/fragments/media";
+import { UserFragment } from "~/graphql/fragments/user";
 
 // @todo fix importing NodeArticleTeaserFragment from node.ts
 // import { NodeArticleTeaserFragment } from "~/graphql/fragments/node";
@@ -20,8 +20,8 @@ const NodeArticleTeaserFragment = graphql(
       }
     }
   `,
-  [MediaImageFragment, UserFragment]
-)
+  [MediaImageFragment, UserFragment],
+);
 
 export const ViewBlogTeaserResultFragment = graphql(
   `
@@ -35,8 +35,8 @@ export const ViewBlogTeaserResultFragment = graphql(
       }
     }
   `,
-  [NodeArticleTeaserFragment]
-)
+  [NodeArticleTeaserFragment],
+);
 
 export const ViewBlogTeaserFeaturedResultFragment = graphql(
   `
@@ -50,5 +50,5 @@ export const ViewBlogTeaserFeaturedResultFragment = graphql(
       }
     }
   `,
-  [NodeArticleTeaserFragment]
-)
+  [NodeArticleTeaserFragment],
+);

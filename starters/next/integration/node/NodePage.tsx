@@ -1,19 +1,19 @@
-import { Fragment } from 'react'
+import { Fragment } from "react";
 
-import { FragmentOf, readFragment } from 'gql.tada'
-import { NodePageFragment } from '@/graphql/fragments/node'
-import { resolveComponents } from '@/integration/resolvers/components'
+import { FragmentOf, readFragment } from "gql.tada";
+import { NodePageFragment } from "@/graphql/fragments/node";
+import { resolveComponents } from "@/integration/resolvers/components";
 
 type NodePageComponentProps = {
-  node: FragmentOf<typeof NodePageFragment>
-  environment: string
-}
+  node: FragmentOf<typeof NodePageFragment>;
+  environment: string;
+};
 
 export default function NodePageComponent({ node }: NodePageComponentProps) {
-  const { title, showTitle, components } = readFragment(NodePageFragment, node)
+  const { title, showTitle, components } = readFragment(NodePageFragment, node);
 
   // @ts-expect-error skip validation.
-  const resolvedComponents = resolveComponents({ components })
+  const resolvedComponents = resolveComponents({ components });
 
   return (
     <>
@@ -23,8 +23,8 @@ export default function NodePageComponent({ node }: NodePageComponentProps) {
         </h1>
       )}
       {resolvedComponents.map((component, index: number) => {
-        return <Fragment key={index}>{component}</Fragment>
+        return <Fragment key={index}>{component}</Fragment>;
       })}
     </>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 function FormDocs() {
   return (
@@ -20,7 +20,11 @@ function FormDocs() {
       <ul>
         <li>
           <strong>
-            <a href="https://zod.dev/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://zod.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Zod
             </a>
           </strong>
@@ -46,10 +50,14 @@ function FormDocs() {
       <h3>Components</h3>
       <p>
         The form components in this library are wrapper components built on top
-        of{' '}
-        <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer">
+        of{" "}
+        <a
+          href="https://ui.shadcn.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           shadcn/ui
-        </a>{' '}
+        </a>{" "}
         components, specifically designed to work with Conform. These include:
       </p>
       <ul>
@@ -73,7 +81,7 @@ function FormDocs() {
       <h2>Client-Side vs. Server-Side Validation</h2>
       <p>
         The form stories in Storybook demonstrate client-side validation
-        implementations. However, in production applications,{' '}
+        implementations. However, in production applications,{" "}
         <strong>server-side validation is essential</strong> for security and
         data integrity.
       </p>
@@ -81,7 +89,7 @@ function FormDocs() {
       <h3>Full Stack Components</h3>
       <p>
         We recommend implementing forms as full stack components, following the
-        approach described in{' '}
+        approach described in{" "}
         <a
           href="https://www.epicweb.dev/full-stack-components"
           target="_blank"
@@ -127,16 +135,16 @@ function FormDocs() {
         implementation using Zod and Conform.
       </p>
     </div>
-  )
+  );
 }
 
 const meta: Meta = {
-  title: 'Form/Docs',
+  title: "Form/Docs",
   component: FormDocs,
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};

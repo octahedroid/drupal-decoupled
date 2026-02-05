@@ -1,43 +1,43 @@
-'use client'
-import { getFormProps, useForm } from '@conform-to/react'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod/v4'
-import { CheckCircle2, CircleAlert } from 'lucide-react'
-import { Input, Textarea } from '@/components/form'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { contactFormSchema } from '@/integration/forms/ContactForm/schema'
-import { useActionState } from 'react'
-import { submitContactFormAction } from '@/integration/forms/ContactForm/action'
+"use client";
+import { getFormProps, useForm } from "@conform-to/react";
+import { getZodConstraint, parseWithZod } from "@conform-to/zod/v4";
+import { CheckCircle2, CircleAlert } from "lucide-react";
+import { Input, Textarea } from "@/components/form";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { contactFormSchema } from "@/integration/forms/ContactForm/schema";
+import { useActionState } from "react";
+import { submitContactFormAction } from "@/integration/forms/ContactForm/action";
 
 export const ContactForm = ({ id }: { id: string }) => {
-  const [state, action] = useActionState(submitContactFormAction, undefined)
+  const [state, action] = useActionState(submitContactFormAction, undefined);
   const [form, fields] = useForm({
     id,
     lastResult: state?.reply,
     constraint: getZodConstraint(contactFormSchema),
     onValidate({ formData }) {
-      return parseWithZod(formData, { schema: contactFormSchema })
+      return parseWithZod(formData, { schema: contactFormSchema });
     },
-    shouldValidate: 'onBlur',
-  })
+    shouldValidate: "onBlur",
+  });
 
   return (
     <div className="flex items-center justify-center">
       <div className="container mx-auto max-w-xl">
-        {state?.reply.status === 'success' ? (
+        {state?.reply.status === "success" ? (
           <div className="space-y-4">
             <Alert>
               <CheckCircle2 className="stroke-green-500" />
               <AlertTitle
                 className="text-lg"
                 dangerouslySetInnerHTML={{
-                  __html: '<h2>Success!</h2>',
+                  __html: "<h2>Success!</h2>",
                 }}
               ></AlertTitle>
               <AlertDescription
                 dangerouslySetInnerHTML={{
-                  __html: '<p>Your message has been sent successfully.</p>',
+                  __html: "<p>Your message has been sent successfully.</p>",
                 }}
               ></AlertDescription>
             </Alert>
@@ -100,5 +100,5 @@ export const ContactForm = ({ id }: { id: string }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};

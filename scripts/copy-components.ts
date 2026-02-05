@@ -128,7 +128,7 @@ class ComponentSync {
   private processFile(
     filePath: string,
     fileName: string,
-    componentSet: Set<string>
+    componentSet: Set<string>,
   ): void {
     let fileContent = fs.readFileSync(filePath, "utf8");
     const componentName = fileName.replace(/\.tsx?$/, "");
@@ -145,7 +145,7 @@ class ComponentSync {
       this.log(`Updating path aliases in ${filePath}`);
       fileContent = fileContent.replace(
         new RegExp(PATH_ALIAS_OLD, "g"),
-        PATH_ALIAS_NEW
+        PATH_ALIAS_NEW,
       );
     }
 
@@ -179,7 +179,7 @@ class ComponentSync {
   private handleError(message: string, error: unknown): never {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error(
-      `[${new Date().toISOString()}] ERROR: ${message} - ${errorMessage}`
+      `[${new Date().toISOString()}] ERROR: ${message} - ${errorMessage}`,
     );
     process.exit(1);
   }

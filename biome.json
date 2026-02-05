@@ -24,9 +24,7 @@
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
-    "lineWidth": 100,
-    "lineEnding": "lf"
+    "indentStyle": "space"
   },
   "linter": {
     "enabled": true,
@@ -38,6 +36,11 @@
     "formatter": {
       "quoteStyle": "double",
       "semicolons": "always"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   },
   "assist": {

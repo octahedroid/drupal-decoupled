@@ -1,16 +1,16 @@
-import { RichText } from '~/components/primitives'
+import { RichText } from "~/components/primitives";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
   Accordion as ShadcnAccordion,
-} from '~/components/ui/accordion'
+} from "~/components/ui/accordion";
 
 export interface AccordionProps {
   items: {
-    title: string
-    content: string
-  }[]
+    title: string;
+    content: string;
+  }[];
 }
 
 export const Accordion = ({ items }: AccordionProps) => {
@@ -25,5 +25,5 @@ export const Accordion = ({ items }: AccordionProps) => {
         </AccordionItem>
       ))}
     </ShadcnAccordion>
-  )
-}
+  );
+};

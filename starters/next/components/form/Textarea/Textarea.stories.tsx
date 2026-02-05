@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Textarea } from './Textarea'
-import { type FieldMetadata } from '@conform-to/react'
-import { Label } from '@/components/ui/label'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Textarea } from "./Textarea";
+import { type FieldMetadata } from "@conform-to/react";
+import { Label } from "@/components/ui/label";
 
 // Create a mock field metadata that conforms to the expected shape
 const createMockFieldMeta = (
   name: string,
-  value = '',
-  error?: string
+  value = "",
+  error?: string,
 ): FieldMetadata<string> => {
   // Cast to unknown first to avoid TypeScript errors
   return {
@@ -23,15 +23,15 @@ const createMockFieldMeta = (
     allErrors: error ? { [name]: [error] } : {},
     valid: !error,
     dirty: false,
-  } as unknown as FieldMetadata<string>
-}
+  } as unknown as FieldMetadata<string>;
+};
 
 const meta: Meta<typeof Textarea> = {
-  title: 'Form/Textarea',
+  title: "Form/Textarea",
   component: Textarea,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
   decorators: [
     (Story) => (
@@ -40,16 +40,16 @@ const meta: Meta<typeof Textarea> = {
       </div>
     ),
   ],
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof Textarea>
+type Story = StoryObj<typeof Textarea>;
 
 export const Default: Story = {
   args: {
-    meta: createMockFieldMeta('message'),
-    placeholder: 'Enter your message',
+    meta: createMockFieldMeta("message"),
+    placeholder: "Enter your message",
   },
   decorators: [
     (Story) => (
@@ -59,15 +59,15 @@ export const Default: Story = {
       </div>
     ),
   ],
-}
+};
 
 export const WithContent: Story = {
   args: {
     meta: createMockFieldMeta(
-      'bio',
-      'I am a software developer with experience in React, TypeScript, and Node.js.'
+      "bio",
+      "I am a software developer with experience in React, TypeScript, and Node.js.",
     ),
-    placeholder: 'Tell us about yourself',
+    placeholder: "Tell us about yourself",
   },
   decorators: [
     (Story) => (
@@ -77,16 +77,16 @@ export const WithContent: Story = {
       </div>
     ),
   ],
-}
+};
 
 export const WithError: Story = {
   args: {
     meta: createMockFieldMeta(
-      'feedback',
-      '',
-      'Feedback must be at least 20 characters long'
+      "feedback",
+      "",
+      "Feedback must be at least 20 characters long",
     ),
-    placeholder: 'Enter your feedback',
+    placeholder: "Enter your feedback",
   },
   decorators: [
     (Story) => (
@@ -101,12 +101,12 @@ export const WithError: Story = {
       </div>
     ),
   ],
-}
+};
 
 export const Disabled: Story = {
   args: {
-    meta: createMockFieldMeta('readonly'),
-    placeholder: 'This textarea is disabled',
+    meta: createMockFieldMeta("readonly"),
+    placeholder: "This textarea is disabled",
     disabled: true,
   },
   decorators: [
@@ -117,4 +117,4 @@ export const Disabled: Story = {
       </div>
     ),
   ],
-}
+};

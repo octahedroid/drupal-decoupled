@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
+const fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
 
 const fontSizes = {
   xs: 12,
@@ -8,15 +8,15 @@ const fontSizes = {
   base: 16,
   lg: 18,
   xl: 20,
-  '2xl': 24,
-  '3xl': 30,
-  '4xl': 36,
-  '5xl': 48,
-  '6xl': 60,
-  '7xl': 72,
-  '8xl': 96,
-  '9xl': 128,
-}
+  "2xl": 24,
+  "3xl": 30,
+  "4xl": 36,
+  "5xl": 48,
+  "6xl": 60,
+  "7xl": 72,
+  "8xl": 96,
+  "9xl": 128,
+};
 
 const fontWeights = {
   thin: 100,
@@ -28,16 +28,16 @@ const fontWeights = {
   bold: 700,
   extrabold: 800,
   black: 900,
-}
+};
 
 function TypesetSample({
   size,
   weight,
   label,
 }: {
-  size: number
-  weight: number
-  label: string
+  size: number;
+  weight: number;
+  label: string;
 }) {
   return (
     <div className="mb-6 border-b border-gray-100 pb-4">
@@ -53,7 +53,7 @@ function TypesetSample({
         The quick brown fox jumps over the lazy dog
       </p>
     </div>
-  )
+  );
 }
 
 function Typography() {
@@ -100,16 +100,16 @@ function Typography() {
         ))}
       </section>
     </div>
-  )
+  );
 }
 
 const meta: Meta = {
-  title: 'Tokens/Typography',
+  title: "Tokens/Typography",
   component: Typography,
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};

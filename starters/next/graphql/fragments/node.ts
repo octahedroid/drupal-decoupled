@@ -1,9 +1,9 @@
-import { graphql } from '@/graphql/gql.tada'
+import { graphql } from "@/graphql/gql.tada";
 
-import { MediaImageFragment } from '@/graphql/fragments/media'
-import { UserFragment } from '@/graphql/fragments/user'
-import { MetatagFragment } from '@/graphql/fragments/metatag'
-import { ParagraphUnionFragment } from './paragraph'
+import { MediaImageFragment } from "@/graphql/fragments/media";
+import { UserFragment } from "@/graphql/fragments/user";
+import { MetatagFragment } from "@/graphql/fragments/metatag";
+import { ParagraphUnionFragment } from "./paragraph";
 
 export const NodePageFragment = graphql(
   `
@@ -25,8 +25,8 @@ export const NodePageFragment = graphql(
       }
     }
   `,
-  [MediaImageFragment, MetatagFragment, ParagraphUnionFragment]
-)
+  [MediaImageFragment, MetatagFragment, ParagraphUnionFragment],
+);
 
 export const NodeArticleFragment = graphql(
   `
@@ -53,8 +53,8 @@ export const NodeArticleFragment = graphql(
       }
     }
   `,
-  [MediaImageFragment, UserFragment, MetatagFragment]
-)
+  [MediaImageFragment, UserFragment, MetatagFragment],
+);
 
 export const NodeArticleTeaserFragment = graphql(
   `
@@ -72,5 +72,5 @@ export const NodeArticleTeaserFragment = graphql(
       }
     }
   `,
-  [MediaImageFragment, UserFragment]
-)
+  [MediaImageFragment, UserFragment],
+);

@@ -1,24 +1,24 @@
 {
-	"folders": [
-		{
-			"name" : "root",
-			"path": "../"
-		},
-		{
-			"name": "packages",
-			"path": "../packages"
-		},
-		{
-			"name": "storybook",
-			"path": "../apps/storybook"
-		},
-		{
-			"name": "next - starter",
-			"path": "../starters/next"
-		},
-		{
-			"name": "react-router - starter",
-			"path": "../starters/react-router"
-		},
-	],
+  "folders": [
+    {
+      "name": "root",
+      "path": "../"
+    },
+    {
+      "name": "packages",
+      "path": "../packages"
+    },
+    {
+      "name": "storybook",
+      "path": "../apps/storybook"
+    },
+    {
+      "name": "next - starter",
+      "path": "../starters/next"
+    },
+    {
+      "name": "react-router - starter",
+      "path": "../starters/react-router"
+    }
+  ]
 }

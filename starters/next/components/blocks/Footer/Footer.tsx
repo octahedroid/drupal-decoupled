@@ -1,24 +1,24 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
-import { type ImageProps, Link, type LinkProps } from '@/components/primitives'
-import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
+import { type ImageProps, Link, type LinkProps } from "@/components/primitives";
+import { cn } from "@/lib/utils";
 
-const footerVariants = cva('w-full bg-gray-200 ', {
+const footerVariants = cva("w-full bg-gray-200 ", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 type FooterColumn = {
-  title: string
-  links: LinkProps[]
-}
+  title: string;
+  links: LinkProps[];
+};
 
 export interface FooterProps
-  extends ComponentPropsWithoutRef<'footer'>,
+  extends ComponentPropsWithoutRef<"footer">,
     VariantProps<typeof footerVariants> {
-  columns: FooterColumn[]
-  logo: ImageProps
-  copyrightText: string
+  columns: FooterColumn[];
+  logo: ImageProps;
+  copyrightText: string;
 }
 
 const FooterColumn = ({ title, links }: FooterColumn) => (
@@ -31,11 +31,11 @@ const FooterColumn = ({ title, links }: FooterColumn) => (
             <li key={index}>
               <Link {...link}>{link.children}</Link>
             </li>
-          )
+          ),
       )}
     </ul>
   </div>
-)
+);
 
 export const Footer = ({
   className,
@@ -60,35 +60,35 @@ export const Footer = ({
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 Footer.defaults = {
   columns: [
     {
-      title: 'Column One',
+      title: "Column One",
       links: [
-        { children: 'Link One', href: '#' },
-        { children: 'Link Two', href: '#' },
-        { children: 'Link Three', href: '#' },
-        { children: 'Link Four', href: '#' },
-        { children: 'Link Five', href: '#' },
+        { children: "Link One", href: "#" },
+        { children: "Link Two", href: "#" },
+        { children: "Link Three", href: "#" },
+        { children: "Link Four", href: "#" },
+        { children: "Link Five", href: "#" },
       ],
     },
     {
-      title: 'Column Two',
+      title: "Column Two",
       links: [
-        { children: 'Link Six', href: '#' },
-        { children: 'Link Seven', href: '#' },
-        { children: 'Link Eight', href: '#' },
-        { children: 'Link Nine', href: '#' },
-        { children: 'Link Ten', href: '#' },
+        { children: "Link Six", href: "#" },
+        { children: "Link Seven", href: "#" },
+        { children: "Link Eight", href: "#" },
+        { children: "Link Nine", href: "#" },
+        { children: "Link Ten", href: "#" },
       ],
     },
   ],
   logo: {
-    src: '/app/static/placeholders/icons/doc-tahedroid.png',
-    alt: 'Company Logo',
+    src: "/app/static/placeholders/icons/doc-tahedroid.png",
+    alt: "Company Logo",
   },
-  copyrightText: '© 2023 Drupal Decoupled. All rights reserved.',
-} satisfies FooterProps
+  copyrightText: "© 2023 Drupal Decoupled. All rights reserved.",
+} satisfies FooterProps;

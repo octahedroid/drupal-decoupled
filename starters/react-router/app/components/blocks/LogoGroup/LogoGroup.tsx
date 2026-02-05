@@ -1,28 +1,28 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
 import {
   Image,
   type ImageProps,
   Link,
   type LinkProps,
-} from '~/components/primitives'
-import { cn } from '~/lib/utils'
+} from "~/components/primitives";
+import { cn } from "~/lib/utils";
 
-const logoGroupVariants = cva('w-full py-8 md:py-12 text-center', {
+const logoGroupVariants = cva("w-full py-8 md:py-12 text-center", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 type LogoProps = {
-  image: ImageProps
-  link: LinkProps
-}
+  image: ImageProps;
+  link: LinkProps;
+};
 
 export interface LogoGroupProps
-  extends ComponentPropsWithoutRef<'div'>,
+  extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof logoGroupVariants> {
-  heading: string
-  logos: LogoProps[]
+  heading: string;
+  logos: LogoProps[];
 }
 
 export const LogoGroup = ({
@@ -43,39 +43,39 @@ export const LogoGroup = ({
               <Image
                 {...image}
                 alt={image.alt || `Logo ${index + 1}`}
-                className={cn('h-8 w-auto object-contain', image.className)}
+                className={cn("h-8 w-auto object-contain", image.className)}
               />
             </Link>
           ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 LogoGroup.defaults = {
-  heading: 'Logo Group',
+  heading: "Logo Group",
   logos: [
     {
       image: {
-        src: '/app/static/placeholders/icons/doc-tahedroid.png',
-        alt: 'Octahedroid',
+        src: "/app/static/placeholders/icons/doc-tahedroid.png",
+        alt: "Octahedroid",
       },
-      link: { href: 'https://octahedroid.com', internal: false },
+      link: { href: "https://octahedroid.com", internal: false },
     },
     {
       image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled.png',
-        alt: 'Composabase',
+        src: "/app/static/placeholders/icons/drupal-decoupled.png",
+        alt: "Composabase",
       },
-      link: { href: 'https://composabase.com', internal: false },
+      link: { href: "https://composabase.com", internal: false },
     },
     {
       image: {
-        src: '/app/static/placeholders/icons/doc-tahedroid.png',
-        alt: 'Octahedroid',
+        src: "/app/static/placeholders/icons/doc-tahedroid.png",
+        alt: "Octahedroid",
       },
-      link: { href: 'https://octahedroid.com', internal: false },
+      link: { href: "https://octahedroid.com", internal: false },
     },
   ],
-} satisfies LogoGroupProps
+} satisfies LogoGroupProps;

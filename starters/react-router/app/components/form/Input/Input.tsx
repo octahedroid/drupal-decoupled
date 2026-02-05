@@ -1,6 +1,6 @@
-import { type FieldMetadata, getInputProps } from '@conform-to/react'
-import type { ComponentProps } from 'react'
-import { Input as InputShadcn } from '~/components/ui/input'
+import { type FieldMetadata, getInputProps } from "@conform-to/react";
+import type { ComponentProps } from "react";
+import { Input as InputShadcn } from "~/components/ui/input";
 
 export const Input = ({
   meta,
@@ -9,8 +9,8 @@ export const Input = ({
   key,
   ...props
 }: {
-  meta: FieldMetadata<string>
-  type: Parameters<typeof getInputProps>[1]['type']
+  meta: FieldMetadata<string>;
+  type: Parameters<typeof getInputProps>[1]["type"];
 } & ComponentProps<typeof InputShadcn>) => {
   return (
     <InputShadcn
@@ -19,5 +19,5 @@ export const Input = ({
       id={id}
       key={key}
     />
-  )
-}
+  );
+};

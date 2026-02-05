@@ -1,11 +1,11 @@
-import { FragmentOf, readFragment } from 'gql.tada'
-import { ContactForm } from '@/integration/forms/ContactForm/ContactForm'
+import { FragmentOf, readFragment } from "gql.tada";
+import { ContactForm } from "@/integration/forms/ContactForm/ContactForm";
 
-import { WebformFragment } from '@/graphql/fragments/webform'
-import { graphql } from '@/graphql/gql.tada'
+import { WebformFragment } from "@/graphql/fragments/webform";
+import { graphql } from "@/graphql/gql.tada";
 
 interface ParagraphWebformProps {
-  paragraph: FragmentOf<typeof ParagraphWebformFragment>
+  paragraph: FragmentOf<typeof ParagraphWebformFragment>;
 }
 
 export const ParagraphWebformFragment = graphql(
@@ -23,26 +23,26 @@ export const ParagraphWebformFragment = graphql(
       }
     }
   `,
-  [WebformFragment]
-)
+  [WebformFragment],
+);
 
-type FormComponents = React.FC<{ id: string }>
+type FormComponents = React.FC<{ id: string }>;
 
 const WebformComponentResolver: Record<string, FormComponents> = {
   contact_form: ContactForm,
-}
+};
 
 export const ParagraphWebformResolver = ({
   paragraph,
 }: ParagraphWebformProps) => {
   const { heading, subheadingOptional, descriptionOptional, form } =
-    readFragment(ParagraphWebformFragment, paragraph)
+    readFragment(ParagraphWebformFragment, paragraph);
 
   if (!form || !form.id) {
-    return null
+    return null;
   }
 
-  const Webform = WebformComponentResolver[form.id]
+  const Webform = WebformComponentResolver[form.id];
   return (
     <div className="container mx-auto py-8 md:py-16 lg:py-24">
       <div>
@@ -63,5 +63,5 @@ export const ParagraphWebformResolver = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

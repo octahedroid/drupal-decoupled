@@ -1,7 +1,7 @@
-import { graphql } from '~/graphql/gql.tada'
-import { getClient } from '~/utils/client.server'
-import type { ContactFormSchema } from './schema'
-import { composable } from 'composable-functions'
+import { graphql } from "~/graphql/gql.tada";
+import { getClient } from "~/utils/client.server";
+import type { ContactFormSchema } from "./schema";
+import { composable } from "composable-functions";
 
 const contactMutation = graphql(`
   mutation SubmitContactForm($input: [KeyValueInput]) {
@@ -12,11 +12,9 @@ const contactMutation = graphql(`
       }
     }
   }
-`)
+`);
 
-async function submitContactForm(
-  input: ContactFormSchema,
-) {
+async function submitContactForm(input: ContactFormSchema) {
   const client = await getClient({
     url: process.env.DRUPAL_GRAPHQL_URI as string,
     auth: {
@@ -24,21 +22,19 @@ async function submitContactForm(
       clientId: process.env.DRUPAL_CLIENT_ID as string,
       clientSecret: process.env.DRUPAL_CLIENT_SECRET as string,
     },
-  })
+  });
 
   const inputArray = Object.entries(input).map(([key, value]) => ({
     key,
     value,
-  }))
-  const result = await client.mutation(contactMutation, { input: inputArray })
+  }));
+  const result = await client.mutation(contactMutation, { input: inputArray });
 
   if (!result.data?.submitWebform?.confirmation) {
-    throw new Error('Error submitting contact form')
+    throw new Error("Error submitting contact form");
   }
 
-
-  return result.data.submitWebform.confirmation
-
+  return result.data.submitWebform.confirmation;
 }
 
-export const submitContactFormFunction = composable(submitContactForm)
+export const submitContactFormFunction = composable(submitContactForm);

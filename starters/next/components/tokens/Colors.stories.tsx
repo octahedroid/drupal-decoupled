@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import colors from 'tailwindcss/colors'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import colors from "tailwindcss/colors";
 
-type ColorShades = Record<string, string>
+type ColorShades = Record<string, string>;
 
 function ColorSwatch({ name, shades }: { name: string; shades: ColorShades }) {
   return (
@@ -20,13 +20,13 @@ function ColorSwatch({ name, shades }: { name: string; shades: ColorShades }) {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 function ColorPalette() {
   const colorEntries = Object.entries(colors).filter(
-    ([, value]) => typeof value !== 'string'
-  ) as [string, ColorShades][]
+    ([, value]) => typeof value !== "string",
+  ) as [string, ColorShades][];
 
   return (
     <div className="p-6">
@@ -38,16 +38,16 @@ function ColorPalette() {
         <ColorSwatch key={name} name={name} shades={shades} />
       ))}
     </div>
-  )
+  );
 }
 
 const meta: Meta = {
-  title: 'Tokens/Colors',
+  title: "Tokens/Colors",
   component: ColorPalette,
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {}
+export const Default: Story = {};
