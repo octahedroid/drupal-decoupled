@@ -8,7 +8,12 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
     "typecheck": "turbo run typecheck",
     "release": "pnpm build && pnpm changeset publish",
     "copy:components": "tsx scripts/copy-components.ts",
@@ -21,10 +26,11 @@
   },
   "packageManager": "pnpm@10.28.2",
   "devDependencies": {
+    "@biomejs/biome": "2.3.14",
     "@changesets/cli": "^2",
     "@types/node": "^22",
-    "turbo": "^2",
     "tsx": "^4",
+    "turbo": "^2",
     "typescript": "^5"
   }
 }

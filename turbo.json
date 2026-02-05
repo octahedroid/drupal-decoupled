@@ -11,17 +11,6 @@
       "cache": false,
       "persistent": true
     },
-    "lint": {
-      "outputs": [],
-      "cache": true
-    },
-    "format": {
-      "outputs": [],
-      "cache": true
-    },
-    "format:fix": {
-      "cache": false
-    },
     "typecheck": {
       "dependsOn": ["^build"],
       "outputs": [],
