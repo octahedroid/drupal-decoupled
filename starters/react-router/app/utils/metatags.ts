@@ -1,4 +1,4 @@
-import { type MetaTag } from "drupal-decoupled/remix";
+import type { MetaTag } from "drupal-decoupled/remix";
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
 import {

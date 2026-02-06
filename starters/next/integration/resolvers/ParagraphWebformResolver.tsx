@@ -1,4 +1,4 @@
-import { FragmentOf, readFragment } from "gql.tada";
+import { type FragmentOf, readFragment } from "gql.tada";
 import { WebformFragment } from "@/graphql/fragments/webform";
 import { graphql } from "@/graphql/gql.tada";
 import { ContactForm } from "@/integration/forms/ContactForm/ContactForm";

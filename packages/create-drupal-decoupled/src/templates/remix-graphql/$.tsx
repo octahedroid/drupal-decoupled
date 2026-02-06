@@ -1,7 +1,7 @@
-import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { type LoaderFunctionArgs, redirect } from "@remix-run/node";
 import {
   isRouteErrorResponse,
-  MetaFunction,
+  type MetaFunction,
   useLoaderData,
   useRouteError,
 } from "@remix-run/react";

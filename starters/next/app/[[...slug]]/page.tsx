@@ -1,4 +1,4 @@
-import { FragmentOf, readFragment } from "gql.tada";
+import { type FragmentOf, readFragment } from "gql.tada";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Footer, Header } from "@/components/blocks";
@@ -9,7 +9,7 @@ import {
 } from "@/graphql/fragments/node";
 import { TermTagsFragment } from "@/graphql/fragments/terms";
 import { graphql } from "@/graphql/gql.tada";
-import { EntityFragmentType } from "@/graphql/types";
+import type { EntityFragmentType } from "@/graphql/types";
 import NodeArticleComponent from "@/integration/node/NodeArticle";
 import NodePageComponent from "@/integration/node/NodePage";
 import TermTagsComponent from "@/integration/taxonomy/TermTags";

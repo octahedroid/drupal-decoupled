@@ -1,6 +1,6 @@
 import { composable } from "composable-functions";
 import { graphql } from "@/graphql/gql.tada";
-import { ContactFormSchema } from "@/integration/forms/ContactForm/schema";
+import type { ContactFormSchema } from "@/integration/forms/ContactForm/schema";
 import { getClient } from "@/utils/client";
 
 const contactMutation = graphql(`

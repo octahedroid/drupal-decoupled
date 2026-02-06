@@ -1,4 +1,4 @@
-import { type FieldMetadata } from "@conform-to/react";
+import type { FieldMetadata } from "@conform-to/react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "./Textarea";

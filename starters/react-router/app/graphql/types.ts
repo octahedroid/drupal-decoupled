@@ -1,9 +1,9 @@
 import type { FragmentOf } from "gql.tada";
-import {
+import type {
   NodeArticleFragment,
   NodePageFragment,
 } from "~/graphql/fragments/node";
-import { TermTagsFragment } from "~/graphql/fragments/terms";
+import type { TermTagsFragment } from "~/graphql/fragments/terms";
 
 export type EntityFragmentType =
   | FragmentOf<typeof NodePageFragment>

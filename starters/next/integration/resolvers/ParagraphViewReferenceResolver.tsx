@@ -1,4 +1,4 @@
-import { FragmentOf, readFragment } from "gql.tada";
+import { type FragmentOf, readFragment } from "gql.tada";
 import { CardGroup, Hero } from "@/components/blocks";
 import { LinkFragment } from "@/graphql/fragments/misc";
 import { NodeArticleTeaserFragment } from "@/graphql/fragments/node";

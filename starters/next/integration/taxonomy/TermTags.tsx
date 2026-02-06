@@ -1,4 +1,4 @@
-import { FragmentOf, readFragment } from "gql.tada";
+import { type FragmentOf, readFragment } from "gql.tada";
 import { TermTagsFragment } from "@/graphql/fragments/terms";
 
 type TermTagsComponentProps = {

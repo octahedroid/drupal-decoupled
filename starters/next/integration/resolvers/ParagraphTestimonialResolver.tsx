@@ -1,4 +1,4 @@
-import { FragmentOf, readFragment } from "gql.tada";
+import { type FragmentOf, readFragment } from "gql.tada";
 import { Testimonial } from "@/components/blocks";
 import { MediaImageFragment } from "@/graphql/fragments/media";
 import { graphql } from "@/graphql/gql.tada";

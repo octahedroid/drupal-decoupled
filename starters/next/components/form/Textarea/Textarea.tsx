@@ -1,5 +1,5 @@
 import { type FieldMetadata, getTextareaProps } from "@conform-to/react";
-import { type ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { Textarea as TextareaShadcn } from "@/components/ui/textarea";
 
 export const Textarea = ({
