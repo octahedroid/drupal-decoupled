@@ -118,7 +118,7 @@ export const metaTags = ({
 
     if (tag.__typename === "MetaTagLink") {
       const { rel, href } = tag.attributes;
-      const willOverrideTag = overrideTag?.[rel!];
+      const willOverrideTag = overrideTag?.[rel ?? ""];
       if (!willOverrideTag) {
         return {
           tagName: "link",
@@ -137,7 +137,7 @@ export const metaTags = ({
     }
     if (tag.__typename === "MetaTagProperty") {
       const { property, content } = tag.attributes;
-      const willOverrideTag = overrideTag?.[property!];
+      const willOverrideTag = overrideTag?.[property ?? ""];
       if (!willOverrideTag) {
         return {
           property: tag.attributes.property,
@@ -154,12 +154,12 @@ export const metaTags = ({
     }
     if (tag.__typename === "MetaTagValue") {
       const { name, content } = tag.attributes;
-      const willOverrideTag = overrideTag?.[name!];
+      const willOverrideTag = overrideTag?.[name ?? ""];
 
       if (!willOverrideTag) {
         return {
-          name: tag.attributes.name!,
-          content: tag.attributes.content!,
+          name: tag.attributes.name ?? "",
+          content: tag.attributes.content ?? "",
         };
       }
 
@@ -170,6 +170,8 @@ export const metaTags = ({
         content: contentOverride,
       };
     }
+
+    return {};
   });
 
   return [
