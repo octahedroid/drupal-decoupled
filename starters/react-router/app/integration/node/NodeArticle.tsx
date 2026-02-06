@@ -31,14 +31,12 @@ export default function NodeArticleComponent({
   }
 
   return (
-    <>
-      <Article
-        title={title}
-        content={body.processed.toString()}
-        author={resolveUser(author)}
-        image={resolveMediaImage(image)}
-        publishDate={Number(changed.timestamp)}
-      />
-    </>
+    <Article
+      title={title}
+      content={body.processed.toString()}
+      author={resolveUser(author)}
+      image={resolveMediaImage(image)}
+      publishDate={Number(changed.timestamp)}
+    />
   );
 }

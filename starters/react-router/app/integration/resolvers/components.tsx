@@ -52,7 +52,7 @@ interface ResolverProps {
 
 export const resolveComponents = ({
   components,
-}: ResolverProps): JSX.Element[] => {
+}: ResolverProps): (JSX.Element | null)[] => {
   const paragraphUnionFragment = readFragment(
     ParagraphUnionFragment,
     components,
@@ -62,9 +62,12 @@ export const resolveComponents = ({
     return [];
   }
 
-  return paragraphUnionFragment.map((paragraph, index) => {
-    // @ts-expect-error - __typename defined on paragraph
-    const type = paragraph.__typename as string;
+  return paragraphUnionFragment.map((paragraph) => {
+    // @ts-expect-error - __typename and id defined on ParagraphInterface
+    const { __typename: type, id } = paragraph as {
+      __typename: string;
+      id: string;
+    };
     const skipComponents = [
       "ParagraphSimpleCard",
       "ParagraphLogo",
@@ -73,13 +76,13 @@ export const resolveComponents = ({
     ];
 
     if (!type || skipComponents.includes(type)) {
-      return <></>;
+      return null;
     }
 
     if (type === "ParagraphHero") {
       return (
         <ParagraphHeroResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphHeroFragment>}
         />
       );
@@ -88,7 +91,7 @@ export const resolveComponents = ({
     if (type === "ParagraphLogoGroup") {
       return (
         <ParagraphLogoGroupResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphLogoGroupFragment>}
         />
       );
@@ -97,7 +100,7 @@ export const resolveComponents = ({
     if (type === "ParagraphCardGroup") {
       return (
         <ParagraphCardGroupResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphCardGroupFragment>}
         />
       );
@@ -106,7 +109,7 @@ export const resolveComponents = ({
     if (type === "ParagraphCta") {
       return (
         <ParagraphCtaResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphCtaFragment>}
         />
       );
@@ -115,7 +118,7 @@ export const resolveComponents = ({
     if (type === "ParagraphTestimonial") {
       return (
         <ParagraphTestimonialResolver
-          key={index}
+          key={id}
           paragraph={
             paragraph as FragmentOf<typeof ParagraphTestimonialFragment>
           }
@@ -126,7 +129,7 @@ export const resolveComponents = ({
     if (type === "ParagraphFaq") {
       return (
         <ParagraphFaqResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphFaqFragment>}
         />
       );
@@ -135,7 +138,7 @@ export const resolveComponents = ({
     if (type === "ParagraphWebform") {
       return (
         <ParagraphWebformResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphWebformFragment>}
         />
       );
@@ -144,7 +147,7 @@ export const resolveComponents = ({
     if (type === "ParagraphViewReference") {
       return (
         <ParagraphViewReferenceResolver
-          key={index}
+          key={id}
           paragraph={
             paragraph as FragmentOf<typeof ParagraphViewReferenceFragment>
           }
@@ -155,7 +158,7 @@ export const resolveComponents = ({
     return (
       <div
         className="container flex flex-row items-center justify-center p-4"
-        key={index}
+        key={id}
       >
         {`No Resolver found for component '${type}'.`}
       </div>

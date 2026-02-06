@@ -40,5 +40,5 @@ export default function NavigationEvents() {
     return () => controller.abort();
   });
 
-  return <></>;
+  return null;
 }
