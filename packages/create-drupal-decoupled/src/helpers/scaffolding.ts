@@ -160,7 +160,7 @@ export function isValidFramework(
   const devDependencies = packageJson.devDependencies || {};
 
   if (frontend === "next") {
-    return Boolean(dependencies["next"]);
+    return Boolean(dependencies.next);
   }
 
   if (frontend === "remix") {
