@@ -1,7 +1,7 @@
+import { existsSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 import process from "node:process";
 import esbuild from "esbuild";
-import { existsSync, mkdirSync } from "fs";
-import { join } from "path";
 
 const dist = join(process.cwd(), "dist");
 

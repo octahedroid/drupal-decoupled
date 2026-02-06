@@ -1,6 +1,6 @@
 import esbuild from "esbuild";
-import { existsSync, mkdirSync, readdirSync, statSync } from "fs";
-import { join } from "path";
+import { existsSync, mkdirSync, readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
 
 const dist = join(process.cwd(), "dist");
 
