@@ -1,13 +1,13 @@
 {
   "name": "drupal-decoupled",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Drupal utils for Decoupled integrations",
   "type": "module",
   "keywords": [
     "graphql",
     "drupal",
     "decoupled",
-    "remix",
+    "react-router",
     "next.js"
   ],
   "main": "dist/index.js",
@@ -28,9 +28,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./remix": {
-      "types": "./dist/remix/index.d.ts",
-      "import": "./dist/remix/index.js"
+    "./react-router": {
+      "types": "./dist/react-router/index.d.ts",
+      "import": "./dist/react-router/index.js"
     }
   },
   "license": "MIT",

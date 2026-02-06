@@ -1,4 +1,4 @@
-// Keep in sync with the types in Remix MetaTags
+// Keep in sync with the types in React Router MetaTags
 type MetaDescriptor =
   | {
       charSet: "utf-8";

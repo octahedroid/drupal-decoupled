@@ -1,4 +1,4 @@
-import { metaTags } from "drupal-decoupled/remix";
+import { metaTags } from "drupal-decoupled/react-router";
 import { isRouteErrorResponse, redirect, useRouteError } from "react-router";
 import { gql } from "urql";
 import { getClient } from "~/utils/client.server";
