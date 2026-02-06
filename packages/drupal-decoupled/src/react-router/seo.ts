@@ -1,3 +1,13 @@
+import type {
+  MetaTag,
+  MetaTagOverrides,
+  MetaTagUnion,
+  MetaTagValue,
+} from "../shared/metatag-types";
+import { applyOverrides } from "../shared/metatag-types";
+
+export type { MetaTag };
+
 // Keep in sync with the types in React Router MetaTags
 type MetaDescriptor =
   | {
@@ -26,78 +36,10 @@ type MetaDescriptor =
       [name: string]: unknown;
     };
 
-type MetaTagUnion = (MetaTagLink | MetaTagValue | MetaTagProperty) & {
-  __isUnion?: true;
-};
-
-interface MetaTagLink {
-  attributes: MetaTagLinkAttributes;
-  __typename: "MetaTagLink";
-}
-
-export type MetaTag = MetaTagLink | MetaTagValue | MetaTagProperty;
-
-interface MetaTagLinkAttributes {
-  rel?: string | null;
-  href?: string | null;
-}
-
-interface MetaTagValue {
-  attributes: MetaTagValueAttributes;
-  __typename: "MetaTagValue";
-}
-
-interface MetaTagValueAttributes {
-  name?: string | null;
-  content?: string | null;
-}
-
-interface MetaTagProperty {
-  attributes: MetaTagPropertyAttributes;
-  __typename: "MetaTagProperty";
-}
-
-interface MetaTagPropertyAttributes {
-  property?: string | null;
-  content?: string | null;
-}
-
-type OverrideOptionsReplace = {
-  kind: string;
-  pattern: string;
-  replacement: string;
-}[];
-
-type OverrideOptions = string | OverrideOptionsReplace;
-
-type MetaTagOverrides = {
-  [key in MetaTagUnion["__typename"]]?: {
-    [key: string]: OverrideOptions;
-  };
-};
-
 const DEFAULT_TAGS = [
   { charSet: "utf-8" },
   { name: "viewport", content: "width=device-width,initial-scale=1" },
 ];
-
-const applyOverrides = (
-  overrides: OverrideOptions,
-  initial: string | null | undefined,
-) => {
-  if (typeof overrides === "string") {
-    return overrides;
-  }
-
-  if (!Array.isArray(overrides)) {
-    overrides = [overrides];
-  }
-
-  return overrides.reduce(
-    (acc, { pattern, replacement }) => acc?.replace(pattern, replacement),
-    initial,
-  );
-};
 
 export const metaTags = ({
   tags,

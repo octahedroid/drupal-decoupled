@@ -31,6 +31,10 @@
     "./react-router": {
       "types": "./dist/react-router/index.d.ts",
       "import": "./dist/react-router/index.js"
+    },
+    "./next": {
+      "types": "./dist/next/index.d.ts",
+      "import": "./dist/next/index.js"
     }
   },
   "license": "MIT",
