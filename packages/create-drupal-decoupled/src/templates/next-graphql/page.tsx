@@ -1,122 +1,149 @@
+import { metaTags } from "drupal-decoupled/next";
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 import { gql } from "urql";
 import { calculatePath } from "@/utils/calculate-path";
 import { getClient } from "@/utils/client";
 
-async function getDrupalData({
-  params,
-  searchParams,
-}: {
-  params: { slug: string[] };
-  searchParams: Record<string, string>;
-}) {
-  const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
+type MetaTag = {
+  __typename: "MetaTagLink" | "MetaTagValue" | "MetaTagProperty";
+  attributes: Record<string, string | null | undefined>;
+};
 
-  const pathFromParams = params.slug?.join("/");
+const getDrupalData = cache(
+  async ({
+    params,
+    searchParams,
+  }: {
+    params: { slug: string[] };
+    searchParams: Record<string, string>;
+  }) => {
+    const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 
-  const drupalClient = await getClient({
-    auth: {
-      uri: process.env.DRUPAL_AUTH_URI!,
-      clientId: process.env.DRUPAL_CLIENT_ID!,
-      clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
-    },
-    url: process.env.DRUPAL_GRAPHQL_URI!,
-  });
-  const { data, error } = await drupalClient.query(
-    gql`
-      query getNodeArticleByPath($path: String!) {
-        route(path: $path) {
-          ... on RouteInternal {
-            entity {
-              ... on NodeArticle {
-                __typename
-                title
-                path
-                image {
-                  url
-                  alt
-                }
-                body {
-                  value
-                }
-                metatag {
+    const pathFromParams = params.slug?.join("/");
+
+    const drupalClient = await getClient({
+      auth: {
+        uri: process.env.DRUPAL_AUTH_URI!,
+        clientId: process.env.DRUPAL_CLIENT_ID!,
+        clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
+      },
+      url: process.env.DRUPAL_GRAPHQL_URI!,
+    });
+    const { data, error } = await drupalClient.query(
+      gql`
+        query getNodeArticleByPath($path: String!) {
+          route(path: $path) {
+            ... on RouteInternal {
+              entity {
+                ... on NodeArticle {
                   __typename
-                  ... on MetaTagLink {
-                    attributes {
-                      rel
-                      href
-                    }
+                  title
+                  path
+                  image {
+                    url
+                    alt
                   }
-                  ... on MetaTagValue {
-                    attributes {
-                      name
-                      content
-                    }
+                  body {
+                    value
                   }
-                  ... on MetaTagProperty {
-                    attributes {
-                      property
-                      content
+                  metatag {
+                    __typename
+                    ... on MetaTagLink {
+                      attributes {
+                        rel
+                        href
+                      }
+                    }
+                    ... on MetaTagValue {
+                      attributes {
+                        name
+                        content
+                      }
+                    }
+                    ... on MetaTagProperty {
+                      attributes {
+                        property
+                        content
+                      }
                     }
                   }
                 }
-              }
-              ... on NodePage {
-                __typename
-                title
-                path
-                body {
-                  value
-                }
-                metatag {
+                ... on NodePage {
                   __typename
-                  ... on MetaTagLink {
-                    attributes {
-                      rel
-                      href
-                    }
+                  title
+                  path
+                  body {
+                    value
                   }
-                  ... on MetaTagValue {
-                    attributes {
-                      name
-                      content
+                  metatag {
+                    __typename
+                    ... on MetaTagLink {
+                      attributes {
+                        rel
+                        href
+                      }
                     }
-                  }
-                  ... on MetaTagProperty {
-                    attributes {
-                      property
-                      content
+                    ... on MetaTagValue {
+                      attributes {
+                        name
+                        content
+                      }
+                    }
+                    ... on MetaTagProperty {
+                      attributes {
+                        property
+                        content
+                      }
                     }
                   }
                 }
               }
             }
-          }
-          ... on RouteRedirect {
-            __typename
-            url
-            status
+            ... on RouteRedirect {
+              __typename
+              url
+              status
+            }
           }
         }
-      }
-    `,
-    {
-      path: calculatePath({
-        path: pathFromParams,
-        token: searchParams?.token,
-      }),
-    },
-  );
+      `,
+      {
+        path: calculatePath({
+          path: pathFromParams,
+          token: searchParams?.token,
+        }),
+      },
+    );
 
-  if (error) {
-    throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 });
-  }
+    if (error) {
+      throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 });
+    }
 
-  if (data.route.__typename === "RouteRedirect") {
-    return redirect(data.route.url);
-  }
+    if (data.route.__typename === "RouteRedirect") {
+      return redirect(data.route.url);
+    }
 
-  return { node: data.route.entity };
+    return { node: data.route.entity };
+  },
+);
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: { slug: string[] };
+  searchParams: Promise<Record<string, string>>;
+}): Promise<Metadata> {
+  const { node } = await getDrupalData({
+    params,
+    searchParams: await searchParams,
+  });
+
+  return metaTags({
+    tags: (node.metatag ?? []) as MetaTag[],
+  });
 }
 
 export default async function Page({

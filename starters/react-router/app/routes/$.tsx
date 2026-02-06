@@ -1,4 +1,4 @@
-import { metaTags } from "drupal-decoupled/remix";
+import { metaTags } from "drupal-decoupled/react-router";
 import { type FragmentOf, readFragment } from "gql.tada";
 import { redirect } from "react-router";
 import { Footer, Header } from "~/components/blocks";
