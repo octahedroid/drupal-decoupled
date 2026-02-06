@@ -48,7 +48,7 @@ export const CTA = ({
               internal={internal}
               variant={index === 1 ? "outline" : "default"}
               {...actionProps}
-              key={index}
+              key={actionProps.text}
             />
           ))}
         </div>

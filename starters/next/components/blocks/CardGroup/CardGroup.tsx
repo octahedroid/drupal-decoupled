@@ -57,11 +57,11 @@ export const CardGroup = ({
           )}
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {cards.map((card, index) => {
+          {cards.map((card) => {
             return card && card.type === "simple" ? (
-              <SimpleCard key={index} {...(card as SimpleCardProps)} />
+              <SimpleCard key={card.heading} {...(card as SimpleCardProps)} />
             ) : (
-              <TeaserCard key={index} {...(card as TeaserCardProps)} />
+              <TeaserCard key={card.heading} {...(card as TeaserCardProps)} />
             );
           })}
         </div>

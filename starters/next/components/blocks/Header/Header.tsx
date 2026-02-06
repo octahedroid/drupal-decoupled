@@ -41,6 +41,7 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
       {item.children ? (
         <div>
           <button
+            type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="text-foreground hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-4 py-2 text-sm font-medium"
           >
@@ -53,8 +54,8 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
           </button>
           {isOpen && (
             <ul className="border-border ml-4 border-l">
-              {item.children.map((child, index) => (
-                <MobileNavItem key={index} item={child} />
+              {item.children.map((child) => (
+                <MobileNavItem key={child.label} item={child} />
               ))}
             </ul>
           )}
@@ -95,8 +96,8 @@ export const Header = ({
           <NavigationMenu navItems={navItems} />
           {actions && actions.length > 0 && (
             <div className="flex items-center space-x-4">
-              {actions.map(({ ...actionProps }, index) => (
-                <Button key={index} {...actionProps} />
+              {actions.map(({ ...actionProps }) => (
+                <Button key={actionProps.text} {...actionProps} />
               ))}
             </div>
           )}
@@ -123,15 +124,19 @@ export const Header = ({
         <div className="md:hidden">
           <nav className="flex w-full flex-col">
             <ul className="flex w-full flex-col">
-              {navItems?.map((item, index) => (
-                <MobileNavItem key={index} item={item} />
+              {navItems?.map((item) => (
+                <MobileNavItem key={item.label} item={item} />
               ))}
             </ul>
           </nav>
           {actions && actions.length > 0 && (
             <div className="flex flex-col space-y-2 p-4">
-              {actions.map(({ ...actionProps }, index) => (
-                <Button key={index} className="w-full" {...actionProps} />
+              {actions.map(({ ...actionProps }) => (
+                <Button
+                  key={actionProps.text}
+                  className="w-full"
+                  {...actionProps}
+                />
               ))}
             </div>
           )}

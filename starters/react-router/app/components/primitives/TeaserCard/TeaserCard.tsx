@@ -50,8 +50,8 @@ export const TeaserCard = ({
       <div className="flex grow flex-col space-y-2 p-4">
         {tags && tags.length > 0 && (
           <div className="flex gap-2">
-            {tags.slice(0, 2).map((tag, index) => (
-              <Badge key={index} variant="secondary" text={tag}></Badge>
+            {tags.slice(0, 2).map((tag) => (
+              <Badge key={tag} variant="secondary" text={tag}></Badge>
             ))}
           </div>
         )}

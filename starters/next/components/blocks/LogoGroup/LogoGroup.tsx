@@ -38,11 +38,11 @@ export const LogoGroup = ({
           {heading}
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-          {logos.map(({ link, image }, index) => (
-            <Link key={`logo-${index}`} {...link}>
+          {logos.map(({ link, image }) => (
+            <Link key={link.href} {...link}>
               <Image
                 {...image}
-                alt={image.alt || `Logo ${index + 1}`}
+                alt={image.alt || "Logo"}
                 className={cn("h-8 w-auto object-contain", image.className)}
               />
             </Link>

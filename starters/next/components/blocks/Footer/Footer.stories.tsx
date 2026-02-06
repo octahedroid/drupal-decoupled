@@ -91,7 +91,7 @@ export const Default: Story = {};
 
 export const FewerColumns: Story = {
   args: {
-    columns: meta.args!.columns!.slice(0, 3),
+    columns: meta.args?.columns?.slice(0, 3),
   },
 };
 

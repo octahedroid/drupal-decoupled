@@ -57,6 +57,6 @@ export const WithoutDescription: Story = {
 
 export const FewerQuestions: Story = {
   args: {
-    questions: meta.args!.questions!.slice(0, 3),
+    questions: meta.args?.questions?.slice(0, 3),
   },
 };

@@ -26,9 +26,9 @@ const FooterColumn = ({ title, links }: FooterColumn) => (
     <h5 className="h5">{title}</h5>
     <ul className="space-y-2">
       {links.map(
-        (link, index) =>
+        (link) =>
           link && (
-            <li key={index}>
+            <li key={`${link.children}-${link.href}`}>
               <Link {...link}>{link.children}</Link>
             </li>
           ),
@@ -48,8 +48,8 @@ export const Footer = ({
     <footer className={cn(footerVariants(), className)} {...props}>
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
-          {columns.map((column, index) => (
-            <FooterColumn key={index} {...column} />
+          {columns.map((column) => (
+            <FooterColumn key={column.title} {...column} />
           ))}
         </div>
         <div className="border-border mt-12 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
