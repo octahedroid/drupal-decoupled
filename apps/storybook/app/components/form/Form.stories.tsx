@@ -22,7 +22,7 @@ const DemoForm = () => {
       return parseWithZod(formData, { schema: contactFormSchema });
     },
     shouldValidate: "onBlur",
-    onSubmit(event, { submission }) {
+    onSubmit(_event, { submission }) {
       if (submission?.status === "success") {
         setFormValues(submission.value);
         setSubmitted(true);
