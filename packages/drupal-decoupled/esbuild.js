@@ -1,5 +1,5 @@
 import esbuild from "esbuild";
-import { readdirSync, statSync, existsSync, mkdirSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 
 const dist = join(process.cwd(), "dist");

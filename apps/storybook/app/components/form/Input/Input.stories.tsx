@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Input } from "./Input";
-import { Label } from "~/components/ui/label";
 import type { FieldMetadata } from "@conform-to/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Label } from "~/components/ui/label";
+import { Input } from "./Input";
 
 // Create a mock field metadata that conforms to the expected shape
 const createMockFieldMeta = (

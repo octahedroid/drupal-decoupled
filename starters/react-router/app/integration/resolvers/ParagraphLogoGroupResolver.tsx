@@ -1,14 +1,14 @@
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
-
-import { graphql } from "~/graphql/gql.tada";
+import { LogoGroup } from "~/components/blocks";
 import { MediaImageFragment } from "~/graphql/fragments/media";
 import { LinkFragment } from "~/graphql/fragments/misc";
-import { LogoGroup } from "~/components/blocks";
+import { graphql } from "~/graphql/gql.tada";
 import {
   resolveLink,
   resolveMediaImage,
 } from "~/integration/resolvers/helpers";
+
 interface ParagraphLogoGroupProps {
   paragraph: FragmentOf<typeof ParagraphLogoGroupFragment>;
 }

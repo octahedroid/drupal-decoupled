@@ -1,7 +1,7 @@
+import { composable } from "composable-functions";
 import { graphql } from "~/graphql/gql.tada";
 import { getClient } from "~/utils/client.server";
 import type { ContactFormSchema } from "./schema";
-import { composable } from "composable-functions";
 
 const contactMutation = graphql(`
   mutation SubmitContactForm($input: [KeyValueInput]) {

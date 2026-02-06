@@ -1,7 +1,7 @@
-import type { ActionFunctionArgs } from "react-router";
 import { parseWithZod } from "@conform-to/zod/v4";
-import { contactFormSchema } from "~/integration/forms/ContactForm/schema";
+import type { ActionFunctionArgs } from "react-router";
 import { submitContactFormFunction } from "~/integration/forms/ContactForm/function.server";
+import { contactFormSchema } from "~/integration/forms/ContactForm/schema";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

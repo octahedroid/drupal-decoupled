@@ -1,11 +1,10 @@
+import { metaTags } from "drupal-decoupled/remix";
+import { isRouteErrorResponse, redirect, useRouteError } from "react-router";
 import { gql } from "urql";
-
 import { getClient } from "~/utils/client.server";
+import { calculateMetaTags } from "~/utils/metatags";
 import { calculatePath } from "~/utils/routes";
 import type { Route } from "./+types/$";
-import { isRouteErrorResponse, redirect, useRouteError } from "react-router";
-import { metaTags } from "drupal-decoupled/remix";
-import { calculateMetaTags } from "~/utils/metatags";
 
 const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 

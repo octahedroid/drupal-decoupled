@@ -1,15 +1,14 @@
+import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 import {
   isRouteErrorResponse,
-  useRouteError,
-  useLoaderData,
   MetaFunction,
+  useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
-import { LoaderFunctionArgs, redirect } from "@remix-run/node";
-import { gql } from "urql";
 import { metaTags } from "drupal-remix";
-
-import { getClient } from "~/utils/client.server";
+import { gql } from "urql";
 import { calculatePath } from "~/utils/calculate-path.server";
+import { getClient } from "~/utils/client.server";
 
 const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 

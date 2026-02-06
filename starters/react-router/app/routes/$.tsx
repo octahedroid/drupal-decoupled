@@ -1,22 +1,22 @@
-import type { Route } from "./+types/$";
-import { type FragmentOf, readFragment } from "gql.tada";
 import { metaTags } from "drupal-decoupled/remix";
+import { type FragmentOf, readFragment } from "gql.tada";
+import { redirect } from "react-router";
+import { Footer, Header } from "~/components/blocks";
+import { MenuFragment, MenuItemFragment } from "~/graphql/fragments/menu";
+import {
+  NodeArticleFragment,
+  NodePageFragment,
+} from "~/graphql/fragments/node";
+import { TermTagsFragment } from "~/graphql/fragments/terms";
 import { graphql } from "~/graphql/gql.tada";
 import type { EntityFragmentType } from "~/graphql/types";
 import NodeArticleComponent from "~/integration/node/NodeArticle";
 import NodePageComponent from "~/integration/node/NodePage";
 import TermTagsComponent from "~/integration/taxonomy/TermTags";
 import { getClient } from "~/utils/client.server";
-import { calculatePath } from "~/utils/routes";
 import { calculateMetaTags } from "~/utils/metatags";
-import { Header, Footer } from "~/components/blocks";
-import {
-  NodeArticleFragment,
-  NodePageFragment,
-} from "~/graphql/fragments/node";
-import { TermTagsFragment } from "~/graphql/fragments/terms";
-import { MenuFragment, MenuItemFragment } from "~/graphql/fragments/menu";
-import { redirect } from "react-router";
+import { calculatePath } from "~/utils/routes";
+import type { Route } from "./+types/$";
 
 export function meta({ data }: Route.MetaArgs) {
   if (!data) {

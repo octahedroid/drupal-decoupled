@@ -1,9 +1,8 @@
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
-
-import { graphql } from "~/graphql/gql.tada";
-import { LinkFragment } from "~/graphql/fragments/misc";
 import { CTA } from "~/components/blocks";
+import { LinkFragment } from "~/graphql/fragments/misc";
+import { graphql } from "~/graphql/gql.tada";
 import { resolveLink } from "./helpers";
 
 interface ParagraphCtaProps {

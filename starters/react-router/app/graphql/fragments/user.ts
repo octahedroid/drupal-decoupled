@@ -1,5 +1,5 @@
-import { graphql } from "~/graphql/gql.tada";
 import { MediaImageFragment } from "~/graphql/fragments/media";
+import { graphql } from "~/graphql/gql.tada";
 
 export const UserFragment = graphql(
   `

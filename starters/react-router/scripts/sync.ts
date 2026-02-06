@@ -1,11 +1,12 @@
-import path from "path";
-import * as dotenv from "dotenv";
-import { drupalAuthClient } from "drupal-auth-client";
+import path from "node:path";
 import {
-  generateSchema,
   generateOutput,
+  generateSchema,
   generateTurbo,
 } from "@gql.tada/cli-utils";
+import * as dotenv from "dotenv";
+import { drupalAuthClient } from "drupal-auth-client";
+
 (async () => {
   const envPath = path.join(process.cwd(), ".env");
   dotenv.config({ path: envPath });

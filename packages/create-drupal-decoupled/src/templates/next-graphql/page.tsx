@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
-
-import { getClient } from "@/utils/client";
 import { gql } from "urql";
 import { calculatePath } from "@/utils/calculate-path";
+import { getClient } from "@/utils/client";
 
 async function getDrupalData({
   params,

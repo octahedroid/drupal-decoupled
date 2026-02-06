@@ -1,7 +1,8 @@
 import { FragmentOf, readFragment } from "gql.tada";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-
+import { Footer, Header } from "@/components/blocks";
+import { MenuFragment, MenuItemFragment } from "@/graphql/fragments/menu";
 import {
   NodeArticleFragment,
   NodePageFragment,
@@ -14,9 +15,6 @@ import NodePageComponent from "@/integration/node/NodePage";
 import TermTagsComponent from "@/integration/taxonomy/TermTags";
 import { getClient } from "@/utils/client";
 import { calculatePath } from "@/utils/routes";
-
-import { Footer, Header } from "@/components/blocks";
-import { MenuFragment, MenuItemFragment } from "@/graphql/fragments/menu";
 
 type PageProps = {
   params: Promise<{ slug: string[] }>;

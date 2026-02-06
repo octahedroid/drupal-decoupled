@@ -1,10 +1,9 @@
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
-
-import { graphql } from "~/graphql/gql.tada";
-import { MediaImageFragment } from "~/graphql/fragments/media";
-import { resolveMediaImage } from "~/integration/resolvers/helpers";
 import { Testimonial } from "~/components/blocks";
+import { MediaImageFragment } from "~/graphql/fragments/media";
+import { graphql } from "~/graphql/gql.tada";
+import { resolveMediaImage } from "~/integration/resolvers/helpers";
 
 interface ParagraphTestimonialProps {
   paragraph: FragmentOf<typeof ParagraphTestimonialFragment>;

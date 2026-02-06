@@ -2,16 +2,16 @@
 import { Command } from "commander";
 import packageJson from "../package.json";
 import {
+  getFrontendReadableName,
+  isSupportedFrontend,
+  SUPPORTED_FRONTENDS,
+} from "./constants";
+import {
   isJavascriptProject,
   isValidFramework,
   scaffoldFrontend,
   updateGitignore,
 } from "./helpers/scaffolding";
-import {
-  getFrontendReadableName,
-  isSupportedFrontend,
-  SUPPORTED_FRONTENDS,
-} from "./constants";
 
 process.on("SIGINT", () => process.exit(0));
 process.on("SIGTERM", () => process.exit(0));

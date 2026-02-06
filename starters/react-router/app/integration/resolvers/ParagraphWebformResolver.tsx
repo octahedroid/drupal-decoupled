@@ -1,7 +1,7 @@
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
-import { ContactForm } from "~/integration/forms/ContactForm/ContactForm";
 import { graphql } from "~/graphql/gql.tada";
+import { ContactForm } from "~/integration/forms/ContactForm/ContactForm";
 
 interface ParagraphWebformProps {
   paragraph: FragmentOf<typeof ParagraphWebformFragment>;

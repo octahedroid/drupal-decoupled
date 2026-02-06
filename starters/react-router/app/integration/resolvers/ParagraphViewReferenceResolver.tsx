@@ -1,14 +1,13 @@
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
-
-import { graphql } from "~/graphql/gql.tada";
 import { CardGroup, Hero } from "~/components/blocks";
-import {
-  ViewBlogTeaserResultFragment,
-  ViewBlogTeaserFeaturedResultFragment,
-} from "~/graphql/fragments/view";
 import { LinkFragment } from "~/graphql/fragments/misc";
 import { NodeArticleTeaserFragment } from "~/graphql/fragments/node";
+import {
+  ViewBlogTeaserFeaturedResultFragment,
+  ViewBlogTeaserResultFragment,
+} from "~/graphql/fragments/view";
+import { graphql } from "~/graphql/gql.tada";
 import { resolveMediaImage } from "~/integration/resolvers/helpers";
 
 interface ParagraphViewReferenceProps {

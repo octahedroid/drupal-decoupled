@@ -1,9 +1,9 @@
+import { type MetaTag } from "drupal-decoupled/remix";
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
-import { type MetaTag } from "drupal-decoupled/remix";
 import {
-  NodePageFragment,
   NodeArticleFragment,
+  NodePageFragment,
 } from "~/graphql/fragments/node";
 import type { EntityFragmentType } from "~/graphql/types";
 

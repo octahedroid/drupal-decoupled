@@ -19,6 +19,10 @@
       "!!**/*.tsbuildinfo",
       "!!**/next-env.d.ts",
       "!!**/graphql-env.d.ts",
+      "!!starters/**/components/ui",
+      "!!starters/**/lib/utils.ts",
+      "!!apps/**/components/ui",
+      "!!apps/**/lib/utils.ts",
       "!pnpm-lock.yaml"
     ]
   },

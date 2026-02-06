@@ -1,17 +1,12 @@
-import type { JSX } from "react";
 import type { FragmentOf } from "gql.tada";
 import { readFragment } from "gql.tada";
+import type { JSX } from "react";
 
 import { ParagraphUnionFragment } from "~/graphql/fragments/paragraph";
-
 import {
-  ParagraphHeroFragment,
-  ParagraphHeroResolver,
-} from "~/integration/resolvers/ParagraphHeroResolver";
-import {
-  ParagraphLogoGroupFragment,
-  ParagraphLogoGroupResolver,
-} from "~/integration/resolvers/ParagraphLogoGroupResolver";
+  ParagraphTestimonialFragment,
+  ParagraphTestimonialResolver,
+} from "~/integration/resolvers//ParagraphTestimonialResolver";
 import {
   ParagraphCardGroupFragment,
   ParagraphCardGroupResolver,
@@ -21,21 +16,25 @@ import {
   ParagraphCtaResolver,
 } from "~/integration/resolvers/ParagraphCtaResolver";
 import {
-  ParagraphTestimonialFragment,
-  ParagraphTestimonialResolver,
-} from "~/integration/resolvers//ParagraphTestimonialResolver";
-import {
   ParagraphFaqFragment,
   ParagraphFaqResolver,
 } from "~/integration/resolvers/ParagraphFaqResolver";
 import {
-  ParagraphWebformFragment,
-  ParagraphWebformResolver,
-} from "./ParagraphWebformResolver";
+  ParagraphHeroFragment,
+  ParagraphHeroResolver,
+} from "~/integration/resolvers/ParagraphHeroResolver";
+import {
+  ParagraphLogoGroupFragment,
+  ParagraphLogoGroupResolver,
+} from "~/integration/resolvers/ParagraphLogoGroupResolver";
 import {
   ParagraphViewReferenceFragment,
   ParagraphViewReferenceResolver,
 } from "./ParagraphViewReferenceResolver";
+import {
+  ParagraphWebformFragment,
+  ParagraphWebformResolver,
+} from "./ParagraphWebformResolver";
 
 type ParagraphFragmentType =
   | FragmentOf<typeof ParagraphHeroFragment>

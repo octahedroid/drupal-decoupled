@@ -1,8 +1,7 @@
-import { graphql } from "@/graphql/gql.tada";
-
 import { MediaImageFragment } from "@/graphql/fragments/media";
-import { UserFragment } from "@/graphql/fragments/user";
 import { MetatagFragment } from "@/graphql/fragments/metatag";
+import { UserFragment } from "@/graphql/fragments/user";
+import { graphql } from "@/graphql/gql.tada";
 import { ParagraphUnionFragment } from "./paragraph";
 
 export const NodePageFragment = graphql(

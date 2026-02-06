@@ -8,10 +8,10 @@ import {
   Header,
   type HeaderProps,
 } from "@/components/blocks";
-import { MainLayout } from "@/components/primitives";
 import * as ArticleStories from "@/components/blocks/Article/Article.stories";
 import * as FooterStories from "@/components/blocks/Footer/Footer.stories";
 import * as HeaderStories from "@/components/blocks/Header/Header.stories";
+import { MainLayout } from "@/components/primitives";
 
 const meta: Meta<typeof MainLayout> = {
   title: "Pages/Article",
