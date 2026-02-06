@@ -16,11 +16,11 @@ const contactMutation = graphql(`
 
 async function submitContactForm(input: ContactFormSchema) {
   const client = await getClient({
-    url: process.env.DRUPAL_GRAPHQL_URI!,
+    url: process.env.DRUPAL_GRAPHQL_URI ?? "",
     auth: {
-      uri: process.env.DRUPAL_AUTH_URI!,
-      clientId: process.env.DRUPAL_CLIENT_ID!,
-      clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
+      uri: process.env.DRUPAL_AUTH_URI ?? "",
+      clientId: process.env.DRUPAL_CLIENT_ID ?? "",
+      clientSecret: process.env.DRUPAL_CLIENT_SECRET ?? "",
     },
   });
 

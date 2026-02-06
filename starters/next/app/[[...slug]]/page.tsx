@@ -22,18 +22,18 @@ type PageProps = {
 
 async function getDrupalData({ params }: { params: { slug: string[] } }) {
   const pathFromParams = params.slug?.join("/") || "/home";
-  const requestUrl = (await headers()).get("x-url");
+  const requestUrl = (await headers()).get("x-url") ?? "";
   const path = calculatePath({
     path: pathFromParams,
-    url: requestUrl!,
+    url: requestUrl,
   });
 
   const client = await getClient({
-    url: process.env.DRUPAL_GRAPHQL_URI!,
+    url: process.env.DRUPAL_GRAPHQL_URI ?? "",
     auth: {
-      uri: process.env.DRUPAL_AUTH_URI!,
-      clientId: process.env.DRUPAL_CLIENT_ID!,
-      clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
+      uri: process.env.DRUPAL_AUTH_URI ?? "",
+      clientId: process.env.DRUPAL_CLIENT_ID ?? "",
+      clientSecret: process.env.DRUPAL_CLIENT_SECRET ?? "",
     },
   });
   const nodeRouteQuery = graphql(
@@ -128,7 +128,7 @@ async function getDrupalData({ params }: { params: { slug: string[] } }) {
       navItems: [],
     },
     entity: data.route.entity as EntityFragmentType,
-    environment: process.env.ENVIRONMENT!,
+    environment: process.env.ENVIRONMENT ?? "",
   };
 }
 
