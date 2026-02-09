@@ -18,18 +18,17 @@ import { calculateMetaTags } from "~/utils/metatags";
 import { calculatePath } from "~/utils/routes";
 import type { Route } from "./+types/$";
 
-export function meta({ data }: Route.MetaArgs) {
-  if (!data) {
+export function meta({ loaderData }: Route.MetaArgs) {
+  if (!loaderData) {
     return [];
   }
-  const { type, entity } = data;
+  const { type, entity } = loaderData;
 
   return metaTags({
     tags: calculateMetaTags(type, entity),
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
-          // @ts-expect-error - fix typings.
           kind: "replace",
           pattern: "dev-drupal-graphql.pantheonsite.io",
           replacement: "drupal-remix.pages.dev",
@@ -37,7 +36,6 @@ export function meta({ data }: Route.MetaArgs) {
       },
       MetaTagProperty: {
         "og:url": {
-          // @ts-expect-error - fix typings.
           kind: "replace",
           pattern: "dev-drupal-graphql.pantheonsite.io",
           replacement: "drupal-remix.pages.dev",
@@ -45,7 +43,6 @@ export function meta({ data }: Route.MetaArgs) {
       },
       MetaTagValue: {
         "twitter:url": {
-          // @ts-expect-error - fix typings.
           kind: "replace",
           pattern: "dev-drupal-graphql.pantheonsite.io",
           replacement: "drupal-remix.pages.dev",
@@ -107,14 +104,14 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const menuMain = readFragment(MenuFragment, data.menuMain);
   const navItems = menuMain
     ? menuMain.items.map((item) => {
-        const menuItem = readFragment(MenuItemFragment, item);
+      const menuItem = readFragment(MenuItemFragment, item);
 
-        return {
-          label: menuItem.label,
-          href: menuItem.href || undefined,
-          expanded: menuItem.expanded,
-        };
-      })
+      return {
+        label: menuItem.label,
+        href: menuItem.href || undefined,
+        expanded: menuItem.expanded,
+      };
+    })
     : [];
 
   return {
