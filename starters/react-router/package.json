@@ -24,7 +24,7 @@
     "composable-functions": "^5.0.0",
     "drupal-auth-client": "^1.0.0",
     "drupal-decoupled": "^0.3.0",
-    "drupal-vite": "^0.4.0",
+    "drupal-vite": "^0.4.1",
     "gql.tada": "^1.8.10",
     "isbot": "^5.1.31",
     "lucide-react": "^0.563.0",
