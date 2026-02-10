@@ -6,6 +6,10 @@ catalog:
   # Type definitions
   '@types/node': ^22
 
+  # Peer dependency types (for type-checking during build)
+  '@urql/core': ^6.0.1
+  vite: ^7
+
 packages:
   - 'packages/*'
   - 'starters/*'

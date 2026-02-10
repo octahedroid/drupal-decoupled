@@ -1,5 +1,6 @@
 async function importWrangler() {
   try {
+    // @ts-expect-error wrangler is an optional peer dependency
     const module = await import("wrangler");
     return module;
   } catch (_e) {
