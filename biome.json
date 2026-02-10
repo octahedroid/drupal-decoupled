@@ -23,6 +23,7 @@
       "!!starters/**/lib/utils.ts",
       "!!apps/**/components/ui",
       "!!apps/**/lib/utils.ts",
+      "!!packages/create-drupal-decoupled/src/templates",
       "!pnpm-lock.yaml"
     ]
   },
