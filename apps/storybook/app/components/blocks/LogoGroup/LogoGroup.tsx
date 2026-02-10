@@ -52,30 +52,3 @@ export const LogoGroup = ({
     </div>
   );
 };
-
-LogoGroup.defaults = {
-  heading: "Logo Group",
-  logos: [
-    {
-      image: {
-        src: "/app/static/placeholders/icons/doc-tahedroid.png",
-        alt: "Octahedroid",
-      },
-      link: { href: "https://octahedroid.com", internal: false },
-    },
-    {
-      image: {
-        src: "/app/static/placeholders/icons/drupal-decoupled.png",
-        alt: "Composabase",
-      },
-      link: { href: "https://composabase.com", internal: false },
-    },
-    {
-      image: {
-        src: "/app/static/placeholders/icons/doc-tahedroid.png",
-        alt: "Octahedroid",
-      },
-      link: { href: "https://octahedroid.com", internal: false },
-    },
-  ],
-} satisfies LogoGroupProps;

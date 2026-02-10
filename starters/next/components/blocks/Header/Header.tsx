@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
@@ -145,26 +145,3 @@ export const Header = ({
     </header>
   );
 };
-
-Header.defaults = {
-  logo: {
-    src: "/app/static/placeholders/icons/drupal-decoupled.png",
-    alt: "Company Logo",
-  },
-  navItems: [
-    { label: "Link One", href: "#" },
-    { label: "Link Two", href: "#" },
-    { label: "Link Three", href: "#" },
-    { label: "Link Four", href: "#" },
-  ],
-  actions: [
-    {
-      text: "Docs",
-      href: "https://drupal-decoupled.octahedroid.com/docs",
-    },
-    {
-      text: "Get started",
-      href: "https://drupal-decoupled.octahedroid.com/",
-    },
-  ],
-} satisfies HeaderProps;

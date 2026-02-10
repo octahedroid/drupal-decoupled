@@ -50,26 +50,3 @@ export const FAQ = ({
     </div>
   );
 };
-
-FAQ.defaults = {
-  heading: "Frequently asked questions",
-  description:
-    "Frequently asked questions ordered by popularity. Remember that if the visitor has not committed to the call to action, they may still have questions (doubts) that can be answered.",
-  questions: [
-    {
-      question: "What is your return policy?",
-      answer:
-        "We offer a 30-day money-back guarantee for all our products. If you",
-    },
-    {
-      question: "How long does shipping take?",
-      answer:
-        "<ul><li>Unordered list item 1</li><li>Unordered list item 2</li><li>Unordered list item 3</li></ul>",
-    },
-    {
-      question: "Do you offer international shipping?",
-      answer:
-        "Yes, we ship to most countries worldwide. Shipping costs and delivery times may vary depending on the destination.",
-    },
-  ],
-} satisfies FAQProps;

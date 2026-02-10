@@ -61,17 +61,3 @@ export const Hero = ({
     </div>
   );
 };
-
-Hero.defaults = {
-  heading: "Welcome to our Hero Section",
-  description:
-    "This is a default description. You can customize it to fit your needs.",
-  image: {
-    src: "/app/static/placeholders/doc-tahedroid/hero-landscape-large.png",
-    alt: "Default hero image",
-  },
-  actions: [
-    { text: "Get Started", href: "#", variant: "default", internal: true },
-    { text: "Learn More", href: "#", variant: "outline" },
-  ],
-} satisfies HeroProps;

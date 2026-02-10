@@ -56,20 +56,3 @@ export const CTA = ({
     </div>
   );
 };
-
-CTA.defaults = {
-  heading: "Default CTA Heading",
-  description: "This is a default CTA description",
-  actions: [
-    {
-      text: "Primary Action",
-      internal: true,
-      href: "#",
-    },
-    {
-      text: "Secondary Action",
-      internal: true,
-      href: "#",
-    },
-  ],
-} satisfies CTAProps;

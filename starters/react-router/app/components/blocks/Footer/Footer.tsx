@@ -62,33 +62,3 @@ export const Footer = ({
     </footer>
   );
 };
-
-Footer.defaults = {
-  columns: [
-    {
-      title: "Column One",
-      links: [
-        { children: "Link One", href: "#" },
-        { children: "Link Two", href: "#" },
-        { children: "Link Three", href: "#" },
-        { children: "Link Four", href: "#" },
-        { children: "Link Five", href: "#" },
-      ],
-    },
-    {
-      title: "Column Two",
-      links: [
-        { children: "Link Six", href: "#" },
-        { children: "Link Seven", href: "#" },
-        { children: "Link Eight", href: "#" },
-        { children: "Link Nine", href: "#" },
-        { children: "Link Ten", href: "#" },
-      ],
-    },
-  ],
-  logo: {
-    src: "/app/static/placeholders/icons/doc-tahedroid.png",
-    alt: "Company Logo",
-  },
-  copyrightText: "© 2023 Drupal Decoupled. All rights reserved.",
-} satisfies FooterProps;
