@@ -104,14 +104,14 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const menuMain = readFragment(MenuFragment, data.menuMain);
   const navItems = menuMain
     ? menuMain.items.map((item) => {
-      const menuItem = readFragment(MenuItemFragment, item);
+        const menuItem = readFragment(MenuItemFragment, item);
 
-      return {
-        label: menuItem.label,
-        href: menuItem.href || undefined,
-        expanded: menuItem.expanded,
-      };
-    })
+        return {
+          label: menuItem.label,
+          href: menuItem.href || undefined,
+          expanded: menuItem.expanded,
+        };
+      })
     : [];
 
   return {
