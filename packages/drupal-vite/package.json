@@ -3,6 +3,9 @@
   "author": "Octahedroid <opensource@octahedroid.com>",
   "version": "0.4.1",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Vite plugin for Drupal integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

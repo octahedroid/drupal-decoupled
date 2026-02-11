@@ -26,6 +26,9 @@
     "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-auth-client"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/node": "catalog:",
     "typescript": "catalog:"

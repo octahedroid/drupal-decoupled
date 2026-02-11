@@ -38,6 +38,9 @@
     }
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/node": "catalog:",
     "esbuild": "catalog:",
