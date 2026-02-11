@@ -1,23 +1,23 @@
-import { RichText } from '@/components/primitives'
+import { RichText } from "@/components/primitives";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
   Accordion as ShadcnAccordion,
-} from '@/components/ui/accordion'
+} from "@/components/ui/accordion";
 
 export interface AccordionProps {
   items: {
-    title: string
-    content: string
-  }[]
+    title: string;
+    content: string;
+  }[];
 }
 
 export const Accordion = ({ items }: AccordionProps) => {
   return (
-    <ShadcnAccordion type="multiple">
+    <ShadcnAccordion defaultValue={["item-0"]}>
       {items.map(({ title, content }, index) => (
-        <AccordionItem key={index} value={`item-${index}`}>
+        <AccordionItem key={title} value={`item-${index}`}>
           <AccordionTrigger>{title}</AccordionTrigger>
           <AccordionContent>
             <RichText content={content} />
@@ -25,5 +25,5 @@ export const Accordion = ({ items }: AccordionProps) => {
         </AccordionItem>
       ))}
     </ShadcnAccordion>
-  )
-}
+  );
+};

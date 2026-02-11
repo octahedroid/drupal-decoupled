@@ -1,46 +1,46 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
 import {
   Avatar,
-  AvatarProps,
+  type AvatarProps,
   Badge,
-  ImageProps,
+  type ImageProps,
   RichText,
-} from '@/components/primitives'
-import { cn } from '@/lib/utils'
+} from "@/components/primitives";
+import { cn } from "@/lib/utils";
 
-const articleVariants = cva('w-full mb-12 md:mb-16', {
+const articleVariants = cva("w-full mb-12 md:mb-16", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 type AuthorProps = {
-  avatar: AvatarProps
-  name: string
-}
+  avatar: AvatarProps;
+  name: string;
+};
 
 export interface ArticleProps
-  extends ComponentPropsWithoutRef<'article'>,
+  extends ComponentPropsWithoutRef<"article">,
     VariantProps<typeof articleVariants> {
-  title: string
-  summary?: string
-  content: string
-  image: ImageProps
-  tags?: string[]
-  publishDate: number
-  author: AuthorProps
+  title: string;
+  summary?: string;
+  content: string;
+  image: ImageProps;
+  tags?: string[];
+  publishDate: number;
+  author: AuthorProps;
 }
 
 const formatDate = (timestamp: number): string => {
-  const date = new Date(timestamp * 1000) // Convert seconds to milliseconds
+  const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
   const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  }
-  return date.toLocaleDateString('en-US', options)
-}
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  return date.toLocaleDateString("en-US", options);
+};
 
 export const Article = ({
   className,
@@ -55,7 +55,7 @@ export const Article = ({
 }: ArticleProps) => {
   return (
     <article className={cn(articleVariants(), className)} {...props}>
-      <div className="md:md-16 container mb-12">
+      <div className="container mx-auto mb-12 md:mb-16">
         <img
           {...image}
           alt={image.alt}
@@ -75,8 +75,8 @@ export const Article = ({
         </div>
         {tags && (
           <div className="mb-8 flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <Badge text={tag} variant="secondary" key={index} />
+            {tags.map((tag) => (
+              <Badge text={tag} variant="secondary" key={tag} />
             ))}
           </div>
         )}
@@ -84,35 +84,5 @@ export const Article = ({
         <RichText content={content} />
       </div>
     </article>
-  )
-}
-
-Article.defaults = {
-  title: 'How designers estimate the impact of UX?',
-  summary: 'Designers wear many hats, the first one being a moderator.',
-  content: `
-      <p>Designers aren't purely focused on aesthetics — their role encompasses broader business aspects and technology, while carefully evaluating those by estimating the return on investment for each solution.</p>
-      <p>In short, designers ensure that the end value of the specific solution, or product as a whole, brings gains to the client's business as expected and a significant return against the initial investment.</p>
-      <h3>Core Areas of Focus</h3>
-      <p>At intive, our designers maintain this awareness by developing across three core areas:</p>
-      <ul>
-        <li>Business</li>
-        <li>Technology</li>
-        <li>User-centric design practices</li>
-      </ul>
-      <p>For each vertical, they keep ROI in mind, taking care to estimate and realize the impact of UX on the client's budget, goals, and wider technical framework.</p>
-    `,
-  image: {
-    src: '/app/static/placeholders/drupal-decoupled/landscape-large.png',
-    alt: 'A cartoon character on a beach with an ice cream',
-  },
-  tags: ['UX', 'Design', 'Business'],
-  publishDate: 1667260800,
-  author: {
-    avatar: {
-      src: '/app/static/placeholders/doc-tahedroid/avatar.png',
-      name: 'Doc Tahedroid',
-    },
-    name: 'Doc Tahedroid',
-  },
-} satisfies ArticleProps
+  );
+};

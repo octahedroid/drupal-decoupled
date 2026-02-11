@@ -1,30 +1,30 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
 import {
   Button,
-  ButtonProps,
+  type ButtonProps,
   SimpleCard,
-  SimpleCardProps,
+  type SimpleCardProps,
   TeaserCard,
-  TeaserCardProps,
-} from '@/components/primitives'
-import { cn } from '@/lib/utils'
+  type TeaserCardProps,
+} from "@/components/primitives";
+import { cn } from "@/lib/utils";
 
-const cardGroupVariants = cva('w-full py-12 md:py-16', {
+const cardGroupVariants = cva("w-full py-12 md:py-16", {
   variants: {},
   defaultVariants: {},
-})
+});
 
-type CardItem = SimpleCardProps | TeaserCardProps
+type CardItem = SimpleCardProps | TeaserCardProps;
 
 export interface CardGroupProps
-  extends ComponentPropsWithoutRef<'div'>,
+  extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof cardGroupVariants> {
-  heading?: string
-  subheading?: string
-  description?: string
-  action?: ButtonProps
-  cards: CardItem[]
+  heading?: string;
+  subheading?: string;
+  description?: string;
+  action?: ButtonProps;
+  cards: CardItem[];
 }
 
 export const CardGroup = ({
@@ -57,12 +57,12 @@ export const CardGroup = ({
           )}
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {cards.map((card, index) => {
-            return card && card.type === 'simple' ? (
-              <SimpleCard key={index} {...(card as SimpleCardProps)} />
+          {cards.map((card) => {
+            return card && card.type === "simple" ? (
+              <SimpleCard key={card.heading} {...(card as SimpleCardProps)} />
             ) : (
-              <TeaserCard key={index} {...(card as TeaserCardProps)} />
-            )
+              <TeaserCard key={card.heading} {...(card as TeaserCardProps)} />
+            );
           })}
         </div>
         {action && (
@@ -72,47 +72,5 @@ export const CardGroup = ({
         )}
       </div>
     </div>
-  )
-}
-
-CardGroup.defaults = {
-  heading: 'How it works',
-  subheading: 'Understand our process',
-  description: 'Follow these simple steps to get started with our service.',
-  action: {
-    text: 'Get Started',
-    href: '#',
-  },
-  cards: [
-    {
-      type: 'simple',
-      image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
-        alt: 'Step 1',
-      },
-      heading: 'Short summary of step one',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    },
-    {
-      type: 'simple',
-      image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
-        alt: 'Step 2',
-      },
-      heading: 'Short summary of step two',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    },
-    {
-      type: 'simple',
-      image: {
-        src: '/app/static/placeholders/icons/drupal-decoupled-hexagon.png',
-        alt: 'Step 3',
-      },
-      heading: 'Short summary of step three',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.',
-    },
-  ],
-} satisfies CardGroupProps
+  );
+};

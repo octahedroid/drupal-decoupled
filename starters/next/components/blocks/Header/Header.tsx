@@ -1,46 +1,47 @@
-'use client'
+"use client";
 
-import { cva, type VariantProps } from 'class-variance-authority'
-import { ChevronDown, ChevronUp, Menu, X } from 'lucide-react'
-import { type ComponentPropsWithoutRef, useState } from 'react'
+import { cva, type VariantProps } from "class-variance-authority";
+import { ChevronDown, ChevronUp, Menu, X } from "lucide-react";
+import { type ComponentPropsWithoutRef, useState } from "react";
 import {
   Button,
   type ButtonProps,
   type ImageProps,
   NavigationMenu,
   type NavigationMenuItemProps,
-} from '@/components/primitives'
-import { Button as MobileMenuButton } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+} from "@/components/primitives";
+import { Button as MobileMenuButton } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-const headerVariants = cva('w-full border-b border-border bg-white', {
+const headerVariants = cva("w-full border-b border-border bg-white", {
   variants: {
     sticky: {
-      true: 'sticky top-0 z-50',
-      false: '',
+      true: "sticky top-0 z-50",
+      false: "",
     },
   },
   defaultVariants: {
     sticky: false,
   },
-})
+});
 
 export interface HeaderProps
-  extends ComponentPropsWithoutRef<'header'>,
+  extends ComponentPropsWithoutRef<"header">,
     VariantProps<typeof headerVariants> {
-  logo: ImageProps
-  navItems: NavigationMenuItemProps[]
-  actions: ButtonProps[]
+  logo: ImageProps;
+  navItems: NavigationMenuItemProps[];
+  actions: ButtonProps[];
 }
 
 const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <li className="w-full">
       {item.children ? (
         <div>
           <button
+            type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="text-foreground hover:bg-accent hover:text-accent-foreground flex w-full items-center justify-between px-4 py-2 text-sm font-medium"
           >
@@ -53,8 +54,8 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
           </button>
           {isOpen && (
             <ul className="border-border ml-4 border-l">
-              {item.children.map((child, index) => (
-                <MobileNavItem key={index} item={child} />
+              {item.children.map((child) => (
+                <MobileNavItem key={child.label} item={child} />
               ))}
             </ul>
           )}
@@ -68,8 +69,8 @@ const MobileNavItem = ({ item }: { item: NavigationMenuItemProps }) => {
         </a>
       )}
     </li>
-  )
-}
+  );
+};
 
 export const Header = ({
   className,
@@ -79,7 +80,7 @@ export const Header = ({
   actions,
   ...props
 }: HeaderProps) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className={cn(headerVariants({ sticky }), className)} {...props}>
@@ -95,8 +96,8 @@ export const Header = ({
           <NavigationMenu navItems={navItems} />
           {actions && actions.length > 0 && (
             <div className="flex items-center space-x-4">
-              {actions.map(({ ...actionProps }, index) => (
-                <Button key={index} {...actionProps} />
+              {actions.map(({ ...actionProps }) => (
+                <Button key={actionProps.text} {...actionProps} />
               ))}
             </div>
           )}
@@ -123,43 +124,24 @@ export const Header = ({
         <div className="md:hidden">
           <nav className="flex w-full flex-col">
             <ul className="flex w-full flex-col">
-              {navItems?.map((item, index) => (
-                <MobileNavItem key={index} item={item} />
+              {navItems?.map((item) => (
+                <MobileNavItem key={item.label} item={item} />
               ))}
             </ul>
           </nav>
           {actions && actions.length > 0 && (
             <div className="flex flex-col space-y-2 p-4">
-              {actions.map(({ ...actionProps }, index) => (
-                <Button key={index} className="w-full" {...actionProps} />
+              {actions.map(({ ...actionProps }) => (
+                <Button
+                  key={actionProps.text}
+                  className="w-full"
+                  {...actionProps}
+                />
               ))}
             </div>
           )}
         </div>
       )}
     </header>
-  )
-}
-
-Header.defaults = {
-  logo: {
-    src: '/app/static/placeholders/icons/drupal-decoupled.png',
-    alt: 'Company Logo',
-  },
-  navItems: [
-    { label: 'Link One', href: '#' },
-    { label: 'Link Two', href: '#' },
-    { label: 'Link Three', href: '#' },
-    { label: 'Link Four', href: '#' },
-  ],
-  actions: [
-    {
-      text: 'Docs',
-      href: 'https://drupal-decoupled.octahedroid.com/docs',
-    },
-    {
-      text: 'Get started',
-      href: 'https://drupal-decoupled.octahedroid.com/',
-    },
-  ],
-} satisfies HeaderProps
+  );
+};

@@ -10,13 +10,13 @@ export interface DrupalDecoupledConfig {
  * @interface DrupalSimpleOAuthPluginOptions
  */
 export interface DrupalSimpleOAuthPluginOptions {
-  /** 
-   * Client ID for Drupal OAuth authentication 
+  /**
+   * Client ID for Drupal OAuth authentication
    * Can be a direct value or an environment variable name
    */
   clientID?: string;
-  /** 
-   * Client secret for Drupal OAuth authentication 
+  /**
+   * Client secret for Drupal OAuth authentication
    * Can be a direct value or an environment variable name
    */
   clientSecret?: string;
@@ -36,9 +36,9 @@ export interface DrupalGraphQLOptions {
  * @interface DrupalPluginOptions
  */
 export interface DrupalPluginOptions {
-  /** 
+  /**
    * Base URL of the Drupal instance
-   * Can be a direct value or an environment variable name 
+   * Can be a direct value or an environment variable name
    */
   drupalUrl?: string;
   /** Options for the Simple OAuth plugin */

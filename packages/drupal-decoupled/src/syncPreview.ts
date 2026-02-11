@@ -5,7 +5,7 @@ export const syncDrupalPreviewRoutes = (path: string) => {
         type: "DECOUPLED_PREVIEW_IFRAME_ROUTE_SYNC",
         path,
       },
-      "*"
+      "*",
     );
   }
 };

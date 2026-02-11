@@ -1,18 +1,17 @@
-import type { Preview } from '@storybook/react'
-
-import '../app/app.css'
+import type { Preview } from "@storybook/react-vite";
+import "~/app.css";
 
 const preview: Preview = {
   parameters: {
     options: {
       storySort: {
         order: [
-          'Tokens',
-          'Primitives',
-          'Blocks',
-          'Pages',
-          'Form',
-          ['*', 'Form - Demo'],
+          "Tokens",
+          "Primitives",
+          "Blocks",
+          "Pages",
+          "Form",
+          ["*", "Form - Demo"],
         ],
       },
     },
@@ -23,6 +22,6 @@ const preview: Preview = {
       },
     },
   },
-}
+};
 
-export default preview
+export default preview;

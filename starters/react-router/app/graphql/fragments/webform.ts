@@ -1,4 +1,4 @@
-import { graphql } from '~/graphql/gql.tada'
+import { graphql } from "~/graphql/gql.tada";
 
 export const WebformFragment = graphql(`
   fragment WebformFragment on Webform {
@@ -23,4 +23,4 @@ export const WebformFragment = graphql(`
       }
     }
   }
-`)
+`);

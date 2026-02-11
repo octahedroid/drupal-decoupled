@@ -1,16 +1,16 @@
-import { cva, type VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef } from 'react'
-import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
+import { cn } from "@/lib/utils";
 
-const richTextVariants = cva('prose max-w-none', {
+const richTextVariants = cva("prose max-w-none", {
   variants: {},
   defaultVariants: {},
-})
+});
 
 export interface RichTextProps
-  extends ComponentPropsWithoutRef<'div'>,
+  extends ComponentPropsWithoutRef<"div">,
     VariantProps<typeof richTextVariants> {
-  content: string
+  content: string;
 }
 
 export const RichText = ({ className, content, ...props }: RichTextProps) => {
@@ -20,5 +20,5 @@ export const RichText = ({ className, content, ...props }: RichTextProps) => {
       dangerouslySetInnerHTML={{ __html: content }}
       {...props}
     />
-  )
-}
+  );
+};

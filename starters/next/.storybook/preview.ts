@@ -1,18 +1,18 @@
-import type { Preview } from '@storybook/react'
+import type { Preview } from "@storybook/nextjs-vite";
 
-import '../app/globals.css'
+import "../app/globals.css";
 
 const preview: Preview = {
   parameters: {
     options: {
       storySort: {
         order: [
-          'Tokens',
-          'Primitives',
-          'Blocks',
-          'Pages',
-          'Form',
-          ['*', 'Form - Demo'],
+          "Tokens",
+          "Primitives",
+          "Blocks",
+          "Pages",
+          "Form",
+          ["*", "Form - Demo"],
         ],
       },
     },
@@ -23,6 +23,6 @@ const preview: Preview = {
       },
     },
   },
-}
+};
 
-export default preview
+export default preview;

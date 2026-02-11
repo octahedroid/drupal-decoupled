@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
-  CTA,
-  CTAProps,
   CardGroup,
   type CardGroupProps,
+  CTA,
+  type CTAProps,
   FAQ,
   type FAQProps,
   Footer,
@@ -15,29 +15,28 @@ import {
   type HeroProps,
   Testimonial,
   type TestimonialProps,
-} from '@/components/blocks'
-import { MainLayout } from '@/components/primitives'
-
-import * as CTAStories from '@/components/blocks/CTA/CTA.stories'
-import * as SimpleCardStories from '@/components/blocks/CardGroup/CardGroupSimpleCard.stories'
-import * as TeaserCardStories from '@/components/blocks/CardGroup/CardGroupTeaserCard.stories'
-import * as FAQStories from '@/components/blocks/FAQ/FAQ.stories'
-import * as FooterStories from '@/components/blocks/Footer/Footer.stories'
-import * as HeaderStories from '@/components/blocks/Header/Header.stories'
-import * as HeroStories from '@/components/blocks/Hero/Hero.stories'
-import * as TestimonialStories from '@/components/blocks/Testimonial/Testimonial.stories'
+} from "@/components/blocks";
+import * as SimpleCardStories from "@/components/blocks/CardGroup/CardGroupSimpleCard.stories";
+import * as TeaserCardStories from "@/components/blocks/CardGroup/CardGroupTeaserCard.stories";
+import * as CTAStories from "@/components/blocks/CTA/CTA.stories";
+import * as FAQStories from "@/components/blocks/FAQ/FAQ.stories";
+import * as FooterStories from "@/components/blocks/Footer/Footer.stories";
+import * as HeaderStories from "@/components/blocks/Header/Header.stories";
+import * as HeroStories from "@/components/blocks/Hero/Hero.stories";
+import * as TestimonialStories from "@/components/blocks/Testimonial/Testimonial.stories";
+import { MainLayout } from "@/components/primitives";
 
 const meta: Meta<typeof MainLayout> = {
-  title: 'Pages/Page',
+  title: "Pages/Page",
   component: MainLayout,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof MainLayout>
+type Story = StoryObj<typeof MainLayout>;
 
 export const Default: Story = {
   args: {
@@ -56,4 +55,4 @@ export const Default: Story = {
       </>
     ),
   },
-}
+};

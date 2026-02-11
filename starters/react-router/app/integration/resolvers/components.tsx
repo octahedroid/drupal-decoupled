@@ -1,39 +1,40 @@
-import { FragmentOf, readFragment } from 'gql.tada'
+import type { FragmentOf } from "gql.tada";
+import { readFragment } from "gql.tada";
+import type { JSX } from "react";
 
-import { ParagraphUnionFragment } from '~/graphql/fragments/paragraph'
-
+import { ParagraphUnionFragment } from "~/graphql/fragments/paragraph";
 import {
-  ParagraphHeroFragment,
-  ParagraphHeroResolver,
-} from '~/integration/resolvers/ParagraphHeroResolver'
-import {
-  ParagraphLogoGroupFragment,
-  ParagraphLogoGroupResolver,
-} from '~/integration/resolvers/ParagraphLogoGroupResolver'
-import {
-  ParagraphCardGroupFragment,
-  ParagraphCardGroupResolver,
-} from '~/integration/resolvers/ParagraphCardGroupResolver'
-import {
-  ParagraphCtaFragment,
-  ParagraphCtaResolver,
-} from '~/integration/resolvers/ParagraphCtaResolver'
-import {
-  ParagraphTestimonialFragment,
+  type ParagraphTestimonialFragment,
   ParagraphTestimonialResolver,
-} from '~/integration/resolvers//ParagraphTestimonialResolver'
+} from "~/integration/resolvers//ParagraphTestimonialResolver";
 import {
-  ParagraphFaqFragment,
+  type ParagraphCardGroupFragment,
+  ParagraphCardGroupResolver,
+} from "~/integration/resolvers/ParagraphCardGroupResolver";
+import {
+  type ParagraphCtaFragment,
+  ParagraphCtaResolver,
+} from "~/integration/resolvers/ParagraphCtaResolver";
+import {
+  type ParagraphFaqFragment,
   ParagraphFaqResolver,
-} from '~/integration/resolvers/ParagraphFaqResolver'
+} from "~/integration/resolvers/ParagraphFaqResolver";
 import {
-  ParagraphWebformFragment,
-  ParagraphWebformResolver,
-} from './ParagraphWebformResolver'
+  type ParagraphHeroFragment,
+  ParagraphHeroResolver,
+} from "~/integration/resolvers/ParagraphHeroResolver";
 import {
-  ParagraphViewReferenceFragment,
+  type ParagraphLogoGroupFragment,
+  ParagraphLogoGroupResolver,
+} from "~/integration/resolvers/ParagraphLogoGroupResolver";
+import {
+  type ParagraphViewReferenceFragment,
   ParagraphViewReferenceResolver,
-} from './ParagraphViewReferenceResolver'
+} from "./ParagraphViewReferenceResolver";
+import {
+  type ParagraphWebformFragment,
+  ParagraphWebformResolver,
+} from "./ParagraphWebformResolver";
 
 type ParagraphFragmentType =
   | FragmentOf<typeof ParagraphHeroFragment>
@@ -43,121 +44,124 @@ type ParagraphFragmentType =
   | FragmentOf<typeof ParagraphTestimonialFragment>
   | FragmentOf<typeof ParagraphFaqFragment>
   | FragmentOf<typeof ParagraphWebformFragment>
-  | FragmentOf<typeof ParagraphViewReferenceFragment>
+  | FragmentOf<typeof ParagraphViewReferenceFragment>;
 
 interface ResolverProps {
-  components: ParagraphFragmentType[]
+  components: ParagraphFragmentType[];
 }
 
 export const resolveComponents = ({
   components,
-}: ResolverProps): JSX.Element[] => {
+}: ResolverProps): (JSX.Element | null)[] => {
   const paragraphUnionFragment = readFragment(
     ParagraphUnionFragment,
-    components
-  )
+    components,
+  );
 
   if (!paragraphUnionFragment) {
-    return []
+    return [];
   }
 
-  return paragraphUnionFragment.map((paragraph, index) => {
-    // @ts-expect-error - __typename defined on paragraph
-    const type = paragraph.__typename as string
+  return paragraphUnionFragment.map((paragraph) => {
+    // @ts-expect-error - __typename and id defined on ParagraphInterface
+    const { __typename: type, id } = paragraph as {
+      __typename: string;
+      id: string;
+    };
     const skipComponents = [
-      'ParagraphSimpleCard',
-      'ParagraphLogo',
-      'ParagraphQuestion',
-      'ParagraphAuthor',
-    ]
+      "ParagraphSimpleCard",
+      "ParagraphLogo",
+      "ParagraphQuestion",
+      "ParagraphAuthor",
+    ];
 
     if (!type || skipComponents.includes(type)) {
-      return <></>
+      return null;
     }
 
-    if (type === 'ParagraphHero') {
+    if (type === "ParagraphHero") {
       return (
         <ParagraphHeroResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphHeroFragment>}
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphLogoGroup') {
+    if (type === "ParagraphLogoGroup") {
       return (
         <ParagraphLogoGroupResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphLogoGroupFragment>}
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphCardGroup') {
+    if (type === "ParagraphCardGroup") {
       return (
         <ParagraphCardGroupResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphCardGroupFragment>}
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphCta') {
+    if (type === "ParagraphCta") {
       return (
         <ParagraphCtaResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphCtaFragment>}
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphTestimonial') {
+    if (type === "ParagraphTestimonial") {
       return (
         <ParagraphTestimonialResolver
-          key={index}
+          key={id}
           paragraph={
             paragraph as FragmentOf<typeof ParagraphTestimonialFragment>
           }
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphFaq') {
+    if (type === "ParagraphFaq") {
       return (
         <ParagraphFaqResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphFaqFragment>}
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphWebform') {
+    if (type === "ParagraphWebform") {
       return (
         <ParagraphWebformResolver
-          key={index}
+          key={id}
           paragraph={paragraph as FragmentOf<typeof ParagraphWebformFragment>}
         />
-      )
+      );
     }
 
-    if (type === 'ParagraphViewReference') {
+    if (type === "ParagraphViewReference") {
       return (
         <ParagraphViewReferenceResolver
-          key={index}
+          key={id}
           paragraph={
             paragraph as FragmentOf<typeof ParagraphViewReferenceFragment>
           }
         />
-      )
+      );
     }
 
     return (
       <div
         className="container flex flex-row items-center justify-center p-4"
-        key={index}
+        key={id}
       >
         {`No Resolver found for component '${type}'.`}
       </div>
-    )
-  })
-}
+    );
+  });
+};

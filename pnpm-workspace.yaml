@@ -1,0 +1,16 @@
+catalog:
+  # Build tooling - shared across publishable packages
+  typescript: ^5
+  esbuild: ^0.27.0
+
+  # Type definitions
+  '@types/node': ^22
+
+  # Peer dependency types (for type-checking during build)
+  '@urql/core': ^6.0.1
+  vite: ^7
+
+packages:
+  - 'packages/*'
+  - 'starters/*'
+  - 'apps/*'

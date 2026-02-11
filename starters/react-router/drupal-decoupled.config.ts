@@ -3,9 +3,10 @@
   Added to the starter to show how to configure exchanges in a Drupal Vite project.
   You can remove this file if you are not using any other exchanges.
 */
-import { DrupalDecoupledConfig } from 'drupal-vite'
-import { fetchExchange } from '@urql/core'
+
+import { fetchExchange } from "@urql/core";
+import type { DrupalDecoupledConfig } from "drupal-vite";
 
 export default {
   exchanges: [fetchExchange],
-} satisfies DrupalDecoupledConfig
+} satisfies DrupalDecoupledConfig;

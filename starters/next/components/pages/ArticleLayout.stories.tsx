@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Article,
@@ -7,25 +7,25 @@ import {
   type FooterProps,
   Header,
   type HeaderProps,
-} from '@/components/blocks'
-import { MainLayout } from '@/components/primitives'
-import * as ArticleStories from '@/components/blocks/Article/Article.stories'
-import * as FooterStories from '@/components/blocks/Footer/Footer.stories'
-import * as HeaderStories from '@/components/blocks/Header/Header.stories'
+} from "@/components/blocks";
+import * as ArticleStories from "@/components/blocks/Article/Article.stories";
+import * as FooterStories from "@/components/blocks/Footer/Footer.stories";
+import * as HeaderStories from "@/components/blocks/Header/Header.stories";
+import { MainLayout } from "@/components/primitives";
 
 const meta: Meta<typeof MainLayout> = {
-  title: 'Pages/Article',
+  title: "Pages/Article",
   component: MainLayout,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof MainLayout>
+type Story = StoryObj<typeof MainLayout>;
 
-console.log(ArticleStories.default.args)
+console.log(ArticleStories.default.args);
 
 export const Default: Story = {
   args: {
@@ -37,4 +37,4 @@ export const Default: Story = {
       </>
     ),
   },
-}
+};

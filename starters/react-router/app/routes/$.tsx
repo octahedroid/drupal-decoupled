@@ -1,61 +1,61 @@
-import type { Route } from './+types/$'
-import { type FragmentOf, readFragment } from 'gql.tada'
-import { metaTags } from 'drupal-decoupled/remix'
-import { graphql } from '~/graphql/gql.tada'
-import type { EntityFragmentType } from '~/graphql/types'
-import NodeArticleComponent from '~/integration/node/NodeArticle'
-import NodePageComponent from '~/integration/node/NodePage'
-import TermTagsComponent from '~/integration/taxonomy/TermTags'
-import { calculatePath } from '~/utils/routes'
-import { calculateMetaTags } from '~/utils/metatags'
-import { Header, Footer } from '~/components/blocks'
-import { NodeArticleFragment, NodePageFragment } from '~/graphql/fragments/node'
-import { TermTagsFragment } from '~/graphql/fragments/terms'
-import { MenuFragment, MenuItemFragment } from '~/graphql/fragments/menu'
-import { redirect } from 'react-router'
-import { getDrupalClient } from 'drupal-vite/client'
+import { metaTags } from "drupal-decoupled/react-router";
+import { getDrupalClient } from "drupal-vite/client";
+import { type FragmentOf, readFragment } from "gql.tada";
+import { redirect } from "react-router";
+import { Footer, Header } from "~/components/blocks";
+import { MenuFragment, MenuItemFragment } from "~/graphql/fragments/menu";
+import {
+  NodeArticleFragment,
+  NodePageFragment,
+} from "~/graphql/fragments/node";
+import { TermTagsFragment } from "~/graphql/fragments/terms";
+import { graphql } from "~/graphql/gql.tada";
+import type { EntityFragmentType } from "~/graphql/types";
+import NodeArticleComponent from "~/integration/node/NodeArticle";
+import NodePageComponent from "~/integration/node/NodePage";
+import TermTagsComponent from "~/integration/taxonomy/TermTags";
+import { calculateMetaTags } from "~/utils/metatags";
+import { calculatePath } from "~/utils/routes";
+import type { Route } from "./+types/$";
 
-export function meta({ data }: Route.MetaArgs) {
-  if (!data) {
-    return []
+export function meta({ loaderData }: Route.MetaArgs) {
+  if (!loaderData) {
+    return [];
   }
-  const { type, entity } = data
+  const { type, entity } = loaderData;
 
   return metaTags({
     tags: calculateMetaTags(type, entity),
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
-          // @ts-expect-error - fix typings.
-          kind: 'replace',
-          pattern: 'dev-drupal-graphql.pantheonsite.io',
-          replacement: 'drupal-remix.pages.dev',
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
         },
       },
       MetaTagProperty: {
-        'og:url': {
-          // @ts-expect-error - fix typings.
-          kind: 'replace',
-          pattern: 'dev-drupal-graphql.pantheonsite.io',
-          replacement: 'drupal-remix.pages.dev',
+        "og:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
         },
       },
       MetaTagValue: {
-        'twitter:url': {
-          // @ts-expect-error - fix typings.
-          kind: 'replace',
-          pattern: 'dev-drupal-graphql.pantheonsite.io',
-          replacement: 'drupal-remix.pages.dev',
+        "twitter:url": {
+          kind: "replace",
+          pattern: "dev-drupal-graphql.pantheonsite.io",
+          replacement: "drupal-remix.pages.dev",
         },
       },
     },
-  })
+  });
 }
 
 export async function loader({ params, request }: Route.LoaderArgs) {
-  const path = calculatePath({ path: params['*'], url: request.url })
+  const path = calculatePath({ path: params["*"], url: request.url });
 
-  const client = await getDrupalClient()
+  const client = await getDrupalClient();
 
   const nodeRouteQuery = graphql(
     `
@@ -81,38 +81,38 @@ export async function loader({ params, request }: Route.LoaderArgs) {
         }
       }
     `,
-    [NodePageFragment, NodeArticleFragment, TermTagsFragment, MenuFragment]
-  )
+    [NodePageFragment, NodeArticleFragment, TermTagsFragment, MenuFragment],
+  );
 
   const { data, error } = await client.query(nodeRouteQuery, {
     path,
-  })
+  });
 
   if (error) {
-    throw error
+    throw error;
   }
 
   if (
     !data ||
     !data?.route ||
-    data?.route.__typename !== 'RouteInternal' ||
+    data?.route.__typename !== "RouteInternal" ||
     !data.route.entity
   ) {
-    return redirect('/404')
+    return redirect("/404");
   }
 
-  const menuMain = readFragment(MenuFragment, data.menuMain)
+  const menuMain = readFragment(MenuFragment, data.menuMain);
   const navItems = menuMain
     ? menuMain.items.map((item) => {
-        const menuItem = readFragment(MenuItemFragment, item)
+        const menuItem = readFragment(MenuItemFragment, item);
 
         return {
           label: menuItem.label,
           href: menuItem.href || undefined,
           expanded: menuItem.expanded,
-        }
+        };
       })
-    : []
+    : [];
 
   return {
     type: data.route.entity.__typename,
@@ -120,18 +120,18 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       logo: {
         // add DRUPAL URI as env variable
         src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
-        alt: 'Company Logo',
+        alt: "Company Logo",
       },
       navItems,
       sticky: true,
       actions: [
         {
-          text: 'Docs',
-          href: 'https://drupal-decoupled.octahedroid.com/docs',
+          text: "Docs",
+          href: "https://drupal-decoupled.octahedroid.com/docs",
         },
         {
-          text: 'Quickstart',
-          href: 'https://drupal-decoupled.octahedroid.com/docs/getting-started/quick-start/drupal',
+          text: "Quickstart",
+          href: "https://drupal-decoupled.octahedroid.com/docs/getting-started/quick-start/drupal",
         },
       ],
     },
@@ -139,21 +139,21 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       logo: {
         // add DRUPAL URI as env variable
         src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
-        alt: 'Company Logo',
+        alt: "Company Logo",
       },
       copyrightText: `© ${new Date().getFullYear()} Drupal Decoupled`,
       navItems: [],
     },
     entity: data.route.entity as EntityFragmentType,
     environment: process.env.ENVIRONMENT as string,
-  }
+  };
 }
 
 export default function Home({
   loaderData: { type, entity, environment, header, footer },
 }: Route.ComponentProps) {
   if (!type || !entity) {
-    return <pre>Invalid data</pre>
+    return <pre>Invalid data</pre>;
   }
 
   return (
@@ -164,19 +164,19 @@ export default function Home({
         sticky={header.sticky}
         actions={header.actions}
       />
-      {type === 'NodePage' && (
+      {type === "NodePage" && (
         <NodePageComponent
           node={entity as FragmentOf<typeof NodePageFragment>}
           environment={environment}
         />
       )}
-      {type === 'NodeArticle' && (
+      {type === "NodeArticle" && (
         <NodeArticleComponent
           node={entity as FragmentOf<typeof NodeArticleFragment>}
           environment={environment}
         />
       )}
-      {type === 'TermTags' && (
+      {type === "TermTags" && (
         <TermTagsComponent
           term={entity as FragmentOf<typeof TermTagsFragment>}
         />
@@ -187,5 +187,5 @@ export default function Home({
         columns={[]}
       />
     </>
-  )
+  );
 }

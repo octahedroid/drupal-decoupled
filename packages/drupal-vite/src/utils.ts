@@ -1,19 +1,20 @@
 async function importWrangler() {
   try {
-    const module =  await import('wrangler');
+    // @ts-expect-error wrangler is an optional peer dependency
+    const module = await import("wrangler");
     return module;
-  } catch (e) {
+  } catch (_e) {
     return false;
   }
 }
 
 export const resolveValue = async (
   configValue: string | undefined,
-  defaultEnvKey: string
+  defaultEnvKey: string,
 ): Promise<string | undefined> => {
   let envAccess: NodeJS.ProcessEnv | Record<string, unknown> = process.env;
   const wrangler = await importWrangler();
-  if(wrangler) {
+  if (wrangler) {
     const { getPlatformProxy } = wrangler;
     const platformProxy = await getPlatformProxy();
     envAccess = platformProxy.env;

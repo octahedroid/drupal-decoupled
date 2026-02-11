@@ -1,43 +1,43 @@
-import { getFormProps, useForm } from '@conform-to/react'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod'
-import { CheckCircle2, CircleAlert } from 'lucide-react'
-import { Input, Textarea } from '~/components/form'
-import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert'
-import { Button } from '~/components/ui/button'
-import { Label } from '~/components/ui/label'
-import { contactFormSchema } from '~/integration/forms/ContactForm/schema'
-import { useFetcher } from 'react-router'
-import { action } from '~/routes/forms/contact_form'
+import { getFormProps, useForm } from "@conform-to/react";
+import { getZodConstraint, parseWithZod } from "@conform-to/zod/v4";
+import { CheckCircle2, CircleAlert } from "lucide-react";
+import { useFetcher } from "react-router";
+import { Input, Textarea } from "~/components/form";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { Button } from "~/components/ui/button";
+import { Label } from "~/components/ui/label";
+import { contactFormSchema } from "~/integration/forms/ContactForm/schema";
+import type { action } from "~/routes/forms/contact_form";
 
 export const ContactForm = ({ id }: { id: string }) => {
-  const fetcher = useFetcher<typeof action>()
+  const fetcher = useFetcher<typeof action>();
 
   const [form, fields] = useForm({
     id,
     lastResult: fetcher.data?.reply,
     constraint: getZodConstraint(contactFormSchema),
     onValidate({ formData }) {
-      return parseWithZod(formData, { schema: contactFormSchema })
+      return parseWithZod(formData, { schema: contactFormSchema });
     },
-    shouldValidate: 'onBlur',
-  })
+    shouldValidate: "onBlur",
+  });
 
   return (
     <div className="flex items-center justify-center">
       <div className="container mx-auto max-w-xl">
-        {fetcher.data?.reply.status === 'success' ? (
+        {fetcher.data?.reply.status === "success" ? (
           <div className="space-y-4">
             <Alert>
               <CheckCircle2 className="stroke-green-500" />
               <AlertTitle
                 className="text-lg"
                 dangerouslySetInnerHTML={{
-                  __html: fetcher.data.data?.confirmation_title || '',
+                  __html: fetcher.data.data?.confirmation_title || "",
                 }}
               ></AlertTitle>
               <AlertDescription
                 dangerouslySetInnerHTML={{
-                  __html: fetcher.data.data?.confirmation_message || '',
+                  __html: fetcher.data.data?.confirmation_message || "",
                 }}
               ></AlertDescription>
             </Alert>
@@ -100,5 +100,5 @@ export const ContactForm = ({ id }: { id: string }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};

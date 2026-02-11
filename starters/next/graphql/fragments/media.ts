@@ -1,4 +1,4 @@
-import { graphql } from '@/graphql/gql.tada'
+import { graphql } from "@/graphql/gql.tada";
 
 export const ImageFragment = graphql(`
   fragment ImageFragment on Image {
@@ -9,7 +9,7 @@ export const ImageFragment = graphql(`
     height
     alt
   }
-`)
+`);
 
 export const MediaImageFragment = graphql(
   `
@@ -21,5 +21,5 @@ export const MediaImageFragment = graphql(
       }
     }
   `,
-  [ImageFragment]
-)
+  [ImageFragment],
+);

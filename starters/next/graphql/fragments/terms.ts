@@ -1,4 +1,4 @@
-import { graphql } from '@/graphql/gql.tada'
+import { graphql } from "@/graphql/gql.tada";
 
 export const TermTagsFragment = graphql(`
   fragment TermTagsFragment on TermTags {
@@ -9,4 +9,4 @@ export const TermTagsFragment = graphql(`
       processed
     }
   }
-`)
+`);

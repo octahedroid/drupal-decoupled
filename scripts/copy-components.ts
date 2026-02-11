@@ -1,11 +1,10 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { componentsConfig } from "./components-config";
 
 // === Constants ===
 const STARTERS = {
-  STORYBOOK: "starters/storybook/app",
-  REMIX: "starters/remix/app",
+  STORYBOOK: "apps/storybook/app",
   NEXT: "starters/next",
   REACT_ROUTER: "starters/react-router/app",
 } as const;
@@ -100,23 +99,22 @@ class ComponentSync {
    * @param componentSet - A set of component names that require 'use client'.
    */
   private processDirectory(dirPath: string, componentSet: Set<string>): void {
-    const files = fs.readdirSync(dirPath, {
-      withFileTypes: true,
-      recursive: true,
-    });
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
-    for (const file of files) {
-      if (!file.isFile()) continue;
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name);
 
-      const filePath = path.join(file.path, file.name);
-      const fileName = path.basename(filePath);
+      if (entry.isDirectory()) {
+        this.processDirectory(fullPath, componentSet);
+        continue;
+      }
 
-      if (!this.isTypeScriptFile(fileName)) continue;
+      if (!entry.isFile() || !this.isTypeScriptFile(entry.name)) continue;
 
       try {
-        this.processFile(filePath, fileName, componentSet);
+        this.processFile(fullPath, entry.name, componentSet);
       } catch (error) {
-        this.handleError(`Error processing file ${filePath}`, error);
+        this.handleError(`Error processing file ${fullPath}`, error);
       }
     }
   }
@@ -130,7 +128,7 @@ class ComponentSync {
   private processFile(
     filePath: string,
     fileName: string,
-    componentSet: Set<string>
+    componentSet: Set<string>,
   ): void {
     let fileContent = fs.readFileSync(filePath, "utf8");
     const componentName = fileName.replace(/\.tsx?$/, "");
@@ -147,7 +145,7 @@ class ComponentSync {
       this.log(`Updating path aliases in ${filePath}`);
       fileContent = fileContent.replace(
         new RegExp(PATH_ALIAS_OLD, "g"),
-        PATH_ALIAS_NEW
+        PATH_ALIAS_NEW,
       );
     }
 
@@ -181,7 +179,7 @@ class ComponentSync {
   private handleError(message: string, error: unknown): never {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error(
-      `[${new Date().toISOString()}] ERROR: ${message} - ${errorMessage}`
+      `[${new Date().toISOString()}] ERROR: ${message} - ${errorMessage}`,
     );
     process.exit(1);
   }
@@ -191,9 +189,6 @@ class ComponentSync {
 (async () => {
   try {
     const sync = new ComponentSync();
-
-    console.log("\n=== Copying components for Remix ===");
-    sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.REMIX);
 
     console.log("\n=== Copying components for React Router ===");
     sync.copyDesignSystem(STARTERS.STORYBOOK, STARTERS.REACT_ROUTER);

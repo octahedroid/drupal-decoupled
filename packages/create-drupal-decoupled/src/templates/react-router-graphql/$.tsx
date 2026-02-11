@@ -1,11 +1,10 @@
+import { metaTags } from "drupal-decoupled/react-router";
+import { isRouteErrorResponse, redirect, useRouteError } from "react-router";
 import { gql } from "urql";
-
 import { getClient } from "~/utils/client.server";
+import { calculateMetaTags } from "~/utils/metatags";
 import { calculatePath } from "~/utils/routes";
 import type { Route } from "./+types/$";
-import { isRouteErrorResponse, redirect, useRouteError } from "react-router";
-import { metaTags } from "drupal-decoupled/remix";
-import { calculateMetaTags } from "~/utils/metatags";
 
 const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
 
@@ -139,7 +138,7 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
         path,
         url: request.url,
       }),
-    }
+    },
   );
 
   if (error) {
@@ -152,7 +151,11 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
     });
   }
 
-  return { node: data.route.entity, type: data.route.entity.__typename, entity: data.route.entity };
+  return {
+    node: data.route.entity,
+    type: data.route.entity.__typename,
+    entity: data.route.entity,
+  };
 };
 
 export default function Index({ loaderData: { node } }: Route.ComponentProps) {

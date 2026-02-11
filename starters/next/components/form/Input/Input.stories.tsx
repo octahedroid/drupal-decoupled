@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Input } from './Input'
-import { Label } from '@/components/ui/label'
-import type { FieldMetadata } from '@conform-to/react'
+import type { FieldMetadata } from "@conform-to/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Label } from "@/components/ui/label";
+import { Input } from "./Input";
 
 // Create a mock field metadata that conforms to the expected shape
 const createMockFieldMeta = (
   name: string,
-  value = '',
-  error?: string
+  value = "",
+  error?: string,
 ): FieldMetadata<string> => {
   // Cast to unknown first to avoid TypeScript errors
   return {
@@ -23,13 +23,13 @@ const createMockFieldMeta = (
     allErrors: error ? { [name]: [error] } : {},
     valid: !error,
     dirty: false,
-  } as unknown as FieldMetadata<string>
-}
+  } as unknown as FieldMetadata<string>;
+};
 
 const meta: Meta<typeof Input> = {
-  title: 'Form/Input',
+  title: "Form/Input",
   component: Input,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <div className="w-full max-w-sm space-y-4 p-4">
@@ -37,17 +37,17 @@ const meta: Meta<typeof Input> = {
       </div>
     ),
   ],
-}
+};
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof Input>
+type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    meta: createMockFieldMeta('name'),
-    type: 'text',
-    placeholder: 'Enter your name',
+    meta: createMockFieldMeta("name"),
+    type: "text",
+    placeholder: "Enter your name",
   },
   decorators: [
     (Story) => (
@@ -57,13 +57,13 @@ export const Default: Story = {
       </div>
     ),
   ],
-}
+};
 
 export const WithValidation: Story = {
   args: {
-    meta: createMockFieldMeta('email'),
-    type: 'email',
-    placeholder: 'Enter your email',
+    meta: createMockFieldMeta("email"),
+    type: "email",
+    placeholder: "Enter your email",
   },
   decorators: [
     (Story) => (
@@ -73,13 +73,13 @@ export const WithValidation: Story = {
       </div>
     ),
   ],
-}
+};
 
 export const WithError: Story = {
   args: {
-    meta: createMockFieldMeta('phone', '', 'Invalid phone number'),
-    type: 'tel',
-    placeholder: 'Enter your phone number',
+    meta: createMockFieldMeta("phone", "", "Invalid phone number"),
+    type: "tel",
+    placeholder: "Enter your phone number",
   },
   decorators: [
     (Story) => (
@@ -92,13 +92,13 @@ export const WithError: Story = {
       </div>
     ),
   ],
-}
+};
 
 export const Disabled: Story = {
   args: {
-    meta: createMockFieldMeta('username'),
-    type: 'text',
-    placeholder: 'Username',
+    meta: createMockFieldMeta("username"),
+    type: "text",
+    placeholder: "Username",
     disabled: true,
   },
   decorators: [
@@ -109,4 +109,4 @@ export const Disabled: Story = {
       </div>
     ),
   ],
-}
+};

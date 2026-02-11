@@ -6,23 +6,31 @@
   },
   "private": true,
   "scripts": {
-    "build": "yarn lerna run build",
-    "release": "yarn build && yarn changeset publish",
-    "copy:components": "ts-node scripts/copy-components.ts"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format .",
+    "format:fix": "biome format --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "typecheck": "turbo run typecheck",
+    "release": "pnpm build && pnpm changeset publish",
+    "copy:components": "tsx scripts/copy-components.ts",
+    "clean": "git clean -fdX .",
+    "clean:build": "git clean -fdx -e node_modules ."
   },
   "engines": {
     "node": ">=20.15.1",
-    "yarn": ">=1.22.5"
+    "pnpm": ">=10.0.0"
   },
-  "packageManager": "yarn@1.22.22",
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "pnpm@10.28.2",
   "devDependencies": {
-    "@changesets/cli": "^2.27.7",
-    "@types/node": "^22.10.10",
-    "lerna": "^8.1.7",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "@biomejs/biome": "2.3.14",
+    "@changesets/cli": "^2",
+    "@types/node": "^22",
+    "tsx": "^4",
+    "turbo": "^2",
+    "typescript": "^5"
   }
 }

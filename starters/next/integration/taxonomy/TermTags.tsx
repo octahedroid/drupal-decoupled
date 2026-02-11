@@ -1,12 +1,12 @@
-import { FragmentOf, readFragment } from 'gql.tada'
-import { TermTagsFragment } from '@/graphql/fragments/terms'
+import { type FragmentOf, readFragment } from "gql.tada";
+import { TermTagsFragment } from "@/graphql/fragments/terms";
 
 type TermTagsComponentProps = {
-  term: FragmentOf<typeof TermTagsFragment>
-}
+  term: FragmentOf<typeof TermTagsFragment>;
+};
 
 export default function TermTagsComponent({ term }: TermTagsComponentProps) {
-  const termTags = readFragment(TermTagsFragment, term)
+  const termTags = readFragment(TermTagsFragment, term);
 
   return (
     <>
@@ -17,5 +17,5 @@ export default function TermTagsComponent({ term }: TermTagsComponentProps) {
         }}
       />
     </>
-  )
+  );
 }

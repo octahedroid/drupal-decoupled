@@ -1,12 +1,11 @@
-import { FragmentOf, readFragment } from 'gql.tada'
-
-import { graphql } from '@/graphql/gql.tada'
-import { LinkFragment } from '@/graphql/fragments/misc'
-import { CTA } from '@/components/blocks'
-import { resolveLink } from './helpers'
+import { type FragmentOf, readFragment } from "gql.tada";
+import { CTA } from "@/components/blocks";
+import { LinkFragment } from "@/graphql/fragments/misc";
+import { graphql } from "@/graphql/gql.tada";
+import { resolveLink } from "./helpers";
 
 interface ParagraphCtaProps {
-  paragraph: FragmentOf<typeof ParagraphCtaFragment>
+  paragraph: FragmentOf<typeof ParagraphCtaFragment>;
 }
 
 export const ParagraphCtaFragment = graphql(
@@ -22,8 +21,8 @@ export const ParagraphCtaFragment = graphql(
       }
     }
   `,
-  [LinkFragment]
-)
+  [LinkFragment],
+);
 
 export const ParagraphCtaResolver = ({ paragraph }: ParagraphCtaProps) => {
   const {
@@ -31,10 +30,10 @@ export const ParagraphCtaResolver = ({ paragraph }: ParagraphCtaProps) => {
     heading,
     description,
     actions: linkFragment,
-  } = readFragment(ParagraphCtaFragment, paragraph)
+  } = readFragment(ParagraphCtaFragment, paragraph);
   const actions = linkFragment
     ? linkFragment.map((link) => resolveLink(link))
-    : []
+    : [];
 
   return (
     <CTA
@@ -44,5 +43,5 @@ export const ParagraphCtaResolver = ({ paragraph }: ParagraphCtaProps) => {
       description={description}
       actions={actions}
     />
-  )
-}
+  );
+};

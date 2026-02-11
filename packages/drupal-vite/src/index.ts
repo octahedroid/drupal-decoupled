@@ -1,8 +1,8 @@
-import { type Plugin } from "vite";
-import { resolveValue } from "./utils";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+import type { Plugin } from "vite";
 import type { DrupalPluginOptions } from "./types";
-import { resolve } from "path";
-import { existsSync } from "fs";
+import { resolveValue } from "./utils";
 
 export type { DrupalDecoupledConfig } from "./types";
 
@@ -36,7 +36,7 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
       resolvedClientID = await resolveValue(clientID, defaultClientId);
       resolvedClientSecret = await resolveValue(
         clientSecret,
-        defaultClientSecret
+        defaultClientSecret,
       );
       resolvedDrupalUrl = await resolveValue(drupalUrl, defaultDrupalUrl);
 
@@ -74,7 +74,7 @@ export function drupal(options?: DrupalPluginOptions): Plugin {
     async load(id) {
       if (!resolvedClientID || !resolvedClientSecret || !resolvedDrupalUrl) {
         this.error(
-          "Missing required Drupal configuration. Please check your options or environment variables."
+          "Missing required Drupal configuration. Please check your options or environment variables.",
         );
       }
 

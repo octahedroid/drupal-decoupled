@@ -1,4 +1,4 @@
-import { graphql } from '~/graphql/gql.tada'
+import { graphql } from "~/graphql/gql.tada";
 
 export const MetatagFragment = graphql(`
   fragment MetatagFragment on MetaTag @_unmask {
@@ -25,4 +25,4 @@ export const MetatagFragment = graphql(`
       }
     }
   }
-`)
+`);

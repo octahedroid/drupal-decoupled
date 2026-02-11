@@ -1,66 +1,50 @@
 {
   "name": "drupal-vite",
   "author": "Octahedroid <opensource@octahedroid.com>",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Vite plugin for Drupal integration",
-  "module": "build/index.js",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "keywords": [
+    "vite-plugin",
+    "drupal",
+    "decoupled"
+  ],
   "exports": {
     ".": {
-      "import": "./build/index.js",
-      "types": "./build/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./client": {
-      "types": "./build/client.d.ts"
+      "types": "./dist/client.d.ts"
     },
     "./config": {
-      "types": "./build/config.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "client": [
-        "./build/client.d.ts"
-      ],
-      "config": [
-        "./build/config.d.ts"
-      ]
+      "types": "./dist/config.d.ts"
     }
   },
   "repository": {
     "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-vite"
   },
   "files": [
-    "build",
-    "README.md"
+    "dist"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./build --format esm --target node --external wrangler",
-    "build:types": "tsc --emitDeclarationOnly --declaration --outDir build",
-    "copy:dts": "cp client.d.ts build/client.d.ts && cp config.d.ts build/config.d.ts",
-    "build:all": "bun run build && bun run build:types && bun run copy:dts",
-    "prepublishOnly": "bun run build:all",
-    "yalc:publish": "bun run build:all && yalc publish"
+    "ts-types": "tsc --emitDeclarationOnly --outDir dist",
+    "build": "node ./esbuild.js && pnpm ts-types && cp client.d.ts dist/client.d.ts && cp config.d.ts dist/config.d.ts"
   },
   "devDependencies": {
-    "vite": "^7.1.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5",
-    "vite": ">=6",
-    "@urql/core": ">=5"
+    "@types/node": "catalog:",
+    "@urql/core": "catalog:",
+    "esbuild": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
   },
   "dependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "drupal-auth-client": "^1.0.2",
-    "fs-extra": "^11.3.0"
-  },
-  "keywords": [
-    "vite-plugin",
-    "drupal",
-    "decoupled"
-  ]
+    "drupal-auth-client": "^1.0.2"
+  }
 }

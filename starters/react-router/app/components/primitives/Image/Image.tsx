@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef } from "react";
 
-export interface ImageProps extends ComponentPropsWithoutRef<'img'> {}
+export interface ImageProps extends ComponentPropsWithoutRef<"img"> {}
 
-export const Image = ({ ...props }: ImageProps) => {
-  return <img {...props}></img>
-}
+export const Image = ({ alt, ...props }: ImageProps) => {
+  return <img alt={alt} {...props} />;
+};

@@ -1,48 +1,48 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { TeaserCard } from '@/components/primitives'
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { TeaserCard } from "@/components/primitives";
 
 const meta: Meta<typeof TeaserCard> = {
-  title: 'Primitives/Teaser Card',
+  title: "Primitives/Teaser Card",
   component: TeaserCard,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    heading: { control: 'text' },
-    summary: { control: 'text' },
-    tags: { control: 'object' },
-    image: { control: 'object' },
-    details: { control: 'object' },
+    heading: { control: "text" },
+    summary: { control: "text" },
+    tags: { control: "object" },
+    image: { control: "object" },
+    details: { control: "object" },
   },
   args: {
-    heading: 'Blog title heading will go here',
+    heading: "Blog title heading will go here",
     summary:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.',
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.",
     image: {
-      src: '/placeholders/drupal-decoupled/landscape-small.png',
-      alt: 'Blog post image',
+      src: "/placeholders/drupal-decoupled/landscape-small.png",
+      alt: "Blog post image",
     },
-    details: { href: '/blog', text: 'Read more' },
+    details: { href: "/blog", text: "Read more" },
   },
-}
+};
 
-export default meta
-type Story = StoryObj<typeof TeaserCard>
+export default meta;
+type Story = StoryObj<typeof TeaserCard>;
 
-export const Default: Story = {}
+export const Default: Story = {};
 
 export const WithOneTag: Story = {
   args: {
-    tags: ['Category'],
+    tags: ["Category"],
   },
-}
+};
 
 export const WithTwoTags: Story = {
   args: {
-    tags: ['Category', 'Featured'],
+    tags: ["Category", "Featured"],
   },
-}
+};
 
 export const WithMoreThanTwoTags: Story = {
   args: {
-    tags: ['Category', 'Featured', 'New'], // Only the first two will be displayed
+    tags: ["Category", "Featured", "New"], // Only the first two will be displayed
   },
-}
+};

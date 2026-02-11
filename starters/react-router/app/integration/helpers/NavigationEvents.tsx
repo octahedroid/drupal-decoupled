@@ -1,23 +1,23 @@
-import { syncDrupalPreviewRoutes } from 'drupal-decoupled'
-import { useEffect } from 'react'
+import { syncDrupalPreviewRoutes } from "drupal-decoupled";
+import { useEffect } from "react";
 
 export default function NavigationEvents() {
   useEffect(() => {
-    const controller = new AbortController()
+    const controller = new AbortController();
     document.addEventListener(
-      'click',
+      "click",
       (event) => {
         // exit early if we're not in an iframe
         if (window.location === window.parent.location) {
-          return
+          return;
         }
 
-        const target = (event.target as Partial<HTMLElement>).closest?.('a')
+        const target = (event.target as Partial<HTMLElement>).closest?.("a");
         if (!target) {
-          return
+          return;
         }
 
-        const url = new URL(target.href, location.origin)
+        const url = new URL(target.href, location.origin);
         if (
           url.origin === window.location.origin &&
           // Ignore clicks with modifiers
@@ -27,18 +27,18 @@ export default function NavigationEvents() {
           // Ignore right clicks
           event.button === 0 &&
           // Ignore if `target="_blank"`
-          [null, undefined, '', '_self'].includes(target.target) &&
-          !target.hasAttribute('download')
+          [null, undefined, "", "_self"].includes(target.target) &&
+          !target.hasAttribute("download")
         ) {
-          event.preventDefault()
-          syncDrupalPreviewRoutes(url.pathname)
+          event.preventDefault();
+          syncDrupalPreviewRoutes(url.pathname);
         }
       },
-      { signal: controller.signal }
-    )
+      { signal: controller.signal },
+    );
 
-    return () => controller.abort()
-  })
+    return () => controller.abort();
+  });
 
-  return <></>
+  return null;
 }

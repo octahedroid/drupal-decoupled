@@ -510,7 +510,7 @@ type Query {
   ): Webform
 }
 
-"""Use local images for reusable media."""
+"""A locally hosted image file."""
 type MediaImage implements MediaInterface & MetaTagInterface & EdgeNode {
   """The Universally Unique IDentifier (UUID)."""
   id: ID!
@@ -1562,12 +1562,24 @@ type Webform {
 """A webform element."""
 type WebformElement {
   admin_title: String
+  counter_type: String
+  counter_minimum: Int
+  counter_maximum: Int
+  counter_maximum_message: String
   id: String
   options: [WebformElementOption]
+  pattern: String
+  pattern_error: String
   placeholder: String
+  required: Boolean
+  required_error: String
   states: [WebformElementState]
   title: String
   type: String
+  unique: Boolean
+  unique_entity: Boolean
+  unique_user: Boolean
+  unique_error: String
   webform_children: [String]
   webform_composite: Boolean
   webform_depth: Int

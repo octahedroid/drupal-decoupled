@@ -3,7 +3,7 @@ declare module "drupal-vite/user" {
 
   const config: {
     exchanges?: Exchange[];
-  }
+  };
 
   export default config;
 }

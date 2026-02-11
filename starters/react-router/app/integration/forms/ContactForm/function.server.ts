@@ -1,7 +1,7 @@
-import { graphql } from '~/graphql/gql.tada'
-import { getDrupalClient } from 'drupal-vite/client'
-import { ContactFormSchema } from './schema'
-import { composable } from 'composable-functions'
+import { composable } from "composable-functions";
+import { getDrupalClient } from "drupal-vite/client";
+import { graphql } from "~/graphql/gql.tada";
+import type { ContactFormSchema } from "./schema";
 
 const contactMutation = graphql(`
   mutation SubmitContactForm($input: [KeyValueInput]) {
@@ -12,26 +12,22 @@ const contactMutation = graphql(`
       }
     }
   }
-`)
+`);
 
-async function submitContactForm(
-  input: ContactFormSchema,
-) {
-  const client = await getDrupalClient()
+async function submitContactForm(input: ContactFormSchema) {
+  const client = await getDrupalClient();
 
   const inputArray = Object.entries(input).map(([key, value]) => ({
     key,
     value,
-  }))
-  const result = await client.mutation(contactMutation, { input: inputArray })
+  }));
+  const result = await client.mutation(contactMutation, { input: inputArray });
 
   if (!result.data?.submitWebform?.confirmation) {
-    throw new Error('Error submitting contact form')
+    throw new Error("Error submitting contact form");
   }
 
-
-  return result.data.submitWebform.confirmation 
-  
+  return result.data.submitWebform.confirmation;
 }
 
-export const submitContactFormFunction = composable(submitContactForm)
+export const submitContactFormFunction = composable(submitContactForm);

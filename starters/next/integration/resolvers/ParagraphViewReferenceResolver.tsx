@@ -1,41 +1,40 @@
-import { FragmentOf, readFragment } from 'gql.tada'
-
-import { graphql } from '@/graphql/gql.tada'
-import { CardGroup, Hero } from '@/components/blocks'
+import { type FragmentOf, readFragment } from "gql.tada";
+import { CardGroup, Hero } from "@/components/blocks";
+import { LinkFragment } from "@/graphql/fragments/misc";
+import { NodeArticleTeaserFragment } from "@/graphql/fragments/node";
 import {
-  ViewBlogTeaserResultFragment,
   ViewBlogTeaserFeaturedResultFragment,
-} from '@/graphql/fragments/view'
-import { LinkFragment } from '@/graphql/fragments/misc'
-import { NodeArticleTeaserFragment } from '@/graphql/fragments/node'
-import { resolveMediaImage } from '@/integration/resolvers/helpers'
+  ViewBlogTeaserResultFragment,
+} from "@/graphql/fragments/view";
+import { graphql } from "@/graphql/gql.tada";
+import { resolveMediaImage } from "@/integration/resolvers/helpers";
 
 interface ParagraphViewReferenceProps {
-  paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>
+  paragraph: FragmentOf<typeof ParagraphViewReferenceFragment>;
 }
 
 type ReferenceFragment = (
   | FragmentOf<typeof ViewBlogTeaserResultFragment>
   | FragmentOf<typeof ViewBlogTeaserFeaturedResultFragment>
-) & { __typename: string }
+) & { __typename: string };
 
 const calculateReference = (referenceFragment: ReferenceFragment) => {
-  if (referenceFragment.__typename === 'ViewBlogTeaserResult') {
+  if (referenceFragment.__typename === "ViewBlogTeaserResult") {
     return readFragment(
       ViewBlogTeaserResultFragment,
-      referenceFragment as FragmentOf<typeof ViewBlogTeaserResultFragment>
-    )
+      referenceFragment as FragmentOf<typeof ViewBlogTeaserResultFragment>,
+    );
   }
 
-  if (referenceFragment.__typename === 'ViewBlogTeaserFeaturedResult') {
+  if (referenceFragment.__typename === "ViewBlogTeaserFeaturedResult") {
     return readFragment(
       ViewBlogTeaserFeaturedResultFragment,
       referenceFragment as FragmentOf<
         typeof ViewBlogTeaserFeaturedResultFragment
-      >
-    )
+      >,
+    );
   }
-}
+};
 
 export const ParagraphViewReferenceFragment = graphql(
   `
@@ -59,8 +58,8 @@ export const ParagraphViewReferenceFragment = graphql(
     ViewBlogTeaserResultFragment,
     ViewBlogTeaserFeaturedResultFragment,
     LinkFragment,
-  ]
-)
+  ],
+);
 
 export const ParagraphViewReferenceResolver = ({
   paragraph,
@@ -72,30 +71,30 @@ export const ParagraphViewReferenceResolver = ({
     subheadingOptional,
     link: linkFragment,
     reference: referenceFragment,
-  } = readFragment(ParagraphViewReferenceFragment, paragraph)
+  } = readFragment(ParagraphViewReferenceFragment, paragraph);
 
   const action = linkFragment
     ? readFragment(LinkFragment, linkFragment)
-    : undefined
-  const reference = calculateReference(referenceFragment)
+    : undefined;
+  const reference = calculateReference(referenceFragment);
   const { view, display, results } = reference
     ? reference
-    : { view: undefined, display: undefined, results: undefined }
+    : { view: undefined, display: undefined, results: undefined };
   const cards = results
     ? results.map((item) => {
-        const type = 'teaser'
+        const type = "teaser";
         const { image, path, summary, title } = readFragment(
           NodeArticleTeaserFragment,
-          item as FragmentOf<typeof NodeArticleTeaserFragment>
-        )
+          item as FragmentOf<typeof NodeArticleTeaserFragment>,
+        );
         const details = {
           href: path,
-          text: 'Read post',
+          text: "Read post",
           internal: true,
-        }
+        };
 
         if (!image) {
-          return { heading: title, summary, type, details }
+          return { heading: title, summary, type, details };
         }
 
         return {
@@ -104,13 +103,13 @@ export const ParagraphViewReferenceResolver = ({
           type,
           details,
           image: resolveMediaImage(image),
-        }
+        };
       })
-    : []
+    : [];
 
-  if (view === 'blog' && display === 'teaser_featured') {
-    const featured = cards[0]
-    const remainingCards = cards.splice(1)
+  if (view === "blog" && display === "teaser_featured") {
+    const featured = cards[0];
+    const remainingCards = cards.splice(1);
 
     return (
       <div id={id}>
@@ -120,8 +119,8 @@ export const ParagraphViewReferenceResolver = ({
           description={featured.summary}
           actions={[
             {
-              href: featured.details.href || '',
-              text: featured.details.text || '',
+              href: featured.details.href || "",
+              text: featured.details.text || "",
               internal: true,
             },
           ]}
@@ -129,9 +128,9 @@ export const ParagraphViewReferenceResolver = ({
         {cards && (
           <CardGroup
             key={id}
-            heading={headingOptional || ''}
-            subheading={subheadingOptional || ''}
-            description={descriptionOptional || ''}
+            heading={headingOptional || ""}
+            subheading={subheadingOptional || ""}
+            description={descriptionOptional || ""}
             // @ts-expect-error - fix typings.
             cards={remainingCards}
             // @ts-expect-error - fix typings.
@@ -139,22 +138,22 @@ export const ParagraphViewReferenceResolver = ({
           />
         )}
       </div>
-    )
+    );
   }
 
-  if (view === 'blog' && display === 'teaser') {
+  if (view === "blog" && display === "teaser") {
     return (
       <CardGroup
         id={id}
         key={id}
-        heading={headingOptional || ''}
-        subheading={subheadingOptional || ''}
-        description={descriptionOptional || ''}
+        heading={headingOptional || ""}
+        subheading={subheadingOptional || ""}
+        description={descriptionOptional || ""}
         // @ts-expect-error - fix typings.
         cards={cards}
         // @ts-expect-error - fix typings.
         action={action}
       />
-    )
+    );
   }
-}
+};

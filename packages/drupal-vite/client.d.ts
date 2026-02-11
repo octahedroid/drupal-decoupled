@@ -4,7 +4,7 @@ declare module "drupal-vite/client" {
 
   /**
    * Gets the Drupal authentication token and related data
-   * 
+   *
    * @returns A promise resolving to the Drupal auth data
    */
   export function getDrupalAuth(): ReturnType<typeof drupalAuthClient>;
@@ -12,7 +12,7 @@ declare module "drupal-vite/client" {
   /**
    * Gets a configured Drupal GraphQL client with authentication
    * Uses any custom configuration from drupal-decoupled.config.ts if available
-   * 
+   *
    * @returns A promise resolving to a configured URQL Client for Drupal
    */
   export function getDrupalClient(): Promise<Client>;

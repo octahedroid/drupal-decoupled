@@ -1,13 +1,13 @@
 {
   "name": "drupal-decoupled",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Drupal utils for Decoupled integrations",
   "type": "module",
   "keywords": [
     "graphql",
     "drupal",
     "decoupled",
-    "remix",
+    "react-router",
     "next.js"
   ],
   "main": "dist/index.js",
@@ -15,39 +15,35 @@
   "files": [
     "dist"
   ],
-  "bundlesize": [
-    {
-      "path": "./dist/index.js"
-    }
-  ],
   "scripts": {
-    "prepublish": "yarn build",
-    "ts-types": " tsc --emitDeclarationOnly --outDir dist",
-    "build": "rimraf dist && node ./esbuild.js && yarn ts-types"
+    "ts-types": "tsc --emitDeclarationOnly --outDir dist",
+    "build": "node ./esbuild.js && pnpm ts-types"
   },
   "author": "Octahedroid <opensource@octahedroid.com>",
   "repository": {
     "url": "https://github.com/octahedroid/drupal-decoupled/tree/main/packages/drupal-decoupled"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./remix": "./dist/remix/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react-router": {
+      "types": "./dist/react-router/index.d.ts",
+      "import": "./dist/react-router/index.js"
+    },
+    "./next": {
+      "types": "./dist/next/index.d.ts",
+      "import": "./dist/next/index.js"
+    }
   },
   "license": "MIT",
-  "dependencies": {
-    "@measured/puck": "^0.18.1",
-    "immutable-json-patch": "^6.0.1",
-    "jmespath": "^0.16.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
-    "@types/jmespath": "^0.15.2",
-    "@types/node": "^18.11.3",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "esbuild": "^0.17.18",
-    "rimraf": "^5.0.0",
-    "typescript": "^4.8.4"
+    "@types/node": "catalog:",
+    "esbuild": "catalog:",
+    "typescript": "catalog:"
   }
 }
