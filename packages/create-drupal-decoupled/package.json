@@ -25,7 +25,6 @@
     "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@total-typescript/ts-reset": "^0.5.1",
     "@types/node": "catalog:",
     "esbuild": "catalog:",
     "typescript": "catalog:"
