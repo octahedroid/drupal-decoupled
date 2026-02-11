@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:packages": "turbo run build --filter=./packages/*",
     "dev": "turbo run dev --parallel",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
@@ -15,7 +16,7 @@
     "check": "biome check .",
     "check:fix": "biome check --write .",
     "typecheck": "turbo run typecheck",
-    "release": "pnpm build && pnpm changeset publish",
+    "release": "pnpm build:packages && pnpm changeset publish",
     "copy:components": "tsx scripts/copy-components.ts",
     "clean": "git clean -fdX .",
     "clean:build": "git clean -fdx -e node_modules ."
