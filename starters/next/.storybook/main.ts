@@ -1,6 +1,8 @@
-import { dirname } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/nextjs-vite";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -14,5 +16,13 @@ const config: StorybookConfig = {
   addons: [],
   framework: getAbsolutePath("@storybook/nextjs-vite"),
   staticDirs: ["../static"],
+  viteFinal: async (config) => {
+    config.resolve ??= {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": resolve(__dirname, ".."),
+    };
+    return config;
+  },
 };
 export default config;
