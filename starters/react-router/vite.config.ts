@@ -9,9 +9,10 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     !isStorybook && reactRouter(),
-    drupal({
-      drupalUrl: "DRUPAL_AUTH_URI",
-    }),
+    !isStorybook &&
+      drupal({
+        drupalUrl: "DRUPAL_AUTH_URI",
+      }),
     tsconfigPaths(),
   ],
 });
