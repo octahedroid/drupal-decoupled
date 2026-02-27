@@ -1,11 +1,14 @@
 #!/usr/bin/env node
+import chalk from "chalk";
 import { Command } from "commander";
 import packageJson from "../package.json";
 import {
+  getAdapter,
   getFrontendReadableName,
   isSupportedFrontend,
   SUPPORTED_FRONTENDS,
 } from "./constants";
+import { getDependencyInstallCommand } from "./helpers/dependencies";
 import {
   isJavascriptProject,
   isValidFramework,
@@ -20,7 +23,7 @@ let projectDirectoryRoute: string;
 
 async function main() {
   const program = new Command()
-    .name("create-drupal-decoupled") // Temporary name
+    .name("create-drupal-decoupled")
     .description("Scaffold the integration with Drupal in a decoupled frontend")
     .version(
       packageJson.version,
@@ -50,7 +53,7 @@ async function main() {
     process.exit(1);
   }
 
-  const { frontend: frontendFramework } = program.opts();
+  let { frontend: frontendFramework } = program.opts();
 
   if (!frontendFramework || typeof frontendFramework !== "string") {
     console.error("Please specify the frontend framework to use");
@@ -58,11 +61,23 @@ async function main() {
     process.exit(1);
   }
 
+  if (frontendFramework === "remix") {
+    console.log(
+      chalk.yellow(
+        "  ⚠️ Remix is now supported via React Router. Mapping flag to react-router...",
+      ),
+    );
+    frontendFramework = "react-router";
+  }
+
   if (!isSupportedFrontend(frontendFramework)) {
     console.error(`${frontendFramework} framework is not supported`);
     console.error("Exiting...");
     process.exit(1);
   }
+
+  const adapter = getAdapter(frontendFramework);
+
   const frontendReadableName = getFrontendReadableName(frontendFramework);
 
   if (!isValidFramework(projectDirectoryRoute, frontendFramework)) {
@@ -73,19 +88,40 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Scaffolding integration for ${frontendReadableName}\n`);
-  const createdFiles = scaffoldFrontend(
-    frontendFramework,
+  console.log(
+    chalk.bold(
+      `\nScaffolding Drupal integration for ${frontendReadableName}\n`,
+    ),
+  );
+
+  console.log(chalk.bold("Files:"));
+  const createdFiles = scaffoldFrontend(adapter, projectDirectoryRoute);
+  updateGitignore(adapter, projectDirectoryRoute);
+
+  for (const fileLog of createdFiles) {
+    console.log(fileLog);
+  }
+
+  // Print dependency install instructions
+  const installCmd = getDependencyInstallCommand(
+    adapter,
     projectDirectoryRoute,
   );
-  updateGitignore(frontendFramework, projectDirectoryRoute);
+  console.log(chalk.bold("\nInstall required dependencies:\n"));
+  console.log(`    ${installCmd}`);
 
-  createdFiles.forEach((fileLog) => {
-    console.log(fileLog);
-  });
+  // Print post-scaffold instructions
+  if (adapter.postScaffoldInstructions.length > 0) {
+    console.log(chalk.bold("\nNext steps:\n"));
+    for (const instruction of adapter.postScaffoldInstructions) {
+      console.log(`  ${instruction}`);
+    }
+  }
 
   console.log(
-    `\nIntegration for ${frontendReadableName} scaffolded successfully!`,
+    chalk.green(
+      `\nDrupal integration for ${frontendReadableName} scaffolded successfully!\n`,
+    ),
   );
 }
 
