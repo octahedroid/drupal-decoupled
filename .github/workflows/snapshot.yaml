@@ -10,10 +10,6 @@ jobs:
   snapshot:
     if: contains(github.event.pull_request.labels.*.name, 'snapshot')
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -24,6 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
+          registry-url: https://registry.npmjs.org
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -66,8 +63,9 @@ jobs:
         id: snapshot-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          pnpm changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }} --provenance
+          pnpm changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }}
 
       - uses: buildingcash/json-to-markdown-table-action@v1
         id: table
