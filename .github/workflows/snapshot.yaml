@@ -10,6 +10,10 @@ jobs:
   snapshot:
     if: contains(github.event.pull_request.labels.*.name, 'snapshot')
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -58,14 +62,11 @@ jobs:
           pnpm changeset version --snapshot preview-${{ steps.short-sha.outputs.sha }}
           git diff --name-only --diff-filter=u | grep package.json | xargs -n 1 jq '. as $root | {name: ("`"+$root.name+"`"), version: ("`"+$root.version+"`"), registry: ("[NPM](https://www.npmjs.com/package/"+$root.name+"/v/"+$root.version+")")}' | jq -s -c > changesets.json
           echo "publishedPackages=$(cat changesets.json)" >> $GITHUB_OUTPUT
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Snapshot Version
         id: snapshot-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }}
 
