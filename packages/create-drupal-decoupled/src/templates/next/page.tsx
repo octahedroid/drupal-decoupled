@@ -14,7 +14,7 @@ const getDrupalData = cache(
     params: { slug: string[] };
     searchParams: Record<string, string>;
   }) => {
-    const pathFromParams = params.slug?.join("/");
+    const pathFromParams = params.slug ? `/${params.slug.join("/")}` : "/";
 
     const client = await getClient({
       url: process.env.DRUPAL_GRAPHQL_URI ?? "",
@@ -31,34 +31,70 @@ const getDrupalData = cache(
           route(path: $path) {
             ... on RouteInternal {
               entity {
-              ... on NodePage {
-                __typename
-                title
-                body {
-                  value
-                }
-                metatag {
+                ... on NodeArticle {
                   __typename
-                  ... on MetaTagLink {
-                    attributes {
-                      rel
-                      href
-                    }
+                  title
+                  path
+                  image {
+                    url
+                    alt
+                    width
+                    height
                   }
-                  ... on MetaTagValue {
-                    attributes {
-                      name
-                      content
-                    }
+                  body {
+                    value
                   }
-                  ... on MetaTagProperty {
-                    attributes {
-                      property
-                      content
+                  metatag {
+                    __typename
+                    ... on MetaTagLink {
+                      attributes {
+                        rel
+                        href
+                      }
+                    }
+                    ... on MetaTagValue {
+                      attributes {
+                        name
+                        content
+                      }
+                    }
+                    ... on MetaTagProperty {
+                      attributes {
+                        property
+                        content
+                      }
                     }
                   }
                 }
-              }
+                ... on NodePage {
+                  __typename
+                  title
+                  path
+                  body {
+                    value
+                  }
+                  metatag {
+                    __typename
+                    ... on MetaTagLink {
+                      attributes {
+                        rel
+                        href
+                      }
+                    }
+                    ... on MetaTagValue {
+                      attributes {
+                        name
+                        content
+                      }
+                    }
+                    ... on MetaTagProperty {
+                      attributes {
+                        property
+                        content
+                      }
+                    }
+                  }
+                }
               }
             }
             ... on RouteRedirect {
@@ -117,10 +153,24 @@ export default async function Page({
   });
 
   return (
-    <div>
-      <h1>{node.title}</h1>
+    <div className="container mx-auto">
+      <h1 className="text-6xl font-bold tracking-tighter leading-none mb-6 text-left">
+        {node.title}
+      </h1>
+      {node.image && (
+        <img
+          src={node.image.url}
+          alt={node.image.alt}
+          width={node.image.width}
+          height={node.image.height}
+          className="mb-6 mx-auto max-w-lg"
+        />
+      )}
       {node.body?.value && (
-        <div dangerouslySetInnerHTML={{ __html: node.body.value }} />
+        <div
+          className="max-w-sm lg:max-w-4xl mx-auto text-lg"
+          dangerouslySetInnerHTML={{ __html: node.body.value }}
+        />
       )}
     </div>
   );

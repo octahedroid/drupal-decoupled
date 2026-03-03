@@ -16,11 +16,12 @@ export const getClient = async ({ url, auth }: ClientArgs) => {
 
   return new Client({
     url,
-    fetchOptions: {
+    preferGetMethod: false,
+    fetchOptions: () => ({
       headers: {
         Authorization: token,
       },
-    },
+    }),
     exchanges: [fetchExchange],
   });
 };

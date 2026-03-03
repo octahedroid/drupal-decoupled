@@ -28,9 +28,45 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
         route(path: $path) {
           ... on RouteInternal {
             entity {
+              ... on NodeArticle {
+                __typename
+                title
+                path
+                image {
+                  url
+                  alt
+                  width
+                  height
+                }
+                body {
+                  value
+                }
+                metatag {
+                  __typename
+                  ... on MetaTagLink {
+                    attributes {
+                      rel
+                      href
+                    }
+                  }
+                  ... on MetaTagValue {
+                    attributes {
+                      name
+                      content
+                    }
+                  }
+                  ... on MetaTagProperty {
+                    attributes {
+                      property
+                      content
+                    }
+                  }
+                }
+              }
               ... on NodePage {
                 __typename
                 title
+                path
                 body {
                   value
                 }
@@ -93,10 +129,24 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 
 export default function Page({ loaderData: { node } }: Route.ComponentProps) {
   return (
-    <div>
-      <h1>{node.title}</h1>
+    <div className="container mx-auto">
+      <h1 className="text-6xl font-bold tracking-tighter leading-none mb-6 text-left">
+        {node.title}
+      </h1>
+      {node.image && (
+        <img
+          src={node.image.url}
+          alt={node.image.alt}
+          width={node.image.width}
+          height={node.image.height}
+          className="mb-6 mx-auto max-w-lg"
+        />
+      )}
       {node.body?.value && (
-        <div dangerouslySetInnerHTML={{ __html: node.body.value }} />
+        <div
+          className="max-w-sm lg:max-w-4xl mx-auto text-lg"
+          dangerouslySetInnerHTML={{ __html: node.body.value }}
+        />
       )}
     </div>
   );
