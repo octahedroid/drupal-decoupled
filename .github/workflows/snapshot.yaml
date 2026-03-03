@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
-          registry-url: https://registry.npmjs.org
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -68,7 +67,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }}
+          pnpm changeset publish --no-git-tag --tag preview-${{ steps.short-sha.outputs.sha }} --provenance
 
       - uses: buildingcash/json-to-markdown-table-action@v1
         id: table
