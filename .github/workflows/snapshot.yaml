@@ -60,9 +60,9 @@ jobs:
           echo "publishedPackages=$(cat changesets.json)" >> $GITHUB_OUTPUT
 
       - name: Authenticate with npm registry
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm config set //registry.npmjs.org/:_authToken "${NPM_TOKEN}"
 
       - name: Publish Snapshot Version
         id: snapshot-release
