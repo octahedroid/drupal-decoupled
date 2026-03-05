@@ -1,5 +1,12 @@
 # @octahedroid/create-drupal-decoupled
 
+## 0.7.0
+
+### Minor Changes
+
+- 917ef82: Refactor on create-drupal-decoupled with framework abstractions
+  Disable GET method for urql client in drupal-vite
+
 ## 0.4.1
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "drupal-vite",
   "author": "Octahedroid <opensource@octahedroid.com>",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
