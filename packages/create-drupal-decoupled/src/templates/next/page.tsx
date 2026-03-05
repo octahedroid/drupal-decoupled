@@ -1,15 +1,10 @@
-import { metaTags } from "drupal-decoupled/next";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { cache } from "react";
-import { gql } from "urql";
-import { calculatePath } from "@/utils/calculate-path";
+import { gql } from "@urql/core";
+import { calculatePath } from "@/utils/routes";
 import { getClient } from "@/utils/client";
-
-type MetaTag = {
-  __typename: "MetaTagLink" | "MetaTagValue" | "MetaTagProperty";
-  attributes: Record<string, string | null | undefined>;
-};
+import { calculateMetaTags } from "@/utils/metatags";
 
 const getDrupalData = cache(
   async ({
@@ -19,21 +14,20 @@ const getDrupalData = cache(
     params: { slug: string[] };
     searchParams: Record<string, string>;
   }) => {
-    const GET_DRUPAL_CONTENT_ERROR = "Error fetching data from Drupal";
+    const pathFromParams = params.slug ? `/${params.slug.join("/")}` : "/";
 
-    const pathFromParams = params.slug?.join("/");
-
-    const drupalClient = await getClient({
+    const client = await getClient({
+      url: process.env.DRUPAL_GRAPHQL_URI ?? "",
       auth: {
-        uri: process.env.DRUPAL_AUTH_URI!,
-        clientId: process.env.DRUPAL_CLIENT_ID!,
-        clientSecret: process.env.DRUPAL_CLIENT_SECRET!,
+        uri: process.env.DRUPAL_AUTH_URI ?? "",
+        clientId: process.env.DRUPAL_CLIENT_ID ?? "",
+        clientSecret: process.env.DRUPAL_CLIENT_SECRET ?? "",
       },
-      url: process.env.DRUPAL_GRAPHQL_URI!,
     });
-    const { data, error } = await drupalClient.query(
+
+    const { data, error } = await client.query(
       gql`
-        query getNodeArticleByPath($path: String!) {
+        query getContentByPath($path: String!) {
           route(path: $path) {
             ... on RouteInternal {
               entity {
@@ -44,6 +38,8 @@ const getDrupalData = cache(
                   image {
                     url
                     alt
+                    width
+                    height
                   }
                   body {
                     value
@@ -118,7 +114,7 @@ const getDrupalData = cache(
     );
 
     if (error) {
-      throw new Response(GET_DRUPAL_CONTENT_ERROR, { status: 500 });
+      throw new Error("Error fetching data from Drupal");
     }
 
     if (data.route.__typename === "RouteRedirect") {
@@ -133,28 +129,26 @@ export async function generateMetadata({
   params,
   searchParams,
 }: {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
   searchParams: Promise<Record<string, string>>;
 }): Promise<Metadata> {
   const { node } = await getDrupalData({
-    params,
+    params: await params,
     searchParams: await searchParams,
   });
 
-  return metaTags({
-    tags: (node.metatag ?? []) as MetaTag[],
-  });
+  return calculateMetaTags(node?.__typename, node);
 }
 
 export default async function Page({
   params,
   searchParams,
 }: {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
   searchParams: Promise<Record<string, string>>;
 }) {
   const { node } = await getDrupalData({
-    params,
+    params: await params,
     searchParams: await searchParams,
   });
 
@@ -172,10 +166,12 @@ export default async function Page({
           className="mb-6 mx-auto max-w-lg"
         />
       )}
-      <div
-        className="max-w-sm lg:max-w-4xl mx-auto text-lg"
-        dangerouslySetInnerHTML={{ __html: node.body.value }}
-      />
+      {node.body?.value && (
+        <div
+          className="max-w-sm lg:max-w-4xl mx-auto text-lg"
+          dangerouslySetInnerHTML={{ __html: node.body.value }}
+        />
+      )}
     </div>
   );
 }

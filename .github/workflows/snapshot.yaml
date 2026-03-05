@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: package.json
           registry-url: https://registry.npmjs.org
@@ -50,7 +50,7 @@ jobs:
         run: pnpm changeset status --since=origin/main
 
       - name: Build Packages
-        run: pnpm build
+        run: pnpm build:packages
 
       - name: Calculate Preview Version
         id: snapshot-version
@@ -58,8 +58,6 @@ jobs:
           pnpm changeset version --snapshot preview-${{ steps.short-sha.outputs.sha }}
           git diff --name-only --diff-filter=u | grep package.json | xargs -n 1 jq '. as $root | {name: ("`"+$root.name+"`"), version: ("`"+$root.version+"`"), registry: ("[NPM](https://www.npmjs.com/package/"+$root.name+"/v/"+$root.version+")")}' | jq -s -c > changesets.json
           echo "publishedPackages=$(cat changesets.json)" >> $GITHUB_OUTPUT
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Snapshot Version
         id: snapshot-release

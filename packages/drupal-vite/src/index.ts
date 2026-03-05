@@ -109,6 +109,7 @@ export async function getDrupalClient() {
   const auth = await getDrupalAuth();
   return new Client({
     url: "${fullGraphqlEndpoint}",
+    preferGetMethod: false,
     exchanges: config.exchanges ? config.exchanges : [fetchExchange],
     fetchOptions: {
       headers: {
