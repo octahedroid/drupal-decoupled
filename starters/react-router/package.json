@@ -16,6 +16,8 @@
     "@base-ui/react": "^1.1.0",
     "@conform-to/react": "^1.16.0",
     "@conform-to/zod": "^1.16.0",
+    "@json-render/core": "^0.19.0",
+    "@json-render/react": "^0.19.0",
     "@react-router/node": "7.12.0",
     "@react-router/serve": "7.12.0",
     "@urql/core": "^6.0.1",
@@ -25,14 +27,14 @@
     "drupal-auth-client": "^1.0.0",
     "drupal-decoupled": "^0.3.0",
     "drupal-vite": "^0.4.2",
-    "gql.tada": "^1.8.10",
+    "gql.tada": "^1.9.2",
     "isbot": "^5.1.31",
     "lucide-react": "^0.563.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-router": "7.12.0",
     "tailwind-merge": "^3.4.0",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@gql.tada/cli-utils": "^1",

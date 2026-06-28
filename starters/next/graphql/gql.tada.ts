@@ -3,4 +3,16 @@ import type { introspection } from "@/graphql/generated/gql.tada.instrospection"
 
 export const graphql = initGraphQLTada<{
   introspection: typeof introspection;
+  scalars: {
+    Timestamp: string;
+    Html: string;
+    Email: string;
+    UserRoles: string;
+    PhoneNumber: string;
+    TimeZone: string;
+    UtcOffset: string;
+    Time: string;
+    Cursor: string;
+    UntypedStructuredData: unknown;
+  };
 }>();

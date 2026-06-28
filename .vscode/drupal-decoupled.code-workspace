@@ -20,5 +20,8 @@
       "name": "react-router - starter",
       "path": "../starters/react-router"
     }
-  ]
+  ],
+  "settings": {
+    "js/ts.tsdk.path": "react-router - starter/node_modules/typescript/lib"
+  }
 }

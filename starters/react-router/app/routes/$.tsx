@@ -1,51 +1,52 @@
+import { readFragment, type FragmentOf } from "gql.tada";
 import { metaTags } from "drupal-decoupled/react-router";
 import { getDrupalClient } from "drupal-vite/client";
-import { type FragmentOf, readFragment } from "gql.tada";
 import { redirect } from "react-router";
-import { Footer, Header } from "~/components/blocks";
+
+import type { Route } from "./+types/$";
 import { MenuFragment, MenuItemFragment } from "~/graphql/fragments/menu";
 import {
   NodeArticleFragment,
   NodePageFragment,
 } from "~/graphql/fragments/node";
-import { TermTagsFragment } from "~/graphql/fragments/terms";
+import type { NodeResultOf } from "~/graphql/types";
 import { graphql } from "~/graphql/gql.tada";
-import type { EntityFragmentType } from "~/graphql/types";
-import NodeArticleComponent from "~/integration/node/NodeArticle";
-import NodePageComponent from "~/integration/node/NodePage";
-import TermTagsComponent from "~/integration/taxonomy/TermTags";
 import { calculateMetaTags } from "~/utils/metatags";
 import { calculatePath } from "~/utils/routes";
-import type { Route } from "./+types/$";
+import { resolve } from "~/integration/resolvers/resolver";
+import NodePage from "~/integration/layout/NodePage";
+import NodeArticle from "~/integration/layout/NodeArticle";
+import { Footer, Header } from "~/components/blocks";
+import type { Spec } from "@json-render/core";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) {
     return [];
   }
-  const { type, entity } = loaderData;
+  const { tags, drupalUrl } = loaderData;
 
   return metaTags({
-    tags: calculateMetaTags(type, entity),
+    tags,
     metaTagOverrides: {
       MetaTagLink: {
         canonical: {
           kind: "replace",
-          pattern: "dev-drupal-graphql.pantheonsite.io",
-          replacement: "drupal-remix.pages.dev",
+          pattern: drupalUrl,
+          replacement: drupalUrl,
         },
       },
       MetaTagProperty: {
         "og:url": {
           kind: "replace",
-          pattern: "dev-drupal-graphql.pantheonsite.io",
-          replacement: "drupal-remix.pages.dev",
+          pattern: drupalUrl,
+          replacement: drupalUrl,
         },
       },
       MetaTagValue: {
         "twitter:url": {
           kind: "replace",
-          pattern: "dev-drupal-graphql.pantheonsite.io",
-          replacement: "drupal-remix.pages.dev",
+          pattern: drupalUrl,
+          replacement: drupalUrl,
         },
       },
     },
@@ -53,6 +54,8 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export async function loader({ params, request }: Route.LoaderArgs) {
+  const drupalUrl = process.env.DRUPAL_URL ?? "";
+  const logoUrl = `${drupalUrl}/sites/default/files/2024-09/drupal-decoupled.png`;
   const path = calculatePath({ path: params["*"], url: request.url });
 
   const client = await getDrupalClient();
@@ -67,7 +70,6 @@ export async function loader({ params, request }: Route.LoaderArgs) {
               __typename
               ...NodePageFragment
               ...NodeArticleFragment
-              ...TermTagsFragment
             }
           }
         }
@@ -81,7 +83,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
         }
       }
     `,
-    [NodePageFragment, NodeArticleFragment, TermTagsFragment, MenuFragment],
+    [NodePageFragment, NodeArticleFragment, MenuFragment],
   );
 
   const { data, error } = await client.query(nodeRouteQuery, {
@@ -92,17 +94,40 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     throw error;
   }
 
-  if (
-    !data ||
-    !data?.route ||
-    data?.route.__typename !== "RouteInternal" ||
-    !data.route.entity
-  ) {
+  if (!data || !data.route || data.route.__typename !== "RouteInternal") {
     return redirect("/404");
   }
 
+  if (!data.route.entity) {
+    throw new Error("RouteInternal returned no entity");
+  }
+
+  const resolveEntity = ({
+    entity,
+  }: {
+    entity: typeof data.route.entity;
+  }): NodeResultOf => {
+    if (entity.__typename === "NodePage") {
+      return readFragment(
+        NodePageFragment,
+        entity as FragmentOf<typeof NodePageFragment>,
+      );
+    }
+
+    if (entity.__typename === "NodeArticle") {
+      return readFragment(
+        NodeArticleFragment,
+        entity as FragmentOf<typeof NodeArticleFragment>,
+      );
+    }
+
+    throw new Error(`Unsupported entity type: ${entity.__typename}`);
+  };
+
+  const node = resolveEntity({ entity: data.route.entity });
+
   const menuMain = readFragment(MenuFragment, data.menuMain);
-  const navItems = menuMain
+  const navItems = menuMain?.items
     ? menuMain.items.map((item) => {
         const menuItem = readFragment(MenuItemFragment, item);
 
@@ -114,14 +139,38 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       })
     : [];
 
+  const menuFooter = readFragment(MenuFragment, data.menuFooter);
+  const footerColumns = menuFooter?.items?.length
+    ? [
+        {
+          title: "Navigation",
+          links: menuFooter.items.map((item) => {
+            const menuItem = readFragment(MenuItemFragment, item);
+            return {
+              href: menuItem.href || "/",
+              children: menuItem.label,
+              internal: true,
+            };
+          }),
+        },
+      ]
+    : [];
+
+  const logo = { src: logoUrl, alt: "Company Logo" };
+
+  const resolveSpec = (entity: NodeResultOf): Spec | null => {
+    if (entity.__typename === "NodePage") {
+      return resolve({ node: entity });
+    }
+
+    return null;
+  };
+
   return {
-    type: data.route.entity.__typename,
+    node,
+    spec: resolveSpec(node),
     header: {
-      logo: {
-        // add DRUPAL URI as env variable
-        src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
-        alt: "Company Logo",
-      },
+      logo,
       navItems,
       sticky: true,
       actions: [
@@ -131,31 +180,23 @@ export async function loader({ params, request }: Route.LoaderArgs) {
         },
         {
           text: "Quickstart",
-          href: "https://drupal-decoupled.octahedroid.com/docs/getting-started/quick-start/drupal",
+          href: "https://drupal-decoupled.octahedroid.com/docs/getting-started/quickstart/drupal",
         },
       ],
     },
     footer: {
-      logo: {
-        // add DRUPAL URI as env variable
-        src: `${process.env.DRUPAL_AUTH_URI}/sites/default/files/2024-09/drupal-decoupled.png`,
-        alt: "Company Logo",
-      },
+      logo,
       copyrightText: `© ${new Date().getFullYear()} Drupal Decoupled`,
-      navItems: [],
+      columns: footerColumns,
     },
-    entity: data.route.entity as EntityFragmentType,
-    environment: process.env.ENVIRONMENT as string,
+    tags: calculateMetaTags(node),
+    drupalUrl,
   };
 }
 
-export default function Home({
-  loaderData: { type, entity, environment, header, footer },
+export default function Page({
+  loaderData: { node, header, footer, spec },
 }: Route.ComponentProps) {
-  if (!type || !entity) {
-    return <pre>Invalid data</pre>;
-  }
-
   return (
     <>
       <Header
@@ -164,27 +205,17 @@ export default function Home({
         sticky={header.sticky}
         actions={header.actions}
       />
-      {type === "NodePage" && (
-        <NodePageComponent
-          node={entity as FragmentOf<typeof NodePageFragment>}
-          environment={environment}
-        />
+
+      {node.__typename === "NodePage" && spec && (
+        <NodePage node={node} spec={spec} />
       )}
-      {type === "NodeArticle" && (
-        <NodeArticleComponent
-          node={entity as FragmentOf<typeof NodeArticleFragment>}
-          environment={environment}
-        />
-      )}
-      {type === "TermTags" && (
-        <TermTagsComponent
-          term={entity as FragmentOf<typeof TermTagsFragment>}
-        />
-      )}
+
+      {node.__typename === "NodeArticle" && <NodeArticle node={node} />}
+
       <Footer
         logo={footer.logo}
         copyrightText={footer.copyrightText}
-        columns={[]}
+        columns={footer.columns}
       />
     </>
   );

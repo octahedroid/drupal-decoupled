@@ -17,9 +17,9 @@ const getDrupalData = cache(
     const pathFromParams = params.slug ? `/${params.slug.join("/")}` : "/";
 
     const client = await getClient({
-      url: process.env.DRUPAL_GRAPHQL_URI ?? "",
+      url: process.env.DRUPAL_GRAPHQL_URL ?? "",
       auth: {
-        uri: process.env.DRUPAL_AUTH_URI ?? "",
+        uri: process.env.DRUPAL_URL ?? "",
         clientId: process.env.DRUPAL_CLIENT_ID ?? "",
         clientSecret: process.env.DRUPAL_CLIENT_SECRET ?? "",
       },

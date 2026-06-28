@@ -12,14 +12,14 @@ import { drupalAuthClient } from "drupal-auth-client";
 
   dotenv.config({ path: envPath });
 
-  const authClient = await drupalAuthClient(process.env.DRUPAL_AUTH_URI ?? "", {
+  const authClient = await drupalAuthClient(process.env.DRUPAL_URL ?? "", {
     clientId: process.env.DRUPAL_CLIENT_ID ?? "",
     clientSecret: process.env.DRUPAL_CLIENT_SECRET ?? "",
   });
 
   console.log("\n🚀 Generating GraphQL Schema");
   await generateSchema({
-    input: process.env.DRUPAL_GRAPHQL_URI ?? "",
+    input: process.env.DRUPAL_GRAPHQL_URL ?? "",
     output: undefined,
     headers: {
       Authorization: `${authClient.token_type} ${authClient.access_token}`,

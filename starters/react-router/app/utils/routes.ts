@@ -9,8 +9,9 @@ export const calculatePath = ({
 }: CalculatePathArgs): string => {
   if (path.startsWith("node/preview")) {
     const { searchParams } = new URL(url);
-    if (searchParams.has("token")) {
-      return `${path}?token=${searchParams.get("token")}`;
+    const token = searchParams.get("token");
+    if (token) {
+      return `${path}?token=${token}`;
     }
   }
 

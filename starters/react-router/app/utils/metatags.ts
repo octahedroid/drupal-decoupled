@@ -1,32 +1,11 @@
 import type { MetaTag } from "drupal-decoupled/react-router";
-import type { FragmentOf } from "gql.tada";
-import { readFragment } from "gql.tada";
-import {
-  NodeArticleFragment,
-  NodePageFragment,
-} from "~/graphql/fragments/node";
-import type { EntityFragmentType } from "~/graphql/types";
+import type { NodeResultOf } from "~/graphql/types";
 
-export const calculateMetaTags = (
-  type: string,
-  node: EntityFragmentType,
-): Array<MetaTag> => {
-  if (type === "NodePage") {
-    const { metatag } = readFragment(
-      NodePageFragment,
-      node as FragmentOf<typeof NodePageFragment>,
-    );
-
-    return metatag as MetaTag[];
-  }
-
-  if (type === "NodeArticle") {
-    const { metatag } = readFragment(
-      NodeArticleFragment,
-      node as FragmentOf<typeof NodeArticleFragment>,
-    );
-
-    return metatag as MetaTag[];
+export const calculateMetaTags = (node: NodeResultOf): Array<MetaTag> => {
+  if (node.__typename === "NodePage" || node.__typename === "NodeArticle") {
+    // Cast bridges gql.tada's generated union and the library's MetaTag union;
+    // the runtime shapes are structurally identical.
+    return (node.metatag ?? []) as unknown as MetaTag[];
   }
 
   return [];

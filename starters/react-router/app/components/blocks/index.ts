@@ -7,4 +7,6 @@ export * from "~/components/blocks/Header/Header";
 export * from "~/components/blocks/Hero/Hero";
 export * from "~/components/blocks/LogoGroup/LogoGroup";
 export * from "~/components/blocks/Testimonial/Testimonial";
+export * from "~/components/blocks/ViewReference/ViewReference";
+export * from "~/components/blocks/Webform/Webform";
 export * from "~/components/primitives/MainLayout/MainLayout";

@@ -1,5 +1,4 @@
 "use client";
-
 import { syncDrupalPreviewRoutes } from "drupal-decoupled";
 import { useEffect } from "react";
 
@@ -9,12 +8,13 @@ export default function NavigationEvents() {
     document.addEventListener(
       "click",
       (event) => {
-        // exit early if we're not in an iframe
-        if (window.location === window.parent.location) {
+        // exit early if we're not in an iframe; window.location comparison
+        // can throw a SecurityError cross-origin, so compare window objects instead
+        if (window === window.parent) {
           return;
         }
 
-        const target = (event.target as Partial<HTMLElement>).closest?.("a");
+        const target = (event.target as HTMLElement).closest?.("a");
         if (!target) {
           return;
         }

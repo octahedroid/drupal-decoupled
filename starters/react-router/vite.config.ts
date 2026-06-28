@@ -11,7 +11,7 @@ export default defineConfig({
     !isStorybook && reactRouter(),
     !isStorybook &&
       drupal({
-        drupalUrl: "DRUPAL_AUTH_URI",
+        drupalUrl: "DRUPAL_URL",
       }),
     tsconfigPaths(),
   ],

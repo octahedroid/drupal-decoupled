@@ -65,6 +65,6 @@ export const reactRouterAdapter: FrameworkAdapter = {
     '  import { drupal } from "drupal-vite";',
     "",
     "  // Add to your plugins array:",
-    '  drupal({ drupalUrl: "DRUPAL_AUTH_URI" })',
+    '  drupal({ drupalUrl: "DRUPAL_URL" })',
   ],
 };
