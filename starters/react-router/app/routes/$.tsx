@@ -1,4 +1,4 @@
-import { readFragment, type FragmentOf } from "gql.tada";
+import { readFragment } from "gql.tada";
 import { metaTags } from "drupal-decoupled/react-router";
 import { getDrupalClient } from "drupal-vite/client";
 import { redirect } from "react-router";
@@ -9,15 +9,16 @@ import {
   NodeArticleFragment,
   NodePageFragment,
 } from "~/graphql/fragments/node";
-import type { NodeResultOf } from "~/graphql/types";
 import { graphql } from "~/graphql/gql.tada";
 import { calculateMetaTags } from "~/utils/metatags";
 import { calculatePath } from "~/utils/routes";
-import { resolve } from "~/integration/resolvers/resolver";
 import NodePage from "~/integration/layout/NodePage";
 import NodeArticle from "~/integration/layout/NodeArticle";
 import { Footer, Header } from "~/components/blocks";
-import type { Spec } from "@json-render/core";
+import {
+  resolveRouteEntity,
+  resolveSpecForNode,
+} from "~/prototyping/getPageSpec.server";
 
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) {
@@ -102,29 +103,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     throw new Error("RouteInternal returned no entity");
   }
 
-  const resolveEntity = ({
-    entity,
-  }: {
-    entity: typeof data.route.entity;
-  }): NodeResultOf => {
-    if (entity.__typename === "NodePage") {
-      return readFragment(
-        NodePageFragment,
-        entity as FragmentOf<typeof NodePageFragment>,
-      );
-    }
-
-    if (entity.__typename === "NodeArticle") {
-      return readFragment(
-        NodeArticleFragment,
-        entity as FragmentOf<typeof NodeArticleFragment>,
-      );
-    }
-
-    throw new Error(`Unsupported entity type: ${entity.__typename}`);
-  };
-
-  const node = resolveEntity({ entity: data.route.entity });
+  const node = resolveRouteEntity(data.route.entity);
 
   const menuMain = readFragment(MenuFragment, data.menuMain);
   const navItems = menuMain?.items
@@ -158,17 +137,9 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   const logo = { src: logoUrl, alt: "Company Logo" };
 
-  const resolveSpec = (entity: NodeResultOf): Spec | null => {
-    if (entity.__typename === "NodePage") {
-      return resolve({ node: entity });
-    }
-
-    return null;
-  };
-
   return {
     node,
-    spec: resolveSpec(node),
+    spec: resolveSpecForNode(node),
     header: {
       logo,
       navItems,

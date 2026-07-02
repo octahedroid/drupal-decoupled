@@ -6,12 +6,13 @@ import { registry } from "~/integration/resolvers/registry";
 
 interface SpecRendererProps {
   spec: Spec;
+  loading?: boolean;
 }
 
-export function SpecRenderer({ spec }: SpecRendererProps): ReactNode {
+export function SpecRenderer({ spec, loading }: SpecRendererProps): ReactNode {
   return (
     <JSONUIProvider registry={registry}>
-      <Renderer spec={spec} registry={registry} />
+      <Renderer spec={spec} registry={registry} loading={loading} />
     </JSONUIProvider>
   );
 }
