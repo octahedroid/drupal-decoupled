@@ -7,6 +7,7 @@
     "dev": "react-router dev --port 8080",
     "start": "react-router-serve ./build/server/index.js",
     "preview": "npm run build && vite preview",
+    "test": "vitest run",
     "typecheck": "react-router typegen && tsc",
     "gql:sync": "npx tsx scripts/sync.ts",
     "storybook": "storybook dev -p 6006",
@@ -52,6 +53,7 @@
     "tw-animate-css": "^1",
     "typescript": "^5",
     "vite": "^7",
-    "vite-tsconfig-paths": "^5"
+    "vite-tsconfig-paths": "^5",
+    "vitest": "^4.1.9"
   }
 }

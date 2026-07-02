@@ -10,6 +10,15 @@ import { ViewReference } from "~/components/blocks/ViewReference/ViewReference";
 import { Webform, webformComponents } from "~/components/blocks/Webform/Webform";
 import { ContactForm } from "~/integration/forms/ContactForm/ContactForm";
 import { catalog } from "~/integration/resolvers/catalog";
+import {
+  Button,
+  Grid,
+  Heading,
+  Image,
+  Section,
+  Stack,
+  Text,
+} from "~/components/primitives";
 
 webformComponents.contact_form = ContactForm;
 
@@ -25,5 +34,12 @@ export const { registry } = defineRegistry(catalog, {
     ParagraphTestimonial: ({ props }) => <Testimonial {...props} />,
     ParagraphViewReference: ({ props }) => <ViewReference {...props} />,
     ParagraphWebform: ({ props }) => (<Webform {...props}  />),
+    Section: ({ props, children }) => <Section {...props}>{children}</Section>,
+    Grid: ({ props, children }) => <Grid {...props}>{children}</Grid>,
+    Stack: ({ props, children }) => <Stack {...props}>{children}</Stack>,
+    Heading: ({ props }) => <Heading {...props} />,
+    Text: ({ props }) => <Text {...props} />,
+    Button: ({ props }) => <Button {...props} />,
+    Image: ({ props }) => <Image {...props} />,
   },
 });

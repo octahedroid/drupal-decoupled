@@ -10,3 +10,5 @@
 app/graphql/fragments/generated
 *storybook.log
 storybook-static
+.prototypes/
+.tmp-tests/
