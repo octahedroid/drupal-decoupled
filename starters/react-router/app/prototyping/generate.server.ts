@@ -1,9 +1,13 @@
-import { createSpecStreamCompiler, type Spec } from "@json-render/core";
+import {
+  autoFixSpec,
+  createSpecStreamCompiler,
+  type Spec,
+} from "@json-render/core";
 
 import { catalog } from "~/integration/resolvers/catalog";
 import type { PrototypeRecord, PrototypeStore } from "~/prototyping/store";
 
-export const DEFAULT_PROTOTYPING_MODEL = "claude-sonnet-4-20250514";
+export const DEFAULT_PROTOTYPING_MODEL = "claude-sonnet-4-6";
 
 interface ResolvePrototypeBaseSpecInput {
   prototype: PrototypeRecord;
@@ -36,7 +40,9 @@ export function extractGenerationMessage(body: unknown): string {
   return message;
 }
 
-export function getPrototypeHistoryMessages(prototype: PrototypeRecord): string[] {
+export function getPrototypeHistoryMessages(
+  prototype: PrototypeRecord,
+): string[] {
   return prototype.versions.map((version) => version.message);
 }
 
@@ -87,10 +93,14 @@ export async function persistValidatedPrototypeVersion({
   store,
   validateSpec = catalog.validate.bind(catalog),
 }: PersistValidatedPrototypeVersionInput): Promise<boolean> {
-  const validation = validateSpec(spec);
+  const normalizedSpec = normalizePrototypeSpec(spec);
+  const validation = validateSpec(normalizedSpec);
 
   if (!validation.success || !validation.data) {
-    console.error("Generated prototype spec failed validation", validation.error);
+    console.error(
+      "Generated prototype spec failed validation",
+      validation.error,
+    );
     return false;
   }
 
@@ -100,6 +110,18 @@ export async function persistValidatedPrototypeVersion({
   });
 
   return true;
+}
+
+export function normalizePrototypeSpec(spec: unknown): unknown {
+  if (!isCompiledSpec(spec)) {
+    return spec;
+  }
+
+  const sanitizedSpec = sanitizeUndefined(spec);
+  const withChildren = ensureChildrenArrays(sanitizedSpec);
+  const { spec: autoFixedSpec } = autoFixSpec(withChildren);
+
+  return sanitizeUndefined(ensureChildrenArrays(autoFixedSpec));
 }
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -112,4 +134,47 @@ function isCompiledSpec(value: unknown): value is Spec {
     typeof value.root === "string" &&
     isObject(value.elements)
   );
+}
+
+function sanitizeUndefined(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map((item) => sanitizeUndefined(item));
+  }
+
+  if (!isObject(value)) {
+    return value;
+  }
+
+  const sanitizedEntries = Object.entries(value)
+    .filter(([, nestedValue]) => nestedValue !== undefined)
+    .map(([key, nestedValue]) => [key, sanitizeUndefined(nestedValue)]);
+
+  return Object.fromEntries(sanitizedEntries);
+}
+
+function ensureChildrenArrays(value: unknown): unknown {
+  if (!isObject(value)) {
+    return value;
+  }
+
+  const nextValue = { ...value } as Record<string, unknown>;
+
+  if (isObject(nextValue.elements)) {
+    nextValue.elements = Object.fromEntries(
+      Object.entries(nextValue.elements).map(([key, elementValue]) => {
+        if (!isObject(elementValue)) {
+          return [key, elementValue];
+        }
+
+        const nextElement = {
+          ...elementValue,
+          children: Array.isArray(elementValue.children) ? elementValue.children : [],
+        };
+
+        return [key, nextElement];
+      }),
+    );
+  }
+
+  return nextValue;
 }

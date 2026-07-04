@@ -5,6 +5,7 @@ import {
   compileSpecFromStreamText,
   extractGenerationMessage,
   getPrototypeHistoryMessages,
+  normalizePrototypeSpec,
   persistValidatedPrototypeVersion,
   resolvePrototypeBaseSpec,
 } from "~/prototyping/generate.server";
@@ -84,6 +85,40 @@ describe("prototype generation helpers", () => {
 
     expect(persisted).toBe(false);
     expect(store.appendVersion).not.toHaveBeenCalled();
+  });
+
+  it("normalizes missing children arrays and strips undefined visible values", () => {
+    const normalized = normalizePrototypeSpec({
+      root: "NodePage",
+      elements: {
+        NodePage: {
+          type: "NodePage",
+          props: {},
+          children: ["hero"],
+          visible: undefined,
+        },
+        hero: {
+          type: "Heading",
+          props: {
+            text: "Hello",
+            tone: undefined,
+          },
+        },
+      },
+    }) as Spec;
+
+    expect(normalized.elements.NodePage).toEqual({
+      type: "NodePage",
+      props: {},
+      children: ["hero"],
+    });
+    expect(normalized.elements.hero).toEqual({
+      type: "Heading",
+      props: {
+        text: "Hello",
+      },
+      children: [],
+    });
   });
 
   it("returns null when the streamed text cannot be compiled into a spec", () => {

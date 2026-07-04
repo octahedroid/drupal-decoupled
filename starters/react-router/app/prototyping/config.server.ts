@@ -23,14 +23,20 @@ export function isPrototypingEnabled(
   return getPrototypingConfig(env).prototypingEnabled;
 }
 
+export function assertPrototypingEnabled(
+  env: NodeJS.ProcessEnv = process.env,
+): void {
+  if (!isPrototypingEnabled(env)) {
+    throw new Response("Prototyping is disabled", { status: 403 });
+  }
+}
+
 export function assertPrototypingGenerationEnabled(
   env: NodeJS.ProcessEnv = process.env,
 ): { anthropicApiKey: string } {
   const config = getPrototypingConfig(env);
 
-  if (!config.prototypingEnabled) {
-    throw new Response("Prototyping is disabled", { status: 403 });
-  }
+  assertPrototypingEnabled(env);
 
   if (!config.anthropicApiKey) {
     throw new Response("Anthropic API key is not configured", { status: 403 });

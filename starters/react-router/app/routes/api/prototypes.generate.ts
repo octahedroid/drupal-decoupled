@@ -45,21 +45,81 @@ export async function action({ request, params }: ActionFunctionArgs) {
     model: anthropic(DEFAULT_PROTOTYPING_MODEL),
     system,
     prompt: message,
-    onFinish: async ({ text }) => {
-      const compiledSpec = compileSpecFromStreamText(text);
-
-      if (!compiledSpec) {
-        return;
-      }
-
-      await persistValidatedPrototypeVersion({
-        prototypeId,
-        message,
-        spec: compiledSpec,
-        store,
-      });
-    },
   });
 
-  return result.toTextStreamResponse();
+  const response = result.toTextStreamResponse();
+
+  if (!response.body) {
+    return response;
+  }
+
+  const [clientStream, persistenceStream] = response.body.tee();
+
+  void persistPrototypeFromStream({
+    stream: persistenceStream,
+    prototypeId,
+    message,
+    store,
+  });
+
+  return new Response(clientStream, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+}
+
+async function persistPrototypeFromStream({
+  stream,
+  prototypeId,
+  message,
+  store,
+}: {
+  stream: ReadableStream<Uint8Array>;
+  prototypeId: string;
+  message: string;
+  store: ReturnType<typeof getPrototypeStore>;
+}) {
+  try {
+    const text = await readStreamText(stream);
+    const compiledSpec = compileSpecFromStreamText(text);
+
+    if (!compiledSpec) {
+      console.error("[DEBUG-prototype-persist] compiled spec was null");
+      return;
+    }
+
+    const persisted = await persistValidatedPrototypeVersion({
+      prototypeId,
+      message,
+      spec: compiledSpec,
+      store,
+    });
+
+    if (!persisted) {
+      console.error("[DEBUG-prototype-persist] compiled spec did not persist after validation");
+    }
+  } catch (error) {
+    console.error("[DEBUG-prototype-persist] failed to persist streamed prototype", error);
+  }
+}
+
+async function readStreamText(stream: ReadableStream<Uint8Array>): Promise<string> {
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  let text = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+
+    if (done) {
+      break;
+    }
+
+    text += decoder.decode(value, { stream: true });
+  }
+
+  text += decoder.decode();
+
+  return text;
 }

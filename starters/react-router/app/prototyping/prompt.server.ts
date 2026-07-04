@@ -3,13 +3,12 @@ import type { Spec } from "@json-render/core";
 import { catalog } from "~/integration/resolvers/catalog";
 
 export const DEFAULT_PROTOTYPING_PLACEHOLDERS = [
-  "/placeholders/drupal-decoupled/landscape-large.png",
-  "/placeholders/drupal-decoupled/landscape-small.png",
-  "/placeholders/drupal-decoupled/square.png",
-  "/placeholders/doc-tahedroid/hero-landscape-large.png",
-  "/placeholders/doc-tahedroid/landscape-large.png",
-  "/placeholders/doc-tahedroid/landscape-small.png",
-  "/placeholders/doc-tahedroid/square.png",
+  "https://placehold.co/1200x600/png?text=Prototype+Hero",
+  "https://placehold.co/800x450/png?text=Prototype+Section",
+  "https://placehold.co/600x600/png?text=Prototype+Image",
+  "https://placehold.co/1200x675/png?text=Marketing+Visual",
+  "https://placehold.co/640x360/png?text=Feature+Preview",
+  "https://placehold.co/400x400/png?text=Product+Shot",
 ];
 
 export const DEFAULT_PROTOTYPING_RULES = [

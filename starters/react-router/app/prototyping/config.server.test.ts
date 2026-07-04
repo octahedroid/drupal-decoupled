@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  assertPrototypingEnabled,
   assertPrototypingGenerationEnabled,
   getPrototypingConfig,
   isPrototypingEnabled,
@@ -26,6 +27,7 @@ describe("prototyping config", () => {
   });
 
   it("throws a 403 response when the feature flag is disabled", () => {
+    expect(() => assertPrototypingEnabled({})).toThrow(Response);
     expect(() => assertPrototypingGenerationEnabled({})).toThrow(Response);
 
     try {
