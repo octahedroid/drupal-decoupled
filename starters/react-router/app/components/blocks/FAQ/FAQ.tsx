@@ -33,13 +33,11 @@ export const FAQ = ({
 }: FAQProps) => {
   return (
     <div className={cn(faqVariants(), className)} {...props}>
-      <h2 className="mb-5 text-center text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl dark:text-gray-100">
+      <h2 className="mb-5 text-center text-3xl font-bold sm:text-4xl md:text-5xl">
         {heading}
       </h2>
       {description && (
-        <p className="text-muted-foreground mb-8 text-center text-lg">
-          {description}
-        </p>
+        <p className="mb-8 text-center text-lg opacity-80">{description}</p>
       )}
       <Accordion
         items={questions.map((item) => ({

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   buildPrototypeSystemPrompt,
+  buildPrototypeUserPrompt,
   collectImageSourcesFromSpec,
 } from "~/prototyping/prompt.server";
 
@@ -57,7 +58,7 @@ describe("collectImageSourcesFromSpec", () => {
 });
 
 describe("buildPrototypeSystemPrompt", () => {
-  it("includes the catalog prompt, base spec json, prior messages in order, and custom rules", () => {
+  it("includes the catalog prompt, prior messages in order, and custom rules", () => {
     const prompt = buildPrototypeSystemPrompt({
       baseSpec: BASE_SPEC,
       historyMessages: ["Move the CTA above the hero", "Now add pricing cards"],
@@ -67,7 +68,6 @@ describe("buildPrototypeSystemPrompt", () => {
     });
 
     expect(prompt).toContain("CATALOG PROMPT");
-    expect(prompt).toContain('"heading": "Hello world"');
     expect(prompt).toContain("1. Move the CTA above the hero");
     expect(prompt).toContain("2. Now add pricing cards");
     expect(prompt).toContain("Do not change the headline copy.");
@@ -92,5 +92,22 @@ describe("buildPrototypeSystemPrompt", () => {
 
     expect(prompt).toContain("- No prior messages");
     expect(prompt).toContain("- None found in the base spec");
+  });
+});
+
+describe("buildPrototypeUserPrompt", () => {
+  it("wraps the message in patch edit mode with the base spec inline", () => {
+    const prompt = buildPrototypeUserPrompt({
+      message: "Add a pricing section with 3 plans",
+      baseSpec: BASE_SPEC,
+    });
+
+    expect(prompt).toContain("CURRENT UI STATE");
+    expect(prompt).toContain("DO NOT recreate existing elements");
+    expect(prompt).toContain('"heading": "Hello world"');
+    expect(prompt).toContain(
+      "USER REQUEST: Add a pricing section with 3 plans",
+    );
+    expect(prompt).toContain("JSON Patch");
   });
 });

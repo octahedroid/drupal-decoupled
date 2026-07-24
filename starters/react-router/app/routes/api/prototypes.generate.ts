@@ -1,4 +1,5 @@
 import { createAnthropic } from "@ai-sdk/anthropic";
+import type { Spec } from "@json-render/core";
 import { streamText } from "ai";
 import type { ActionFunctionArgs } from "react-router";
 
@@ -11,7 +12,10 @@ import {
   persistValidatedPrototypeVersion,
   resolvePrototypeBaseSpec,
 } from "~/prototyping/generate.server";
-import { buildPrototypeSystemPrompt } from "~/prototyping/prompt.server";
+import {
+  buildPrototypeSystemPrompt,
+  buildPrototypeUserPrompt,
+} from "~/prototyping/prompt.server";
 import { getPrototypeStore } from "~/prototyping/store";
 
 export async function action({ request, params }: ActionFunctionArgs) {
@@ -44,7 +48,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
   const result = streamText({
     model: anthropic(DEFAULT_PROTOTYPING_MODEL),
     system,
-    prompt: message,
+    prompt: buildPrototypeUserPrompt({ message, baseSpec }),
   });
 
   const response = result.toTextStreamResponse();
@@ -59,6 +63,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
     stream: persistenceStream,
     prototypeId,
     message,
+    baseSpec,
     store,
   });
 
@@ -73,16 +78,18 @@ async function persistPrototypeFromStream({
   stream,
   prototypeId,
   message,
+  baseSpec,
   store,
 }: {
   stream: ReadableStream<Uint8Array>;
   prototypeId: string;
   message: string;
+  baseSpec: Spec;
   store: ReturnType<typeof getPrototypeStore>;
 }) {
   try {
     const text = await readStreamText(stream);
-    const compiledSpec = compileSpecFromStreamText(text);
+    const compiledSpec = compileSpecFromStreamText(text, baseSpec);
 
     if (!compiledSpec) {
       console.error("[DEBUG-prototype-persist] compiled spec was null");

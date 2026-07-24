@@ -11,6 +11,7 @@ export async function loader(_args: Route.LoaderArgs) {
     prototypes: prototypes.map((prototype) => ({
       id: prototype.id,
       sourcePath: prototype.sourcePath,
+      label: prototype.label,
       createdAt: prototype.createdAt,
       versionCount: prototype.versions.length,
       pendingMessage: prototype.pendingMessage,
@@ -55,7 +56,10 @@ export default function PrototypeIndex({ loaderData }: Route.ComponentProps) {
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-sm font-medium text-foreground">
-                    Source: <span className="text-primary">{prototype.sourcePath}</span>
+                    Source:{" "}
+                    <span className="text-primary">
+                      {prototype.label ?? prototype.sourcePath}
+                    </span>
                   </p>
                   <p className="text-muted-foreground text-sm">
                     Created {new Date(prototype.createdAt).toLocaleString()}

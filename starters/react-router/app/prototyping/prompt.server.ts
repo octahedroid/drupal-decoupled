@@ -1,6 +1,8 @@
-import type { Spec } from "@json-render/core";
+import { buildUserPrompt, type EditMode, type Spec } from "@json-render/core";
 
 import { catalog } from "~/integration/resolvers/catalog";
+
+export const PROTOTYPE_EDIT_MODES: EditMode[] = ["patch"];
 
 export const DEFAULT_PROTOTYPING_PLACEHOLDERS = [
   "https://placehold.co/1200x600/png?text=Prototype+Hero",
@@ -12,6 +14,7 @@ export const DEFAULT_PROTOTYPING_PLACEHOLDERS = [
 ];
 
 export const DEFAULT_PROTOTYPING_RULES = [
+  "Edit the current spec with JSON Patch operations. Emit only the minimal patches needed for the requested change; never re-emit elements that stay the same.",
   "Preserve all existing text and image content exactly unless the user explicitly asks to change it.",
   "Never invent component types. Only use component types defined in the catalog.",
   "When an existing catalog block fits the request, prefer that block before composing new layouts from primitives.",
@@ -51,6 +54,7 @@ export function buildPrototypeSystemPrompt({
     catalogPrompt ??
     catalog.prompt({
       mode: "standalone",
+      editModes: PROTOTYPE_EDIT_MODES,
       customRules: rules,
     });
 
@@ -61,9 +65,6 @@ export function buildPrototypeSystemPrompt({
     "",
     "Additional prototyping rules:",
     ...rules.map((rule, index) => `${index + 1}. ${rule}`),
-    "",
-    "Current base spec JSON:",
-    JSON.stringify(baseSpec, null, 2),
     "",
     "Reusable image URLs already present in the base spec:",
     ...(imageSources.length > 0
@@ -78,6 +79,20 @@ export function buildPrototypeSystemPrompt({
       ? historyMessages.map((message, index) => `${index + 1}. ${message}`)
       : ["- No prior messages"]),
   ].join("\n");
+}
+
+export function buildPrototypeUserPrompt({
+  message,
+  baseSpec,
+}: {
+  message: string;
+  baseSpec: Spec;
+}): string {
+  return buildUserPrompt({
+    prompt: message,
+    currentSpec: baseSpec,
+    editModes: PROTOTYPE_EDIT_MODES,
+  });
 }
 
 function collectImageSourcesFromValue(value: unknown, sources: Set<string>): void {

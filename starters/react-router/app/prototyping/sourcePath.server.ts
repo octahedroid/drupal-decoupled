@@ -1,3 +1,24 @@
+const GOOGLE_DOC_SOURCE_PATH_PREFIX = "gdoc:";
+const GOOGLE_DOC_ID_PATTERN = /^[a-zA-Z0-9_-]+$/;
+
+export function buildGoogleDocSourcePath(docId: unknown): string {
+  if (typeof docId !== "string" || !GOOGLE_DOC_ID_PATTERN.test(docId.trim())) {
+    throw new Response("docId must be a non-empty Google Doc id", { status: 400 });
+  }
+
+  return `${GOOGLE_DOC_SOURCE_PATH_PREFIX}${docId.trim()}`;
+}
+
+export function isGoogleDocSourcePath(sourcePath: string): boolean {
+  return sourcePath.startsWith(GOOGLE_DOC_SOURCE_PATH_PREFIX);
+}
+
+export function getGoogleDocId(sourcePath: string): string | null {
+  return isGoogleDocSourcePath(sourcePath)
+    ? sourcePath.slice(GOOGLE_DOC_SOURCE_PATH_PREFIX.length)
+    : null;
+}
+
 export function validatePrototypeSourcePath(input: unknown): string {
   if (typeof input !== "string") {
     throw new Response("sourcePath must be a string", { status: 400 });

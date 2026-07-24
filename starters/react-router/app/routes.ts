@@ -8,5 +8,6 @@ export default [
   route("form/contact_form", "routes/forms/contact_form.ts"),
   route("prototypes", "routes/prototypes._index.tsx"),
   route("prototypes/:id", "routes/prototypes.$id.tsx"),
+  route("prototypes/doc", "routes/prototypes.docs.tsx"),
   route("*", "routes/$.tsx"),
 ] satisfies RouteConfig;

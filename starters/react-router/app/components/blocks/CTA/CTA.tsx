@@ -31,16 +31,14 @@ export const CTA = ({
   return (
     <div className={cn(ctaVariants(), className)} {...props}>
       {subheading && (
-        <h5 className="mb-4 text-lg font-semibold text-gray-900 sm:text-xl md:text-2xl dark:text-gray-100">
+        <h5 className="mb-4 text-lg font-semibold sm:text-xl md:text-2xl">
           {subheading}
         </h5>
       )}
-      <h2 className="mb-5 text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl dark:text-gray-100">
+      <h2 className="mb-5 text-3xl font-bold sm:text-4xl md:text-5xl">
         {heading}
       </h2>
-      <p className="text-muted-foreground mx-auto mb-4 max-w-2xl">
-        {description}
-      </p>
+      <p className="mx-auto mb-4 max-w-2xl opacity-80">{description}</p>
       {actions && actions.length > 0 && (
         <div className="flex flex-wrap justify-center gap-4">
           {actions.slice(0, 2).map(({ internal, ...actionProps }, index) => (

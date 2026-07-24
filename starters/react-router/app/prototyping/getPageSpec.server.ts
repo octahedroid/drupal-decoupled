@@ -32,13 +32,16 @@ export function resolveRouteEntity(entity: {
   __typename: string;
 }): NodeResultOf {
   if (entity.__typename === "NodePage") {
-    return readFragment(NodePageFragment, entity as FragmentOf<typeof NodePageFragment>);
+    return readFragment(
+      NodePageFragment,
+      entity as unknown as FragmentOf<typeof NodePageFragment>,
+    );
   }
 
   if (entity.__typename === "NodeArticle") {
     return readFragment(
       NodeArticleFragment,
-      entity as FragmentOf<typeof NodeArticleFragment>,
+      entity as unknown as FragmentOf<typeof NodeArticleFragment>,
     );
   }
 

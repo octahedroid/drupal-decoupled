@@ -25,11 +25,13 @@ function createRecord({
   id,
   sourcePath,
   message,
+  label,
   now,
 }: {
   id: string;
   sourcePath: string;
   message?: string;
+  label?: string;
   now: Date;
 }): PrototypeRecord {
   return {
@@ -37,6 +39,7 @@ function createRecord({
     sourcePath,
     createdAt: now.toISOString(),
     pendingMessage: message,
+    label,
     versions: [],
   };
 }
@@ -56,6 +59,7 @@ export class FilesystemPrototypeStore implements PrototypeStore {
       id: randomUUID(),
       sourcePath: input.sourcePath,
       message: input.message,
+      label: input.label,
       now: this.now(),
     });
 

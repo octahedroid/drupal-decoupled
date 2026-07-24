@@ -5,6 +5,8 @@ import {
 } from "@json-render/core";
 
 import { catalog } from "~/integration/resolvers/catalog";
+import { DEFAULT_GOOGLE_DOC_TEMPLATE_SPEC } from "~/prototyping/googleDocs.server";
+import { isGoogleDocSourcePath } from "~/prototyping/sourcePath.server";
 import type { PrototypeRecord, PrototypeStore } from "~/prototyping/store";
 
 export const DEFAULT_PROTOTYPING_MODEL = "claude-sonnet-4-6";
@@ -56,6 +58,12 @@ export async function resolvePrototypeBaseSpec({
     return latestSpec;
   }
 
+  // A Google Doc has no Drupal page of its own; its content maps onto the
+  // design system's default page composition instead.
+  if (isGoogleDocSourcePath(prototype.sourcePath)) {
+    return structuredClone(DEFAULT_GOOGLE_DOC_TEMPLATE_SPEC);
+  }
+
   const resolvePageSpec =
     loadPageSpec ??
     (await import("~/prototyping/getPageSpec.server")).getPageSpec;
@@ -71,9 +79,16 @@ export async function resolvePrototypeBaseSpec({
   return sourceSpec;
 }
 
-export function compileSpecFromStreamText(text: string): Spec | null {
+export function compileSpecFromStreamText(
+  text: string,
+  baseSpec?: Spec,
+): Spec | null {
   try {
-    const compiler = createSpecStreamCompiler<Spec>();
+    // The compiler mutates its seed while applying patches, so clone the
+    // base spec to keep the caller's copy (store record / page spec) intact.
+    const compiler = createSpecStreamCompiler<Spec>(
+      baseSpec ? structuredClone(baseSpec) : undefined,
+    );
 
     compiler.push(text);
 
@@ -105,7 +120,7 @@ export async function persistValidatedPrototypeVersion({
   }
 
   await store.appendVersion(prototypeId, {
-    spec: validation.data,
+    spec: validation.data as Spec,
     message,
   });
 
@@ -118,10 +133,10 @@ export function normalizePrototypeSpec(spec: unknown): unknown {
   }
 
   const sanitizedSpec = sanitizeUndefined(spec);
-  const withChildren = ensureChildrenArrays(sanitizedSpec);
-  const { spec: autoFixedSpec } = autoFixSpec(withChildren);
+  const normalizedElements = ensureElementDefaults(sanitizedSpec) as Spec;
+  const { spec: autoFixedSpec } = autoFixSpec(normalizedElements);
 
-  return sanitizeUndefined(ensureChildrenArrays(autoFixedSpec));
+  return sanitizeUndefined(ensureElementDefaults(autoFixedSpec));
 }
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -152,7 +167,11 @@ function sanitizeUndefined(value: unknown): unknown {
   return Object.fromEntries(sanitizedEntries);
 }
 
-function ensureChildrenArrays(value: unknown): unknown {
+// The catalog schema declares `children` and `visible` as required element
+// fields (`visible` as a permissive `any`), and zod rejects an absent key even
+// for `any`. Neither Drupal-sourced specs nor model output reliably include
+// them, so fill both in before validating.
+function ensureElementDefaults(value: unknown): unknown {
   if (!isObject(value)) {
     return value;
   }
@@ -169,6 +188,9 @@ function ensureChildrenArrays(value: unknown): unknown {
         const nextElement = {
           ...elementValue,
           children: Array.isArray(elementValue.children) ? elementValue.children : [],
+          // `true` is the renderer's "always visible" condition, so this is a
+          // no-op for elements that never declared visibility.
+          visible: elementValue.visible ?? true,
         };
 
         return [key, nextElement];

@@ -9,6 +9,12 @@ import { SpecRenderer } from "~/integration/layout/SpecRenderer";
 import { VersionHistory } from "~/prototyping/VersionHistory";
 import { Toolbar } from "~/prototyping/Toolbar";
 import { getPrototypingConfig } from "~/prototyping/config.server";
+import { getPageSpec } from "~/prototyping/getPageSpec.server";
+import { DEFAULT_GOOGLE_DOC_TEMPLATE_SPEC } from "~/prototyping/googleDocs.server";
+import {
+  getGoogleDocId,
+  isGoogleDocSourcePath,
+} from "~/prototyping/sourcePath.server";
 import { getPrototypeStore } from "~/prototyping/store";
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -25,10 +31,26 @@ export async function loader({ params }: Route.LoaderArgs) {
     throw new Response("Prototype not found", { status: 404 });
   }
 
+  const latestSpec = prototype.versions.at(-1)?.spec ?? null;
+  // Fresh prototypes stream patches against a base spec, so the client needs
+  // it to seed the live render before the first version exists. For a
+  // Drupal-sourced prototype that's its own page; a Google Doc source has no
+  // Drupal page, so it seeds from the default design-system template.
+  const baseSpec = isGoogleDocSourcePath(prototype.sourcePath)
+    ? (latestSpec ?? DEFAULT_GOOGLE_DOC_TEMPLATE_SPEC)
+    : (latestSpec ??
+      (await getPageSpec(prototype.sourcePath).catch(() => null)));
+
+  const googleDocEditUrl = isGoogleDocSourcePath(prototype.sourcePath)
+    ? `https://docs.google.com/document/d/${getGoogleDocId(prototype.sourcePath)}/edit`
+    : null;
+
   return {
     prototype: {
       id: prototype.id,
       sourcePath: prototype.sourcePath,
+      label: prototype.label,
+      googleDocEditUrl,
       createdAt: prototype.createdAt,
       pendingMessage: prototype.pendingMessage,
       versions: prototype.versions.map((version) => ({
@@ -37,19 +59,22 @@ export async function loader({ params }: Route.LoaderArgs) {
         timestamp: version.timestamp,
       })),
     },
-    latestSpec: prototype.versions.at(-1)?.spec ?? null,
+    latestSpec,
+    baseSpec,
     prototypingEnabled: getPrototypingConfig().prototypingEnabled,
   };
 }
 
 export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
-  const { prototype, latestSpec, prototypingEnabled } = loaderData;
+  const { prototype, latestSpec, baseSpec, prototypingEnabled } = loaderData;
   const revalidator = useRevalidator();
   const autoStartedRef = useRef(false);
   const renderSurfaceRef = useRef<HTMLDivElement | null>(null);
   const pendingMessage = prototype.pendingMessage;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [copyFeedback, setCopyFeedback] = useState<null | "html" | "spec">(null);
+  const [copyFeedback, setCopyFeedback] = useState<null | "html" | "spec">(
+    null,
+  );
   const [copyError, setCopyError] = useState<string | null>(null);
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 
@@ -82,8 +107,10 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
       prototypeId: prototype.id,
       sourcePath: prototype.sourcePath,
       bootstrap: true,
+      previousSpec: baseSpec ?? undefined,
     });
   }, [
+    baseSpec,
     pendingMessage,
     prototype.id,
     prototype.sourcePath,
@@ -113,7 +140,13 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
   const activeSpec =
     previewIndex !== null
       ? ((prototype.versions[previewIndex]?.spec ?? null) as Spec | null)
-      : ((streamingSpec ?? latestSpec) as Spec | null);
+      : ((streamingSpec ?? latestSpec ?? baseSpec) as Spec | null);
+  // The Google Doc template seeds as an empty root; render it as "no content
+  // yet" rather than a blank page while the AI is still streaming it in.
+  const hasRenderableContent = Boolean(
+    activeSpec &&
+      (activeSpec.elements[activeSpec.root]?.children?.length ?? 0) > 0,
+  );
   const latestVersion = prototype.versions.at(-1) ?? null;
   const retryMessage = pendingMessage ?? latestVersion?.message ?? "";
 
@@ -159,12 +192,19 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
                 Prototype
               </span>
               <span className="text-muted-foreground text-sm">
-                {isStreaming ? "Generating live" : latestVersion ? "Saved snapshot" : "Awaiting first version"}
+                {isStreaming
+                  ? "Generating live"
+                  : latestVersion
+                    ? "Saved snapshot"
+                    : "Awaiting first version"}
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-foreground">{prototype.sourcePath}</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              {prototype.label ?? prototype.sourcePath}
+            </h1>
             <p className="text-muted-foreground text-sm">
-              Created {new Date(prototype.createdAt).toLocaleString()} · {prototype.versions.length} version
+              Created {new Date(prototype.createdAt).toLocaleString()} ·{" "}
+              {prototype.versions.length} version
               {prototype.versions.length === 1 ? "" : "s"}
             </p>
           </div>
@@ -191,7 +231,11 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
               onClick={() => setIsDrawerOpen((current) => !current)}
               className="border-border hover:bg-muted inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium text-foreground transition-colors"
             >
-              {isDrawerOpen ? <PanelRightClose className="size-4" /> : <PanelRightOpen className="size-4" />}
+              {isDrawerOpen ? (
+                <PanelRightClose className="size-4" />
+              ) : (
+                <PanelRightOpen className="size-4" />
+              )}
               Details
             </button>
             <Link
@@ -200,12 +244,23 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
             >
               All prototypes
             </Link>
-            <Link
-              to={prototype.sourcePath}
-              className="border-border hover:bg-muted rounded-md border px-4 py-2 text-sm font-medium text-foreground transition-colors"
-            >
-              Open source page
-            </Link>
+            {prototype.googleDocEditUrl ? (
+              <a
+                href={prototype.googleDocEditUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="border-border hover:bg-muted rounded-md border px-4 py-2 text-sm font-medium text-foreground transition-colors"
+              >
+                Open Google Doc
+              </a>
+            ) : (
+              <Link
+                to={prototype.sourcePath}
+                className="border-border hover:bg-muted rounded-md border px-4 py-2 text-sm font-medium text-foreground transition-colors"
+              >
+                Open source page
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -224,21 +279,20 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
         ) : null}
       </div>
 
-      <div className="px-4 py-4 md:px-6 md:py-6">
-        <section
-          ref={renderSurfaceRef}
-          className="min-w-0 rounded-2xl border bg-background p-4 shadow-sm md:p-6"
-        >
-          {activeSpec ? (
+      <div className="">
+        <section ref={renderSurfaceRef}>
+          {hasRenderableContent && activeSpec ? (
             <SpecRenderer spec={activeSpec} loading={isStreaming} />
           ) : (
             <div className="flex min-h-[320px] flex-col items-center justify-center rounded-xl border border-dashed bg-muted/20 p-8 text-center">
               <p className="text-lg font-semibold text-foreground">
-                {isStreaming ? "Building your prototype…" : "No saved prototype spec yet"}
+                {isStreaming
+                  ? "Building your prototype…"
+                  : "No saved prototype spec yet"}
               </p>
               <p className="text-muted-foreground mt-2 max-w-md">
                 {isStreaming
-                  ? "Streaming patches should start painting the page live in a moment. Main character energy, but with actual data integrity."
+                  ? "Streaming patches should start painting the page live in a moment."
                   : "This session is waiting for its first valid generation."}
               </p>
             </div>
@@ -258,7 +312,9 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
             <div className="flex items-center justify-between border-b px-5 py-4">
               <div className="flex items-center gap-2">
                 <Info className="text-primary size-4" />
-                <h2 className="text-lg font-semibold text-foreground">Prototype details</h2>
+                <h2 className="text-lg font-semibold text-foreground">
+                  Prototype details
+                </h2>
               </div>
               <button
                 type="button"
@@ -271,11 +327,15 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
 
             <div className="flex-1 space-y-4 overflow-y-auto p-5">
               <div className="rounded-2xl border bg-background p-5 shadow-sm">
-                <h3 className="text-lg font-semibold text-foreground">Session details</h3>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Session details
+                </h3>
                 <dl className="mt-4 space-y-3 text-sm">
                   <div>
                     <dt className="text-muted-foreground">Prototype id</dt>
-                    <dd className="mt-1 break-all text-foreground">{prototype.id}</dd>
+                    <dd className="mt-1 break-all text-foreground">
+                      {prototype.id}
+                    </dd>
                   </div>
                   <div>
                     <dt className="text-muted-foreground">Status</dt>
@@ -288,7 +348,9 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-muted-foreground">Latest instruction</dt>
+                    <dt className="text-muted-foreground">
+                      Latest instruction
+                    </dt>
                     <dd className="mt-1 text-foreground">
                       {latestVersion?.message ?? pendingMessage ?? "None yet"}
                     </dd>
@@ -297,7 +359,9 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
               </div>
 
               <div className="rounded-2xl border bg-background p-5 shadow-sm">
-                <h3 className="text-lg font-semibold text-foreground">History preview</h3>
+                <h3 className="text-lg font-semibold text-foreground">
+                  History preview
+                </h3>
                 <div className="mt-4">
                   <VersionHistory
                     prototypeId={prototype.id}
@@ -314,9 +378,12 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
 
               {error ? (
                 <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-5 shadow-sm">
-                  <h3 className="text-destructive text-lg font-semibold">Generation error</h3>
+                  <h3 className="text-destructive text-lg font-semibold">
+                    Generation error
+                  </h3>
                   <p className="mt-2 text-sm text-foreground">
-                    {error.message || "The streamed prototype could not be completed."}
+                    {error.message ||
+                      "The streamed prototype could not be completed."}
                   </p>
                   {pendingMessage && prototypingEnabled ? (
                     <div className="mt-4">
@@ -329,6 +396,7 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
                             prototypeId: prototype.id,
                             sourcePath: prototype.sourcePath,
                             retry: true,
+                            previousSpec: baseSpec ?? undefined,
                           });
                         }}
                       >
@@ -353,6 +421,7 @@ export default function PrototypeViewer({ loaderData }: Route.ComponentProps) {
             send(message, {
               prototypeId: prototype.id,
               sourcePath: prototype.sourcePath,
+              previousSpec: latestSpec ?? baseSpec ?? undefined,
             })
           }
         />

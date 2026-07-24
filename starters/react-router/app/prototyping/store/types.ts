@@ -12,11 +12,14 @@ export interface PrototypeRecord {
   createdAt: string;
   pendingMessage?: string;
   versions: PrototypeVersion[];
+  // Friendly display name for sources that don't read well as a path, e.g. a doc title.
+  label?: string;
 }
 
 export interface CreatePrototypeInput {
   sourcePath: string;
   message?: string;
+  label?: string;
 }
 
 export interface AppendPrototypeVersionInput {
